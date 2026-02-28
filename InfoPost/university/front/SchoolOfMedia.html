@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlmaU · Школа Медиа и Кино</title>
+    <style>
+        /* === ОСНОВНЫЕ СТИЛИ === */
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --blue-dark: #0066CC;
+            --purple: #8A2BE2;
+            --cyan: #00D4FF;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-light: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-medium: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-heavy: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        button, .btn {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* === TOPBAR === */
+        .topbar {
+            background: linear-gradient(90deg, var(--black), #2c2c2e);
+            color: var(--white);
+            padding: 0.75rem 0;
+            font-size: 14px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .topbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+        }
+
+        .topbar__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar__contacts {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            padding: 0.5rem 0;
+        }
+
+        .contact:hover {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* === HEADER === */
+        .main-header {
+            padding: 1.25rem 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo__img {
+            height: 45px;
+            transition: var(--transition);
+        }
+
+        .logo__img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav__item {
+            position: relative;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav__item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav__item a:hover::after {
+            width: 100%;
+        }
+
+        .nav__item--dropdown .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -1rem;
+            background: var(--white);
+            box-shadow: var(--shadow-medium);
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            min-width: 280px;
+            z-index: 100;
+            border: 1px solid var(--light-gray);
+        }
+
+        .nav__item--dropdown:hover .dropdown {
+            display: block;
+            animation: dropdownFade 0.3s ease;
+        }
+
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown li {
+            margin: 0.75rem 0;
+        }
+
+        .dropdown a {
+            color: var(--dark-gray);
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--blue);
+        }
+
+        .actions .cta {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 4px 15px rgba(10, 132, 255, 0.3);
+        }
+
+        .actions .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
+            text-decoration: none;
+        }
+
+        /* === HERO (Школа Медиа и Кино) === */
+        .hero {
+            background: linear-gradient(135deg, #2d1b34 0%, #5a2e4e 50%, #2d1b34 100%);
+            color: var(--white);
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-btn-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(-8px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffdab9, #ffb6c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta {
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-cta.primary {
+            background: linear-gradient(135deg, #ff69b4, #da70d6);
+            color: var(--white);
+            border: none;
+        }
+
+        .hero-cta.ghost {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-heavy);
+            text-decoration: none;
+        }
+
+        .hero-cta.primary:hover {
+            background: linear-gradient(135deg, #da70d6, #ff69b4);
+        }
+
+        .hero-cta.ghost:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.08);
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        .feature strong {
+            color: #ffb6c1;
+            font-size: 1.2rem;
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            transform: perspective(1500px) rotateY(-15deg) rotateX(5deg);
+            transition: var(--transition);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: perspective(1500px) rotateY(-15deg) rotateX(5deg) translateY(0); }
+            50% { transform: perspective(1500px) rotateY(-15deg) rotateX(5deg) translateY(-20px); }
+        }
+
+        .hero-img:hover {
+            transform: perspective(1500px) rotateY(0) rotateX(0);
+            animation: none;
+        }
+
+        /* === ПРОГРАММЫ — 3 в ряд === */
+        .programs-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--white) 0%, #fff0f5 100%);
+            position: relative;
+        }
+
+        .programs-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff69b4, #da70d6);
+            border-radius: 2px;
+        }
+
+        .section-sub {
+            color: var(--dark-gray);
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* три колонки */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff69b4, #da70d6);
+        }
+
+        .program-card-header {
+            padding: 2rem 2rem 1rem;
+            background: linear-gradient(135deg, #fff0f5, var(--white));
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .program-card h3::before {
+            content: '🎬';
+            font-size: 1.5rem;
+        }
+
+        .program-card-body {
+            padding: 0 2rem 1.5rem;
+            flex: 1;
+        }
+
+        .program-card p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .program-details {
+            background: var(--light-gray);
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            margin: 1.25rem 0;
+        }
+
+        .program-details h4 {
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .program-details ul {
+            list-style: none;
+            padding-left: 1.25rem;
+        }
+
+        .program-details li {
+            padding: 0.25rem 0;
+            color: var(--dark-gray);
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .program-details li::before {
+            content: '▸';
+            position: absolute;
+            left: -1.25rem;
+            color: #ff69b4;
+        }
+
+        .program-card-footer {
+            padding: 1.25rem 2rem 2rem;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(10, 132, 255, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
+            text-decoration: none;
+        }
+
+        /* === ПРЕИМУЩЕСТВА === */
+        .advantages-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #3d2b3a 0%, #5e3a55 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advantages-section .section-title {
+            color: var(--white);
+        }
+        .advantages-section .section-sub {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .advantage-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .advantage-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-10px);
+            border-color: #ff69b4;
+        }
+
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff69b4, #da70d6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .advantage-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+        }
+
+        .advantage-card p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+
+        /* === ПОСТУПЛЕНИЕ === */
+        .admission-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #4a2c42 0%, #6d3f62 100%);
+            color: var(--white);
+            position: relative;
+        }
+
+        .admission-content {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .admission-subtitle {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .admission-list {
+            list-style: none;
+            counter-reset: admission-counter;
+        }
+
+        .admission-list li {
+            counter-increment: admission-counter;
+            margin: 2rem 0;
+            padding-left: 4rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .admission-list li::before {
+            content: counter(admission-counter);
+            position: absolute;
+            left: 0;
+            top: -5px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff69b4, #da70d6);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .admission-list strong {
+            display: block;
+            font-weight: 600;
+            color: #ffb6c1;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .admission-action {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .admission-action .btn {
+            background: var(--white);
+            color: #4a2c42;
+            font-size: 1.1rem;
+            padding: 1.25rem 3rem;
+            width: auto;
+            min-width: 250px;
+        }
+
+        /* === КОНТАКТЫ === */
+        .contacts-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contacts-info {
+            background: linear-gradient(135deg, var(--light-gray), #fff0f5);
+            padding: 3rem;
+            border-radius: 25px;
+        }
+
+        .contacts-subtitle {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--black);
+        }
+
+        .contacts-address {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contacts-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contacts-item strong {
+            color: var(--blue);
+            font-size: 1.1rem;
+        }
+
+        .contacts-link {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        .contacts-form-wrapper {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--light-gray);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1.25rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+        }
+
+        .form-submit {
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer__logo {
+            height: 45px;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer__desc {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer__col-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.75rem 0;
+        }
+
+        .footer__list a {
+            color: rgba(255,255,255,0.7);
+            transition: var(--transition);
+        }
+
+        .footer__list a:hover {
+            color: var(--cyan);
+            padding-left: 5px;
+        }
+
+        .footer__address {
+            color: rgba(255,255,255,0.7);
+            font-style: normal;
+            line-height: 1.7;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer__social {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .footer__social:hover {
+            background: var(--cyan);
+            transform: translateY(-3px);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* === АНИМАЦИИ === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .program-card, .advantage-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .program-card:nth-child(1) { animation-delay: 0.1s; }
+        .program-card:nth-child(2) { animation-delay: 0.15s; }
+        .program-card:nth-child(3) { animation-delay: 0.2s; }
+        .program-card:nth-child(4) { animation-delay: 0.25s; }
+        .program-card:nth-child(5) { animation-delay: 0.3s; }
+        .program-card:nth-child(6) { animation-delay: 0.35s; }
+
+        @media (max-width: 992px) {
+            .hero-grid, .contacts-grid { grid-template-columns: 1fr; }
+            .programs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .programs-grid { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container topbar__inner">
+            <div class="topbar__contacts">
+                <a href="tel:+77273133040" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8a15.05 15.05 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.4 2.3.6 3.6.6a1 1 0 011 1v3.5a1 1 0 01-1 1C10.7 22 2 13.3 2 2.5A1 1 0 013 1.5H6.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.24 1L6.6 10.8z" fill="currentColor"/></svg>
+                    <span>+7 (727) 313 3040</span>
+                </a>
+                <a href="mailto:info@almau.kz" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                    <span>info@almau.kz</span>
+                </a>
+                <div class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="currentColor"/></svg>
+                    <span>ул. Розыбакиева, 227, Алматы</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container main-header__inner">
+            <a href="/" class="logo"><img src="img/logo.png" alt="AlmaU" class="logo__img"></a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="/schools/">Школы</a>
+                        <ul class="dropdown">
+                            <li><a href="#management">Школа Менеджмента</a></li>
+                            <li><a href="#economics">Школа Экономики и Финансов</a></li>
+                            <li><a href="/schools/digital-technologies/">School of Digital Technologies</a></li>
+                            <li><a href="#health">Sharmanov School of Health Sciences</a></li>
+                            <li><a href="#media">Школа Медиа и Кино</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">ИИ-ассистент</a></li>
+                </ul>
+            </nav>
+            <div class="actions"><a href="#apply" class="cta">Подать заявление</a></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Школы Медиа и Кино -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-left">
+                    <div class="back-btn-container">
+                        <button class="back-btn" onclick="history.back()">← Назад</button>
+                    </div>
+                    <h1 class="hero-title">Школа Медиа и Кино</h1>
+                    <p class="hero-description">
+                        Готовим креативных продюсеров, режиссёров, журналистов и медиаменеджеров, способных создавать качественный контент и управлять медиапроектами в цифровую эпоху.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                    </div>
+                    <div class="hero-features">
+                        <div class="feature"><strong>8+</strong> творческих программ</div>
+                        <div class="feature"><strong>20+</strong> медиапартнёров</div>
+                        <div class="feature"><strong>Студии</strong> и оборудование</div>
+                        <div class="feature"><strong>Мастер-классы</strong> от звёзд</div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <figure><img src="img/hori.jpg" alt="Школа Медиа и Кино" class="hero-img"></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
+        <section class="programs-section">
+            <div class="container">
+                <h2 class="section-title">Программы Школы Медиа и Кино</h2>
+                <p class="section-sub">Актуальные программы для карьеры в киноиндустрии, телевидении, digital-медиа и журналистике</p>
+
+                <div class="programs-grid">
+                    <!-- 1. Режиссура кино и ТВ -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Режиссура кино и ТВ</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>Режиссура игрового и документального кино, работа с актёрами, драматургия.</p>
+                            <div class="program-details">
+                                <h4>Мастерские</h4>
+                                <ul><li>Игровое кино</li><li>Документалистика</li><li>Телевизионная режиссура</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Режиссура')">Подробнее</button></div>
+                    </div>
+
+                    <!-- 2. Продюсирование кино и медиа -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Продюсирование</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>Продюсирование фильмов, управление проектами, фандрайзинг, дистрибуция.</p>
+                            <div class="program-details">
+                                <h4>Траектории</h4>
+                                <ul><li>Кинопродюсер</li><li>Телепродюсер</li><li>Креативный продюсер</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Продюсирование')">Подробнее</button></div>
+                    </div>
+
+                    <!-- 3. Журналистика и новые медиа -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Журналистика</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>Мультимедийная журналистика, расследования, подкастинг, работа в соцсетях.</p>
+                            <div class="program-details">
+                                <h4>Специализации</h4>
+                                <ul><li>Тележурналистика</li><li>Интернет-издания</li><li>Радиовещание</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Журналистика')">Подробнее</button></div>
+                    </div>
+
+                    <!-- 4. Операторское искусство -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Операторское искусство</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>Кинооператорская работа, свет, композиция, работа с цифровыми камерами.</p>
+                            <div class="program-details">
+                                <h4>Практика</h4>
+                                <ul><li>Студийные съёмки</li><li>Натурные съёмки</li><li>Цветокоррекция</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Операторское искусство')">Подробнее</button></div>
+                    </div>
+
+                    <!-- 5. Анимация и визуальные эффекты -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Анимация и VFX</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>2D/3D анимация, компьютерная графика, спецэффекты, постпродакшн.</p>
+                            <div class="program-details">
+                                <h4>Инструменты</h4>
+                                <ul><li>Blender, Maya</li><li>After Effects</li><li>Nuke</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Анимация')">Подробнее</button></div>
+                    </div>
+
+                    <!-- 6. Медиакоммуникации и PR -->
+                    <div class="program-card">
+                        <div class="program-card-header"><h3>Медиакоммуникации и PR</h3></div>
+                        <div class="program-card-body">
+                            <p><strong>Бакалавриат — 3 года</strong></p>
+                            <p>Связи с общественностью, управление репутацией, SMM, event-менеджмент.</p>
+                            <div class="program-details">
+                                <h4>Карьера</h4>
+                                <ul><li>PR-менеджер</li><li>Пресс-секретарь</li><li>Медиастратег</li></ul>
+                            </div>
+                        </div>
+                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Медиакоммуникации')">Подробнее</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества (3 шт) -->
+        <section class="advantages-section">
+            <div class="container">
+                <h2 class="section-title">Преимущества школы</h2>
+                <p class="section-sub">Почему выбирают нас</p>
+                <div class="advantages-grid">
+                    <div class="advantage-card"><div class="advantage-icon">🎥</div><h3>Современное оборудование</h3><p>Студии с профессиональным светом, камерами ARRI, Sony, звукозаписывающие студии.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🎬</div><h3>Индустриальные партнёры</h3><p>Сотрудничество с Kazakhfilm, 31 канал, телеканалами и продакшн-студиями.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🏆</div><h3>Кинофестивали и премии</h3><p>Студенческие работы участвуют в международных конкурсах и получают награды.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Поступление -->
+        <section class="admission-section">
+            <div class="container">
+                <h2 class="section-title">Как поступить</h2>
+                <div class="admission-content">
+                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <ol class="admission-list">
+                        <li><strong>Творческий конкурс</strong> — портфолио (видеоработы, сценарии, фото) или собеседование</li>
+                        <li><strong>ЕНТ / комплексное тестирование</strong> — история Казахстана, иностранный язык / литература</li>
+                        <li><strong>Собеседование</strong> — мотивация, знание кино и медиаиндустрии</li>
+                        <li><strong>Документы</strong> — аттестат, удостоверение личности, фото 3×4</li>
+                    </ol>
+                    <div class="admission-action"><a href="#apply" class="btn">Подать заявку</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="contacts-section">
+            <div class="container">
+                <h2 class="section-title">Контакты приёмной комиссии</h2>
+                <p class="section-sub">Свяжитесь с нами для консультации по программам медиа и кино</p>
+                <div class="contacts-grid">
+                    <div class="contacts-info">
+                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <address class="contacts-address">
+                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
+                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                        </address>
+                    </div>
+                    <div class="contacts-form-wrapper">
+                        <h3 class="contacts-subtitle">Задать вопрос</h3>
+                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
+                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div><img src="img/logo.png" alt="AlmaU" class="footer__logo"><p class="footer__desc">Almaty Management University — лидеры нового поколения</p></div>
+                <div><h4 class="footer__col-title">Обучение</h4><ul class="footer__list"><li><a href="#programs">Программы</a></li><li><a href="#schools">Школы</a></li><li><a href="#admission">Поступление</a></li></ul></div>
+                <div><h4 class="footer__col-title">Университет</h4><ul class="footer__list"><li><a href="#about">О нас</a></li><li><a href="#news">Новости</a></li><li><a href="#events">События</a></li></ul></div>
+                <div><h4 class="footer__col-title">Контакты</h4><address class="footer__address">ул. Розыбакиева, 227<br>Алматы, Казахстан<br><a href="tel:+77273133040">+7 (727) 313 3040</a><br><a href="mailto:info@almau.kz">info@almau.kz</a></address><div class="footer__socials"><a href="#" class="footer__social">f</a><a href="#" class="footer__social">i</a><a href="#" class="footer__social">in</a></div></div>
+            </div>
+            <div class="footer__bottom"><p>© <span id="footerYear">2025</span> AlmaU. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const id = this.getAttribute('href');
+                if(id === '#') return;
+                const el = document.querySelector(id);
+                if(el) el.scrollIntoView({behavior:'smooth'});
+            });
+        });
+        document.querySelector('.back-btn')?.addEventListener('click', ()=> history.back());
+    </script>
+</body>
+</html>
