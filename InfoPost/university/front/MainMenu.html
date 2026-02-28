@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlmaU - Almaty Management University</title>
+    <style>
+        /* === ОСНОВНЫЕ СТИЛИ === */
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --red: #FF453A;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 12px;
+            --transition: all 0.2s ease;
+            --shadow-light: 0 4px 16px rgba(0,0,0,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* === TOPBAR === */
+        .topbar {
+            background: var(--black);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 14px;
+        }
+
+        .topbar__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar__contacts {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+        }
+
+        .contact:hover {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* === HEADER === */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo__img {
+            height: 40px;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav__item {
+            position: relative;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        .nav__item--dropdown .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            min-width: 250px;
+            z-index: 100;
+        }
+
+        .nav__item--dropdown:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li {
+            margin: 0.5rem 0;
+        }
+
+        .dropdown a {
+            color: var(--dark-gray);
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .actions .cta {
+            background: var(--blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+
+        .actions .cta:hover {
+            background: #0066cc;
+            text-decoration: none;
+        }
+
+        /* === HERO === */
+        .hero {
+            background: linear-gradient(160deg, var(--blue) 0%, #0066cc 100%);
+            color: var(--white);
+            padding: 4rem 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .hero-cta.primary {
+            background: var(--white);
+            color: var(--blue);
+        }
+
+        .hero-cta.ghost {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* === CATEGORIES === */
+        .categories {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-sub {
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1rem;
+            color: var(--black);
+        }
+
+        /* === PROGRAMS === */
+        .programs {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-card p {
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #0066cc;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* === ABOUT === */
+        .about {
+            padding: 4rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            list-style: none;
+        }
+
+        .about-features li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+
+        /* === PARTNERS === */
+        .partners {
+            padding: 4rem 0;
+            background: var(--light-gray);
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .partners-grid img {
+            max-width: 150px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .partners-grid img:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        /* === CAREER === */
+        .career {
+            padding: 4rem 0;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .career-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .career-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .career-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .career-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .career-features li {
+            margin: 0.5rem 0;
+            color: var(--dark-gray);
+        }
+
+        /* === BLOG === */
+        .blog {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .blog-media {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+
+        .blog-body {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .tag {
+            background: var(--light-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .blog-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr) 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .footer__col-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__address {
+            color: var(--gray);
+            font-style: normal;
+            margin-bottom: 1rem;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer__social {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .footer__social:hover {
+            background: var(--blue);
+            text-decoration: none;
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .nav__list {
+                display: none;
+            }
+            
+            .topbar__contacts {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container topbar__inner">
+            <div class="topbar__contacts">
+                <a href="tel:+77273133040" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M6.6 10.8a15.05 15.05 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.4 2.3.6 3.6.6a1 1 0 011 1v3.5a1 1 0 01-1 1C10.7 22 2 13.3 2 2.5A1 1 0 013 1.5H6.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.24 1L6.6 10.8z" fill="currentColor"/>
+                    </svg>
+                    <span>+7 (727) 313 3040</span>
+                </a>
+
+                <a href="mailto:info@almau.kz" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                    </svg>
+                    <span>info@almau.kz</span>
+                </a>
+
+                <div class="contact">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="currentColor"/>
+                    </svg>
+                    <span>ул. Розыбакиева, 227, Алматы</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container main-header__inner">
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="AlmaU" class="logo__img">
+            </a>
+
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="schools menu.html">Школы</a>
+                        <ul class="dropdown">
+                            <li><a href="#management">Школа Менеджмента</a></li>
+                            <li><a href="#economics">Школа Экономики и Финансов</a></li>
+                            <li><a href="school-of-digital menu.html">School of Digital Technologies</a></li>
+                            <li><a href="#health">Sharmanov School of Health Sciences</a></li>
+                            <li><a href="#media">Школа Медиа и Кино</a></li>
+                            <li><a href="#entrepreneurship">Школа Предпринимательства</ Инноваций</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="blog menu.html">Новости</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="actions">
+                <a href="#apply" class="cta">Подать заявление</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-left">
+                    <h1 class="hero-title">Almaty Management University — AlmaU</h1>
+                    <p class="hero-description">
+                        Формируем лидеров нового поколения: более <strong>10 000 студентов</strong>,
+                        <strong>30+</strong> академических программ, современные кампусы и активное международное сообщество.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
+                        <a href="#programs" class="hero-cta ghost">Узнать о программах</a>
+                    </div>
+                    <div class="hero-features">
+                        <div class="feature"><strong>30+</strong> программ бакалавриата и магистратуры</div>
+                        <div class="feature"><strong>50+</strong> партнёров из бизнеса и индустрии</div>
+                        <div class="feature"><strong>100 %</strong> практико-ориентированное обучение</div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <figure class="hero-figure">
+                        <img src="img/hori.jpg" alt="Студенты AlmaU" class="hero-img">
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Школы -->
+        <section class="categories container">
+            <h2 class="section-title">Просмотр по школам</h2>
+            <p class="section-sub">Выберите подходящую программу для вашего будущего</p>
+
+            <div class="categories-grid">
+                <a href="#management" class="category-card">
+                    <div class="category-icon">📈</div>
+                    <h3>Школа Менеджмента</h3>
+                </a>
+                <a href="#economics" class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3>Школа Экономики и Финансов</h3>
+                </a>
+                <a href="#politics" class="category-card">
+                    <div class="category-icon">⚖️</div>
+                    <h3>Школа Политики и Права</h3>
+                </a>
+                <a href="school-of-digital menu.html" class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>School of Digital Technologies</h3>
+                </a>
+                <a href="#health" class="category-card">
+                    <div class="category-icon">🩺</div>
+                    <h3>Sharmanov School of Health Sciences</h3>
+                </a>
+                <a href="#media" class="category-card">
+                    <div class="category-icon">🎬</div>
+                    <h3>Школа Медиа и Кино</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- Программы -->
+        <section class="programs container">
+            <h2 class="section-title">Программы обучения</h2>
+            <p class="section-sub">Выберите подходящую программу для вашего будущего</p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>Бакалавриат</h3>
+                    <p>30+ программ в сфере бизнеса, экономики, цифровых технологий и гуманитарных наук.</p>
+                    <a href="#apply" class="btn">Подробнее</a>
+                </div>
+                <div class="program-card">
+                    <h3>Магистратура</h3>
+                    <p>Современные программы с международными партнёрами и возможностью стажировок.</p>
+                    <a href="#apply" class="btn">Подробнее</a>
+                </div>
+                <div class="program-card">
+                    <h3>Онлайн-курсы</h3>
+                    <p>Короткие курсы и сертификаты для повышения квалификации и развития навыков.</p>
+                    <a href="#apply" class="btn">Подробнее</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section class="about container">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-grid">
+                <div class="about-left">
+                    <p class="about-description">
+                        AlmaU — ведущий университет Алматы, формирующий лидеров нового поколения.
+                        Мы объединяем современные образовательные программы, практико-ориентированные стажировки, международные возможности и активное сообщество студентов и выпускников.
+                    </p>
+                    <ul class="about-features">
+                        <li><strong>30+</strong> программ бакалавриата и магистратуры</li>
+                        <li><strong>10 000+</strong> студентов из Казахстана и стран СНГ</li>
+                        <li><strong>50+</strong> партнеров из бизнеса и индустрии</li>
+                        <li><strong>Сильное сообщество выпускников</strong> и карьерные возможности</li>
+                    </ul>
+                </div>
+                <div class="about-right">
+                    <img src="img/hori.jpg" alt="Студенты AlmaU" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Партнеры -->
+        <section class="partners container">
+            <h2 class="section-title">Международное сотрудничество</h2>
+            <p class="section-sub">AlmaU сотрудничает с ведущими университетами и компаниями мира</p>
+
+            <div class="partners-grid">
+                <img src="img/hori.jpg" alt="Partner 1">
+                <img src="img/hori.jpg" alt="Partner 2">
+                <img src="img/hori.jpg" alt="Partner 3">
+                <img src="img/hori.jpg" alt="Partner 4">
+            </div>
+        </section>
+
+        <!-- Карьера -->
+        <section class="career container">
+            <h2 class="section-title">Откройте свою карьеру с AlmaU</h2>
+            <p class="section-sub">Программы и возможности, которые помогут построить успешную карьеру</p>
+
+            <div class="career-grid">
+                <article class="career-card">
+                    <div class="career-icon">💼</div>
+                    <h3>Бизнес и менеджмент</h3>
+                    <p class="career-excerpt">Освойте навыки стратегического планирования, лидерства и управления проектами.</p>
+                    <ul class="career-features">
+                        <li>Программы бакалавриата, MBA и DBA</li>
+                        <li>Стажировки в топовых компаниях</li>
+                        <li>Международные сертификаты и обменные программы</li>
+                    </ul>
+                    <a href="#business" class="btn">Узнать больше</a>
+                </article>
+
+                <article class="career-card">
+                    <div class="career-icon">💻</div>
+                    <h3>IT и цифровые технологии</h3>
+                    <p class="career-excerpt">Станьте востребованным специалистом в программировании, анализе данных и кибербезопасности.</p>
+                    <ul class="career-features">
+                        <li>Разработка ПО и DevOps</li>
+                        <li>Data Science, AI и машинное обучение</li>
+                        <li>Проекты с реальными заказчиками</li>
+                    </ul>
+                    <a href="school-of-digital menu.html" class="btn">Узнать больше</a>
+                </article>
+
+                <article class="career-card">
+                    <div class="career-icon">🎨</div>
+                    <h3>Креативные индустрии</h3>
+                    <p class="career-excerpt">Развивайте творческие навыки в дизайне, медиа, кино и digital-коммуникациях.</p>
+                    <ul class="career-features">
+                        <li>UX/UI, графический и продуктовый дизайн</li>
+                        <li>Цифровой маркетинг и контент-стратегии</li>
+                        <li>Создание портфолио под руководством экспертов</li>
+                    </ul>
+                    <a href="#creative" class="btn">Узнать больше</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Блог -->
+        <section class="blog container">
+            <h2 class="section-title">Актуальные новости и статьи</h2>
+            <p class="section-sub">Последние события и материалы из жизни университета</p>
+
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-media">
+                        <img src="img/hori.jpg" alt="Новости" class="blog-image">
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span class="tag">Образование</span>
+                            <time datetime="2025-12-01">1 декабря 2025</time>
+                        </div>
+                        <h3 class="blog-title">Новые программы двойных дипломов</h3>
+                        <p class="excerpt">AlmaU запускает совместные программы с ведущими университетами Европы и Азии.</p>
+                        <div class="blog-foot">
+                            <span class="author">Редакция AlmaU</span>
+                            <a href="#article1" class="btn">Читать →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-media">
+                        <img src="img/hori.jpg" alt="Конференция" class="blog-image">
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span class="tag">События</span>
+                            <time datetime="2025-11-28">28 ноября 2025</time>
+                        </div>
+                        <h3 class="blog-title">Международная конференция по инновациям</h3>
+                        <p class="excerpt">В AlmaU прошла конференция, посвящённая цифровой трансформации и стартапам.</p>
+                        <div class="blog-foot">
+                            <span class="author">Пресс-служба AlmaU</span>
+                            <a href="#article2" class="btn">Читать →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-media">
+                        <img src="img/hori.jpg" alt="Хакатон" class="blog-image">
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span class="tag">Достижения</span>
+                            <time datetime="2025-11-25">25 ноября 2025</time>
+                        </div>
+                        <h3 class="blog-title">Студенты AlmaU победили в международном хакатоне</h3>
+                        <p class="excerpt">Команда AlmaU заняла первое место на глобальном AI-хакатоне.</p>
+                        <div class="blog-foot">
+                            <span class="author">Студенческий совет</span>
+                            <a href="#article3" class="btn">Читать →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <img src="img/logo.png" alt="AlmaU" class="footer__logo">
+                    <p class="footer__desc">
+                        Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.
+                    </p>
+                </div>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Обучение</h4>
+                    <ul class="footer__list">
+                        <li><a href="#programs">Программы</a></li>
+                        <li><a href="schools menu.html">Школы</a></li>
+                        <li><a href="#admission">Поступление</a></li>
+                        <li><a href="#scholarships">Стипендии</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Университет</h4>
+                    <ul class="footer__list">
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="blog menu.html">Новости</a></li>
+                        <li><a href="#events">События</a></li>
+                        <li><a href="#partners">Партнёры</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Студентам</h4>
+                    <ul class="footer__list">
+                        <li><a href="#library">Библиотека</a></li>
+                        <li><a href="#career">Карьерный центр</a></li>
+                        <li><a href="#clubs">Студенческие клубы</a></li>
+                        <li><a href="#support">Поддержка</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer__col">
+                    <h4 class="footer__col-title">Контакты</h4>
+                    <address class="footer__address">
+                        ул. Розыбакиева, 227<br>
+                        Алматы, Казахстан<br><br>
+                        <a href="tel:+77273133040">+7 (727) 313 3040</a><br>
+                        <a href="mailto:info@almau.kz">info@almau.kz</a>
+                    </address>
+                    <div class="footer__socials">
+                        <a href="https://www.facebook.com/AlmaU.Kazakhstan" class="footer__social">f</a>
+                        <a href="https://www.instagram.com/almau_official" class="footer__social">i</a>
+                        <a href="https://www.linkedin.com/school/almau/" class="footer__social">in</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>
+                    © <span id="footerYear">2025</span> AlmaU. Все права защищены.
+                    <a href="#privacy">Политика конфиденциальности</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Автоматическое обновление года в футере
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
