@@ -73,12 +73,18 @@
             gap: 2rem;
         }
 
+         .logo {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
         .logo__img {
-            height: 1px;
+            height: clamp(38px, 4vw, 56px);
+            max-width: min(180px, 22vw);
             width: auto;
             display: block;
         }
-
         /* Центрирование навигации */
         .nav {
             flex: 1;
@@ -731,7 +737,12 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
+             .logo__img {
+                height: clamp(42px, 10vw, 56px);
+                max-width: 220px;
+            }
+
             .nav__list {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -747,7 +758,7 @@
         <div class="container main-header__inner">
             <!-- Логотип слева -->
             <a href="/" class="logo">
-                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU">
+                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
             </a>
 
             <!-- Навигация по центру с кнопкой "Оставить заявку" -->
