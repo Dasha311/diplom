@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlmaU — ИИ‑ассистент</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --black: #1d1d1f;
+            --dark-gray: #2c2c2e;
+            --gray: #6c6c70;
+            --light-gray: #f2f4f8;
+            --blue: #0066cc;
+            --blue-light: #0a84ff;
+            --blue-deep: #004080;
+            --purple: #5e3c9c;
+            --cyan: #22a7f0;
+            --gradient-primary: linear-gradient(135deg, var(--blue-light), #8a4fff);
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.04);
+            --shadow-md: 0 16px 32px -12px rgba(0,102,204,0.2);
+            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== TOPBAR ===== */
+        .topbar {
+            background: var(--black);
+            color: rgba(255,255,255,0.9);
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .topbar__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .topbar__contacts {
+            display: flex;
+            gap: 2.8rem;
+            align-items: center;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #e0e0e6;
+            transition: var(--transition);
+        }
+
+        .contact:hover {
+            color: var(--cyan);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .main-header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo__img {
+            height: 44px;
+            transition: transform 0.3s;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+            font-weight: 500;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav__item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .nav__item a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 150%;
+            left: -1rem;
+            background: var(--white);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.25);
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            min-width: 260px;
+            z-index: 200;
+            border: 1px solid rgba(0,102,204,0.1);
+        }
+
+        .nav__item--dropdown:hover .dropdown {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .dropdown li {
+            list-style: none;
+            margin: 0.4rem 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1rem;
+            border-radius: 16px;
+            color: var(--dark-gray);
+        }
+        .dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--blue);
+        }
+
+        .actions .cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px -8px rgba(10,132,255,0.4);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .actions .cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 30px -6px rgba(90, 60, 200, 0.5);
+        }
+
+        /* ===== HERO (стилизован под единый стиль) ===== */
+        .hero {
+            background: radial-gradient(145% 110% at 20% 10%, #f2f0ff, #ffffff 80%);
+            padding: 3rem 0 4rem;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .back-btn-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn {
+            background: rgba(0,102,204,0.08);
+            color: var(--blue);
+            padding: 0.7rem 1.7rem;
+            border-radius: 60px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,102,204,0.2);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(0,102,204,0.15);
+            transform: translateX(-5px);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            background: linear-gradient(130deg, #003e7c, #2a1b5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 560px;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.25);
+            transform: rotate(1deg);
+            transition: 0.5s;
+            border: 1px solid white;
+        }
+        .hero-img:hover {
+            transform: rotate(0) scale(1.02);
+        }
+
+        /* ===== СЕКЦИЯ ЧАТА (полностью интегрирована) ===== */
+        .chat-section {
+            padding: 3rem 0 5rem;
+            background: #fbfbfd;
+        }
+
+        .chat-container {
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm), 0 8px 40px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 28px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chat-info {
+            flex: 1;
+        }
+
+        .chat-title {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .chat-subtitle {
+            margin: 4px 0 0;
+            font-size: 0.9rem;
+            color: #86868b;
+        }
+
+        .chat-messages {
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 480px;
+            min-height: 360px;
+            overflow-y: auto;
+            background: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message--bot {
+            justify-content: flex-start;
+        }
+
+        .message--user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 65%;
+            padding: 12px 18px;
+            font-size: 1rem;
+            border-radius: 22px;
+            line-height: 1.5;
+        }
+
+        .message--bot .message-content {
+            background: #f2f2f7;
+            color: #1d1d1f;
+            border-bottom-left-radius: 6px;
+        }
+
+        .message--user .message-content {
+            background: #007aff;
+            color: white;
+            border-bottom-right-radius: 6px;
+        }
+
+        .chat-input-wrapper {
+            padding: 16px 28px 24px;
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: #f2f2f7;
+            border-radius: 30px;
+            padding: 6px 6px 6px 20px;
+        }
+
+        .chat-textarea {
+            flex: 1;
+            padding: 10px 0;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+            background: transparent;
+            resize: none;
+            outline: none;
+            max-height: 100px;
+        }
+
+        .chat-textarea::placeholder {
+            color: #86868b;
+        }
+
+        .chat-send-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.1);
+            background: #0066cc;
+        }
+
+        .chat-send-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            margin-left: 2px;
+        }
+
+        .chat-hint {
+            margin: 12px 0 0;
+            font-size: 0.75rem;
+            color: #86868b;
+            text-align: center;
+        }
+
+        /* скроллбар */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.15);
+            border-radius: 3px;
+        }
+
+        /* индикатор печати */
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 12px 18px;
+            background: #f2f2f7;
+            border-radius: 22px;
+            border-bottom-left-radius: 6px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #86868b;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%,60%,100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #11131f;
+            color: #b0b3c5;
+            padding: 4rem 0 2rem;
+        }
+        .footer a { color: #cbd5f0; }
+        .footer a:hover { color: white; }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer__desc {
+            color: #9da3b5;
+        }
+
+        .footer__col-title {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+        .footer__list li {
+            margin: 0.8rem 0;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+
+        .footer__social {
+            width: 46px;
+            height: 46px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .footer__social:hover {
+            background: var(--blue-light);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            border-top: 1px solid #252837;
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 1000px) {
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .nav__list { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.5rem; }
+            .topbar__contacts { flex-direction: column; gap: 0.5rem; align-items: start; }
+            .message-content { max-width: 85%; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar (реальные контакты AlmaU) -->
+    <div class="topbar">
+        <div class="container topbar__inner">
+            <div class="topbar__contacts">
+                <a href="tel:+77273133040" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8a15.05 15.05 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.4 2.3.6 3.6.6a1 1 0 011 1v3.5a1 1 0 01-1 1C10.7 22 2 13.3 2 2.5A1 1 0 013 1.5H6.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.24 1L6.6 10.8z"/></svg>
+                    <span>+7 (727) 313 3040</span>
+                </a>
+                <a href="mailto:admission@almau.kz" class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>admission@almau.kz</span>
+                </a>
+                <span class="contact">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
+                    <span>Розыбакиева 227, Алматы</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container main-header__inner">
+            <a href="#" class="logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%230066cc' rx='8'/%3E%3Ctext x='20' y='28' font-family='Arial' font-size='20' fill='white' font-weight='bold'%3EAlmaU%3C/text%3E%3C/svg%3E" alt="AlmaU" class="logo__img">
+            </a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#">Школы</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Школа Менеджмента</a></li>
+                            <li><a href="#">Школа Экономики и Финансов</a></li>
+                            <li><a href="#">School of Digital Technologies</a></li>
+                            <li><a href="#">Sharmanov School of Health Sciences</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <a href="#" class="cta">Подать заявление</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <div class="back-btn-container">
+                        <button class="back-btn" onclick="history.back()">← Назад</button>
+                    </div>
+                    <h1 class="hero-title">ИИ‑ассистент AlmaU</h1>
+                    <p class="hero-description">
+                        Персональный помощник абитуриента и студента: консультации по программам, поступлению, грантам, событиям и цифровым сервисам университета.
+                    </p>
+                </div>
+                <div class="hero-right">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='300' viewBox='0 0 500 300'%3E%3Crect width='500' height='300' fill='%23e0e7ff'/%3E%3Ccircle cx='250' cy='130' r='60' fill='%230066cc'/%3E%3Ctext x='210' y='150' fill='white' font-size='40' font-family='Arial'%3EAi%3C/text%3E%3C/svg%3E" alt="AI Assistant" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Чат (полностью рабочий) -->
+        <section class="chat-section">
+            <div class="container chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <span>AI</span>
+                    </div>
+                    <div class="chat-info">
+                        <h2 class="chat-title">AlmaU AI</h2>
+                        <p class="chat-subtitle">помощник по поступлению и учебе</p>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message message--bot">
+                        <div class="message-content">
+                            Привет! Я ИИ‑ассистент AlmaU. <br>
+                            • расскажу о программах и школах<br>
+                            • помогу с поступлением и грантами<br>
+                            • подскажу контакты и события<br>
+                            Задай вопрос!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-wrapper">
+                    <form id="chatForm" class="chat-form">
+                        <textarea id="userInput" class="chat-textarea" placeholder="Ваш вопрос..." rows="1" required></textarea>
+                        <button type="submit" class="chat-send-btn" aria-label="Отправить">
+                            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </button>
+                    </form>
+                    <p class="chat-hint">ИИ может ошибаться. Проверяйте важную информацию на сайте AlmaU.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23004d99' rx='8'/%3E%3Ctext x='20' y='28' font-family='Arial' font-size='20' fill='white'%3EAlmaU%3C/text%3E%3C/svg%3E" alt="AlmaU" class="footer__logo">
+                    <p class="footer__desc">Almaty Management University — лидер бизнес-образования в Казахстане.</p>
+                </div>
+                <div>
+                    <h4 class="footer__col-title">Обучение</h4>
+                    <ul class="footer__list"><li><a href="#">Программы</a></li><li><a href="#">Школы</a></li><li><a href="#">Поступление</a></li><li><a href="#">Стипендии</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="footer__col-title">Университет</h4>
+                    <ul class="footer__list"><li><a href="#">О нас</a></li><li><a href="#">Новости</a></li><li><a href="#">События</a></li><li><a href="#">Партнёры</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="footer__col-title">Студентам</h4>
+                    <ul class="footer__list"><li><a href="#">Библиотека</a></li><li><a href="#">Карьерный центр</a></li><li><a href="#">Клубы</a></li><li><a href="#">Поддержка</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="footer__col-title">Контакты</h4>
+                    <address class="footer__address">
+                        ул. Розыбакиева, 227, Алматы<br>
+                        <a href="tel:+77273133040">+7 (727) 313 3040</a><br>
+                        <a href="mailto:info@almau.kz">info@almau.kz</a>
+                    </address>
+                    <div class="footer__socials">
+                        <a href="#" class="footer__social">FB</a>
+                        <a href="#" class="footer__social">IG</a>
+                        <a href="#" class="footer__social">IN</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYear">2025</span> AlmaU. Все права защищены. <a href="#">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // год
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        // рабочий чат с имитацией ответов
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.querySelector('.chat-send-btn');
+
+        // база простых ответов (имитация)
+        const answers = {
+            'поступление': 'Для поступления нужно сдать ЕНТ (математика+информатика) и подать документы до 20 августа. Подробнее на сайте almau.edu.kz/admission/',
+            'программа': 'Мы предлагаем бакалавриат: Information Systems, Software Engineering, Data Science, Product Management. Есть магистратура.',
+            'грант': 'Гранты выделяются на конкурсной основе. Высокий балл ЕНТ + портфолио. Также есть скидки от партнёров.',
+            'контакты': 'Приёмная комиссия: +7 (727) 313 3040, admission@almau.kz. Адрес: ул. Розыбакиева 227.',
+            'событие': 'Ближайшее событие: День открытых дверей 15 апреля. Следите в разделе новостей.',
+            'спасибо': 'Всегда рад помочь! Обращайтесь 🙂',
+        };
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message--${sender}`;
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotAnswer(userMsg) {
+            const lower = userMsg.toLowerCase();
+            if (lower.includes('поступл') || lower.includes('абитур')) return answers['поступление'];
+            if (lower.includes('программ') || lower.includes('направл')) return answers['программа'];
+            if (lower.includes('грант') || lower.includes('скидк')) return answers['грант'];
+            if (lower.includes('контакт') || lower.includes('телефон') || lower.includes('адрес')) return answers['контакты'];
+            if (lower.includes('мероприят') || lower.includes('день открытых') || lower.includes('событ')) return answers['событие'];
+            if (lower.includes('спасиб') || lower.includes('благодар')) return answers['спасибо'];
+            return 'Уточните, пожалуйста, вопрос. Я могу рассказать о программах, поступлении, грантах, контактах и мероприятиях.';
+        }
+
+        async function sendMessage() {
+            const msg = userInput.value.trim();
+            if (!msg) return;
+
+            addMessage(msg, 'user');
+            userInput.value = '';
+            userInput.style.height = 'auto';
+            sendBtn.disabled = true;
+
+            // индикатор печати
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message message--bot';
+            typingDiv.innerHTML = '<div class="typing-indicator"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // имитация задержки
+            setTimeout(() => {
+                chatMessages.removeChild(typingDiv);
+                const answer = getBotAnswer(msg);
+                addMessage(answer, 'bot');
+                sendBtn.disabled = false;
+            }, 800);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendMessage();
+        });
+
+        userInput.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+
+        // кнопка назад
+        document.querySelector('.back-btn').addEventListener('click', () => history.back());
+    </script>
+</body>
+</html>

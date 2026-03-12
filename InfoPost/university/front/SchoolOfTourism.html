@@ -1,9 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlmaU · Школа Гостеприимства и Туризма</title>
+    <!-- Подключаем шрифт Inter как на главной -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -16,7 +21,7 @@
             --blue-dark: #0066CC;
             --purple: #8A2BE2;
             --cyan: #00D4FF;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --border-radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow-light: 0 4px 20px rgba(0,0,0,0.08);
@@ -36,6 +41,8 @@
             color: var(--black);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -52,6 +59,7 @@
 
         a:hover {
             color: var(--blue-dark);
+            text-decoration: underline;
         }
 
         button, .btn {
@@ -63,87 +71,39 @@
             padding: 5rem 0;
         }
 
-        /* === TOPBAR === */
-        .topbar {
-            background: linear-gradient(90deg, var(--black), #2c2c2e);
-            color: var(--white);
-            padding: 0.75rem 0;
-            font-size: 14px;
-            position: relative;
-            z-index: 1000;
-        }
-
-        .topbar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple));
-        }
-
-        .topbar__inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .topbar__contacts {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .contact {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--white);
-            padding: 0.5rem 0;
-        }
-
-        .contact:hover {
-            color: var(--cyan);
-            text-decoration: none;
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        /* === HEADER === */
+        /* === HEADER (точно как на главной) === */
         .main-header {
-            padding: 1.25rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            backdrop-filter: blur(10px);
         }
 
         .main-header__inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
 
         .logo__img {
             height: 45px;
-            transition: var(--transition);
+            width: auto;
+            display: block;
         }
 
-        .logo__img:hover {
-            transform: scale(1.05);
+        /* Центрирование навигации */
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
         .nav__list {
             display: flex;
             list-style: none;
             gap: 2.5rem;
+            align-items: center;
+            margin: 0;
         }
 
         .nav__item {
@@ -153,14 +113,20 @@
         .nav__item a {
             color: var(--black);
             font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
+            font-size: 1rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+            text-decoration: none;
         }
 
         .nav__item a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -4px;
             left: 0;
             width: 0;
             height: 2px;
@@ -172,60 +138,148 @@
             width: 100%;
         }
 
-        .nav__item--dropdown .dropdown {
-            display: none;
+        /* Выпадающее меню */
+        .nav__item--dropdown {
+            position: relative;
+        }
+
+        .dropdown {
+            display: block;
             position: absolute;
-            top: 100%;
-            left: -1rem;
+            top: calc(100% + 0.5rem);
+            left: 0;
             background: var(--white);
-            box-shadow: var(--shadow-medium);
-            border-radius: var(--border-radius);
-            padding: 1.25rem;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 0.5rem 0;
             min-width: 280px;
             z-index: 100;
-            border: 1px solid var(--light-gray);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            pointer-events: none;
         }
 
-        .nav__item--dropdown:hover .dropdown {
-            display: block;
-            animation: dropdownFade 0.3s ease;
+        .nav__item--dropdown:hover .dropdown,
+        .dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
-        @keyframes dropdownFade {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            transform: rotate(45deg);
+            border-left: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
 
         .dropdown li {
-            margin: 0.75rem 0;
+            margin: 0;
+            list-style: none;
         }
 
         .dropdown a {
             color: var(--dark-gray);
             display: block;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .dropdown a:hover {
             background: var(--light-gray);
             color: var(--blue);
-        }
-
-        .actions .cta {
-            background: linear-gradient(135deg, var(--blue), var(--purple));
-            color: var(--white);
-            padding: 0.85rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            border: none;
-            box-shadow: 0 4px 15px rgba(10, 132, 255, 0.3);
-        }
-
-        .actions .cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
+            padding-left: 2rem;
             text-decoration: none;
+        }
+
+        /* Переключатель языков */
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .lang-current:hover {
+            background: #e8e8ed;
+        }
+
+        .lang-current::after {
+            content: '▼';
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--dark-gray);
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        /* Кнопка в хедере (без синего фона) */
+        .nav__item a[href="#apply"] {
+            background: transparent;
+            color: var(--black) !important;
+            padding: 0.6rem 0;
+        }
+
+        .nav__item a[href="#apply"]:hover {
+            color: var(--blue) !important;
+            transform: none;
+            box-shadow: none;
         }
 
         /* === HERO (Школа Гостеприимства и Туризма) === */
@@ -258,31 +312,6 @@
             z-index: 1;
         }
 
-        .back-btn-container {
-            margin-bottom: 2.5rem;
-        }
-
-        .back-btn {
-            background: rgba(255,255,255,0.15);
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 0.85rem 1.75rem;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateX(-8px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
         .hero-title {
             font-size: 3.5rem;
             font-weight: 800;
@@ -305,7 +334,7 @@
         .hero-actions {
             display: flex;
             gap: 1.25rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
@@ -340,44 +369,9 @@
             text-decoration: none;
         }
 
-        .hero-cta.primary:hover {
-            background: linear-gradient(135deg, #ff6b4a, #ff8c5a);
-        }
-
-        .hero-cta.ghost:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 600px;
-        }
-
-        .feature {
-            background: rgba(255,255,255,0.08);
-            padding: 1.25rem;
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: var(--transition);
-        }
-
-        .feature:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-3px);
-        }
-
-        .feature strong {
-            color: #b0e0e6;
-            font-size: 1.2rem;
-        }
-
         .hero-img {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 24px;
             box-shadow: 
                 0 20px 60px rgba(0,0,0,0.3),
                 0 0 0 1px rgba(255,255,255,0.1);
@@ -394,6 +388,46 @@
         .hero-img:hover {
             transform: perspective(1500px) rotateY(0) rotateX(0);
             animation: none;
+        }
+
+        /* === СТАТИСТИКА === */
+        .stats-section {
+            padding: 3rem 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            font-weight: 500;
         }
 
         /* === ПРОГРАММЫ — 3 в ряд === */
@@ -448,7 +482,6 @@
             line-height: 1.7;
         }
 
-        /* три колонки */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -493,14 +526,6 @@
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--black);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .program-card h3::before {
-            content: '🏨';
-            font-size: 1.5rem;
         }
 
         .program-card-body {
@@ -572,10 +597,11 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
             text-decoration: none;
+            color: var(--white);
         }
 
-        /* === ПРЕИМУЩЕСТВА === */
-        .advantages-section {
+        /* === ПОЧЕМУ ЭТА ШКОЛА === */
+        .why-section {
             padding: 6rem 0;
             background: linear-gradient(135deg, #1d6f6f 0%, #2f9e9e 100%);
             color: var(--white);
@@ -583,21 +609,21 @@
             overflow: hidden;
         }
 
-        .advantages-section .section-title {
+        .why-section .section-title {
             color: var(--white);
         }
-        .advantages-section .section-sub {
+        .why-section .section-sub {
             color: rgba(255,255,255,0.8);
         }
 
-        .advantages-grid {
+        .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2.5rem;
             margin-top: 4rem;
         }
 
-        .advantage-card {
+        .why-card {
             background: rgba(255,255,255,0.05);
             padding: 2.5rem;
             border-radius: 20px;
@@ -607,13 +633,13 @@
             text-align: center;
         }
 
-        .advantage-card:hover {
+        .why-card:hover {
             background: rgba(255,255,255,0.1);
             transform: translateY(-10px);
             border-color: #ff8c5a;
         }
 
-        .advantage-icon {
+        .why-icon {
             width: 80px;
             height: 80px;
             background: linear-gradient(135deg, #ff8c5a, #ff6b4a);
@@ -626,222 +652,51 @@
             box-shadow: 0 10px 30px rgba(255, 140, 90, 0.3);
         }
 
-        .advantage-card h3 {
+        .why-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1.25rem;
             color: var(--white);
         }
 
-        .advantage-card p {
+        .why-card p {
             color: rgba(255,255,255,0.7);
             line-height: 1.7;
         }
 
-        /* === ПОСТУПЛЕНИЕ === */
-        .admission-section {
+        /* === ВИДЕО СЕКЦИЯ === */
+        .video-section {
             padding: 6rem 0;
-            background: linear-gradient(135deg, #1f7a7a 0%, #32a0a0 100%);
-            color: var(--white);
-            position: relative;
+            background: var(--white);
         }
 
-        .admission-content {
+        .video-container {
             max-width: 900px;
-            margin: 4rem auto 0;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
+            margin: 3rem auto 0;
             border-radius: 30px;
-            padding: 3rem;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .admission-subtitle {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .admission-list {
-            list-style: none;
-            counter-reset: admission-counter;
-        }
-
-        .admission-list li {
-            counter-increment: admission-counter;
-            margin: 2rem 0;
-            padding-left: 4rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
             position: relative;
-            font-size: 1.1rem;
+            aspect-ratio: 16 / 9;
         }
 
-        .admission-list li::before {
-            content: counter(admission-counter);
-            position: absolute;
-            left: 0;
-            top: -5px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ff8c5a, #ff6b4a);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .admission-list strong {
-            display: block;
-            font-weight: 600;
-            color: #ffdab9;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .admission-action {
-            text-align: center;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .admission-action .btn {
-            background: var(--white);
-            color: #1d6f6f;
-            font-size: 1.1rem;
-            padding: 1.25rem 3rem;
-            width: auto;
-            min-width: 250px;
-        }
-
-        /* === КОНТАКТЫ === */
-        .contacts-section {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-
-        .contacts-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 4rem;
-        }
-
-        .contacts-info {
-            background: linear-gradient(135deg, var(--light-gray), #e0f2f1);
-            padding: 3rem;
-            border-radius: 25px;
-        }
-
-        .contacts-subtitle {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--black);
-        }
-
-        .contacts-address {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contacts-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .contacts-item strong {
-            color: var(--blue);
-            font-size: 1.1rem;
-        }
-
-        .contacts-link {
-            color: var(--purple);
-            font-weight: 600;
-        }
-
-        .contacts-form-wrapper {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-medium);
-            border: 1px solid var(--light-gray);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--dark-gray);
-        }
-
-        .form-input, .form-textarea {
+        .video-container iframe {
             width: 100%;
-            padding: 1.25rem;
-            border: 2px solid var(--light-gray);
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
-        }
-
-        .form-textarea {
-            min-height: 120px;
-        }
-
-        .form-submit {
-            padding: 1.25rem 3rem;
-            background: linear-gradient(135deg, var(--blue), var(--purple));
-            color: var(--white);
+            height: 100%;
             border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            width: 100%;
-            cursor: pointer;
         }
 
-        .form-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(10, 132, 255, 0.4);
-        }
-
-        /* === FOOTER === */
+        /* === FOOTER (точно как на главной) === */
         .footer {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: var(--black);
             color: var(--white);
             padding: 4rem 0 2rem;
             margin-top: 3rem;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple));
         }
 
         .footer__grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 3rem;
+            grid-template-columns: 2fr repeat(3, 1fr) 1.5fr;
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
@@ -852,15 +707,14 @@
         }
 
         .footer__desc {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .footer__col-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: var(--white);
             font-weight: 600;
         }
 
@@ -873,50 +727,58 @@
         }
 
         .footer__list a {
-            color: rgba(255,255,255,0.7);
-            transition: var(--transition);
+            color: var(--gray);
+            transition: color 0.2s;
         }
 
         .footer__list a:hover {
-            color: var(--cyan);
-            padding-left: 5px;
+            color: var(--white);
         }
 
         .footer__address {
-            color: rgba(255,255,255,0.7);
+            color: var(--gray);
             font-style: normal;
-            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .footer__address a {
+            color: var(--gray);
+        }
+
+        .footer__address a:hover {
+            color: var(--white);
         }
 
         .footer__socials {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
         }
 
         .footer__social {
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-weight: 600;
-            transition: var(--transition);
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
         .footer__social:hover {
-            background: var(--cyan);
+            background: var(--blue);
             transform: translateY(-3px);
+            text-decoration: none;
         }
 
         .footer__bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
+            color: var(--gray);
         }
 
         /* === АНИМАЦИИ === */
@@ -925,7 +787,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .program-card, .advantage-card {
+        .program-card, .why-card {
             opacity: 0;
             animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -937,58 +799,63 @@
         .program-card:nth-child(6) { animation-delay: 0.35s; }
 
         @media (max-width: 992px) {
-            .hero-grid, .contacts-grid { grid-template-columns: 1fr; }
+            .hero-grid { grid-template-columns: 1fr; }
             .programs-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer__grid { grid-template-columns: 2fr repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .programs-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
             .footer__grid { grid-template-columns: 1fr; }
+            .main-header__inner { flex-direction: column; gap: 1rem; }
+            .nav__list { flex-wrap: wrap; justify-content: center; gap: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="container topbar__inner">
-            <div class="topbar__contacts">
-                <a href="tel:+77273133040" class="contact">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8a15.05 15.05 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.4 2.3.6 3.6.6a1 1 0 011 1v3.5a1 1 0 01-1 1C10.7 22 2 13.3 2 2.5A1 1 0 013 1.5H6.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.24 1L6.6 10.8z" fill="currentColor"/></svg>
-                    <span>+7 (727) 313 3040</span>
-                </a>
-                <a href="mailto:info@almau.kz" class="contact">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
-                    <span>info@almau.kz</span>
-                </a>
-                <div class="contact">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="currentColor"/></svg>
-                    <span>ул. Розыбакиева, 227, Алматы</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
+    <!-- Header (точно как на главной) -->
     <header class="main-header">
         <div class="container main-header__inner">
-            <a href="/" class="logo"><img src="img/logo.png" alt="AlmaU" class="logo__img"></a>
+            <!-- Логотип слева -->
+            <a href="/" class="logo">
+                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
+            </a>
+
+            <!-- Навигация по центру -->
             <nav class="nav">
                 <ul class="nav__list">
                     <li class="nav__item nav__item--dropdown">
-                        <a href="/schools/">Школы</a>
+                        <a href="/schools/">Школа</a>
                         <ul class="dropdown">
-                            <li><a href="#management">Школа Менеджмента</a></li>
-                            <li><a href="#economics">Школа Экономики и Финансов</a></li>
-                            <li><a href="/schools/digital-technologies/">School of Digital Technologies</a></li>
-                            <li><a href="#health">Sharmanov School of Health Sciences</a></li>
-                            <li><a href="#media">Школа Медиа и Кино</a></li>
+                            <li><a href="/schools/transformative/">School of Transformative Humanities</a></li>
+                            <li><a href="/schools/business/">School Of Business</a></li>
+                            <li><a href="/schools/digital/">School Of Digital Menus</a></li>
+                            <li><a href="/schools/economics/">School Of Economics</a></li>
+                            <li><a href="/schools/management/">School Of Management</a></li>
+                            <li><a href="/schools/media/">School Of Media</a></li>
+                            <li><a href="/schools/politics/">School Of Politics</a></li>
+                            <li><a href="/schools/tourism/">School Of Tourism</a></li>
+                            <li><a href="/schools/sharmanov/">Sharmanov School</a></li>
                         </ul>
                     </li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#">Новости</a></li>
-                    <li><a href="#">ИИ-ассистент</a></li>
+                    <li class="nav__item"><a href="/ai-bot/">ИИ бот</a></li>
+                    <li class="nav__item"><a href="/about/">Об AlmaU</a></li>
+                    <li class="nav__item"><a href="#apply">Оставить заявку</a></li>
                 </ul>
             </nav>
-            <div class="actions"><a href="#apply" class="cta">Подать заявление</a></div>
+
+            <!-- Переключатель языков справа -->
+            <div class="lang-switcher">
+                <div class="lang-current">ru</div>
+                <div class="lang-dropdown">
+                    <a href="#ru">Русский</a>
+                    <a href="#kz">Қазақша</a>
+                    <a href="#en">English</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -997,9 +864,6 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <div class="back-btn-container">
-                        <button class="back-btn" onclick="history.back()">← Назад</button>
-                    </div>
                     <h1 class="hero-title">Школа Гостеприимства и Туризма</h1>
                     <p class="hero-description">
                         Готовим профессионалов для отельного бизнеса, ресторанного дела, туризма и event-индустрии. Сочетание управленческих навыков, сервисных стандартов и международного опыта.
@@ -1008,15 +872,33 @@
                         <a href="#apply" class="hero-cta primary">Подать заявление</a>
                         <a href="#consult" class="hero-cta ghost">Консультация</a>
                     </div>
-                    <div class="hero-features">
-                        <div class="feature"><strong>6+</strong> программ в сфере HoReCa</div>
-                        <div class="feature"><strong>30+</strong> отелей и туроператоров</div>
-                        <div class="feature"><strong>Международные</strong> стажировки</div>
-                        <div class="feature"><strong>90%</strong> трудоустройство в индустрии</div>
-                    </div>
                 </div>
                 <div class="hero-right">
                     <figure><img src="img/hori.jpg" alt="Школа Гостеприимства и Туризма" class="hero-img"></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">программ в сфере HoReCa</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">отелей и туроператоров</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">международных стажировок</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">трудоустройство в индустрии</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1115,75 +997,106 @@
             </div>
         </section>
 
-        <!-- Преимущества (3 шт) -->
-        <section class="advantages-section">
+        <!-- Почему эта школа -->
+        <section class="why-section">
             <div class="container">
-                <h2 class="section-title">Преимущества школы</h2>
-                <p class="section-sub">Почему выбирают нас</p>
-                <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">🍽️</div><h3>Тренировочные рестораны</h3><p>Собственные учебные кухни и рестораны для отработки навыков сервиса.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌍</div><h3>Международные стажировки</h3><p>Практика в отелях Ritz-Carlton, Marriott, Kempinski по всему миру.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🎓</div><h3>Двойные дипломы</h3><p>Программы с университетами Швейцарии, Франции, ОАЭ.</p></div>
+                <h2 class="section-title">Почему эта школа</h2>
+                <p class="section-sub">Школа Гостеприимства и Туризма — ваш путь в мировой HoReCa</p>
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon">🍽️</div>
+                        <h3>Тренировочные рестораны</h3>
+                        <p>Собственные учебные кухни и рестораны для отработки навыков сервиса и управления.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">🌍</div>
+                        <h3>Международные стажировки</h3>
+                        <p>Практика в отелях Ritz-Carlton, Marriott, Kempinski по всему миру.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">🎓</div>
+                        <h3>Двойные дипломы</h3>
+                        <p>Программы с университетами Швейцарии, Франции, ОАЭ.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Поступление -->
-        <section class="admission-section">
+        <!-- Видео секция (YouTube) -->
+        <section class="video-section">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
-                <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
-                    <ol class="admission-list">
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — иностранный язык, география / история Казахстана</li>
-                        <li><strong>Собеседование</strong> — мотивация, коммуникабельность, ориентация на сервис</li>
-                        <li><strong>Знание иностранного языка</strong> — английский (уровень не ниже Intermediate)</li>
-                        <li><strong>Опыт работы в сервисе (приветствуется)</strong> — волонтёрство, подработки в HoReCa</li>
-                    </ol>
-                    <div class="admission-action"><a href="#apply" class="btn">Подать заявку</a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Контакты -->
-        <section class="contacts-section">
-            <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам гостеприимства и туризма</p>
-                <div class="contacts-grid">
-                    <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
-                        <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
-                        </address>
-                    </div>
-                    <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
-                        </form>
-                    </div>
+                <h2 class="section-title">О школе в деталях</h2>
+                <p class="section-sub">Узнайте больше о Школе Гостеприимства и Туризма из нашего видео</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/XtLSUAlZ8lo" title="Школа Гостеприимства и Туризма" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (точно как на главной) -->
     <footer class="footer">
         <div class="container">
             <div class="footer__grid">
-                <div><img src="img/logo.png" alt="AlmaU" class="footer__logo"><p class="footer__desc">Almaty Management University — образование, меняющее мир</p></div>
-                <div><h4 class="footer__col-title">Обучение</h4><ul class="footer__list"><li><a href="#programs">Программы</a></li><li><a href="#schools">Школы</a></li><li><a href="#admission">Поступление</a></li></ul></div>
-                <div><h4 class="footer__col-title">Университет</h4><ul class="footer__list"><li><a href="#about">О нас</a></li><li><a href="#news">Новости</a></li><li><a href="#events">События</a></li></ul></div>
-                <div><h4 class="footer__col-title">Контакты</h4><address class="footer__address">ул. Розыбакиева, 227<br>Алматы, Казахстан<br><a href="tel:+77273133040">+7 (727) 313 3040</a><br><a href="mailto:info@almau.kz">info@almau.kz</a></address><div class="footer__socials"><a href="#" class="footer__social">f</a><a href="#" class="footer__social">i</a><a href="#" class="footer__social">in</a></div></div>
+                <div class="footer__brand">
+                    <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
+                    <p class="footer__desc">
+                        Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.
+                    </p>
+                </div>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Обучение</h4>
+                    <ul class="footer__list">
+                        <li><a href="#programs">Программы</a></li>
+                        <li><a href="/schools/">Школы</a></li>
+                        <li><a href="#admission">Поступление</a></li>
+                        <li><a href="#scholarships">Стипендии</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Университет</h4>
+                    <ul class="footer__list">
+                        <li><a href="/about/">О нас</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#events">События</a></li>
+                        <li><a href="#partners">Партнёры</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__col">
+                    <h4 class="footer__col-title">Студентам</h4>
+                    <ul class="footer__list">
+                        <li><a href="#library">Библиотека</a></li>
+                        <li><a href="#career">Карьерный центр</a></li>
+                        <li><a href="#clubs">Студенческие клубы</a></li>
+                        <li><a href="#support">Поддержка</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer__col">
+                    <h4 class="footer__col-title">Контакты</h4>
+                    <address class="footer__address">
+                        ул. Розыбакиева, 227<br>
+                        Алматы, Казахстан<br><br>
+                        <a href="tel:+77273133040">+7 (727) 313 3040</a><br>
+                        <a href="mailto:info@almau.kz">info@almau.kz</a>
+                    </address>
+                    <div class="footer__socials">
+                        <a href="https://www.facebook.com/AlmaU.Kazakhstan" class="footer__social">f</a>
+                        <a href="https://www.instagram.com/almau_official" class="footer__social">i</a>
+                        <a href="https://www.linkedin.com/school/almau/" class="footer__social">in</a>
+                    </div>
+                </div>
             </div>
-            <div class="footer__bottom"><p>© <span id="footerYear">2025</span> AlmaU. Все права защищены.</p></div>
+
+            <div class="footer__bottom">
+                <p>
+                    © <span id="footerYear">2025</span> AlmaU. Все права защищены.
+                    <a href="#privacy">Политика конфиденциальности</a>
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -1198,7 +1111,6 @@
                 if(el) el.scrollIntoView({behavior:'smooth'});
             });
         });
-        document.querySelector('.back-btn')?.addEventListener('click', ()=> history.back());
     </script>
 </body>
 </html>
