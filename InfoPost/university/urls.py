@@ -17,4 +17,5 @@ urlpatterns = [
     path('schools/transformative-humanities/', views.school_of_transformative, name='school_of_transformative'),
     path('schools/digital-technologies/', views.school_of_digital, name='school_of_digital'),
     path('programs/information-systems/', views.info_systems_menu, name='info_systems_menu'),
+    path('chatbot/', views.chatbot_menu, name='chatbot_menu'),
 ]

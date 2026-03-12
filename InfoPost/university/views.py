@@ -45,3 +45,6 @@ def school_of_transformative(request):
 
 def info_systems_menu(request):
     return render(request, 'InfoSystemsMenu.html')
+
+def chatbot_menu(request):
+    return render(request, 'ChatBotMenu.html')
