@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -202,30 +203,6 @@
             grid-template-columns: 1fr 0.9fr;
             gap: 3rem;
             align-items: center;
-        }
-
-        .back-btn-container {
-            margin-bottom: 1.5rem;
-        }
-
-        .back-btn {
-            background: rgba(0,102,204,0.08);
-            color: var(--blue);
-            padding: 0.7rem 1.7rem;
-            border-radius: 60px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0,102,204,0.2);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: rgba(0,102,204,0.15);
-            transform: translateX(-5px);
         }
 
         .hero-title {
@@ -582,8 +559,8 @@
     <!-- Header -->
     <header class="main-header">
         <div class="container main-header__inner">
-            <a href="#" class="logo">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%230066cc' rx='8'/%3E%3Ctext x='20' y='28' font-family='Arial' font-size='20' fill='white' font-weight='bold'%3EAlmaU%3C/text%3E%3C/svg%3E" alt="AlmaU" class="logo__img">
+            <a href="/" class="logo">
+                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
             </a>
             <nav class="nav">
                 <ul class="nav__list">
@@ -612,9 +589,6 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <div class="back-btn-container">
-                        <button class="back-btn" onclick="history.back()">← Назад</button>
-                    </div>
                     <h1 class="hero-title">ИИ‑ассистент AlmaU</h1>
                     <p class="hero-description">
                         Персональный помощник абитуриента и студента: консультации по программам, поступлению, грантам, событиям и цифровым сервисам университета.
@@ -669,7 +643,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div>
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23004d99' rx='8'/%3E%3Ctext x='20' y='28' font-family='Arial' font-size='20' fill='white'%3EAlmaU%3C/text%3E%3C/svg%3E" alt="AlmaU" class="footer__logo">
+                    <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
                     <p class="footer__desc">Almaty Management University — лидер бизнес-образования в Казахстане.</p>
                 </div>
                 <div>
@@ -779,7 +753,6 @@
         });
 
         // кнопка назад
-        document.querySelector('.back-btn').addEventListener('click', () => history.back());
     </script>
 </body>
 </html>

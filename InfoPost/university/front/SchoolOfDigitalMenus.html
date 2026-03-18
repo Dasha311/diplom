@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -256,31 +257,6 @@
             align-items: center;
             position: relative;
             z-index: 1;
-        }
-
-        .back-btn-container {
-            margin-bottom: 2.5rem;
-        }
-
-        .back-btn {
-            background: rgba(255,255,255,0.15);
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 0.85rem 1.75rem;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateX(-8px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .hero-title {
@@ -1085,7 +1061,7 @@
     <header class="main-header">
         <div class="container main-header__inner">
             <a href="/" class="logo">
-                <img src="img/logo.png" alt="AlmaU" class="logo__img">
+                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
             </a>
 
             <nav class="nav">
@@ -1117,11 +1093,6 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <div class="back-btn-container">
-                        <button class="back-btn" onclick="history.back()">
-                            ← Назад
-                        </button>
-                    </div>
 
                     <h1 class="hero-title">Школа цифровых технологий</h1>
                     <p class="hero-description">
@@ -1421,7 +1392,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__brand">
-                    <img src="img/logo.png" alt="AlmaU" class="footer__logo">
+                    <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
                     <p class="footer__desc">
                         Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.
                     </p>
@@ -1546,15 +1517,6 @@
                 this.reset();
             } else {
                 alert('Пожалуйста, заполните все поля формы.');
-            }
-        });
-
-        // Обработка кнопки "Назад"
-        document.querySelector('.back-btn').addEventListener('click', function() {
-            if (history.length > 1) {
-                history.back();
-            } else {
-                window.location.href = '/schools/';
             }
         });
 
