@@ -1,0 +1,36 @@
+<script>
+    (function () {
+        const yearNode = document.getElementById('footerYear');
+        if (yearNode) {
+            yearNode.textContent = new Date().getFullYear();
+        }
+
+        const currentNode = document.querySelector('[data-lang-current]');
+        const options = document.querySelectorAll('[data-lang-option]');
+        const savedLang = localStorage.getItem('almau-language') || 'ru';
+        const labels = {
+            ru: 'ru',
+            kz: 'kz',
+            en: 'en'
+        };
+
+        function applyLang(lang) {
+            if (!currentNode || !labels[lang]) return;
+            currentNode.textContent = labels[lang];
+            options.forEach((option) => {
+                option.classList.toggle('is-active', option.dataset.langOption === lang);
+            });
+        }
+
+        applyLang(savedLang);
+
+        options.forEach((option) => {
+            option.addEventListener('click', function (event) {
+                event.preventDefault();
+                const lang = this.dataset.langOption;
+                localStorage.setItem('almau-language', lang);
+                applyLang(lang);
+            });
+        });
+    })();
+</script>

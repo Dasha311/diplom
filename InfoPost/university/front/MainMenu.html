@@ -749,52 +749,13 @@
                 gap: 1rem;
             }
         }
+        {% include 'partials/shared_chrome_styles.html' %}        
     </style>
 </head>
 <body>
 
     <!-- Header (Обновленный: навигация по центру, языки справа) -->
-    <header class="main-header">
-        <div class="container main-header__inner">
-            <!-- Логотип слева -->
-            <a href="/" class="logo">
-                <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
-            </a>
-
-            <!-- Навигация по центру с кнопкой "Оставить заявку" -->
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item nav__item--dropdown">
-                        <a href="/schools/">Школа</a>
-                        <ul class="dropdown">
-                            <li><a href="/schools/transformative-humanities/">School of Transformative Humanities</a></li>
-                            <li><a href="/schools/entrepreneurship/">School Of Business</a></li>
-                            <li><a href="/schools/digital-technologies/">School Of Digital Technologies</a></li>
-                            <li><a href="/schools/economics-and-finance/">School Of Economics</a></li>
-                            <li><a href="/schools/management/">School Of Management</a></li>
-                            li><a href="/schools/media-and-cinema/">School Of Media</a></li>
-                            <li><a href="/schools/politics-and-law/">School Of Politics</a></li>
-                            <li><a href="/schools/hospitality-and-tourism/">School Of Tourism</a></li>
-                            <li><a href="/schools/health-sciences/">Sharmanov School</a></li>
-                        </ul>
-                    </li>
-                     <li class="nav__item"><a href="/chatbot/">ИИ бот</a></li>
-                    <li class="nav__item"><a href="#about">Об AlmaU</a></li>
-                    <li class="nav__item"><a href="#apply" >Оставить заявку</a></li>
-                </ul>
-            </nav>
-
-            <!-- Переключатель языков справа -->
-            <div class="lang-switcher">
-                <div class="lang-current">ru</div>
-                <div class="lang-dropdown">
-                    <a href="#ru">Русский</a>
-                    <a href="#kz">Қазақша</a>
-                    <a href="#en">English</a>
-                </div>
-            </div>
-        </div>
-    </header>
+    {% include 'partials/site_header.html' %}
 
     <main>
         <!-- Hero -->
@@ -1003,71 +964,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                     <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
-                    <p class="footer__desc">
-                        Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.
-                    </p>
-                </div>
-
-                <nav class="footer__col">
-                    <h4 class="footer__col-title">Обучение</h4>
-                    <ul class="footer__list">
-                        <li><a href="#programs">Программы</a></li>
-                        <li><a href="/schools/">Школы</a></li>
-                        <li><a href="#admission">Поступление</a></li>
-                        <li><a href="#scholarships">Стипендии</a></li>
-                    </ul>
-                </nav>
-
-                <nav class="footer__col">
-                    <h4 class="footer__col-title">Университет</h4>
-                    <ul class="footer__list">
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#">Новости</a></li>
-                        <li><a href="#events">События</a></li>
-                        <li><a href="#partners">Партнёры</a></li>
-                    </ul>
-                </nav>
-
-                <nav class="footer__col">
-                    <h4 class="footer__col-title">Студентам</h4>
-                    <ul class="footer__list">
-                        <li><a href="#library">Библиотека</a></li>
-                        <li><a href="#career">Карьерный центр</a></li>
-                        <li><a href="#clubs">Студенческие клубы</a></li>
-                        <li><a href="#support">Поддержка</a></li>
-                    </ul>
-                </nav>
-
-                <div class="footer__col">
-                    <h4 class="footer__col-title">Контакты</h4>
-                    <address class="footer__address">
-                        ул. Розыбакиева, 227<br>
-                        Алматы, Казахстан<br><br>
-                        <a href="tel:+77273133040">+7 (727) 313 3040</a><br>
-                        <a href="mailto:info@almau.kz">info@almau.kz</a>
-                    </address>
-                    <div class="footer__socials">
-                        <a href="https://www.facebook.com/AlmaU.Kazakhstan" class="footer__social">f</a>
-                        <a href="https://www.instagram.com/almau_official" class="footer__social">i</a>
-                        <a href="https://www.linkedin.com/school/almau/" class="footer__social">in</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer__bottom">
-                <p>
-                    © <span id="footerYear">2025</span> AlmaU. Все права защищены.
-                    <a href="#privacy">Политика конфиденциальности</a>
-                </p>
-            </div>
-        </div>
-    </footer>
+    {% include 'partials/site_footer.html' %}
 
     <script>
         // Автоматическое обновление года в футере
@@ -1090,5 +987,6 @@
             });
         });
     </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
 </body>
 </html>

@@ -920,28 +920,13 @@
             .programs-grid { grid-template-columns: 1fr; }
             .footer__grid { grid-template-columns: 1fr; }
         }
+
+    {% include 'partials/shared_chrome_styles.html' %}    
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="main-header">
-        <div class="container main-header__inner">
-             <a href="/" class="logo"><img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img"></a>
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item nav__item--dropdown">
-                        <a href="/schools/">Школы</a>
-                        <ul class="dropdown">
-                    <li class="nav__item"><a href="/">Главная</a></li>
-                    <li class="nav__item"><a href="/schools/">Школы</a></li>
-                    <li class="nav__item"><a href="#about">О нас</a></li>
-                    <li class="nav__item"><a href="#news">Новости</a></li>
-                    <li class="nav__item"><a href="#contacts">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="actions"><a href="#apply" class="cta">Подать заявление</a></div>
-        </div>
-    </header>
+    {% include 'partials/site_header.html' %}
 
     <main>
         <!-- Hero Школы Медиа и Кино -->
@@ -1123,41 +1108,7 @@
     </main>
 
     <!-- Footer -->
-   <footer class="footer" id="contacts">
-        <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                     <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
-                    <p class="footer__desc">Almaty Management University — образование, меняющее мир</p>
-                </div>
-                <nav class="footer__col">
-                    <h4 class="footer__col-title">Обучение</h4>
-                    <ul class="footer__list">
-                        <li><a href="#programs">Программы</a></li>
-                        <li><a href="/schools/">Школы</a></li>
-                        <li><a href="#apply">Поступление</a></li>
-                    </ul>
-                </nav>
-                <nav class="footer__col">
-                    <h4 class="footer__col-title">Университет</h4>
-                    <ul class="footer__list">
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#news">Новости</a></li>
-                        <li><a href="#events">События</a></li>
-                    </ul>
-                </nav>
-                <div class="footer__col">
-                    <h4 class="footer__col-title">Социальные сети</h4>
-                    <div class="footer__socials">
-                        <a href="https://www.instagram.com/almau_official" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram">IG</a>
-                        <a href="https://www.tiktok.com/@almau_official" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="TikTok">TT</a>
-                        <a href="https://www.youtube.com/@almauuniversity" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube">YT</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom"><p>© <span id="footerYear">2025</span> AlmaU. Все права защищены.</p></div>
-        </div>
-    </footer>
+    {% include 'partials/site_footer.html' %}
 
     <script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
@@ -1171,5 +1122,6 @@
             });
         });
     </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
 </body>
 </html>
