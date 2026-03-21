@@ -40,7 +40,7 @@ def sharmanov_school(request):
 
 
 def school_of_transformative(request):
-    return render(request, 'School ofTransformative.html')
+    return render(request, 'SchoolOfTransformative.html')
 
 
 def info_systems_menu(request):

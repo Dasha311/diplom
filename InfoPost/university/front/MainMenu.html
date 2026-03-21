@@ -622,6 +622,39 @@
             border-top: 1px solid var(--light-gray);
         }
 
+                .admission-hub {
+            padding: 4.5rem 0 5rem;
+            background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+        }
+
+        .admission-hub__intro {
+            margin-bottom: 2rem;
+        }
+
+        .admission-hub__grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .hub-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 18px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .hub-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .hub-card p {
+            margin-bottom: 1.25rem;
+            color: var(--dark-gray);
+        }
+
         /* === FOOTER === */
         .footer {
             background: var(--black);
@@ -728,7 +761,8 @@
                 font-size: 2.2rem;
             }
             
-            .footer__grid {
+            .footer__grid,
+            .admission-hub__grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -759,7 +793,7 @@
 
     <main>
         <!-- Hero -->
-        <section class="hero">
+        <section class="hero" id="about">
             <div class="container hero-grid">
                 <div class="hero-left">
                     <h1 class="hero-title">Almaty Management University — AlmaU</h1>
@@ -781,7 +815,7 @@
         </section>
 
         <!-- Программы -->
-        <section class="programs">
+        <section class="programs" id="programs">
             <div class="container">
                 <h2 class="section-title">Программы обучения</h2>
                 <p class="section-sub">Выберите свой путь к успеху с AlmaU</p>
@@ -791,44 +825,43 @@
                         <div class="program-icon">🎓</div>
                         <h3>Бакалавриат</h3>
                         <p>30+ программ в сфере бизнеса, экономики, цифровых технологий и гуманитарных наук.</p>
-                        <a href="#bachelor" class="btn">Подробнее</a>
+                        <a href="{% url 'university:schools_menu' %}" class="btn">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📘</div>
                         <h3>Магистратура</h3>
                         <p>Современные программы с международными партнёрами и возможностью стажировок.</p>
-                        <a href="#master" class="btn">Подробнее</a>
+                        <a href="{% url 'university:schools_menu' %}" class="btn">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📱</div>
                         <h3>Онлайн-курсы</h3>
                         <p>Короткие курсы и сертификаты для повышения квалификации и развития навыков.</p>
-                        <a href="#online" class="btn">Подробнее</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📊</div>
                         <h3>MBA & DBA</h3>
                         <p>Программы для руководителей и топ-менеджеров с фокусом на стратегическое лидерство.</p>
-                        <a href="#mba" class="btn">Подробнее</a>
+                        <a href="{% url 'university:school_of_management' %}" class="btn">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">🔬</div>
                         <h3>Докторантура</h3>
                         <p>Исследовательские программы PhD для академической и научной карьеры.</p>
-                        <a href="#phd" class="btn">Подробнее</a>
+                        <a href="{% url 'university:school_of_transformative' %}" class="btn">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">🌍</div>
                         <h3>Двойной диплом</h3>
                         <p>Совместные программы с зарубежными вузами и международные сертификаты.</p>
-                        <a href="#double" class="btn">Подробнее</a>
+                         <a href="#partners" class="btn">Подробнее</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Партнеры (ТОЧНО КАК НА ФОТО) -->
-        <section class="partners">
+        <section class="partners" id="partners">
             <div class="container">
                 <h2 class="section-title">Международное сотрудничество</h2>
                 <p class="section-sub">Аккредитация и членство в международных организациях</p>
@@ -869,7 +902,7 @@
                             <li>Стажировки в топовых компаниях</li>
                             <li>Международные сертификаты</li>
                         </ul>
-                        <a href="#business" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_business' %}" class="btn">Узнать больше</a>
                     </article>
 
                     <article class="career-card">
@@ -881,7 +914,7 @@
                             <li>Data Science, AI и машинное обучение</li>
                             <li>Проекты с реальными заказчиками</li>
                         </ul>
-                        <a href="/schools/digital-technologies/" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_digital' %}" class="btn">Узнать больше</a>
                     </article>
 
                     <article class="career-card">
@@ -893,14 +926,14 @@
                             <li>Цифровой маркетинг и контент-стратегии</li>
                             <li>Создание портфолио под руководством экспертов</li>
                         </ul>
-                        <a href="#creative" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_media' %}" class="btn">Узнать больше</a>
                     </article>
                 </div>
             </div>
         </section>
 
         <!-- Блог -->
-        <section class="blog">
+        <section class="blog" id="news">
             <div class="container">
                 <h2 class="section-title">Актуальные новости и статьи</h2>
                 <p class="section-sub">Последние события и материалы из жизни университета</p>
@@ -919,7 +952,7 @@
                             <p>AlmaU запускает совместные программы с ведущими университетами Европы и Азии.</p>
                             <div class="blog-foot">
                                 <span class="author">Редакция AlmaU</span>
-                                <a href="#article1" class="btn">Читать →</a>
+                                <a href="#news" class="btn">Читать →</a>
                             </div>
                         </div>
                     </article>
@@ -937,7 +970,7 @@
                             <p>В AlmaU прошла конференция, посвящённая цифровой трансформации и стартапам.</p>
                             <div class="blog-foot">
                                 <span class="author">Пресс-служба AlmaU</span>
-                                <a href="#article2" class="btn">Читать →</a>
+                                <a href="#news" class="btn">Читать →</a>
                             </div>
                         </div>
                     </article>
@@ -955,13 +988,41 @@
                             <p>Команда AlmaU заняла первое место на глобальном AI-хакатоне.</p>
                             <div class="blog-foot">
                                 <span class="author">Студенческий совет</span>
-                                <a href="#article3" class="btn">Читать →</a>
+                                <a href="#news" class="btn">Читать →</a>
                             </div>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
+        <section class="admission-hub" id="apply">
+            <div class="container">
+                <div class="admission-hub__intro">
+                    <h2 class="section-title">Поступление, события и поддержка абитуриентов</h2>
+                    <p class="section-sub">Собрали в одном месте быстрые переходы для подачи заявки, информации о стипендиях, мероприятиях и правилах обработки данных.</p>
+                </div>
+
+                <div class="admission-hub__grid">
+                    <article class="hub-card" id="scholarships">
+                        <h3>Стипендии и гранты</h3>
+                        <p>Узнайте о грантах, скидках и доступных форматах финансовой поддержки для абитуриентов AlmaU.</p>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Получить консультацию</a>
+                    </article>
+
+                    <article class="hub-card" id="events">
+                        <h3>Дни открытых дверей</h3>
+                        <p>Следите за ближайшими презентациями программ, встречами с преподавателями и консультациями приёмной комиссии.</p>
+                        <a href="#news" class="btn">Смотреть новости</a>
+                    </article>
+
+                    <article class="hub-card" id="privacy">
+                        <h3>Подача заявки и конфиденциальность</h3>
+                        <p>Оставьте заявку через онлайн-канал AlmaU. Мы используем контактные данные только для связи по вопросам поступления.</p>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a>
+                    </article>
+                </div>
+            </div>
+        </section>        
     </main>
 
     {% include 'partials/site_footer.html' %}

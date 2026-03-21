@@ -270,7 +270,7 @@
         }
 
         /* Кнопка в хедере (без синего фона) */
-        .nav__item a[href="#apply"] {
+        .nav__item .nav-cta-link {
             background: transparent;
             color: var(--black) !important;
             padding: 0.6rem 0;
@@ -831,8 +831,8 @@
                         Готовим профессионалов для отельного бизнеса, ресторанного дела, туризма и event-индустрии. Сочетание управленческих навыков, сервисных стандартов и международного опыта.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="hero-cta primary">Подать заявление</a>
+                        <a href="mailto:admission@almau.kz" class="hero-cta ghost">Консультация</a>
                     </div>
                 </div>
                 <div class="hero-right">

@@ -1,28 +1,28 @@
 <header class="main-header">
     <div class="container main-header__inner">
-        <a href="/" class="logo">
+        <a href="{% url 'university:main_menu' %}" class="logo">
             <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
         </a>
 
         <nav class="nav" aria-label="Основная навигация">
             <ul class="nav__list">
                 <li class="nav__item nav__item--dropdown">
-                    <a href="/schools/">Школы</a>
+                    <a href="{% url 'university:schools_menu' %}">Школы</a>
                     <ul class="dropdown">
-                        <li><a href="/schools/transformative-humanities/">School of Transformative Humanities</a></li>
-                        <li><a href="/schools/entrepreneurship/">School Of Business</a></li>
-                        <li><a href="/schools/digital-technologies/">School Of Digital Technologies</a></li>
-                        <li><a href="/schools/economics-and-finance/">School Of Economics</a></li>
-                        <li><a href="/schools/management/">School Of Management</a></li>
-                        <li><a href="/schools/media-and-cinema/">School Of Media</a></li>
-                        <li><a href="/schools/politics-and-law/">School Of Politics</a></li>
-                        <li><a href="/schools/hospitality-and-tourism/">School Of Tourism</a></li>
-                        <li><a href="/schools/health-sciences/">Sharmanov School</a></li>
+                        <li><a href="{% url 'university:school_of_transformative' %}">School of Transformative Humanities</a></li>
+                        <li><a href="{% url 'university:school_of_business' %}">School Of Business</a></li>
+                        <li><a href="{% url 'university:school_of_digital' %}">School Of Digital Technologies</a></li>
+                        <li><a href="{% url 'university:school_of_economics' %}">School Of Economics</a></li>
+                        <li><a href="{% url 'university:school_of_management' %}">School Of Management</a></li>
+                        <li><a href="{% url 'university:school_of_media' %}">School Of Media</a></li>
+                        <li><a href="{% url 'university:school_of_politics' %}">School Of Politics</a></li>
+                        <li><a href="{% url 'university:school_of_tourism' %}">School Of Tourism</a></li>
+                        <li><a href="{% url 'university:sharmanov_school' %}">Sharmanov School</a></li>
                     </ul>
                 </li>
-                <li class="nav__item"><a href="/chatbot/">ИИ бот</a></li>
-                <li class="nav__item"><a href="/#about">Об AlmaU</a></li>
-                <li class="nav__item"><a href="/#apply">Оставить заявку</a></li>
+                <li class="nav__item"><a href="{% url 'university:chatbot_menu' %}">ИИ бот</a></li>
+                <li class="nav__item"><a href="{% url 'university:main_menu' %}#about">Об AlmaU</a></li>
+                <li class="nav__item"><a href="{% url 'university:main_menu' %}#apply" class="nav-cta-link">Оставить заявку</a></li>
             </ul>
         </nav>
 

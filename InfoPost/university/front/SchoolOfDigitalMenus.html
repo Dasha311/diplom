@@ -1133,7 +1133,8 @@
                             </div>
                         </div>
                         <div class="program-card-footer">
-                            <a href="/programs/information-systems/" class="btn">Подробнее о программе</a>
+                            <a href="{% url 'university:info_systems_menu' %}" class="btn">Подробнее о программе</a>
+                        </div>
                     </div>
 
                     <!-- Software Engineering -->
@@ -1270,7 +1271,7 @@
         </section>
 
         <!-- Поступление -->
-        <section class="admission-section">
+        <section class="admission-section" id="apply">
             <div class="container">
                 <h2 class="section-title">Как поступить</h2>
                 
@@ -1301,14 +1302,14 @@
                         <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;">
                             Подайте заявку онлайн или посетите приёмную комиссию для получения подробной консультации
                         </p>
-                        <a href="#apply" class="btn">Подать заявку на поступление</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку на поступление</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Контакты -->
-        <section class="contacts-section">
+        <section class="contacts-section" id="consult">
             <div class="container">
                 <h2 class="section-title">Контакты приёмной комиссии</h2>
                 <p class="section-sub">Свяжитесь с нами для получения дополнительной информации</p>
