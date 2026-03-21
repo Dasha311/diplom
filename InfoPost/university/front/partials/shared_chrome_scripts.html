@@ -1,5 +1,124 @@
 <script>
     (function () {
+                const dictionary = {
+            ru: {
+                main_nav_label: 'Основная навигация',
+                nav_schools: 'Школы',
+                nav_ai_bot: 'ИИ бот',
+                nav_about: 'Об AlmaU',
+                nav_apply: 'Оставить заявку',
+                footer_desc: 'Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.',
+                footer_learning: 'Обучение',
+                footer_programs: 'Программы',
+                footer_admission: 'Поступление',
+                footer_scholarships: 'Стипендии',
+                footer_university: 'Университет',
+                footer_about: 'О нас',
+                footer_news: 'Новости',
+                footer_events: 'События',
+                footer_partners: 'Партнёры',
+                footer_contacts: 'Контакты',
+                footer_copyright: 'Все права защищены.',
+                footer_privacy: 'Политика конфиденциальности'
+            },
+            kz: {
+                main_nav_label: 'Негізгі навигация',
+                nav_schools: 'Мектептер',
+                nav_ai_bot: 'ЖИ бот',
+                nav_about: 'AlmaU туралы',
+                nav_apply: 'Өтінім қалдыру',
+                footer_desc: 'Almaty Management University — әлемдік деңгейдегі мамандар мен жаңа буын көшбасшыларын қалыптастыратын Қазақстанның жетекші университеті.',
+                footer_learning: 'Оқу',
+                footer_programs: 'Бағдарламалар',
+                footer_admission: 'Қабылдау',
+                footer_scholarships: 'Гранттар',
+                footer_university: 'Университет',
+                footer_about: 'Біз туралы',
+                footer_news: 'Жаңалықтар',
+                footer_events: 'Оқиғалар',
+                footer_partners: 'Серіктестер',
+                footer_contacts: 'Байланыс',
+                footer_copyright: 'Барлық құқықтар қорғалған.',
+                footer_privacy: 'Құпиялық саясаты'
+            },
+            en: {
+                main_nav_label: 'Main navigation',
+                nav_schools: 'Schools',
+                nav_ai_bot: 'AI bot',
+                nav_about: 'About AlmaU',
+                nav_apply: 'Apply now',
+                footer_desc: 'Almaty Management University is a leading university in Kazakhstan that shapes world-class professionals and next-generation leaders.',
+                footer_learning: 'Study',
+                footer_programs: 'Programs',
+                footer_admission: 'Admission',
+                footer_scholarships: 'Scholarships',
+                footer_university: 'University',
+                footer_about: 'About us',
+                footer_news: 'News',
+                footer_events: 'Events',
+                footer_partners: 'Partners',
+                footer_contacts: 'Contacts',
+                footer_copyright: 'All rights reserved.',
+                footer_privacy: 'Privacy policy'
+            }
+        };
+
+        const exactTextTranslations = {
+            'Подать заявление': { kz: 'Өтінім беру', en: 'Apply now' },
+            'Подать заявку': { kz: 'Өтінім беру', en: 'Apply now' },
+            'Подать заявку на поступление': { kz: 'Оқуға түсуге өтінім беру', en: 'Submit application' },
+            'Оставить заявку': { kz: 'Өтінім қалдыру', en: 'Leave an application' },
+            'Получить консультацию': { kz: 'Кеңес алу', en: 'Get consultation' },
+            'Консультация': { kz: 'Кеңес', en: 'Consultation' },
+            'Свяжитесь с нами': { kz: 'Бізбен байланысыңыз', en: 'Contact us' },
+            'Контакты приёмной комиссии': { kz: 'Қабылдау комиссиясының байланыстары', en: 'Admissions office contacts' },
+            'Приёмная комиссия': { kz: 'Қабылдау комиссиясы', en: 'Admissions office' },
+            'Телефон:': { kz: 'Телефон:', en: 'Phone:' },
+            'Email для заявок:': { kz: 'Өтінімдерге арналған email:', en: 'Application email:' },
+            'Email для абитуриентов:': { kz: 'Талапкерлерге арналған email:', en: 'Applicant email:' },
+            'Адрес:': { kz: 'Мекенжай:', en: 'Address:' },
+            'Часы работы:': { kz: 'Жұмыс уақыты:', en: 'Working hours:' },
+            'Задать вопрос': { kz: 'Сұрақ қою', en: 'Ask a question' },
+            'Имя': { kz: 'Аты', en: 'Name' },
+            'Телефон или Email': { kz: 'Телефон немесе Email', en: 'Phone or email' },
+            'Вопрос / программа': { kz: 'Сұрақ / бағдарлама', en: 'Question / program' },
+            'Подробнее': { kz: 'Толығырақ', en: 'Learn more' },
+            'Подробнее о школе': { kz: 'Мектеп туралы толығырақ', en: 'Learn more about the school' },
+            'Подробнее о программе': { kz: 'Бағдарлама туралы толығырақ', en: 'Learn more about the program' },
+            'Преимущества школы': { kz: 'Мектеп артықшылықтары', en: 'School advantages' },
+            'Почему выбирают нас': { kz: 'Неліктен бізді таңдайды', en: 'Why choose us' },
+            'Почему выбирают AlmaU для IT-образования': { kz: 'AlmaU-ды IT білімі үшін неге таңдайды', en: 'Why students choose AlmaU for IT education' },
+            'Как поступить': { kz: 'Қалай түсуге болады', en: 'How to apply' },
+            'Требования для абитуриентов': { kz: 'Талапкерлерге қойылатын талаптар', en: 'Applicant requirements' },
+            'Требования для поступления': { kz: 'Қабылдау талаптары', en: 'Admission requirements' },
+            'Бакалавриат — 3 года': { kz: 'Бакалавриат — 3 жыл', en: 'Bachelor’s degree — 3 years' },
+            'Пн–Пт 9:00–18:00, Сб 10:00–15:00': { kz: 'Дс–Жм 9:00–18:00, Сб 10:00–15:00', en: 'Mon–Fri 9:00–18:00, Sat 10:00–15:00' },
+            'ул. Розыбакиева, 227, Алматы': { kz: 'Розыбакиев көшесі, 227, Алматы', en: '227 Rozybakiev Street, Almaty' },
+            'ул. Розыбакиева, 227': { kz: 'Розыбакиев көшесі, 227', en: '227 Rozybakiev Street' },
+            'Алматы, Казахстан': { kz: 'Алматы, Қазақстан', en: 'Almaty, Kazakhstan' },
+            'Все права защищены.': { kz: 'Барлық құқықтар қорғалған.', en: 'All rights reserved.' },
+            'Политика конфиденциальности': { kz: 'Құпиялық саясаты', en: 'Privacy policy' },
+            'Школы AlmaU': { kz: 'AlmaU мектептері', en: 'AlmaU schools' },
+            'Школа цифровых технологий': { kz: 'Цифрлық технологиялар мектебі', en: 'School of Digital Technologies' },
+            'Информационные системы': { kz: 'Ақпараттық жүйелер', en: 'Information Systems' },
+            'ИИ‑ассистент AlmaU': { kz: 'AlmaU ЖИ‑ассистенті', en: 'AlmaU AI assistant' },
+            'Задай вопрос!': { kz: 'Сұрағыңызды қойыңыз!', en: 'Ask your question!' },
+            'ИИ может ошибаться. Проверяйте важную информацию на сайте AlmaU.': { kz: 'ЖИ қателесуі мүмкін. Маңызды ақпаратты AlmaU сайтынан тексеріңіз.', en: 'AI can make mistakes. Please verify important information on the AlmaU website.' },
+            'Привет! Я ИИ‑ассистент AlmaU.': { kz: 'Сәлем! Мен AlmaU ЖИ‑ассистентімін.', en: 'Hi! I am the AlmaU AI assistant.' },
+            '• расскажу о программах и школах': { kz: '• бағдарламалар мен мектептер туралы айтып беремін', en: '• tell you about programs and schools' },
+            '• помогу с поступлением и грантами': { kz: '• қабылдау мен гранттар бойынша көмектесемін', en: '• help with admission and grants' },
+            '• подскажу контакты и события': { kz: '• байланыстар мен оқиғаларды көрсетемін', en: '• share contacts and events' }
+        };
+
+        const attrTranslations = {
+            placeholder: {
+                'Введите ваш вопрос...': { kz: 'Сұрағыңызды енгізіңіз...', en: 'Type your question...' }
+            },
+            value: {
+                'Отправить': { kz: 'Жіберу', en: 'Send' }
+            }
+        };
+
         const yearNode = document.getElementById('footerYear');
         if (yearNode) {
             yearNode.textContent = new Date().getFullYear();
@@ -8,28 +127,138 @@
         const currentNode = document.querySelector('[data-lang-current]');
         const options = document.querySelectorAll('[data-lang-option]');
         const savedLang = localStorage.getItem('almau-language') || 'ru';
-        const labels = {
-            ru: 'ru',
-            kz: 'kz',
-            en: 'en'
-        };
+        const pageLanguage = '{{ current_language|default:"ru"|escapejs }}' || 'ru';
+        const labels = { ru: 'ru', kz: 'kz', en: 'eng' };
+        const nodeStore = new WeakMap();
+        const attrStore = new WeakMap();
 
-        function applyLang(lang) {
-            if (!currentNode || !labels[lang]) return;
-            currentNode.textContent = labels[lang];
-            options.forEach((option) => {
-                option.classList.toggle('is-active', option.dataset.langOption === lang);
+        function translateKey(key, lang) {
+            return dictionary[lang] && dictionary[lang][key] ? dictionary[lang][key] : (dictionary.ru[key] || '');
+        }
+
+        function getNodeOriginal(node) {
+            if (!nodeStore.has(node)) {
+                nodeStore.set(node, node.textContent);
+            }
+            return nodeStore.get(node);
+        }
+
+        function getAttrOriginal(el, attr) {
+            if (!attrStore.has(el)) {
+                attrStore.set(el, {});
+            }
+            const attrs = attrStore.get(el);
+            if (!(attr in attrs)) {
+                attrs[attr] = el.getAttribute(attr) || '';
+            }
+            return attrs[attr];
+        }
+
+        function translateByDataKey(lang) {
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.dataset.i18n;
+                const translated = translateKey(key, lang);
+                if (translated) {
+                    element.textContent = translated;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+                const attrName = element.dataset.i18nAttr;
+                const key = element.dataset.i18nAttrKey;
+                const translated = translateKey(key, lang);
+                if (attrName && translated) {
+                    element.setAttribute(attrName, translated);
+                }
             });
         }
 
-        applyLang(savedLang);
+        function translateTextNodes(lang) {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    const parent = node.parentElement;
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+
+            let node;
+            while ((node = walker.nextNode())) {
+                const original = getNodeOriginal(node);
+                const normalized = original.trim();
+                const translated = lang === 'ru' ? original : exactTextTranslations[normalized] && exactTextTranslations[normalized][lang];
+                if (!normalized || translated === undefined) {
+                    node.textContent = original;
+                    continue;
+                }
+                const prefix = original.match(/^\s*/)[0];
+                const suffix = original.match(/\s*$/)[0];
+                node.textContent = prefix + translated + suffix;
+            }
+        }
+
+        function translateAttributes(lang) {
+            Object.entries(attrTranslations).forEach(([attrName, map]) => {
+                document.querySelectorAll('[' + attrName + ']').forEach((element) => {
+                    const original = getAttrOriginal(element, attrName);
+                    const translated = lang === 'ru' ? original : (map[original] && map[original][lang]);
+                    element.setAttribute(attrName, translated || original);
+                });
+            });
+        }
+
+        function translateTitle(lang) {
+            if (!document.title) return;
+            if (!window.__originalTitle) {
+                window.__originalTitle = document.title;
+            }
+            const original = window.__originalTitle;
+            const translated = lang === 'ru' ? original : (exactTextTranslations[original] && exactTextTranslations[original][lang]);
+            document.title = translated || original;
+        }
+
+        function applyLang(lang) {
+            const currentLang = labels[lang] ? lang : 'ru';
+            if (currentNode) {
+                currentNode.textContent = labels[currentLang];
+            }
+            document.documentElement.lang = currentLang === 'en' ? 'en' : currentLang;
+            options.forEach((option) => {
+                option.classList.toggle('is-active', option.dataset.langOption === currentLang);
+            });
+             translateByDataKey(currentLang);
+            translateTextNodes(currentLang);
+            translateAttributes(currentLang);
+            translateTitle(currentLang);
+            window.__almauLanguage = currentLang;
+        }
+
+        async function persistLanguage(lang) {
+            const target = document.querySelector('[data-lang-option="' + lang + '"]');
+            if (!target) return;
+            try {
+                const response = await fetch(target.href, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                    credentials: 'same-origin'
+                });
+                if (!response.ok) {
+                    throw new Error('Request failed');
+                }
+            } catch (error) {
+                window.location.href = target.href;
+                return;
+            }
+            applyLang(lang);
+        }
+
+        applyLang(pageLanguage);
 
         options.forEach((option) => {
             option.addEventListener('click', function (event) {
                 event.preventDefault();
-                const lang = this.dataset.langOption;
-                localStorage.setItem('almau-language', lang);
-                applyLang(lang);
+                persistLanguage(this.dataset.langOption);
             });
         });
     })();

@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Школа Политики и Права</title>
+    <title data-i18n="page_title">AlmaU · Школа Политики и Права</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -931,19 +931,19 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Школа Политики и Права</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа Политики и Права</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Готовим юристов-практиков, политологов и дипломатов, способных работать в условиях современной правовой и политической среды Казахстана и мира.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>5+</strong> юридических профилей</div>
-                        <div class="feature"><strong>20+</strong> партнёров: суды, МИД, адвокатура</div>
-                        <div class="feature"><strong>100%</strong> практико-ориентированное обучение</div>
-                        <div class="feature"><strong>85%</strong> выпускников работают по специальности</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">5+</strong> <span data-i18n="feature_1_label">юридических профилей</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">20+</strong> <span data-i18n="feature_2_label">партнёров: суды, МИД, адвокатура</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_value">100%</strong> <span data-i18n="feature_3_label">практико-ориентированное обучение</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_value">85%</strong> <span data-i18n="feature_4_label">выпускников работают по специальности</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -955,92 +955,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Политики и Права</h2>
-                <p class="section-sub">Актуальные программы для карьеры в юриспруденции, государственном управлении и международных отношениях</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Политики и Права</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Актуальные программы для карьеры в юриспруденции, государственном управлении и международных отношениях</p>
 
                 <div class="programs-grid">
                     <!-- 1. Юриспруденция (международное право) -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Международное право</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Международное право</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Международные договоры, дипломатическое право, права человека, международный арбитраж.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Международные договоры, дипломатическое право, права человека, международный арбитраж.</p>
                             <div class="program-details">
-                                <h4>Карьерные треки</h4>
-                                <ul><li>Дипломатическая служба</li><li>Международные организации (ООН, ЕАЭС)</li><li>Юрист по международным сделкам</li></ul>
+                                <h4 data-i18n="program_1_career_title">Карьерные треки</h4>
+                                <ul>
+                                    <li data-i18n="program_1_career_1">Дипломатическая служба</li>
+                                    <li data-i18n="program_1_career_2">Международные организации (ООН, ЕАЭС)</li>
+                                    <li data-i18n="program_1_career_3">Юрист по международным сделкам</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Международное право')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Юриспруденция (гражданское право) -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Гражданское право</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Гражданское право</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Договорное право, корпоративные споры, наследственное право, нотариат.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Договорное право, корпоративные споры, наследственное право, нотариат.</p>
                             <div class="program-details">
-                                <h4>Практика</h4>
-                                <ul><li>Судебные стажировки</li><li>Юридические клиники</li><li>Работа с реальными кейсами</li></ul>
+                                <h4 data-i18n="program_2_practice_title">Практика</h4>
+                                <ul>
+                                    <li data-i18n="program_2_practice_1">Судебные стажировки</li>
+                                    <li data-i18n="program_2_practice_2">Юридические клиники</li>
+                                    <li data-i18n="program_2_practice_3">Работа с реальными кейсами</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Гражданское право')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Уголовное право и криминология -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Уголовное право</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Уголовное право</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Уголовный процесс, криминалистика, адвокатская деятельность, прокурорский надзор.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Уголовный процесс, криминалистика, адвокатская деятельность, прокурорский надзор.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Адвокатура</li><li>Прокуратура</li><li>Следственные органы</li></ul>
+                                <h4 data-i18n="program_3_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_3_track_1">Адвокатура</li>
+                                    <li data-i18n="program_3_track_2">Прокуратура</li>
+                                    <li data-i18n="program_3_track_3">Следственные органы</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Уголовное право')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Политология -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Политология</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Политология</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Политические институты, избирательные системы, политический анализ, государственная политика.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Политические институты, избирательные системы, политический анализ, государственная политика.</p>
                             <div class="program-details">
-                                <h4>Сферы</h4>
-                                <ul><li>Аналитические центры</li><li>Политический консалтинг</li><li>Государственная служба</li></ul>
+                                <h4 data-i18n="program_4_fields_title">Сферы</h4>
+                                <ul>
+                                    <li data-i18n="program_4_field_1">Аналитические центры</li>
+                                    <li data-i18n="program_4_field_2">Политический консалтинг</li>
+                                    <li data-i18n="program_4_field_3">Государственная служба</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Политология')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Государственное и муниципальное управление -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Госуправление</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Госуправление</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Государственная служба, региональное управление, бюджетный процесс, антикоррупционная политика.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Государственная служба, региональное управление, бюджетный процесс, антикоррупционная политика.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>Министерства и акиматы</li><li>Национальные компании</li><li>Международные организации</li></ul>
+                                <h4 data-i18n="program_5_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_5_career_1">Министерства и акиматы</li>
+                                    <li data-i18n="program_5_career_2">Национальные компании</li>
+                                    <li data-i18n="program_5_career_3">Международные организации</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Госуправление')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Международные отношения -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Международные отношения</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Международные отношения</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Дипломатия, геополитика, международная безопасность, регионоведение.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Дипломатия, геополитика, международная безопасность, регионоведение.</p>
                             <div class="program-details">
-                                <h4>Партнёры</h4>
-                                <ul><li>МИД РК</li><li>Дипломатические миссии</li><li>Зарубежные стажировки</li></ul>
+                                <h4 data-i18n="program_6_partners_title">Партнёры</h4>
+                                <ul>
+                                    <li data-i18n="program_6_partner_1">МИД РК</li>
+                                    <li data-i18n="program_6_partner_2">Дипломатические миссии</li>
+                                    <li data-i18n="program_6_partner_3">Зарубежные стажировки</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Международные отношения')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1049,12 +1073,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества школы</h2>
-                <p class="section-sub">Почему выбирают нас</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества школы</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему выбирают нас</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">⚖️</div><h3>Юридическая клиника</h3><p>Студенты консультируют реальных клиентов под supervision опытных адвокатов.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3>Модель ООН и дебаты</h3><p>Ежегодные конференции, тренинги по ораторскому искусству и дипломатии.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🏛️</div><h3>Связи с госорганами</h3><p>Практика в Парламенте, Верховном Суде, Министерстве юстиции.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">⚖️</div><h3 data-i18n="advantage_1_title">Юридическая клиника</h3><p data-i18n="advantage_1_desc">Студенты консультируют реальных клиентов под supervision опытных адвокатов.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3 data-i18n="advantage_2_title">Модель ООН и дебаты</h3><p data-i18n="advantage_2_desc">Ежегодные конференции, тренинги по ораторскому искусству и дипломатии.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🏛️</div><h3 data-i18n="advantage_3_title">Связи с госорганами</h3><p data-i18n="advantage_3_desc">Практика в Парламенте, Верховном Суде, Министерстве юстиции.</p></div>
                 </div>
             </div>
         </section>
@@ -1062,16 +1086,16 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для абитуриентов</h3>
                     <ol class="admission-list">
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — история Казахстана, иностранный язык / обществознание</li>
-                        <li><strong>Собеседование</strong> — мотивация, знание основ права и политики</li>
-                        <li><strong>Портфолио</strong> — участие в дебатах, олимпиадах по праву приветствуется</li>
-                        <li><strong>Документы</strong> — аттестат, удостоверение личности, фото 3×4</li>
+                        <li><strong data-i18n="admission_req_1_title">ЕНТ / комплексное тестирование</strong> <span data-i18n="admission_req_1_desc">— история Казахстана, иностранный язык / обществознание</span></li>
+                        <li><strong data-i18n="admission_req_2_title">Собеседование</strong> <span data-i18n="admission_req_2_desc">— мотивация, знание основ права и политики</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Портфолио</strong> <span data-i18n="admission_req_3_desc">— участие в дебатах, олимпиадах по праву приветствуется</span></li>
+                        <li><strong data-i18n="admission_req_4_title">Документы</strong> <span data-i18n="admission_req_4_desc">— аттестат, удостоверение личности, фото 3×4</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1079,25 +1103,25 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам политики и права</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по программам политики и права</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1109,15 +1133,228 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Школа Политики и Права",
+                hero_title: "Школа Политики и Права",
+                hero_desc: "Готовим юристов-практиков, политологов и дипломатов, способных работать в условиях современной правовой и политической среды Казахстана и мира.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "5+", feature_1_label: "юридических профилей",
+                feature_2_value: "20+", feature_2_label: "партнёров: суды, МИД, адвокатура",
+                feature_3_value: "100%", feature_3_label: "практико-ориентированное обучение",
+                feature_4_value: "85%", feature_4_label: "выпускников работают по специальности",
+                programs_title: "Программы Школы Политики и Права",
+                programs_subtitle: "Актуальные программы для карьеры в юриспруденции, государственном управлении и международных отношениях",
+                program_1_title: "Международное право", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Международные договоры, дипломатическое право, права человека, международный арбитраж.",
+                program_1_career_title: "Карьерные треки", program_1_career_1: "Дипломатическая служба", program_1_career_2: "Международные организации (ООН, ЕАЭС)", program_1_career_3: "Юрист по международным сделкам",
+                program_1_alert: "Подробнее о программе Международное право",
+                program_2_title: "Гражданское право", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Договорное право, корпоративные споры, наследственное право, нотариат.",
+                program_2_practice_title: "Практика", program_2_practice_1: "Судебные стажировки", program_2_practice_2: "Юридические клиники", program_2_practice_3: "Работа с реальными кейсами",
+                program_2_alert: "Подробнее о программе Гражданское право",
+                program_3_title: "Уголовное право", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Уголовный процесс, криминалистика, адвокатская деятельность, прокурорский надзор.",
+                program_3_tracks_title: "Траектории", program_3_track_1: "Адвокатура", program_3_track_2: "Прокуратура", program_3_track_3: "Следственные органы",
+                program_3_alert: "Подробнее о программе Уголовное право",
+                program_4_title: "Политология", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Политические институты, избирательные системы, политический анализ, государственная политика.",
+                program_4_fields_title: "Сферы", program_4_field_1: "Аналитические центры", program_4_field_2: "Политический консалтинг", program_4_field_3: "Государственная служба",
+                program_4_alert: "Подробнее о программе Политология",
+                program_5_title: "Госуправление", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Государственная служба, региональное управление, бюджетный процесс, антикоррупционная политика.",
+                program_5_career_title: "Карьера", program_5_career_1: "Министерства и акиматы", program_5_career_2: "Национальные компании", program_5_career_3: "Международные организации",
+                program_5_alert: "Подробнее о программе Госуправление",
+                program_6_title: "Международные отношения", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Дипломатия, геополитика, международная безопасность, регионоведение.",
+                program_6_partners_title: "Партнёры", program_6_partner_1: "МИД РК", program_6_partner_2: "Дипломатические миссии", program_6_partner_3: "Зарубежные стажировки",
+                program_6_alert: "Подробнее о программе Международные отношения",
+                btn_more: "Подробнее",
+                advantages_title: "Преимущества школы", advantages_subtitle: "Почему выбирают нас",
+                advantage_1_title: "Юридическая клиника", advantage_1_desc: "Студенты консультируют реальных клиентов под supervision опытных адвокатов.",
+                advantage_2_title: "Модель ООН и дебаты", advantage_2_desc: "Ежегодные конференции, тренинги по ораторскому искусству и дипломатии.",
+                advantage_3_title: "Связи с госорганами", advantage_3_desc: "Практика в Парламенте, Верховном Суде, Министерстве юстиции.",
+                admission_title: "Как поступить", admission_subtitle: "Требования для абитуриентов",
+                admission_req_1_title: "ЕНТ / комплексное тестирование", admission_req_1_desc: "— история Казахстана, иностранный язык / обществознание",
+                admission_req_2_title: "Собеседование", admission_req_2_desc: "— мотивация, знание основ права и политики",
+                admission_req_3_title: "Портфолио", admission_req_3_desc: "— участие в дебатах, олимпиадах по праву приветствуется",
+                admission_req_4_title: "Документы", admission_req_4_desc: "— аттестат, удостоверение личности, фото 3×4",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по программам политики и права",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить", form_success: "Спасибо! Мы свяжемся с вами в ближайшее время.", form_error: "Пожалуйста, заполните все поля формы."
+            },
+            kz: {
+                page_title: "AlmaU · Саясат және Құқық мектебі",
+                hero_title: "Саясат және Құқық мектебі",
+                hero_desc: "Қазақстан мен әлемнің қазіргі құқықтық және саяси ортасында жұмыс істей алатын практик-заңгерлерді, саясаттанушылар мен дипломаттарды даярлаймыз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "5+", feature_1_label: "заң профилі",
+                feature_2_value: "20+", feature_2_label: "серіктестер: соттар, СІМ, адвокатура",
+                feature_3_value: "100%", feature_3_label: "практикаға бағытталған оқыту",
+                feature_4_value: "85%", feature_4_label: "түлектер мамандығы бойынша жұмыс істейді",
+                programs_title: "Саясат және Құқық мектебінің бағдарламалары",
+                programs_subtitle: "Заң ғылымы, мемлекеттік басқару және халықаралық қатынастар саласындағы мансап үшін өзекті бағдарламалар",
+                program_1_title: "Халықаралық құқық", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Халықаралық шарттар, дипломатиялық құқық, адам құқықтары, халықаралық арбитраж.",
+                program_1_career_title: "Мансаптық тректер", program_1_career_1: "Дипломатиялық қызмет", program_1_career_2: "Халықаралық ұйымдар (БҰҰ, ЕАЭО)", program_1_career_3: "Халықаралық мәмілелер жөніндегі заңгер",
+                program_1_alert: "Халықаралық құқық бағдарламасы туралы толығырақ",
+                program_2_title: "Азаматтық құқық", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Шарттық құқық, корпоративтік даулар, мұрагерлік құқық, нотариат.",
+                program_2_practice_title: "Практика", program_2_practice_1: "Сот тағылымдамалары", program_2_practice_2: "Заң клиникалары", program_2_practice_3: "Нақты кейстермен жұмыс",
+                program_2_alert: "Азаматтық құқық бағдарламасы туралы толығырақ",
+                program_3_title: "Қылмыстық құқық", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Қылмыстық процесс, криминалистика, адвокаттық қызмет, прокурорлық қадағалау.",
+                program_3_tracks_title: "Траекториялар", program_3_track_1: "Адвокатура", program_3_track_2: "Прокуратура", program_3_track_3: "Тергеу органдары",
+                program_3_alert: "Қылмыстық құқық бағдарламасы туралы толығырақ",
+                program_4_title: "Саясаттану", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Саяси институттар, сайлау жүйелері, саяси талдау, мемлекеттік саясат.",
+                program_4_fields_title: "Салалар", program_4_field_1: "Аналитикалық орталықтар", program_4_field_2: "Саяси консалтинг", program_4_field_3: "Мемлекеттік қызмет",
+                program_4_alert: "Саясаттану бағдарламасы туралы толығырақ",
+                program_5_title: "Мемлекеттік басқару", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Мемлекеттік қызмет, өңірлік басқару, бюджеттік процесс, сыбайлас жемқорлыққа қарсы саясат.",
+                program_5_career_title: "Мансап", program_5_career_1: "Министрліктер мен әкімдіктер", program_5_career_2: "Ұлттық компаниялар", program_5_career_3: "Халықаралық ұйымдар",
+                program_5_alert: "Мемлекеттік басқару бағдарламасы туралы толығырақ",
+                program_6_title: "Халықаралық қатынастар", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Дипломатия, геосаясат, халықаралық қауіпсіздік, аймақтану.",
+                program_6_partners_title: "Серіктестер", program_6_partner_1: "ҚР СІМ", program_6_partner_2: "Дипломатиялық миссиялар", program_6_partner_3: "Шетелдік тағылымдамалар",
+                program_6_alert: "Халықаралық қатынастар бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Мектеп артықшылықтары", advantages_subtitle: "Неліктен бізді таңдайды",
+                advantage_1_title: "Заң клиникасы", advantage_1_desc: "Студенттер тәжірибелі адвокаттардың басшылығымен нақты клиенттерге кеңес береді.",
+                advantage_2_title: "БҰҰ моделі және дебаттар", advantage_2_desc: "Жыл сайынғы конференциялар, шешендік өнер және дипломатия бойынша тренингтер.",
+                advantage_3_title: "Мемлекеттік органдармен байланыс", advantage_3_desc: "Парламентте, Жоғарғы Сотта, Әділет министрлігінде практика.",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Абитуриенттерге қойылатын талаптар",
+                admission_req_1_title: "ҰБТ / кешенді тестілеу", admission_req_1_desc: "— Қазақстан тарихы, шет тілі / қоғамтану",
+                admission_req_2_title: "Сұхбат", admission_req_2_desc: "— мотивация, құқық және саясат негіздерін білу",
+                admission_req_3_title: "Портфолио", admission_req_3_desc: "— дебаттарға қатысу, құқық пәні бойынша олимпиадалар құпталады",
+                admission_req_4_title: "Құжаттар", admission_req_4_desc: "— аттестат, жеке куәлік, фото 3×4",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Саясат және құқық бағдарламалары бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу", form_success: "Рахмет! Біз сізбен жақын арада байланысамыз.", form_error: "Форманың барлық өрістерін толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU · School of Politics and Law",
+                hero_title: "School of Politics and Law",
+                hero_desc: "We train practicing lawyers, political scientists and diplomats capable of working in the modern legal and political environment of Kazakhstan and the world.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "5+", feature_1_label: "law profiles",
+                feature_2_value: "20+", feature_2_label: "partners: courts, Ministry of Foreign Affairs, bar associations",
+                feature_3_value: "100%", feature_3_label: "practice-oriented education",
+                feature_4_value: "85%", feature_4_label: "graduates work in their specialty",
+                programs_title: "School of Politics and Law Programs",
+                programs_subtitle: "Relevant programs for careers in law, public administration and international relations",
+                program_1_title: "International Law", program_1_duration: "Bachelor's — 3 years", program_1_desc: "International treaties, diplomatic law, human rights, international arbitration.",
+                program_1_career_title: "Career tracks", program_1_career_1: "Diplomatic service", program_1_career_2: "International organizations (UN, EAEU)", program_1_career_3: "International transactions lawyer",
+                program_1_alert: "More about International Law program",
+                program_2_title: "Civil Law", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Contract law, corporate disputes, inheritance law, notary practice.",
+                program_2_practice_title: "Practice", program_2_practice_1: "Judicial internships", program_2_practice_2: "Legal clinics", program_2_practice_3: "Work with real cases",
+                program_2_alert: "More about Civil Law program",
+                program_3_title: "Criminal Law", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Criminal procedure, criminalistics, advocacy, prosecutorial supervision.",
+                program_3_tracks_title: "Tracks", program_3_track_1: "Bar Association", program_3_track_2: "Prosecutor's Office", program_3_track_3: "Investigative bodies",
+                program_3_alert: "More about Criminal Law program",
+                program_4_title: "Political Science", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Political institutions, electoral systems, political analysis, public policy.",
+                program_4_fields_title: "Fields", program_4_field_1: "Think tanks", program_4_field_2: "Political consulting", program_4_field_3: "Civil service",
+                program_4_alert: "More about Political Science program",
+                program_5_title: "Public Administration", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Civil service, regional management, budget process, anti-corruption policy.",
+                program_5_career_title: "Career", program_5_career_1: "Ministries and akimats", program_5_career_2: "National companies", program_5_career_3: "International organizations",
+                program_5_alert: "More about Public Administration program",
+                program_6_title: "International Relations", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Diplomacy, geopolitics, international security, regional studies.",
+                program_6_partners_title: "Partners", program_6_partner_1: "Ministry of Foreign Affairs of RK", program_6_partner_2: "Diplomatic missions", program_6_partner_3: "International internships",
+                program_6_alert: "More about International Relations program",
+                btn_more: "Learn more",
+                advantages_title: "School Advantages", advantages_subtitle: "Why choose us",
+                advantage_1_title: "Legal Clinic", advantage_1_desc: "Students advise real clients under the supervision of experienced lawyers.",
+                advantage_2_title: "Model UN and Debates", advantage_2_desc: "Annual conferences, public speaking and diplomacy training.",
+                advantage_3_title: "Government Connections", advantage_3_desc: "Practice in Parliament, Supreme Court, Ministry of Justice.",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT / comprehensive testing", admission_req_1_desc: "— History of Kazakhstan, foreign language / social studies",
+                admission_req_2_title: "Interview", admission_req_2_desc: "— motivation, knowledge of law and politics basics",
+                admission_req_3_title: "Portfolio", admission_req_3_desc: "— participation in debates, law olympiads is welcome",
+                admission_req_4_title: "Documents", admission_req_4_desc: "— certificate, identity document, photo 3×4",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on politics and law programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send", form_success: "Thank you! We will contact you shortly.", form_error: "Please fill in all fields."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
             });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const contact = document.getElementById('contact').value;
+                    const msg = document.getElementById('msg').value;
+                    
+                    if (name && contact && msg) {
+                        alert(getTranslation('form_success'));
+                        this.reset();
+                    } else {
+                        alert(getTranslation('form_error'));
+                    }
+                });
+            }
         });
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}

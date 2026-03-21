@@ -1,6 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -796,13 +795,11 @@
         <section class="hero" id="about">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Almaty Management University — AlmaU</h1>
-                    <p class="hero-description">
-                        Формируем лидеров нового поколения: современные кампусы, международные программы и активное сообщество.
-                    </p>
+                    <h1 class="hero-title" data-i18n="hero_title">Almaty Management University — AlmaU</h1>
+                    <p class="hero-description" data-i18n="hero_desc">Формируем лидеров нового поколения: современные кампусы, международные программы и активное сообщество.</p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#programs" class="hero-cta ghost">Узнать о программах</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#programs" class="hero-cta ghost" data-i18n="hero_btn_programs">Узнать о программах</a>
                     </div>
                 </div>
 
@@ -817,45 +814,45 @@
         <!-- Программы -->
         <section class="programs" id="programs">
             <div class="container">
-                <h2 class="section-title">Программы обучения</h2>
-                <p class="section-sub">Выберите свой путь к успеху с AlmaU</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы обучения</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Выберите свой путь к успеху с AlmaU</p>
 
                 <div class="programs-grid">
                     <div class="program-card">
                         <div class="program-icon">🎓</div>
-                        <h3>Бакалавриат</h3>
-                        <p>30+ программ в сфере бизнеса, экономики, цифровых технологий и гуманитарных наук.</p>
-                        <a href="{% url 'university:schools_menu' %}" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_1_title">Бакалавриат</h3>
+                        <p data-i18n="program_1_desc">30+ программ в сфере бизнеса, экономики, цифровых технологий и гуманитарных наук.</p>
+                        <a href="{% url 'university:schools_menu' %}" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📘</div>
-                        <h3>Магистратура</h3>
-                        <p>Современные программы с международными партнёрами и возможностью стажировок.</p>
-                        <a href="{% url 'university:schools_menu' %}" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_2_title">Магистратура</h3>
+                        <p data-i18n="program_2_desc">Современные программы с международными партнёрами и возможностью стажировок.</p>
+                        <a href="{% url 'university:schools_menu' %}" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📱</div>
-                        <h3>Онлайн-курсы</h3>
-                        <p>Короткие курсы и сертификаты для повышения квалификации и развития навыков.</p>
-                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_3_title">Онлайн-курсы</h3>
+                        <p data-i18n="program_3_desc">Короткие курсы и сертификаты для повышения квалификации и развития навыков.</p>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">📊</div>
-                        <h3>MBA & DBA</h3>
-                        <p>Программы для руководителей и топ-менеджеров с фокусом на стратегическое лидерство.</p>
-                        <a href="{% url 'university:school_of_management' %}" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_4_title">MBA & DBA</h3>
+                        <p data-i18n="program_4_desc">Программы для руководителей и топ-менеджеров с фокусом на стратегическое лидерство.</p>
+                        <a href="{% url 'university:school_of_management' %}" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">🔬</div>
-                        <h3>Докторантура</h3>
-                        <p>Исследовательские программы PhD для академической и научной карьеры.</p>
-                        <a href="{% url 'university:school_of_transformative' %}" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_5_title">Докторантура</h3>
+                        <p data-i18n="program_5_desc">Исследовательские программы PhD для академической и научной карьеры.</p>
+                        <a href="{% url 'university:school_of_transformative' %}" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                     <div class="program-card">
                         <div class="program-icon">🌍</div>
-                        <h3>Двойной диплом</h3>
-                        <p>Совместные программы с зарубежными вузами и международные сертификаты.</p>
-                         <a href="#partners" class="btn">Подробнее</a>
+                        <h3 data-i18n="program_6_title">Двойной диплом</h3>
+                        <p data-i18n="program_6_desc">Совместные программы с зарубежными вузами и международные сертификаты.</p>
+                         <a href="#partners" class="btn" data-i18n="btn_more">Подробнее</a>
                     </div>
                 </div>
             </div>
@@ -863,25 +860,14 @@
 
         <section class="partners" id="partners">
             <div class="container">
-                <h2 class="section-title">Международное сотрудничество</h2>
-                <p class="section-sub">Аккредитация и членство в международных организациях</p>
+                <h2 class="section-title" data-i18n="partners_title">Международное сотрудничество</h2>
+                <p class="section-sub" data-i18n="partners_subtitle">Аккредитация и членство в международных организациях</p>
 
                 <div class="partners-grid">
-                    <div class="partner-logo efmd">
-                        EFMD
-                        <span>GLOBAL</span>
-                    </div>
-                    <div class="partner-logo bga">
-                        BUSINESS<br>GRADUATES<br>ASSOCIATION
-                    </div>
-                    <div class="partner-logo amba">
-                        AMBA®
-                        <span>ASSOCIATION</span>
-                    </div>
-                    <div class="partner-logo prme">
-                        PRME
-                        <span>Principles for Responsible<br>Management Education</span>
-                    </div>
+                    <div class="partner-logo efmd">EFMD<span>GLOBAL</span></div>
+                    <div class="partner-logo bga">BUSINESS<br>GRADUATES<br>ASSOCIATION</div>
+                    <div class="partner-logo amba">AMBA®<span>ASSOCIATION</span></div>
+                    <div class="partner-logo prme">PRME<span>Principles for Responsible<br>Management Education</span></div>
                 </div>
             </div>
         </section>
@@ -889,44 +875,44 @@
         <!-- Карьера -->
         <section class="career">
             <div class="container">
-                <h2 class="section-title">Откройте свою карьеру с AlmaU</h2>
-                <p class="section-sub">Программы и возможности, которые помогут построить успешную карьеру</p>
+                <h2 class="section-title" data-i18n="career_title">Откройте свою карьеру с AlmaU</h2>
+                <p class="section-sub" data-i18n="career_subtitle">Программы и возможности, которые помогут построить успешную карьеру</p>
 
                 <div class="career-grid">
                     <article class="career-card">
                         <div class="career-icon">💼</div>
-                        <h3>Бизнес и менеджмент</h3>
-                        <p>Освойте навыки стратегического планирования, лидерства и управления проектами.</p>
+                        <h3 data-i18n="career_1_title">Бизнес и менеджмент</h3>
+                        <p data-i18n="career_1_desc">Освойте навыки стратегического планирования, лидерства и управления проектами.</p>
                         <ul class="career-features">
-                            <li>Программы бакалавриата, MBA и DBA</li>
-                            <li>Стажировки в топовых компаниях</li>
-                            <li>Международные сертификаты</li>
+                            <li data-i18n="career_1_feat_1">Программы бакалавриата, MBA и DBA</li>
+                            <li data-i18n="career_1_feat_2">Стажировки в топовых компаниях</li>
+                            <li data-i18n="career_1_feat_3">Международные сертификаты</li>
                         </ul>
-                        <a href="{% url 'university:school_of_business' %}" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_business' %}" class="btn" data-i18n="btn_more">Узнать больше</a>
                     </article>
 
                     <article class="career-card">
                         <div class="career-icon">💻</div>
-                        <h3>IT и цифровые технологии</h3>
-                        <p>Станьте востребованным специалистом в программировании, анализе данных и кибербезопасности.</p>
+                        <h3 data-i18n="career_2_title">IT и цифровые технологии</h3>
+                        <p data-i18n="career_2_desc">Станьте востребованным специалистом в программировании, анализе данных и кибербезопасности.</p>
                         <ul class="career-features">
-                            <li>Разработка ПО и DevOps</li>
-                            <li>Data Science, AI и машинное обучение</li>
-                            <li>Проекты с реальными заказчиками</li>
+                            <li data-i18n="career_2_feat_1">Разработка ПО и DevOps</li>
+                            <li data-i18n="career_2_feat_2">Data Science, AI и машинное обучение</li>
+                            <li data-i18n="career_2_feat_3">Проекты с реальными заказчиками</li>
                         </ul>
-                        <a href="{% url 'university:school_of_digital' %}" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_digital' %}" class="btn" data-i18n="btn_more">Узнать больше</a>
                     </article>
 
                     <article class="career-card">
                         <div class="career-icon">🎨</div>
-                        <h3>Креативные индустрии</h3>
-                        <p>Развивайте творческие навыки в дизайне, медиа, кино и digital-коммуникациях.</p>
+                        <h3 data-i18n="career_3_title">Креативные индустрии</h3>
+                        <p data-i18n="career_3_desc">Развивайте творческие навыки в дизайне, медиа, кино и digital-коммуникациях.</p>
                         <ul class="career-features">
-                            <li>UX/UI, графический и продуктовый дизайн</li>
-                            <li>Цифровой маркетинг и контент-стратегии</li>
-                            <li>Создание портфолио под руководством экспертов</li>
+                            <li data-i18n="career_3_feat_1">UX/UI, графический и продуктовый дизайн</li>
+                            <li data-i18n="career_3_feat_2">Цифровой маркетинг и контент-стратегии</li>
+                            <li data-i18n="career_3_feat_3">Создание портфолио под руководством экспертов</li>
                         </ul>
-                        <a href="{% url 'university:school_of_media' %}" class="btn">Узнать больше</a>
+                        <a href="{% url 'university:school_of_media' %}" class="btn" data-i18n="btn_more">Узнать больше</a>
                     </article>
                 </div>
             </div>
@@ -935,61 +921,35 @@
         <!-- Блог -->
         <section class="blog" id="news">
             <div class="container">
-                <h2 class="section-title">Актуальные новости и статьи</h2>
-                <p class="section-sub">Последние события и материалы из жизни университета</p>
+                <h2 class="section-title" data-i18n="blog_title">Актуальные новости и статьи</h2>
+                <p class="section-sub" data-i18n="blog_subtitle">Последние события и материалы из жизни университета</p>
 
                 <div class="blog-grid">
                     <article class="blog-card">
-                        <div class="blog-media">
-                            <img src="{% static 'png/AlmaU.png' %}" alt="Новости" class="blog-image">
-                        </div>
+                        <div class="blog-media"><img src="{% static 'png/AlmaU.png' %}" alt="Новости" class="blog-image"></div>
                         <div class="blog-body">
-                            <div class="blog-meta">
-                                <span class="tag">Образование</span>
-                                <time datetime="2025-12-01">1 декабря 2025</time>
-                            </div>
-                            <h3 class="blog-title">Новые программы двойных дипломов</h3>
-                            <p>AlmaU запускает совместные программы с ведущими университетами Европы и Азии.</p>
-                            <div class="blog-foot">
-                                <span class="author">Редакция AlmaU</span>
-                                <a href="#news" class="btn">Читать →</a>
-                            </div>
+                            <div class="blog-meta"><span class="tag" data-i18n="blog_tag_education">Образование</span><time datetime="2025-12-01">1 декабря 2025</time></div>
+                            <h3 class="blog-title" data-i18n="blog_post_1_title">Новые программы двойных дипломов</h3>
+                            <p data-i18n="blog_post_1_desc">AlmaU запускает совместные программы с ведущими университетами Европы и Азии.</p>
+                            <div class="blog-foot"><span data-i18n="blog_author_editor">Редакция AlmaU</span><a href="#news" class="btn" data-i18n="btn_read">Читать →</a></div>
                         </div>
                     </article>
-
                     <article class="blog-card">
-                        <div class="blog-media">
-                            <img src="{% static 'png/AlmaU.png' %}" alt="Конференция" class="blog-image">
-                        </div>
+                        <div class="blog-media"><img src="{% static 'png/AlmaU.png' %}" alt="Конференция" class="blog-image"></div>
                         <div class="blog-body">
-                            <div class="blog-meta">
-                                <span class="tag">События</span>
-                                <time datetime="2025-11-28">28 ноября 2025</time>
-                            </div>
-                            <h3 class="blog-title">Международная конференция по инновациям</h3>
-                            <p>В AlmaU прошла конференция, посвящённая цифровой трансформации и стартапам.</p>
-                            <div class="blog-foot">
-                                <span class="author">Пресс-служба AlmaU</span>
-                                <a href="#news" class="btn">Читать →</a>
-                            </div>
+                            <div class="blog-meta"><span class="tag" data-i18n="blog_tag_events">События</span><time datetime="2025-11-28">28 ноября 2025</time></div>
+                            <h3 class="blog-title" data-i18n="blog_post_2_title">Международная конференция по инновациям</h3>
+                            <p data-i18n="blog_post_2_desc">В AlmaU прошла конференция, посвящённая цифровой трансформации и стартапам.</p>
+                            <div class="blog-foot"><span data-i18n="blog_author_press">Пресс-служба AlmaU</span><a href="#news" class="btn" data-i18n="btn_read">Читать →</a></div>
                         </div>
                     </article>
-
                     <article class="blog-card">
-                        <div class="blog-media">
-                            <img src="{% static 'png/AlmaU.png' %}" alt="Хакатон" class="blog-image">
-                        </div>
+                        <div class="blog-media"><img src="{% static 'png/AlmaU.png' %}" alt="Хакатон" class="blog-image"></div>
                         <div class="blog-body">
-                            <div class="blog-meta">
-                                <span class="tag">Достижения</span>
-                                <time datetime="2025-11-25">25 ноября 2025</time>
-                            </div>
-                            <h3 class="blog-title">Студенты AlmaU победили в международном хакатоне</h3>
-                            <p>Команда AlmaU заняла первое место на глобальном AI-хакатоне.</p>
-                            <div class="blog-foot">
-                                <span class="author">Студенческий совет</span>
-                                <a href="#news" class="btn">Читать →</a>
-                            </div>
+                            <div class="blog-meta"><span class="tag" data-i18n="blog_tag_achievements">Достижения</span><time datetime="2025-11-25">25 ноября 2025</time></div>
+                            <h3 class="blog-title" data-i18n="blog_post_3_title">Студенты AlmaU победили в международном хакатоне</h3>
+                            <p data-i18n="blog_post_3_desc">Команда AlmaU заняла первое место на глобальном AI-хакатоне.</p>
+                            <div class="blog-foot"><span data-i18n="blog_author_student">Студенческий совет</span><a href="#news" class="btn" data-i18n="btn_read">Читать →</a></div>
                         </div>
                     </article>
                 </div>
@@ -998,27 +958,24 @@
         <section class="admission-hub" id="apply">
             <div class="container">
                 <div class="admission-hub__intro">
-                    <h2 class="section-title">Поступление, события и поддержка абитуриентов</h2>
-                    <p class="section-sub">Собрали в одном месте быстрые переходы для подачи заявки, информации о стипендиях, мероприятиях и правилах обработки данных.</p>
+                    <h2 class="section-title" data-i18n="admission_title">Поступление, события и поддержка абитуриентов</h2>
+                    <p class="section-sub" data-i18n="admission_subtitle">Собрали в одном месте быстрые переходы для подачи заявки, информации о стипендиях, мероприятиях и правилах обработки данных.</p>
                 </div>
-
                 <div class="admission-hub__grid">
                     <article class="hub-card" id="scholarships">
-                        <h3>Стипендии и гранты</h3>
-                        <p>Узнайте о грантах, скидках и доступных форматах финансовой поддержки для абитуриентов AlmaU.</p>
-                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Получить консультацию</a>
+                        <h3 data-i18n="scholarships_title">Стипендии и гранты</h3>
+                        <p data-i18n="scholarships_desc">Узнайте о грантах, скидках и доступных форматах финансовой поддержки для абитуриентов AlmaU.</p>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="btn_consult">Получить консультацию</a>
                     </article>
-
                     <article class="hub-card" id="events">
-                        <h3>Дни открытых дверей</h3>
-                        <p>Следите за ближайшими презентациями программ, встречами с преподавателями и консультациями приёмной комиссии.</p>
-                        <a href="#news" class="btn">Смотреть новости</a>
+                        <h3 data-i18n="events_title">Дни открытых дверей</h3>
+                        <p data-i18n="events_desc">Следите за ближайшими презентациями программ, встречами с преподавателями и консультациями приёмной комиссии.</p>
+                        <a href="#news" class="btn" data-i18n="btn_news">Смотреть новости</a>
                     </article>
-
                     <article class="hub-card" id="privacy">
-                        <h3>Подача заявки и конфиденциальность</h3>
-                        <p>Оставьте заявку через онлайн-канал AlmaU. Мы используем контактные данные только для связи по вопросам поступления.</p>
-                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a>
+                        <h3 data-i18n="privacy_title">Подача заявки и конфиденциальность</h3>
+                        <p data-i18n="privacy_desc">Оставьте заявку через онлайн-канал AlmaU. Мы используем контактные данные только для связи по вопросам поступления.</p>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="btn_apply_now">Подать заявку</a>
                     </article>
                 </div>
             </div>
@@ -1028,22 +985,149 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
+        // Мультиязычный словарь
+        const translations = {
+            ru: {
+                hero_title: "Almaty Management University — AlmaU",
+                hero_desc: "Формируем лидеров нового поколения: современные кампусы, международные программы и активное сообщество.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_programs: "Узнать о программах",
+                programs_title: "Программы обучения",
+                programs_subtitle: "Выберите свой путь к успеху с AlmaU",
+                program_1_title: "Бакалавриат", program_1_desc: "30+ программ в сфере бизнеса, экономики, цифровых технологий и гуманитарных наук.",
+                program_2_title: "Магистратура", program_2_desc: "Современные программы с международными партнёрами и возможностью стажировок.",
+                program_3_title: "Онлайн-курсы", program_3_desc: "Короткие курсы и сертификаты для повышения квалификации и развития навыков.",
+                program_4_title: "MBA & DBA", program_4_desc: "Программы для руководителей и топ-менеджеров с фокусом на стратегическое лидерство.",
+                program_5_title: "Докторантура", program_5_desc: "Исследовательские программы PhD для академической и научной карьеры.",
+                program_6_title: "Двойной диплом", program_6_desc: "Совместные программы с зарубежными вузами и международные сертификаты.",
+                partners_title: "Международное сотрудничество", partners_subtitle: "Аккредитация и членство в международных организациях",
+                career_title: "Откройте свою карьеру с AlmaU", career_subtitle: "Программы и возможности, которые помогут построить успешную карьеру",
+                career_1_title: "Бизнес и менеджмент", career_1_desc: "Освойте навыки стратегического планирования, лидерства и управления проектами.",
+                career_1_feat_1: "Программы бакалавриата, MBA и DBA", career_1_feat_2: "Стажировки в топовых компаниях", career_1_feat_3: "Международные сертификаты",
+                career_2_title: "IT и цифровые технологии", career_2_desc: "Станьте востребованным специалистом в программировании, анализе данных и кибербезопасности.",
+                career_2_feat_1: "Разработка ПО и DevOps", career_2_feat_2: "Data Science, AI и машинное обучение", career_2_feat_3: "Проекты с реальными заказчиками",
+                career_3_title: "Креативные индустрии", career_3_desc: "Развивайте творческие навыки в дизайне, медиа, кино и digital-коммуникациях.",
+                career_3_feat_1: "UX/UI, графический и продуктовый дизайн", career_3_feat_2: "Цифровой маркетинг и контент-стратегии", career_3_feat_3: "Создание портфолио под руководством экспертов",
+                blog_title: "Актуальные новости и статьи", blog_subtitle: "Последние события и материалы из жизни университета",
+                blog_tag_education: "Образование", blog_post_1_title: "Новые программы двойных дипломов", blog_post_1_desc: "AlmaU запускает совместные программы с ведущими университетами Европы и Азии.",
+                blog_tag_events: "События", blog_post_2_title: "Международная конференция по инновациям", blog_post_2_desc: "В AlmaU прошла конференция, посвящённая цифровой трансформации и стартапам.",
+                blog_tag_achievements: "Достижения", blog_post_3_title: "Студенты AlmaU победили в международном хакатоне", blog_post_3_desc: "Команда AlmaU заняла первое место на глобальном AI-хакатоне.",
+                blog_author_editor: "Редакция AlmaU", blog_author_press: "Пресс-служба AlmaU", blog_author_student: "Студенческий совет",
+                admission_title: "Поступление, события и поддержка абитуриентов", admission_subtitle: "Собрали в одном месте быстрые переходы для подачи заявки, информации о стипендиях, мероприятиях и правилах обработки данных.",
+                scholarships_title: "Стипендии и гранты", scholarships_desc: "Узнайте о грантах, скидках и доступных форматах финансовой поддержки для абитуриентов AlmaU.",
+                events_title: "Дни открытых дверей", events_desc: "Следите за ближайшими презентациями программ, встречами с преподавателями и консультациями приёмной комиссии.",
+                privacy_title: "Подача заявки и конфиденциальность", privacy_desc: "Оставьте заявку через онлайн-канал AlmaU. Мы используем контактные данные только для связи по вопросам поступления.",
+                btn_more: "Подробнее", btn_read: "Читать →", btn_consult: "Получить консультацию", btn_news: "Смотреть новости", btn_apply_now: "Подать заявку"
+            },
+            kz: {
+                hero_title: "Алматы Менеджмент Университеті — AlmaU",
+                hero_desc: "Жаңа буын көшбасшыларын қалыптастырамыз: заманауи кампустар, халықаралық бағдарламалар және белсенді қауымдастық.",
+                hero_btn_apply: "Өтінім беру", hero_btn_programs: "Бағдарламалар туралы білу",
+                programs_title: "Оқу бағдарламалары", programs_subtitle: "AlmaU-мен табысқа жолыңызды таңдаңыз",
+                program_1_title: "Бакалавриат", program_1_desc: "Бизнес, экономика, цифрлық технологиялар және гуманитарлық ғылымдар саласындағы 30+ бағдарлама.",
+                program_2_title: "Магистратура", program_2_desc: "Халықаралық серіктестермен және тағылымдама мүмкіндігімен заманауи бағдарламалар.",
+                program_3_title: "Онлайн курстар", program_3_desc: "Біліктілікті арттыру және дағдыларды дамыту үшін қысқа курстар мен сертификаттар.",
+                program_4_title: "MBA & DBA", program_4_desc: "Басшылар мен жоғары менеджмент үшін стратегиялық көшбасшылыққа бағытталған бағдарламалар.",
+                program_5_title: "Докторантура", program_5_desc: "Академиялық және ғылыми мансап үшін PhD зерттеу бағдарламалары.",
+                program_6_title: "Қос диплом", program_6_desc: "Шетелдік жоғары оқу орындарымен бірлескен бағдарламалар және халықаралық сертификаттар.",
+                partners_title: "Халықаралық ынтымақтастық", partners_subtitle: "Халықаралық ұйымдардағы аккредиттеу және мүшелік",
+                career_title: "AlmaU-мен мансабыңызды ашыңыз", career_subtitle: "Табысты мансап құруға көмектесетін бағдарламалар мен мүмкіндіктер",
+                career_1_title: "Бизнес және менеджмент", career_1_desc: "Стратегиялық жоспарлау, көшбасшылық және жобаларды басқару дағдыларын меңгеріңіз.",
+                career_1_feat_1: "Бакалавриат, MBA және DBA бағдарламалары", career_1_feat_2: "Үздік компанияларда тағылымдама", career_1_feat_3: "Халықаралық сертификаттар",
+                career_2_title: "IT және цифрлық технологиялар", career_2_desc: "Бағдарламалау, деректерді талдау және киберқауіпсіздік саласында сұранысқа ие маман болыңыз.",
+                career_2_feat_1: "Бағдарламалық жасақтама және DevOps", career_2_feat_2: "Data Science, AI және машиналық оқыту", career_2_feat_3: "Нақты тапсырыс берушілермен жобалар",
+                career_3_title: "Креативті индустриялар", career_3_desc: "Дизайн, медиа, кино және digital-коммуникацияларда шығармашылық дағдыларды дамытыңыз.",
+                career_3_feat_1: "UX/UI, графикалық және өнім дизайны", career_3_feat_2: "Цифрлық маркетинг және контент стратегиялары", career_3_feat_3: "Сарапшылар жетекшілігімен портфолио құру",
+                blog_title: "Өзекті жаңалықтар мен мақалалар", blog_subtitle: "Университет өмірінен соңғы оқиғалар мен материалдар",
+                blog_tag_education: "Білім", blog_post_1_title: "Қос дипломның жаңа бағдарламалары", blog_post_1_desc: "AlmaU Еуропа мен Азияның жетекші университеттерімен бірлескен бағдарламаларды іске қосады.",
+                blog_tag_events: "Оқиғалар", blog_post_2_title: "Инновациялар жөніндегі халықаралық конференция", blog_post_2_desc: "AlmaU-да цифрлық трансформация мен стартаптарға арналған конференция өтті.",
+                blog_tag_achievements: "Жетістіктер", blog_post_3_title: "AlmaU студенттері халықаралық хакатонда жеңіске жетті", blog_post_3_desc: "AlmaU командасы жаһандық AI-хакатонда бірінші орынға ие болды.",
+                blog_author_editor: "AlmaU редакциясы", blog_author_press: "AlmaU баспасөз қызметі", blog_author_student: "Студенттік кеңес",
+                admission_title: "Түсу, іс-шаралар және талапкерлерді қолдау", admission_subtitle: "Өтінім беру, стипендиялар туралы ақпарат, іс-шаралар және деректерді өңдеу ережелері үшін жылдам өтулер бір жерде жинақталған.",
+                scholarships_title: "Стипендиялар мен гранттар", scholarships_desc: "AlmaU талапкерлеріне арналған гранттар, жеңілдіктер және қолжетімді қаржылық қолдау форматтары туралы біліңіз.",
+                events_title: "Ашық есік күндері", events_desc: "Бағдарламалардың алдағы презентацияларын, оқытушылармен кездесулерді және қабылдау комиссиясының кеңестерін бақылаңыз.",
+                privacy_title: "Өтінім беру және құпиялылық", privacy_desc: "AlmaU онлайн-арнасы арқылы өтінім қалдырыңыз. Біз байланыс деректерін тек қабылдау мәселелері бойынша байланысу үшін пайдаланамыз.",
+                btn_more: "Толығырақ", btn_read: "Оқу →", btn_consult: "Кеңес алу", btn_news: "Жаңалықтарды қарау", btn_apply_now: "Өтінім беру"
+            },
+            en: {
+                hero_title: "Almaty Management University — AlmaU",
+                hero_desc: "Shaping the next generation of leaders: modern campuses, international programs, and an active community.",
+                hero_btn_apply: "Apply now", hero_btn_programs: "Discover programs",
+                programs_title: "Academic Programs", programs_subtitle: "Choose your path to success with AlmaU",
+                program_1_title: "Bachelor's", program_1_desc: "30+ programs in business, economics, digital technologies, and humanities.",
+                program_2_title: "Master's", program_2_desc: "Modern programs with international partners and internship opportunities.",
+                program_3_title: "Online Courses", program_3_desc: "Short courses and certificates for professional development and skill enhancement.",
+                program_4_title: "MBA & DBA", program_4_desc: "Programs for executives and top managers focused on strategic leadership.",
+                program_5_title: "Doctoral Studies", program_5_desc: "PhD research programs for academic and scientific careers.",
+                program_6_title: "Double Degree", program_6_desc: "Joint programs with foreign universities and international certificates.",
+                partners_title: "International Cooperation", partners_subtitle: "Accreditation and membership in international organizations",
+                career_title: "Build Your Career with AlmaU", career_subtitle: "Programs and opportunities to help you build a successful career",
+                career_1_title: "Business & Management", career_1_desc: "Master strategic planning, leadership, and project management skills.",
+                career_1_feat_1: "Bachelor's, MBA and DBA programs", career_1_feat_2: "Internships at top companies", career_1_feat_3: "International certifications",
+                career_2_title: "IT & Digital Technologies", career_2_desc: "Become a sought-after specialist in programming, data analytics, and cybersecurity.",
+                career_2_feat_1: "Software development and DevOps", career_2_feat_2: "Data Science, AI & Machine Learning", career_2_feat_3: "Projects with real clients",
+                career_3_title: "Creative Industries", career_3_desc: "Develop creative skills in design, media, film, and digital communications.",
+                career_3_feat_1: "UX/UI, graphic and product design", career_3_feat_2: "Digital marketing & content strategies", career_3_feat_3: "Portfolio creation with expert guidance",
+                blog_title: "Latest News & Articles", blog_subtitle: "Recent events and materials from university life",
+                blog_tag_education: "Education", blog_post_1_title: "New Double Degree Programs", blog_post_1_desc: "AlmaU launches joint programs with leading universities in Europe and Asia.",
+                blog_tag_events: "Events", blog_post_2_title: "International Conference on Innovation", blog_post_2_desc: "A conference on digital transformation and startups was held at AlmaU.",
+                blog_tag_achievements: "Achievements", blog_post_3_title: "AlmaU Students Win International Hackathon", blog_post_3_desc: "The AlmaU team took first place at the global AI hackathon.",
+                blog_author_editor: "AlmaU Editorial Team", blog_author_press: "AlmaU Press Service", blog_author_student: "Student Council",
+                admission_title: "Admission, Events & Support", admission_subtitle: "All in one place: quick links to apply, learn about scholarships, events, and data privacy.",
+                scholarships_title: "Scholarships & Grants", scholarships_desc: "Learn about grants, discounts, and available financial support formats for AlmaU applicants.",
+                events_title: "Open House Days", events_desc: "Follow upcoming program presentations, meetings with faculty, and admissions consultations.",
+                privacy_title: "Apply & Privacy", privacy_desc: "Submit your application via AlmaU online channel. We use contact details only for admission-related communication.",
+                btn_more: "Learn more", btn_read: "Read →", btn_consult: "Get consultation", btn_news: "View news", btn_apply_now: "Apply now"
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!translations[lang]) lang = 'ru';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            // Обновление атрибута lang у html
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferred_language', lang);
+        }
+
+        // Инициализация: берем язык из localStorage или из URL (если есть параметр? но для простоты используем локальное хранилище)
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            setLanguage(savedLang);
+            // Также обновляем активную кнопку в выпадающем меню, если нужно (визуально)
+            const langLinks = document.querySelectorAll('.lang-dropdown a');
+            langLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const langCode = link.getAttribute('data-lang-option');
+                    if (langCode) setLanguage(langCode);
+                });
+            });
+        });
+        
         // Автоматическое обновление года в футере
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
+        const footerYearSpan = document.getElementById('footerYear');
+        if (footerYearSpan) footerYearSpan.textContent = new Date().getFullYear();
         
         // Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });

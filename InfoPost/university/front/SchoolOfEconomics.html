@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Школа Экономики и Финансов</title>
+    <title data-i18n="page_title">AlmaU · Школа Экономики и Финансов</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ (без изменений, кроме цветовых акцентов) === */
         :root {
@@ -926,7 +926,6 @@
 </head>
 <body>
 
-
     <!-- Header -->
     {% include 'partials/site_header.html' %}
 
@@ -935,19 +934,19 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Школа Экономики и Финансов</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа Экономики и Финансов</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Готовим экономистов, финансистов и аналитиков, способных принимать решения в условиях неопределённости, управлять инвестициями и развивать финансовые рынки.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>6+</strong> программ бакалавриата</div>
-                        <div class="feature"><strong>25+</strong> банков и финтех‑партнёров</div>
-                        <div class="feature"><strong>80%</strong> преподавателей — практики</div>
-                        <div class="feature"><strong>90%</strong> трудоустройство в финансовом секторе</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">6+</strong> <span data-i18n="feature_1_label">программ бакалавриата</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">25+</strong> <span data-i18n="feature_2_label">банков и финтех‑партнёров</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_value">80%</strong> <span data-i18n="feature_3_label">преподавателей — практики</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_value">90%</strong> <span data-i18n="feature_4_label">трудоустройство в финансовом секторе</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -959,92 +958,116 @@
         <!-- ПРОГРАММЫ (ровно 6, по 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Экономики и Финансов</h2>
-                <p class="section-sub">Актуальные программы для карьеры в экономике, финансах и аналитике</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Экономики и Финансов</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Актуальные программы для карьеры в экономике, финансах и аналитике</p>
 
                 <div class="programs-grid">
                     <!-- 1. Экономика -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Экономика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Экономика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Макро‑ и микроэкономика, эконометрика, анализ рыночных структур.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Макро‑ и микроэкономика, эконометрика, анализ рыночных структур.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Прикладная экономика</li><li>Исследовательская экономика</li><li>Государственное регулирование</li></ul>
+                                <h4 data-i18n="program_1_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_1_track_1">Прикладная экономика</li>
+                                    <li data-i18n="program_1_track_2">Исследовательская экономика</li>
+                                    <li data-i18n="program_1_track_3">Государственное регулирование</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Экономика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Финансы -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Финансы</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Финансы</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Корпоративные финансы, инвестиции, финансовые рынки, риск‑менеджмент.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Корпоративные финансы, инвестиции, финансовые рынки, риск‑менеджмент.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Инвестиционный банкинг</li><li>Финансовый анализ</li><li>Управление капиталом</li></ul>
+                                <h4 data-i18n="program_2_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_2_track_1">Инвестиционный банкинг</li>
+                                    <li data-i18n="program_2_track_2">Финансовый анализ</li>
+                                    <li data-i18n="program_2_track_3">Управление капиталом</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Финансы')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Учёт и аудит -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Учёт и аудит</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Учёт и аудит</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Бухгалтерский учёт, международные стандарты (МСФО), налогообложение.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Бухгалтерский учёт, международные стандарты (МСФО), налогообложение.</p>
                             <div class="program-details">
-                                <h4>Карьерные пути</h4>
-                                <ul><li>Аудитор Big4</li><li>Финансовый контролёр</li><li>Главный бухгалтер</li></ul>
+                                <h4 data-i18n="program_3_career_title">Карьерные пути</h4>
+                                <ul>
+                                    <li data-i18n="program_3_career_1">Аудитор Big4</li>
+                                    <li data-i18n="program_3_career_2">Финансовый контролёр</li>
+                                    <li data-i18n="program_3_career_3">Главный бухгалтер</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Учёт и аудит')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Финансовые технологии (FinTech) -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>FinTech</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">FinTech</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Цифровые финансы, блокчейн, платёжные системы, аналитика больших данных.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Цифровые финансы, блокчейн, платёжные системы, аналитика больших данных.</p>
                             <div class="program-details">
-                                <h4>Навыки</h4>
-                                <ul><li>Разработка финтех‑продуктов</li><li>Криптовалюты и DeFi</li><li>Регуляторика</li></ul>
+                                <h4 data-i18n="program_4_skills_title">Навыки</h4>
+                                <ul>
+                                    <li data-i18n="program_4_skill_1">Разработка финтех‑продуктов</li>
+                                    <li data-i18n="program_4_skill_2">Криптовалюты и DeFi</li>
+                                    <li data-i18n="program_4_skill_3">Регуляторика</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе FinTech')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Международная экономика -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Международная экономика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Международная экономика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Мировая торговля, международные финансы, валютное регулирование.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Мировая торговля, международные финансы, валютное регулирование.</p>
                             <div class="program-details">
-                                <h4>Партнёры</h4>
-                                <ul><li>Зарубежные стажировки</li><li>Двойные дипломы</li><li>ООН, ВТО, ЕАБР</li></ul>
+                                <h4 data-i18n="program_5_partners_title">Партнёры</h4>
+                                <ul>
+                                    <li data-i18n="program_5_partner_1">Зарубежные стажировки</li>
+                                    <li data-i18n="program_5_partner_2">Двойные дипломы</li>
+                                    <li data-i18n="program_5_partner_3">ООН, ВТО, ЕАБР</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Международная экономика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Бизнес‑аналитика и Big Data -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Бизнес‑аналитика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Бизнес‑аналитика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Анализ данных, прогнозирование, визуализация, принятие решений.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Анализ данных, прогнозирование, визуализация, принятие решений.</p>
                             <div class="program-details">
-                                <h4>Инструменты</h4>
-                                <ul><li>Python, SQL, Power BI</li><li>Машинное обучение в финансах</li><li>Эконометрическое моделирование</li></ul>
+                                <h4 data-i18n="program_6_tools_title">Инструменты</h4>
+                                <ul>
+                                    <li data-i18n="program_6_tool_1">Python, SQL, Power BI</li>
+                                    <li data-i18n="program_6_tool_2">Машинное обучение в финансах</li>
+                                    <li data-i18n="program_6_tool_3">Эконометрическое моделирование</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Бизнес‑аналитика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1053,12 +1076,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества школы</h2>
-                <p class="section-sub">Почему выбирают нас</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества школы</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему выбирают нас</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">🏦</div><h3>Прямые связи с индустрией</h3><p>Банки второго уровня, финтех‑компании, страховые организации участвуют в учебном процессе.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">📊</div><h3>Современные лаборатории</h3><p>Торговые терминалы, базы данных Bloomberg, аналитические платформы.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌍</div><h3>Международная аккредитация</h3><p>Программы признаны за рубежом, возможность получения CFA / CIMA сертификатов.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🏦</div><h3 data-i18n="advantage_1_title">Прямые связи с индустрией</h3><p data-i18n="advantage_1_desc">Банки второго уровня, финтех‑компании, страховые организации участвуют в учебном процессе.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">📊</div><h3 data-i18n="advantage_2_title">Современные лаборатории</h3><p data-i18n="advantage_2_desc">Торговые терминалы, базы данных Bloomberg, аналитические платформы.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🌍</div><h3 data-i18n="advantage_3_title">Международная аккредитация</h3><p data-i18n="advantage_3_desc">Программы признаны за рубежом, возможность получения CFA / CIMA сертификатов.</p></div>
                 </div>
             </div>
         </section>
@@ -1066,16 +1089,16 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для абитуриентов</h3>
                     <ol class="admission-list">
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — математика, география / иностранный язык</li>
-                        <li><strong>Средний балл аттестата</strong> — не ниже 4.0 (по 5‑балльной шкале)</li>
-                        <li><strong>Мотивационное эссе</strong> — описание карьерных целей в сфере экономики/финансов</li>
-                        <li><strong>Дедлайн подачи</strong> — до 20 августа (осенний набор) и до 20 января (весенний)</li>
+                        <li><strong data-i18n="admission_req_1_title">ЕНТ / комплексное тестирование</strong> <span data-i18n="admission_req_1_desc">— математика, география / иностранный язык</span></li>
+                        <li><strong data-i18n="admission_req_2_title">Средний балл аттестата</strong> <span data-i18n="admission_req_2_desc">— не ниже 4.0 (по 5‑балльной шкале)</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Мотивационное эссе</strong> <span data-i18n="admission_req_3_desc">— описание карьерных целей в сфере экономики/финансов</span></li>
+                        <li><strong data-i18n="admission_req_4_title">Дедлайн подачи</strong> <span data-i18n="admission_req_4_desc">— до 20 августа (осенний набор) и до 20 января (весенний)</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1083,25 +1106,25 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам экономики и финансов</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по программам экономики и финансов</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1113,15 +1136,228 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Школа Экономики и Финансов",
+                hero_title: "Школа Экономики и Финансов",
+                hero_desc: "Готовим экономистов, финансистов и аналитиков, способных принимать решения в условиях неопределённости, управлять инвестициями и развивать финансовые рынки.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "6+", feature_1_label: "программ бакалавриата",
+                feature_2_value: "25+", feature_2_label: "банков и финтех‑партнёров",
+                feature_3_value: "80%", feature_3_label: "преподавателей — практики",
+                feature_4_value: "90%", feature_4_label: "трудоустройство в финансовом секторе",
+                programs_title: "Программы Школы Экономики и Финансов",
+                programs_subtitle: "Актуальные программы для карьеры в экономике, финансах и аналитике",
+                program_1_title: "Экономика", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Макро‑ и микроэкономика, эконометрика, анализ рыночных структур.",
+                program_1_tracks_title: "Траектории", program_1_track_1: "Прикладная экономика", program_1_track_2: "Исследовательская экономика", program_1_track_3: "Государственное регулирование",
+                program_1_alert: "Подробнее о программе Экономика",
+                program_2_title: "Финансы", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Корпоративные финансы, инвестиции, финансовые рынки, риск‑менеджмент.",
+                program_2_tracks_title: "Траектории", program_2_track_1: "Инвестиционный банкинг", program_2_track_2: "Финансовый анализ", program_2_track_3: "Управление капиталом",
+                program_2_alert: "Подробнее о программе Финансы",
+                program_3_title: "Учёт и аудит", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Бухгалтерский учёт, международные стандарты (МСФО), налогообложение.",
+                program_3_career_title: "Карьерные пути", program_3_career_1: "Аудитор Big4", program_3_career_2: "Финансовый контролёр", program_3_career_3: "Главный бухгалтер",
+                program_3_alert: "Подробнее о программе Учёт и аудит",
+                program_4_title: "FinTech", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Цифровые финансы, блокчейн, платёжные системы, аналитика больших данных.",
+                program_4_skills_title: "Навыки", program_4_skill_1: "Разработка финтех‑продуктов", program_4_skill_2: "Криптовалюты и DeFi", program_4_skill_3: "Регуляторика",
+                program_4_alert: "Подробнее о программе FinTech",
+                program_5_title: "Международная экономика", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Мировая торговля, международные финансы, валютное регулирование.",
+                program_5_partners_title: "Партнёры", program_5_partner_1: "Зарубежные стажировки", program_5_partner_2: "Двойные дипломы", program_5_partner_3: "ООН, ВТО, ЕАБР",
+                program_5_alert: "Подробнее о программе Международная экономика",
+                program_6_title: "Бизнес‑аналитика", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Анализ данных, прогнозирование, визуализация, принятие решений.",
+                program_6_tools_title: "Инструменты", program_6_tool_1: "Python, SQL, Power BI", program_6_tool_2: "Машинное обучение в финансах", program_6_tool_3: "Эконометрическое моделирование",
+                program_6_alert: "Подробнее о программе Бизнес‑аналитика",
+                btn_more: "Подробнее",
+                advantages_title: "Преимущества школы", advantages_subtitle: "Почему выбирают нас",
+                advantage_1_title: "Прямые связи с индустрией", advantage_1_desc: "Банки второго уровня, финтех‑компании, страховые организации участвуют в учебном процессе.",
+                advantage_2_title: "Современные лаборатории", advantage_2_desc: "Торговые терминалы, базы данных Bloomberg, аналитические платформы.",
+                advantage_3_title: "Международная аккредитация", advantage_3_desc: "Программы признаны за рубежом, возможность получения CFA / CIMA сертификатов.",
+                admission_title: "Как поступить", admission_subtitle: "Требования для абитуриентов",
+                admission_req_1_title: "ЕНТ / комплексное тестирование", admission_req_1_desc: "— математика, география / иностранный язык",
+                admission_req_2_title: "Средний балл аттестата", admission_req_2_desc: "— не ниже 4.0 (по 5‑балльной шкале)",
+                admission_req_3_title: "Мотивационное эссе", admission_req_3_desc: "— описание карьерных целей в сфере экономики/финансов",
+                admission_req_4_title: "Дедлайн подачи", admission_req_4_desc: "— до 20 августа (осенний набор) и до 20 января (весенний)",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по программам экономики и финансов",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить", form_success: "Спасибо! Мы свяжемся с вами в ближайшее время.", form_error: "Пожалуйста, заполните все поля формы."
+            },
+            kz: {
+                page_title: "AlmaU · Экономика және қаржы мектебі",
+                hero_title: "Экономика және қаржы мектебі",
+                hero_desc: "Белгісіздік жағдайында шешім қабылдай алатын, инвестицияларды басқаратын және қаржы нарықтарын дамыта алатын экономистер, қаржыгерлер және аналитиктер даярлаймыз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "6+", feature_1_label: "бакалавриат бағдарламасы",
+                feature_2_value: "25+", feature_2_label: "банктер мен финтех‑серіктестер",
+                feature_3_value: "80%", feature_3_label: "оқытушылар — практиктер",
+                feature_4_value: "90%", feature_4_label: "қаржы секторында жұмысқа орналасу",
+                programs_title: "Экономика және қаржы мектебінің бағдарламалары",
+                programs_subtitle: "Экономика, қаржы және аналитика саласындағы мансап үшін өзекті бағдарламалар",
+                program_1_title: "Экономика", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Макро‑ және микроэкономика, эконометрика, нарықтық құрылымдарды талдау.",
+                program_1_tracks_title: "Траекториялар", program_1_track_1: "Қолданбалы экономика", program_1_track_2: "Зерттеу экономикасы", program_1_track_3: "Мемлекеттік реттеу",
+                program_1_alert: "Экономика бағдарламасы туралы толығырақ",
+                program_2_title: "Қаржы", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Корпоративтік қаржы, инвестициялар, қаржы нарықтары, тәуекел-менеджмент.",
+                program_2_tracks_title: "Траекториялар", program_2_track_1: "Инвестициялық банкинг", program_2_track_2: "Қаржылық талдау", program_2_track_3: "Капиталды басқару",
+                program_2_alert: "Қаржы бағдарламасы туралы толығырақ",
+                program_3_title: "Есеп және аудит", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Бухгалтерлік есеп, халықаралық стандарттар (ҚЕХС), салық салу.",
+                program_3_career_title: "Мансаптық жолдар", program_3_career_1: "Big4 аудиторы", program_3_career_2: "Қаржы контроллері", program_3_career_3: "Бас бухгалтер",
+                program_3_alert: "Есеп және аудит бағдарламасы туралы толығырақ",
+                program_4_title: "FinTech", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Цифрлық қаржы, блокчейн, төлем жүйелері, үлкен деректер аналитикасы.",
+                program_4_skills_title: "Дағдылар", program_4_skill_1: "Финтех‑өнімдерді әзірлеу", program_4_skill_2: "Криптовалюталар және DeFi", program_4_skill_3: "Регуляторика",
+                program_4_alert: "FinTech бағдарламасы туралы толығырақ",
+                program_5_title: "Халықаралық экономика", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Дүниежүзілік сауда, халықаралық қаржы, валюталық реттеу.",
+                program_5_partners_title: "Серіктестер", program_5_partner_1: "Шетелдік тағылымдамалар", program_5_partner_2: "Қос дипломдар", program_5_partner_3: "БҰҰ, ДСҰ, ЕАДБ",
+                program_5_alert: "Халықаралық экономика бағдарламасы туралы толығырақ",
+                program_6_title: "Бизнес‑аналитика", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Деректерді талдау, болжау, визуализациялау, шешім қабылдау.",
+                program_6_tools_title: "Құралдар", program_6_tool_1: "Python, SQL, Power BI", program_6_tool_2: "Қаржыдағы машиналық оқыту", program_6_tool_3: "Эконометриялық модельдеу",
+                program_6_alert: "Бизнес‑аналитика бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Мектеп артықшылықтары", advantages_subtitle: "Неліктен бізді таңдайды",
+                advantage_1_title: "Индустриямен тікелей байланыс", advantage_1_desc: "Екінші деңгейлі банктер, финтех‑компаниялар, сақтандыру ұйымдары оқу процесіне қатысады.",
+                advantage_2_title: "Заманауи зертханалар", advantage_2_desc: "Сауда терминалдары, Bloomberg дерекқорлары, аналитикалық платформалар.",
+                advantage_3_title: "Халықаралық аккредиттеу", advantage_3_desc: "Бағдарламалар шетелде танылған, CFA / CIMA сертификаттарын алу мүмкіндігі.",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Абитуриенттерге қойылатын талаптар",
+                admission_req_1_title: "ҰБТ / кешенді тестілеу", admission_req_1_desc: "— математика, география / шет тілі",
+                admission_req_2_title: "Аттестаттың орташа бағасы", admission_req_2_desc: "— 4.0-ден төмен емес (5 балдық шкала бойынша)",
+                admission_req_3_title: "Мотивациялық эссе", admission_req_3_desc: "— экономика/қаржы саласындағы мансаптық мақсаттарды сипаттау",
+                admission_req_4_title: "Өтінімдерді қабылдаудың соңғы мерзімі", admission_req_4_desc: "— 20 тамызға дейін (күзгі қабылдау) және 20 қаңтарға дейін (көктемгі)",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Экономика және қаржы бағдарламалары бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу", form_success: "Рахмет! Біз сізбен жақын арада байланысамыз.", form_error: "Форманың барлық өрістерін толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU · School of Economics and Finance",
+                hero_title: "School of Economics and Finance",
+                hero_desc: "We train economists, financiers, and analysts capable of making decisions under uncertainty, managing investments, and developing financial markets.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "6+", feature_1_label: "bachelor's programs",
+                feature_2_value: "25+", feature_2_label: "banks and fintech partners",
+                feature_3_value: "80%", feature_3_label: "practitioner faculty",
+                feature_4_value: "90%", feature_4_label: "employment in financial sector",
+                programs_title: "School of Economics and Finance Programs",
+                programs_subtitle: "Relevant programs for careers in economics, finance, and analytics",
+                program_1_title: "Economics", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Macro and microeconomics, econometrics, analysis of market structures.",
+                program_1_tracks_title: "Tracks", program_1_track_1: "Applied Economics", program_1_track_2: "Research Economics", program_1_track_3: "Government Regulation",
+                program_1_alert: "More about Economics program",
+                program_2_title: "Finance", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Corporate finance, investments, financial markets, risk management.",
+                program_2_tracks_title: "Tracks", program_2_track_1: "Investment Banking", program_2_track_2: "Financial Analysis", program_2_track_3: "Wealth Management",
+                program_2_alert: "More about Finance program",
+                program_3_title: "Accounting and Audit", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Accounting, international standards (IFRS), taxation.",
+                program_3_career_title: "Career paths", program_3_career_1: "Big4 Auditor", program_3_career_2: "Financial Controller", program_3_career_3: "Chief Accountant",
+                program_3_alert: "More about Accounting and Audit program",
+                program_4_title: "FinTech", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Digital finance, blockchain, payment systems, big data analytics.",
+                program_4_skills_title: "Skills", program_4_skill_1: "Fintech product development", program_4_skill_2: "Cryptocurrencies and DeFi", program_4_skill_3: "Regulatory compliance",
+                program_4_alert: "More about FinTech program",
+                program_5_title: "International Economics", program_5_duration: "Bachelor's — 3 years", program_5_desc: "World trade, international finance, currency regulation.",
+                program_5_partners_title: "Partners", program_5_partner_1: "International internships", program_5_partner_2: "Double degrees", program_5_partner_3: "UN, WTO, EDB",
+                program_5_alert: "More about International Economics program",
+                program_6_title: "Business Analytics", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Data analysis, forecasting, visualization, decision making.",
+                program_6_tools_title: "Tools", program_6_tool_1: "Python, SQL, Power BI", program_6_tool_2: "Machine learning in finance", program_6_tool_3: "Econometric modeling",
+                program_6_alert: "More about Business Analytics program",
+                btn_more: "Learn more",
+                advantages_title: "School Advantages", advantages_subtitle: "Why choose us",
+                advantage_1_title: "Direct industry connections", advantage_1_desc: "Second-tier banks, fintech companies, insurance organizations participate in the educational process.",
+                advantage_2_title: "Modern laboratories", advantage_2_desc: "Trading terminals, Bloomberg databases, analytical platforms.",
+                advantage_3_title: "International accreditation", advantage_3_desc: "Programs recognized abroad, opportunity to obtain CFA / CIMA certificates.",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT / comprehensive testing", admission_req_1_desc: "— mathematics, geography / foreign language",
+                admission_req_2_title: "GPA", admission_req_2_desc: "— not less than 4.0 (on a 5-point scale)",
+                admission_req_3_title: "Motivation essay", admission_req_3_desc: "— description of career goals in economics/finance",
+                admission_req_4_title: "Application deadline", admission_req_4_desc: "— until August 20 (fall intake) and until January 20 (spring)",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on economics and finance programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send", form_success: "Thank you! We will contact you shortly.", form_error: "Please fill in all fields."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
             });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const contact = document.getElementById('contact').value;
+                    const msg = document.getElementById('msg').value;
+                    
+                    if (name && contact && msg) {
+                        alert(getTranslation('form_success'));
+                        this.reset();
+                    } else {
+                        alert(getTranslation('form_error'));
+                    }
+                });
+            }
         });
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}

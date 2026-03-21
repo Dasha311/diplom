@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Школа Менеджмента</title>
+    <title data-i18n="page_title">AlmaU · Школа Менеджмента</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ (копия из исходного кода) === */
         :root {
@@ -936,21 +936,21 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Школа Менеджмента</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа Менеджмента</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Формируем лидеров, способных управлять изменениями, строить эффективные команды 
                         и выводить бизнес на новый уровень. Программы сочетают управленческие навыки, 
                         стратегическое мышление и предпринимательский подход.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>8+</strong> управленческих профилей</div>
-                        <div class="feature"><strong>40+</strong> партнёров‑работодателей</div>
-                        <div class="feature"><strong>90%</strong> кейсов и практики</div>
-                        <div class="feature"><strong>85%</strong> выпускников — топ‑менеджеры</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">8+</strong> <span data-i18n="feature_1_label">управленческих профилей</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">40+</strong> <span data-i18n="feature_2_label">партнёров‑работодателей</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_value">90%</strong> <span data-i18n="feature_3_label">кейсов и практики</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_value">85%</strong> <span data-i18n="feature_4_label">выпускников — топ‑менеджеры</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -962,92 +962,116 @@
         <!-- ПРОГРАММЫ (6 штук, расположены ровно по 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Менеджмента</h2>
-                <p class="section-sub">Современные программы бакалавриата, разработанные совместно с бизнесом</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Менеджмента</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Современные программы бакалавриата, разработанные совместно с бизнесом</p>
 
                 <div class="programs-grid">
                     <!-- 1. Управление бизнесом -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Управление бизнесом</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Управление бизнесом</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Стратегии, операционный менеджмент, финансы для предпринимателей.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Стратегии, операционный менеджмент, финансы для предпринимателей.</p>
                             <div class="program-details">
-                                <h4>Ключевые дисциплины</h4>
-                                <ul><li>Стратегический менеджмент</li><li>Управление проектами</li><li>Корпоративные финансы</li></ul>
+                                <h4 data-i18n="program_1_disciplines_title">Ключевые дисциплины</h4>
+                                <ul>
+                                    <li data-i18n="program_1_discipline_1">Стратегический менеджмент</li>
+                                    <li data-i18n="program_1_discipline_2">Управление проектами</li>
+                                    <li data-i18n="program_1_discipline_3">Корпоративные финансы</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Маркетинг и продажи -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Маркетинг и продажи</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Маркетинг и продажи</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Цифровой маркетинг, аналитика рынка, клиентский опыт.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Цифровой маркетинг, аналитика рынка, клиентский опыт.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Digital-маркетинг</li><li>Бренд-менеджмент</li><li>Sales management</li></ul>
+                                <h4 data-i18n="program_2_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_2_track_1">Digital-маркетинг</li>
+                                    <li data-i18n="program_2_track_2">Бренд-менеджмент</li>
+                                    <li data-i18n="program_2_track_3">Sales management</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Управление человеческими ресурсами -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>HR‑менеджмент</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">HR‑менеджмент</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Управление талантами, организационное развитие, HR‑аналитика.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Управление талантами, организационное развитие, HR‑аналитика.</p>
                             <div class="program-details">
-                                <h4>Навыки</h4>
-                                <ul><li>Рекрутмент и EVP</li><li>Оценка и обучение</li><li>Кадровое делопроизводство</li></ul>
+                                <h4 data-i18n="program_3_skills_title">Навыки</h4>
+                                <ul>
+                                    <li data-i18n="program_3_skill_1">Рекрутмент и EVP</li>
+                                    <li data-i18n="program_3_skill_2">Оценка и обучение</li>
+                                    <li data-i18n="program_3_skill_3">Кадровое делопроизводство</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Логистика и управление цепями поставок -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Логистика и SCM</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Логистика и SCM</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Оптимизация поставок, управление запасами, международная логистика.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Оптимизация поставок, управление запасами, международная логистика.</p>
                             <div class="program-details">
-                                <h4>Карьерные треки</h4>
-                                <ul><li>Supply chain manager</li><li>Операционный директор</li><li>Аналитик логистики</li></ul>
+                                <h4 data-i18n="program_4_career_title">Карьерные треки</h4>
+                                <ul>
+                                    <li data-i18n="program_4_career_1">Supply chain manager</li>
+                                    <li data-i18n="program_4_career_2">Операционный директор</li>
+                                    <li data-i18n="program_4_career_3">Аналитик логистики</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Предпринимательство и инновации -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Предпринимательство</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Предпринимательство</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Запуск стартапов, управление инновациями, венчурное финансирование.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Запуск стартапов, управление инновациями, венчурное финансирование.</p>
                             <div class="program-details">
-                                <h4>Практика</h4>
-                                <ul><li>Бизнес‑инкубатор</li><li>Питчи инвесторам</li><li>Разработка бизнес‑моделей</li></ul>
+                                <h4 data-i18n="program_5_practice_title">Практика</h4>
+                                <ul>
+                                    <li data-i18n="program_5_practice_1">Бизнес‑инкубатор</li>
+                                    <li data-i18n="program_5_practice_2">Питчи инвесторам</li>
+                                    <li data-i18n="program_5_practice_3">Разработка бизнес‑моделей</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Международный менеджмент -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Международный менеджмент</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Международный менеджмент</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Кросс‑культурный менеджмент, международный маркетинг, глобальные стратегии.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Кросс‑культурный менеджмент, международный маркетинг, глобальные стратегии.</p>
                             <div class="program-details">
-                                <h4>Двойной диплом</h4>
-                                <ul><li>Партнёрские вузы Европы</li><li>Стажировки за рубежом</li><li>Иностранный язык</li></ul>
+                                <h4 data-i18n="program_6_double_title">Двойной диплом</h4>
+                                <ul>
+                                    <li data-i18n="program_6_double_1">Партнёрские вузы Европы</li>
+                                    <li data-i18n="program_6_double_2">Стажировки за рубежом</li>
+                                    <li data-i18n="program_6_double_3">Иностранный язык</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1056,12 +1080,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Почему Школа Менеджмента AlmaU</h2>
-                <p class="section-sub">Управленческое образование нового поколения</p>
+                <h2 class="section-title" data-i18n="advantages_title">Почему Школа Менеджмента AlmaU</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Управленческое образование нового поколения</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">🏆</div><h3>Бизнес-кейсы</h3><p>Обучение на реальных ситуациях казахстанских и международных компаний</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🤝</div><h3>Менторство топ‑менеджеров</h3><p>Личное наставничество от CEO и директоров крупных фирм</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3>Глобальные проекты</h3><p>Консультационные проекты с зарубежными университетами</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🏆</div><h3 data-i18n="advantage_1_title">Бизнес-кейсы</h3><p data-i18n="advantage_1_desc">Обучение на реальных ситуациях казахстанских и международных компаний</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🤝</div><h3 data-i18n="advantage_2_title">Менторство топ‑менеджеров</h3><p data-i18n="advantage_2_desc">Личное наставничество от CEO и директоров крупных фирм</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3 data-i18n="advantage_3_title">Глобальные проекты</h3><p data-i18n="advantage_3_desc">Консультационные проекты с зарубежными университетами</p></div>
                 </div>
             </div>
         </section>
@@ -1069,15 +1093,15 @@
         <!-- Поступление (сжато) -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Вступительные требования</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Вступительные требования</h3>
                     <ol class="admission-list">
-                        <li><strong>ЕНТ / Комплексное тестирование</strong> — математика, иностранный язык / география</li>
-                        <li><strong>Аттестат + портфолио</strong> — участие в олимпиадах, бизнес‑проекты приветствуются</li>
-                        <li><strong>Собеседование (для некоторых треков)</strong> — мотивация и управленческий потенциал</li>
+                        <li><strong data-i18n="admission_req_1_title">ЕНТ / Комплексное тестирование</strong> <span data-i18n="admission_req_1_desc">— математика, иностранный язык / география</span></li>
+                        <li><strong data-i18n="admission_req_2_title">Аттестат + портфолио</strong> <span data-i18n="admission_req_2_desc">— участие в олимпиадах, бизнес‑проекты приветствуются</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Собеседование (для некоторых треков)</strong> <span data-i18n="admission_req_3_desc">— мотивация и управленческий потенциал</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1085,25 +1109,25 @@
         <!-- Контакты приёмной -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам менеджмента</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по программам менеджмента</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1115,18 +1139,226 @@
     {% include 'partials/site_footer.html' %}
     
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        // плавный скролл для якорей
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Школа Менеджмента",
+                hero_title: "Школа Менеджмента",
+                hero_desc: "Формируем лидеров, способных управлять изменениями, строить эффективные команды и выводить бизнес на новый уровень. Программы сочетают управленческие навыки, стратегическое мышление и предпринимательский подход.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "8+", feature_1_label: "управленческих профилей",
+                feature_2_value: "40+", feature_2_label: "партнёров‑работодателей",
+                feature_3_value: "90%", feature_3_label: "кейсов и практики",
+                feature_4_value: "85%", feature_4_label: "выпускников — топ‑менеджеры",
+                programs_title: "Программы Школы Менеджмента",
+                programs_subtitle: "Современные программы бакалавриата, разработанные совместно с бизнесом",
+                program_1_title: "Управление бизнесом", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Стратегии, операционный менеджмент, финансы для предпринимателей.",
+                program_1_disciplines_title: "Ключевые дисциплины", program_1_discipline_1: "Стратегический менеджмент", program_1_discipline_2: "Управление проектами", program_1_discipline_3: "Корпоративные финансы",
+                program_1_alert: "Подробнее о программе Управление бизнесом",
+                program_2_title: "Маркетинг и продажи", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Цифровой маркетинг, аналитика рынка, клиентский опыт.",
+                program_2_tracks_title: "Траектории", program_2_track_1: "Digital-маркетинг", program_2_track_2: "Бренд-менеджмент", program_2_track_3: "Sales management",
+                program_2_alert: "Подробнее о программе Маркетинг и продажи",
+                program_3_title: "HR‑менеджмент", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Управление талантами, организационное развитие, HR‑аналитика.",
+                program_3_skills_title: "Навыки", program_3_skill_1: "Рекрутмент и EVP", program_3_skill_2: "Оценка и обучение", program_3_skill_3: "Кадровое делопроизводство",
+                program_3_alert: "Подробнее о программе HR‑менеджмент",
+                program_4_title: "Логистика и SCM", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Оптимизация поставок, управление запасами, международная логистика.",
+                program_4_career_title: "Карьерные треки", program_4_career_1: "Supply chain manager", program_4_career_2: "Операционный директор", program_4_career_3: "Аналитик логистики",
+                program_4_alert: "Подробнее о программе Логистика и SCM",
+                program_5_title: "Предпринимательство", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Запуск стартапов, управление инновациями, венчурное финансирование.",
+                program_5_practice_title: "Практика", program_5_practice_1: "Бизнес‑инкубатор", program_5_practice_2: "Питчи инвесторам", program_5_practice_3: "Разработка бизнес‑моделей",
+                program_5_alert: "Подробнее о программе Предпринимательство",
+                program_6_title: "Международный менеджмент", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Кросс‑культурный менеджмент, международный маркетинг, глобальные стратегии.",
+                program_6_double_title: "Двойной диплом", program_6_double_1: "Партнёрские вузы Европы", program_6_double_2: "Стажировки за рубежом", program_6_double_3: "Иностранный язык",
+                program_6_alert: "Подробнее о программе Международный менеджмент",
+                btn_more: "Подробнее",
+                advantages_title: "Почему Школа Менеджмента AlmaU", advantages_subtitle: "Управленческое образование нового поколения",
+                advantage_1_title: "Бизнес-кейсы", advantage_1_desc: "Обучение на реальных ситуациях казахстанских и международных компаний",
+                advantage_2_title: "Менторство топ‑менеджеров", advantage_2_desc: "Личное наставничество от CEO и директоров крупных фирм",
+                advantage_3_title: "Глобальные проекты", advantage_3_desc: "Консультационные проекты с зарубежными университетами",
+                admission_title: "Как поступить", admission_subtitle: "Вступительные требования",
+                admission_req_1_title: "ЕНТ / Комплексное тестирование", admission_req_1_desc: "— математика, иностранный язык / география",
+                admission_req_2_title: "Аттестат + портфолио", admission_req_2_desc: "— участие в олимпиадах, бизнес‑проекты приветствуются",
+                admission_req_3_title: "Собеседование (для некоторых треков)", admission_req_3_desc: "— мотивация и управленческий потенциал",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по программам менеджмента",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить", form_success: "Спасибо! Мы свяжемся с вами в ближайшее время.", form_error: "Пожалуйста, заполните все поля формы."
+            },
+            kz: {
+                page_title: "AlmaU · Менеджмент мектебі",
+                hero_title: "Менеджмент мектебі",
+                hero_desc: "Өзгерістерді басқара алатын, тиімді командалар құра алатын және бизнесті жаңа деңгейге көтере алатын көшбасшыларды қалыптастырамыз. Бағдарламалар басқару дағдыларын, стратегиялық ойлауды және кәсіпкерлік көзқарасты біріктіреді.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "8+", feature_1_label: "басқару профилі",
+                feature_2_value: "40+", feature_2_label: "серіктес-жұмысберуші",
+                feature_3_value: "90%", feature_3_label: "кейстер мен практика",
+                feature_4_value: "85%", feature_4_label: "түлектер — топ-менеджерлер",
+                programs_title: "Менеджмент мектебінің бағдарламалары",
+                programs_subtitle: "Бизнеспен бірлесіп әзірленген заманауи бакалавриат бағдарламалары",
+                program_1_title: "Бизнесті басқару", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Стратегиялар, операциялық менеджмент, кәсіпкерлерге арналған қаржы.",
+                program_1_disciplines_title: "Негізгі пәндер", program_1_discipline_1: "Стратегиялық менеджмент", program_1_discipline_2: "Жобаларды басқару", program_1_discipline_3: "Корпоративтік қаржы",
+                program_1_alert: "Бизнесті басқару бағдарламасы туралы толығырақ",
+                program_2_title: "Маркетинг және сату", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Цифрлық маркетинг, нарықтық аналитика, клиенттік тәжірибе.",
+                program_2_tracks_title: "Траекториялар", program_2_track_1: "Digital-маркетинг", program_2_track_2: "Бренд-менеджмент", program_2_track_3: "Sales management",
+                program_2_alert: "Маркетинг және сату бағдарламасы туралы толығырақ",
+                program_3_title: "HR‑менеджмент", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Таланттарды басқару, ұйымдастырушылық даму, HR‑аналитика.",
+                program_3_skills_title: "Дағдылар", program_3_skill_1: "Рекрутмент және EVP", program_3_skill_2: "Бағалау және оқыту", program_3_skill_3: "Кадрлық іс жүргізу",
+                program_3_alert: "HR‑менеджмент бағдарламасы туралы толығырақ",
+                program_4_title: "Логистика және SCM", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Жеткізілімдерді оңтайландыру, қорларды басқару, халықаралық логистика.",
+                program_4_career_title: "Мансаптық тректер", program_4_career_1: "Supply chain manager", program_4_career_2: "Операциялық директор", program_4_career_3: "Логистика аналитигі",
+                program_4_alert: "Логистика және SCM бағдарламасы туралы толығырақ",
+                program_5_title: "Кәсіпкерлік", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Стартаптарды іске қосу, инновацияларды басқару, венчурлық қаржыландыру.",
+                program_5_practice_title: "Практика", program_5_practice_1: "Бизнес-инкубатор", program_5_practice_2: "Инвесторларға питчинг", program_5_practice_3: "Бизнес-модельдерді әзірлеу",
+                program_5_alert: "Кәсіпкерлік бағдарламасы туралы толығырақ",
+                program_6_title: "Халықаралық менеджмент", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Кросс-мәдениетті менеджмент, халықаралық маркетинг, жаһандық стратегиялар.",
+                program_6_double_title: "Қос диплом", program_6_double_1: "Еуропаның серіктес ЖОО-лары", program_6_double_2: "Шетелде тағылымдама", program_6_double_3: "Шет тілі",
+                program_6_alert: "Халықаралық менеджмент бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Неліктен AlmaU Менеджмент мектебі", advantages_subtitle: "Жаңа буын басқару білімі",
+                advantage_1_title: "Бизнес-кейстер", advantage_1_desc: "Қазақстандық және халықаралық компаниялардың нақты жағдаяттарында оқыту",
+                advantage_2_title: "Топ-менеджерлердің менторлығы", advantage_2_desc: "Ірі фирмалардың CEO және директорларынан жеке тәлімгерлік",
+                advantage_3_title: "Жаһандық жобалар", advantage_3_desc: "Шетелдік университеттермен консультациялық жобалар",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Түсу талаптары",
+                admission_req_1_title: "ҰБТ / Кешенді тестілеу", admission_req_1_desc: "— математика, шет тілі / география",
+                admission_req_2_title: "Аттестат + портфолио", admission_req_2_desc: "— олимпиадаларға қатысу, бизнес‑жобалар құпталады",
+                admission_req_3_title: "Сұхбат (кейбір тректер үшін)", admission_req_3_desc: "— мотивация және басқару әлеуеті",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Менеджмент бағдарламалары бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу", form_success: "Рахмет! Біз сізбен жақын арада байланысамыз.", form_error: "Форманың барлық өрістерін толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU · School of Management",
+                hero_title: "School of Management",
+                hero_desc: "We form leaders capable of managing change, building effective teams, and taking business to the next level. The programs combine management skills, strategic thinking, and an entrepreneurial approach.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "8+", feature_1_label: "management profiles",
+                feature_2_value: "40+", feature_2_label: "employer partners",
+                feature_3_value: "90%", feature_3_label: "cases and practice",
+                feature_4_value: "85%", feature_4_label: "graduates are top managers",
+                programs_title: "School of Management Programs",
+                programs_subtitle: "Modern bachelor's programs developed in collaboration with business",
+                program_1_title: "Business Management", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Strategies, operations management, finance for entrepreneurs.",
+                program_1_disciplines_title: "Key disciplines", program_1_discipline_1: "Strategic Management", program_1_discipline_2: "Project Management", program_1_discipline_3: "Corporate Finance",
+                program_1_alert: "More about Business Management program",
+                program_2_title: "Marketing and Sales", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Digital marketing, market analytics, customer experience.",
+                program_2_tracks_title: "Tracks", program_2_track_1: "Digital Marketing", program_2_track_2: "Brand Management", program_2_track_3: "Sales Management",
+                program_2_alert: "More about Marketing and Sales program",
+                program_3_title: "HR Management", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Talent management, organizational development, HR analytics.",
+                program_3_skills_title: "Skills", program_3_skill_1: "Recruitment and EVP", program_3_skill_2: "Assessment and training", program_3_skill_3: "HR administration",
+                program_3_alert: "More about HR Management program",
+                program_4_title: "Logistics and SCM", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Supply chain optimization, inventory management, international logistics.",
+                program_4_career_title: "Career tracks", program_4_career_1: "Supply chain manager", program_4_career_2: "Operations Director", program_4_career_3: "Logistics Analyst",
+                program_4_alert: "More about Logistics and SCM program",
+                program_5_title: "Entrepreneurship", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Launching startups, innovation management, venture financing.",
+                program_5_practice_title: "Practice", program_5_practice_1: "Business incubator", program_5_practice_2: "Pitching to investors", program_5_practice_3: "Business model development",
+                program_5_alert: "More about Entrepreneurship program",
+                program_6_title: "International Management", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Cross-cultural management, international marketing, global strategies.",
+                program_6_double_title: "Double Degree", program_6_double_1: "Partner universities in Europe", program_6_double_2: "Internships abroad", program_6_double_3: "Foreign language",
+                program_6_alert: "More about International Management program",
+                btn_more: "Learn more",
+                advantages_title: "Why AlmaU School of Management", advantages_subtitle: "Next generation management education",
+                advantage_1_title: "Business cases", advantage_1_desc: "Learning from real situations of Kazakhstani and international companies",
+                advantage_2_title: "Top manager mentoring", advantage_2_desc: "Personal mentoring from CEOs and directors of large firms",
+                advantage_3_title: "Global projects", advantage_3_desc: "Consulting projects with foreign universities",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT / Comprehensive testing", admission_req_1_desc: "— mathematics, foreign language / geography",
+                admission_req_2_title: "Certificate + portfolio", admission_req_2_desc: "— participation in olympiads, business projects are welcome",
+                admission_req_3_title: "Interview (for some tracks)", admission_req_3_desc: "— motivation and management potential",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on management programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send", form_success: "Thank you! We will contact you shortly.", form_error: "Please fill in all fields."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
             });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const contact = document.getElementById('contact').value;
+                    const msg = document.getElementById('msg').value;
+                    
+                    if (name && contact && msg) {
+                        alert(getTranslation('form_success'));
+                        this.reset();
+                    } else {
+                        alert(getTranslation('form_error'));
+                    }
+                });
+            }
         });
-        // кнопка назад
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}
 </body>

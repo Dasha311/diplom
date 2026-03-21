@@ -6,6 +6,7 @@ app_name = 'university'
 
 urlpatterns = [
     path('', views.main_menu, name='main_menu'),
+    path('language/<str:lang_code>/', views.set_language, name='set_language'),
     path('schools/', views.schools_menu, name='schools_menu'),
     path('schools/management/', views.school_of_management, name='school_of_management'),
     path('schools/economics-and-finance/', views.school_of_economics, name='school_of_economics'),

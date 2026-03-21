@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Институт Предпринимательства</title>
+    <title data-i18n="page_title">AlmaU · Институт Предпринимательства</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -932,19 +932,19 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Институт Предпринимательства</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Институт Предпринимательства</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Создаём предпринимателей, готовых запускать и масштабировать бизнес, управлять инновациями и выводить стартапы на международные рынки.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>7+</strong> бизнес-программ</div>
-                        <div class="feature"><strong>50+</strong> предпринимателей-менторов</div>
-                        <div class="feature"><strong>Бизнес-инкубатор</strong> для стартапов</div>
-                        <div class="feature"><strong>85%</strong> запускают свой бизнес</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">7+</strong> <span data-i18n="feature_1_label">бизнес-программ</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">50+</strong> <span data-i18n="feature_2_label">предпринимателей-менторов</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_label">Бизнес-инкубатор</strong> <span data-i18n="feature_3_value">для стартапов</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_value">85%</strong> <span data-i18n="feature_4_label">запускают свой бизнес</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -956,92 +956,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Института Предпринимательства</h2>
-                <p class="section-sub">От идеи до масштабирования — программы для будущих основателей и владельцев бизнеса</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Института Предпринимательства</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">От идеи до масштабирования — программы для будущих основателей и владельцев бизнеса</p>
 
                 <div class="programs-grid">
                     <!-- 1. Предпринимательство и управление бизнесом -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Предпринимательство</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Предпринимательство</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Создание бизнеса, бизнес-моделирование, управленческие навыки для стартапов.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Создание бизнеса, бизнес-моделирование, управленческие навыки для стартапов.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Технологическое предпринимательство</li><li>Социальное предпринимательство</li><li>Семейный бизнес</li></ul>
+                                <h4 data-i18n="program_1_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_1_track_1">Технологическое предпринимательство</li>
+                                    <li data-i18n="program_1_track_2">Социальное предпринимательство</li>
+                                    <li data-i18n="program_1_track_3">Семейный бизнес</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Предпринимательство')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Управление инновациями -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Управление инновациями</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Управление инновациями</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Инновационные стратегии, коммерциализация технологий, R&D менеджмент.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Инновационные стратегии, коммерциализация технологий, R&D менеджмент.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>Инновационный менеджер</li><li>R&D директор</li><li>Технологический брокер</li></ul>
+                                <h4 data-i18n="program_2_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_2_career_1">Инновационный менеджер</li>
+                                    <li data-i18n="program_2_career_2">R&D директор</li>
+                                    <li data-i18n="program_2_career_3">Технологический брокер</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Управление инновациями')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Стартап-школа (Launchpad) -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Стартап-школа Launchpad</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Стартап-школа Launchpad</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Интенсивная программа — 1 год</strong></p>
-                            <p>От идеи до MVP, питчи инвесторам, юридические и финансовые аспекты.</p>
+                            <p><strong data-i18n="program_3_duration">Интенсивная программа — 1 год</strong></p>
+                            <p data-i18n="program_3_desc">От идеи до MVP, питчи инвесторам, юридические и финансовые аспекты.</p>
                             <div class="program-details">
-                                <h4>Результат</h4>
-                                <ul><li>Готовый продукт</li><li>Презентация для инвесторов</li><li>Возможность акселерации</li></ul>
+                                <h4 data-i18n="program_3_result_title">Результат</h4>
+                                <ul>
+                                    <li data-i18n="program_3_result_1">Готовый продукт</li>
+                                    <li data-i18n="program_3_result_2">Презентация для инвесторов</li>
+                                    <li data-i18n="program_3_result_3">Возможность акселерации</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Стартап-школа')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Бизнес-аналитика для предпринимателей -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Бизнес-аналитика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Бизнес-аналитика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Анализ рынка, юнит-экономика, метрики стартапов, data-driven решения.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Анализ рынка, юнит-экономика, метрики стартапов, data-driven решения.</p>
                             <div class="program-details">
-                                <h4>Навыки</h4>
-                                <ul><li>SQL, Excel, Power BI</li><li>А/В тестирование</li><li>Прогнозирование продаж</li></ul>
+                                <h4 data-i18n="program_4_skills_title">Навыки</h4>
+                                <ul>
+                                    <li data-i18n="program_4_skill_1">SQL, Excel, Power BI</li>
+                                    <li data-i18n="program_4_skill_2">А/В тестирование</li>
+                                    <li data-i18n="program_4_skill_3">Прогнозирование продаж</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Бизнес-аналитика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Маркетинг и продажи для стартапов -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Маркетинг для стартапов</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Маркетинг для стартапов</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Growth hacking, digital-маркетинг, привлечение клиентов, брендинг.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Growth hacking, digital-маркетинг, привлечение клиентов, брендинг.</p>
                             <div class="program-details">
-                                <h4>Инструменты</h4>
-                                <ul><li>SEO/PPC</li><li>SMM, таргет</li><li>Email-маркетинг</li></ul>
+                                <h4 data-i18n="program_5_tools_title">Инструменты</h4>
+                                <ul>
+                                    <li data-i18n="program_5_tool_1">SEO/PPC</li>
+                                    <li data-i18n="program_5_tool_2">SMM, таргет</li>
+                                    <li data-i18n="program_5_tool_3">Email-маркетинг</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Маркетинг для стартапов')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Финансы для предпринимателей -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Финансы для бизнеса</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Финансы для бизнеса</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Финансовое моделирование, привлечение инвестиций, управление денежными потоками.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Финансовое моделирование, привлечение инвестиций, управление денежными потоками.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Венчурные инвестиции</li><li>Корпоративные финансы</li><li>Краудфандинг</li></ul>
+                                <h4 data-i18n="program_6_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_6_track_1">Венчурные инвестиции</li>
+                                    <li data-i18n="program_6_track_2">Корпоративные финансы</li>
+                                    <li data-i18n="program_6_track_3">Краудфандинг</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Финансы для предпринимателей')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1050,12 +1074,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества института</h2>
-                <p class="section-sub">Почему выбирают нас</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества института</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему выбирают нас</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">💡</div><h3>Бизнес-инкубатор</h3><p>Помощь в запуске стартапов, менторская поддержка, доступ к инвесторам и грантам.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🤝</div><h3>Сообщество предпринимателей</h3><p>Нетворкинг с основателями компаний, встречи с ангелами и венчурными фондами.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌍</div><h3>Международные акселераторы</h3><p>Участие в зарубежных программах, стажировки в стартап-экосистемах мира.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">💡</div><h3 data-i18n="advantage_1_title">Бизнес-инкубатор</h3><p data-i18n="advantage_1_desc">Помощь в запуске стартапов, менторская поддержка, доступ к инвесторам и грантам.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🤝</div><h3 data-i18n="advantage_2_title">Сообщество предпринимателей</h3><p data-i18n="advantage_2_desc">Нетворкинг с основателями компаний, встречи с ангелами и венчурными фондами.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🌍</div><h3 data-i18n="advantage_3_title">Международные акселераторы</h3><p data-i18n="advantage_3_desc">Участие в зарубежных программах, стажировки в стартап-экосистемах мира.</p></div>
                 </div>
             </div>
         </section>
@@ -1063,16 +1087,16 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для абитуриентов</h3>
                     <ol class="admission-list">
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — математика, иностранный язык / география</li>
-                        <li><strong>Бизнес-идея или мотивационное эссе</strong> — описание предпринимательского проекта</li>
-                        <li><strong>Собеседование</strong> — предпринимательский потенциал, лидерские качества</li>
-                        <li><strong>Портфолио</strong> — опыт в бизнесе, участие в стартап-конкурсах (приветствуется)</li>
+                        <li><strong data-i18n="admission_req_1_title">ЕНТ / комплексное тестирование</strong> <span data-i18n="admission_req_1_desc">— математика, иностранный язык / география</span></li>
+                        <li><strong data-i18n="admission_req_2_title">Бизнес-идея или мотивационное эссе</strong> <span data-i18n="admission_req_2_desc">— описание предпринимательского проекта</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Собеседование</strong> <span data-i18n="admission_req_3_desc">— предпринимательский потенциал, лидерские качества</span></li>
+                        <li><strong data-i18n="admission_req_4_title">Портфолио</strong> <span data-i18n="admission_req_4_desc">— опыт в бизнесе, участие в стартап-конкурсах (приветствуется)</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1080,25 +1104,25 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам предпринимательства</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по программам предпринимательства</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm" onsubmit="event.preventDefault(); alert(getTranslation('form_success')); this.reset();">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1110,14 +1134,212 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Институт Предпринимательства",
+                hero_title: "Институт Предпринимательства",
+                hero_desc: "Создаём предпринимателей, готовых запускать и масштабировать бизнес, управлять инновациями и выводить стартапы на международные рынки.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "7+", feature_1_label: "бизнес-программ",
+                feature_2_value: "50+", feature_2_label: "предпринимателей-менторов",
+                feature_3_label: "Бизнес-инкубатор", feature_3_value: "для стартапов",
+                feature_4_value: "85%", feature_4_label: "запускают свой бизнес",
+                programs_title: "Программы Института Предпринимательства",
+                programs_subtitle: "От идеи до масштабирования — программы для будущих основателей и владельцев бизнеса",
+                program_1_title: "Предпринимательство", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Создание бизнеса, бизнес-моделирование, управленческие навыки для стартапов.",
+                program_1_tracks_title: "Траектории", program_1_track_1: "Технологическое предпринимательство", program_1_track_2: "Социальное предпринимательство", program_1_track_3: "Семейный бизнес",
+                program_1_alert: "Подробнее о программе Предпринимательство",
+                program_2_title: "Управление инновациями", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Инновационные стратегии, коммерциализация технологий, R&D менеджмент.",
+                program_2_career_title: "Карьера", program_2_career_1: "Инновационный менеджер", program_2_career_2: "R&D директор", program_2_career_3: "Технологический брокер",
+                program_2_alert: "Подробнее о программе Управление инновациями",
+                program_3_title: "Стартап-школа Launchpad", program_3_duration: "Интенсивная программа — 1 год", program_3_desc: "От идеи до MVP, питчи инвесторам, юридические и финансовые аспекты.",
+                program_3_result_title: "Результат", program_3_result_1: "Готовый продукт", program_3_result_2: "Презентация для инвесторов", program_3_result_3: "Возможность акселерации",
+                program_3_alert: "Подробнее о программе Стартап-школа",
+                program_4_title: "Бизнес-аналитика", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Анализ рынка, юнит-экономика, метрики стартапов, data-driven решения.",
+                program_4_skills_title: "Навыки", program_4_skill_1: "SQL, Excel, Power BI", program_4_skill_2: "А/В тестирование", program_4_skill_3: "Прогнозирование продаж",
+                program_4_alert: "Подробнее о программе Бизнес-аналитика",
+                program_5_title: "Маркетинг для стартапов", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Growth hacking, digital-маркетинг, привлечение клиентов, брендинг.",
+                program_5_tools_title: "Инструменты", program_5_tool_1: "SEO/PPC", program_5_tool_2: "SMM, таргет", program_5_tool_3: "Email-маркетинг",
+                program_5_alert: "Подробнее о программе Маркетинг для стартапов",
+                program_6_title: "Финансы для бизнеса", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Финансовое моделирование, привлечение инвестиций, управление денежными потоками.",
+                program_6_tracks_title: "Траектории", program_6_track_1: "Венчурные инвестиции", program_6_track_2: "Корпоративные финансы", program_6_track_3: "Краудфандинг",
+                program_6_alert: "Подробнее о программе Финансы для предпринимателей",
+                btn_more: "Подробнее",
+                advantages_title: "Преимущества института", advantages_subtitle: "Почему выбирают нас",
+                advantage_1_title: "Бизнес-инкубатор", advantage_1_desc: "Помощь в запуске стартапов, менторская поддержка, доступ к инвесторам и грантам.",
+                advantage_2_title: "Сообщество предпринимателей", advantage_2_desc: "Нетворкинг с основателями компаний, встречи с ангелами и венчурными фондами.",
+                advantage_3_title: "Международные акселераторы", advantage_3_desc: "Участие в зарубежных программах, стажировки в стартап-экосистемах мира.",
+                admission_title: "Как поступить", admission_subtitle: "Требования для абитуриентов",
+                admission_req_1_title: "ЕНТ / комплексное тестирование", admission_req_1_desc: "— математика, иностранный язык / география",
+                admission_req_2_title: "Бизнес-идея или мотивационное эссе", admission_req_2_desc: "— описание предпринимательского проекта",
+                admission_req_3_title: "Собеседование", admission_req_3_desc: "— предпринимательский потенциал, лидерские качества",
+                admission_req_4_title: "Портфолио", admission_req_4_desc: "— опыт в бизнесе, участие в стартап-конкурсах (приветствуется)",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по программам предпринимательства",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить", form_success: "Спасибо! Мы свяжемся с вами в ближайшее время."
+            },
+            kz: {
+                page_title: "AlmaU · Кәсіпкерлік институты",
+                hero_title: "Кәсіпкерлік институты",
+                hero_desc: "Бизнесті бастауға және масштабтауға, инновацияларды басқаруға және стартаптарды халықаралық нарықтарға шығаруға дайын кәсіпкерлерді дайындаймыз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "7+", feature_1_label: "бизнес-бағдарлама",
+                feature_2_value: "50+", feature_2_label: "кәсіпкер-ментор",
+                feature_3_label: "Бизнес-инкубатор", feature_3_value: "стартаптар үшін",
+                feature_4_value: "85%", feature_4_label: "өз бизнесін ашады",
+                programs_title: "Кәсіпкерлік институтының бағдарламалары",
+                programs_subtitle: "Идеядан масштабтауға дейін — болашақ негізін қалаушылар мен бизнес иелеріне арналған бағдарламалар",
+                program_1_title: "Кәсіпкерлік", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Бизнесті құру, бизнес-модельдеу, стартаптарға арналған басқару дағдылары.",
+                program_1_tracks_title: "Траекториялар", program_1_track_1: "Технологиялық кәсіпкерлік", program_1_track_2: "Әлеуметтік кәсіпкерлік", program_1_track_3: "Отбасылық бизнес",
+                program_1_alert: "Кәсіпкерлік бағдарламасы туралы толығырақ",
+                program_2_title: "Инновацияларды басқару", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Инновациялық стратегиялар, технологияларды коммерцияландыру, R&D менеджмент.",
+                program_2_career_title: "Мансап", program_2_career_1: "Инновациялық менеджер", program_2_career_2: "R&D директоры", program_2_career_3: "Технологиялық брокер",
+                program_2_alert: "Инновацияларды басқару бағдарламасы туралы толығырақ",
+                program_3_title: "Стартап-мектеп Launchpad", program_3_duration: "Қарқынды бағдарлама — 1 жыл", program_3_desc: "Идеядан MVP-ға дейін, инвесторларға питчинг, заңды және қаржылық аспектілер.",
+                program_3_result_title: "Нәтиже", program_3_result_1: "Дайын өнім", program_3_result_2: "Инвесторларға презентация", program_3_result_3: "Акселерация мүмкіндігі",
+                program_3_alert: "Стартап-мектеп бағдарламасы туралы толығырақ",
+                program_4_title: "Бизнес-аналитика", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Нарықты талдау, юнит-экономика, стартап метрикалары, data-driven шешімдер.",
+                program_4_skills_title: "Дағдылар", program_4_skill_1: "SQL, Excel, Power BI", program_4_skill_2: "А/В тестілеу", program_4_skill_3: "Сатуды болжау",
+                program_4_alert: "Бизнес-аналитика бағдарламасы туралы толығырақ",
+                program_5_title: "Стартаптарға арналған маркетинг", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Growth hacking, digital-маркетинг, клиенттерді тарту, брендинг.",
+                program_5_tools_title: "Құралдар", program_5_tool_1: "SEO/PPC", program_5_tool_2: "SMM, таргет", program_5_tool_3: "Email-маркетинг",
+                program_5_alert: "Стартаптарға арналған маркетинг бағдарламасы туралы толығырақ",
+                program_6_title: "Бизнес үшін қаржы", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Қаржылық модельдеу, инвестицияларды тарту, ақша ағындарын басқару.",
+                program_6_tracks_title: "Траекториялар", program_6_track_1: "Венчурлық инвестициялар", program_6_track_2: "Корпоративтік қаржы", program_6_track_3: "Краудфандинг",
+                program_6_alert: "Кәсіпкерлерге арналған қаржы бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Институт артықшылықтары", advantages_subtitle: "Неліктен бізді таңдайды",
+                advantage_1_title: "Бизнес-инкубатор", advantage_1_desc: "Стартаптарды іске қосуға көмектесу, менторлық қолдау, инвесторлар мен гранттарға қол жеткізу.",
+                advantage_2_title: "Кәсіпкерлер қауымдастығы", advantage_2_desc: "Компания негізін қалаушылармен нетворкинг, ангелдер мен венчурлық қорлармен кездесулер.",
+                advantage_3_title: "Халықаралық акселераторлар", advantage_3_desc: "Шетелдік бағдарламаларға қатысу, әлемдік стартап-экожүйелерде тағылымдама.",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Абитуриенттерге қойылатын талаптар",
+                admission_req_1_title: "ҰБТ / кешенді тестілеу", admission_req_1_desc: "— математика, шет тілі / география",
+                admission_req_2_title: "Бизнес-идея немесе мотивациялық эссе", admission_req_2_desc: "— кәсіпкерлік жобаны сипаттау",
+                admission_req_3_title: "Сұхбат", admission_req_3_desc: "— кәсіпкерлік әлеует, көшбасшылық қасиеттер",
+                admission_req_4_title: "Портфолио", admission_req_4_desc: "— бизнес тәжірибесі, стартап-байқауларға қатысу (құпталады)",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Кәсіпкерлік бағдарламалары бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу", form_success: "Рахмет! Біз сізбен жақын арада байланысамыз."
+            },
+            en: {
+                page_title: "AlmaU · Institute of Entrepreneurship",
+                hero_title: "Institute of Entrepreneurship",
+                hero_desc: "We create entrepreneurs ready to launch and scale businesses, manage innovation, and bring startups to international markets.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "7+", feature_1_label: "business programs",
+                feature_2_value: "50+", feature_2_label: "entrepreneur-mentors",
+                feature_3_label: "Business Incubator", feature_3_value: "for startups",
+                feature_4_value: "85%", feature_4_label: "launch their own business",
+                programs_title: "Institute of Entrepreneurship Programs",
+                programs_subtitle: "From idea to scaling — programs for future founders and business owners",
+                program_1_title: "Entrepreneurship", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Business creation, business modeling, management skills for startups.",
+                program_1_tracks_title: "Tracks", program_1_track_1: "Tech Entrepreneurship", program_1_track_2: "Social Entrepreneurship", program_1_track_3: "Family Business",
+                program_1_alert: "More about Entrepreneurship program",
+                program_2_title: "Innovation Management", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Innovation strategies, technology commercialization, R&D management.",
+                program_2_career_title: "Career", program_2_career_1: "Innovation Manager", program_2_career_2: "R&D Director", program_2_career_3: "Technology Broker",
+                program_2_alert: "More about Innovation Management program",
+                program_3_title: "Startup School Launchpad", program_3_duration: "Intensive program — 1 year", program_3_desc: "From idea to MVP, pitching to investors, legal and financial aspects.",
+                program_3_result_title: "Result", program_3_result_1: "Ready product", program_3_result_2: "Investor presentation", program_3_result_3: "Acceleration opportunity",
+                program_3_alert: "More about Startup School program",
+                program_4_title: "Business Analytics", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Market analysis, unit economics, startup metrics, data-driven decisions.",
+                program_4_skills_title: "Skills", program_4_skill_1: "SQL, Excel, Power BI", program_4_skill_2: "A/B testing", program_4_skill_3: "Sales forecasting",
+                program_4_alert: "More about Business Analytics program",
+                program_5_title: "Marketing for Startups", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Growth hacking, digital marketing, customer acquisition, branding.",
+                program_5_tools_title: "Tools", program_5_tool_1: "SEO/PPC", program_5_tool_2: "SMM, targeting", program_5_tool_3: "Email marketing",
+                program_5_alert: "More about Marketing for Startups program",
+                program_6_title: "Finance for Business", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Financial modeling, fundraising, cash flow management.",
+                program_6_tracks_title: "Tracks", program_6_track_1: "Venture Investments", program_6_track_2: "Corporate Finance", program_6_track_3: "Crowdfunding",
+                program_6_alert: "More about Finance for Business program",
+                btn_more: "Learn more",
+                advantages_title: "Institute Advantages", advantages_subtitle: "Why choose us",
+                advantage_1_title: "Business Incubator", advantage_1_desc: "Startup launch support, mentoring, access to investors and grants.",
+                advantage_2_title: "Entrepreneur Community", advantage_2_desc: "Networking with company founders, meetings with angels and venture funds.",
+                advantage_3_title: "International Accelerators", advantage_3_desc: "Participation in international programs, internships in global startup ecosystems.",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT / comprehensive testing", admission_req_1_desc: "— mathematics, foreign language / geography",
+                admission_req_2_title: "Business idea or motivation essay", admission_req_2_desc: "— description of entrepreneurial project",
+                admission_req_3_title: "Interview", admission_req_3_desc: "— entrepreneurial potential, leadership qualities",
+                admission_req_4_title: "Portfolio", admission_req_4_desc: "— business experience, participation in startup competitions (welcome)",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on entrepreneurship programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send", form_success: "Thank you! We will contact you shortly."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'INPUT' && el.getAttribute('type') !== 'text') {
+                        // skip
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>

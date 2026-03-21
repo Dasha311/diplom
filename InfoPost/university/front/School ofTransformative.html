@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · School of Transformative Humanities</title>
+    <title data-i18n="page_title">AlmaU · School of Transformative Humanities</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -932,19 +932,19 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">School of Transformative Humanities</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">School of Transformative Humanities</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Исследуем человека, культуру и общество через призму гуманитарных наук. Готовим специалистов, способных анализировать, интерпретировать и преобразовывать социальную реальность.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>8+</strong> гуманитарных программ</div>
-                        <div class="feature"><strong>20+</strong> исследовательских проектов</div>
-                        <div class="feature"><strong>Международные</strong> коллаборации</div>
-                        <div class="feature"><strong>Прикладные</strong> гуманитарные технологии</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">8+</strong> <span data-i18n="feature_1_label">гуманитарных программ</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">20+</strong> <span data-i18n="feature_2_label">исследовательских проектов</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_label">Международные</strong> <span data-i18n="feature_3_value">коллаборации</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_label">Прикладные</strong> <span data-i18n="feature_4_value">гуманитарные технологии</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -956,92 +956,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы School of Transformative Humanities</h2>
-                <p class="section-sub">Современные гуманитарные направления для понимания и изменения мира</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы School of Transformative Humanities</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Современные гуманитарные направления для понимания и изменения мира</p>
 
                 <div class="programs-grid">
                     <!-- 1. Психология -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Психология</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Психология</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Общая психология, клиническая психология, психологическое консультирование.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Общая психология, клиническая психология, психологическое консультирование.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Организационная психология</li><li>Детская психология</li><li>Когнитивная психология</li></ul>
+                                <h4 data-i18n="program_1_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_1_track_1">Организационная психология</li>
+                                    <li data-i18n="program_1_track_2">Детская психология</li>
+                                    <li data-i18n="program_1_track_3">Когнитивная психология</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Психология')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Социология и социальная антропология -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Социология</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Социология</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Методы социологических исследований, социальная структура, урбанистика.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Методы социологических исследований, социальная структура, урбанистика.</p>
                             <div class="program-details">
-                                <h4>Карьерные треки</h4>
-                                <ul><li>Аналитик данных</li><li>Исследователь рынка</li><li>Городской планировщик</li></ul>
+                                <h4 data-i18n="program_2_career_title">Карьерные треки</h4>
+                                <ul>
+                                    <li data-i18n="program_2_career_1">Аналитик данных</li>
+                                    <li data-i18n="program_2_career_2">Исследователь рынка</li>
+                                    <li data-i18n="program_2_career_3">Городской планировщик</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Социология')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Философия и этика -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Философия и этика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Философия и этика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>История философии, прикладная этика, философская антропология, биоэтика.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">История философии, прикладная этика, философская антропология, биоэтика.</p>
                             <div class="program-details">
-                                <h4>Сферы</h4>
-                                <ul><li>Академическая карьера</li><li>Этический консалтинг</li><li>Корпоративная этика</li></ul>
+                                <h4 data-i18n="program_3_fields_title">Сферы</h4>
+                                <ul>
+                                    <li data-i18n="program_3_field_1">Академическая карьера</li>
+                                    <li data-i18n="program_3_field_2">Этический консалтинг</li>
+                                    <li data-i18n="program_3_field_3">Корпоративная этика</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Философия')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Лингвистика и межкультурная коммуникация -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Лингвистика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Лингвистика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Теоретическая и прикладная лингвистика, перевод, межкультурная коммуникация.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Теоретическая и прикладная лингвистика, перевод, межкультурная коммуникация.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Компьютерная лингвистика</li><li>Переводоведение</li><li>Преподавание языков</li></ul>
+                                <h4 data-i18n="program_4_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_4_track_1">Компьютерная лингвистика</li>
+                                    <li data-i18n="program_4_track_2">Переводоведение</li>
+                                    <li data-i18n="program_4_track_3">Преподавание языков</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Лингвистика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Культурология и медиаисследования -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Культурология</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Культурология</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Теория культуры, визуальные исследования, культурные индустрии, heritage.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Теория культуры, визуальные исследования, культурные индустрии, heritage.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>Куратор выставок</li><li>Менеджер культурных проектов</li><li>Медиааналитик</li></ul>
+                                <h4 data-i18n="program_5_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_5_career_1">Куратор выставок</li>
+                                    <li data-i18n="program_5_career_2">Менеджер культурных проектов</li>
+                                    <li data-i18n="program_5_career_3">Медиааналитик</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Культурология')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Digital Humanities -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Digital Humanities</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Digital Humanities</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Цифровые методы в гуманитарных науках, визуализация данных, культурная аналитика.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Цифровые методы в гуманитарных науках, визуализация данных, культурная аналитика.</p>
                             <div class="program-details">
-                                <h4>Инструменты</h4>
-                                <ul><li>Текстовый анализ</li><li>Картографирование</li><li>Цифровые архивы</li></ul>
+                                <h4 data-i18n="program_6_tools_title">Инструменты</h4>
+                                <ul>
+                                    <li data-i18n="program_6_tool_1">Текстовый анализ</li>
+                                    <li data-i18n="program_6_tool_2">Картографирование</li>
+                                    <li data-i18n="program_6_tool_3">Цифровые архивы</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Digital Humanities')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1050,12 +1074,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества школы</h2>
-                <p class="section-sub">Почему выбирают нас</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества школы</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему выбирают нас</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">🔍</div><h3>Исследовательские лаборатории</h3><p>Центры изучения социальных инноваций, городской антропологии, цифровых методов.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3>Международные проекты</h3><p>Сотрудничество с университетами Европы, совместные гранты и публикации.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">💡</div><h3>Прикладные гуманитарные технологии</h3><p>Применение гуманитарного знания в бизнесе, урбанистике, медиа и образовании.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🔍</div><h3 data-i18n="advantage_1_title">Исследовательские лаборатории</h3><p data-i18n="advantage_1_desc">Центры изучения социальных инноваций, городской антропологии, цифровых методов.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🌐</div><h3 data-i18n="advantage_2_title">Международные проекты</h3><p data-i18n="advantage_2_desc">Сотрудничество с университетами Европы, совместные гранты и публикации.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">💡</div><h3 data-i18n="advantage_3_title">Прикладные гуманитарные технологии</h3><p data-i18n="advantage_3_desc">Применение гуманитарного знания в бизнесе, урбанистике, медиа и образовании.</p></div>
                 </div>
             </div>
         </section>
@@ -1063,16 +1087,16 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для абитуриентов</h3>
                     <ol class="admission-list">
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — история Казахстана, иностранный язык / литература</li>
-                        <li><strong>Мотивационное эссе</strong> — описание интереса к гуманитарным наукам</li>
-                        <li><strong>Собеседование</strong> — критическое мышление, кругозор</li>
-                        <li><strong>Портфолио</strong> — публикации, исследовательские работы (приветствуется)</li>
+                        <li><strong data-i18n="admission_req_1_title">ЕНТ / комплексное тестирование</strong> <span data-i18n="admission_req_1_desc">— история Казахстана, иностранный язык / литература</span></li>
+                        <li><strong data-i18n="admission_req_2_title">Мотивационное эссе</strong> <span data-i18n="admission_req_2_desc">— описание интереса к гуманитарным наукам</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Собеседование</strong> <span data-i18n="admission_req_3_desc">— критическое мышление, кругозор</span></li>
+                        <li><strong data-i18n="admission_req_4_title">Портфолио</strong> <span data-i18n="admission_req_4_desc">— публикации, исследовательские работы (приветствуется)</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1080,25 +1104,25 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по гуманитарным программам</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по гуманитарным программам</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1110,17 +1134,228 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · School of Transformative Humanities",
+                hero_title: "School of Transformative Humanities",
+                hero_desc: "Исследуем человека, культуру и общество через призму гуманитарных наук. Готовим специалистов, способных анализировать, интерпретировать и преобразовывать социальную реальность.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "8+", feature_1_label: "гуманитарных программ",
+                feature_2_value: "20+", feature_2_label: "исследовательских проектов",
+                feature_3_label: "Международные", feature_3_value: "коллаборации",
+                feature_4_label: "Прикладные", feature_4_value: "гуманитарные технологии",
+                programs_title: "Программы School of Transformative Humanities",
+                programs_subtitle: "Современные гуманитарные направления для понимания и изменения мира",
+                program_1_title: "Психология", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Общая психология, клиническая психология, психологическое консультирование.",
+                program_1_tracks_title: "Траектории", program_1_track_1: "Организационная психология", program_1_track_2: "Детская психология", program_1_track_3: "Когнитивная психология",
+                program_1_alert: "Подробнее о программе Психология",
+                program_2_title: "Социология", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Методы социологических исследований, социальная структура, урбанистика.",
+                program_2_career_title: "Карьерные треки", program_2_career_1: "Аналитик данных", program_2_career_2: "Исследователь рынка", program_2_career_3: "Городской планировщик",
+                program_2_alert: "Подробнее о программе Социология",
+                program_3_title: "Философия и этика", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "История философии, прикладная этика, философская антропология, биоэтика.",
+                program_3_fields_title: "Сферы", program_3_field_1: "Академическая карьера", program_3_field_2: "Этический консалтинг", program_3_field_3: "Корпоративная этика",
+                program_3_alert: "Подробнее о программе Философия и этика",
+                program_4_title: "Лингвистика", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Теоретическая и прикладная лингвистика, перевод, межкультурная коммуникация.",
+                program_4_tracks_title: "Траектории", program_4_track_1: "Компьютерная лингвистика", program_4_track_2: "Переводоведение", program_4_track_3: "Преподавание языков",
+                program_4_alert: "Подробнее о программе Лингвистика",
+                program_5_title: "Культурология", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Теория культуры, визуальные исследования, культурные индустрии, heritage.",
+                program_5_career_title: "Карьера", program_5_career_1: "Куратор выставок", program_5_career_2: "Менеджер культурных проектов", program_5_career_3: "Медиааналитик",
+                program_5_alert: "Подробнее о программе Культурология",
+                program_6_title: "Digital Humanities", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Цифровые методы в гуманитарных науках, визуализация данных, культурная аналитика.",
+                program_6_tools_title: "Инструменты", program_6_tool_1: "Текстовый анализ", program_6_tool_2: "Картографирование", program_6_tool_3: "Цифровые архивы",
+                program_6_alert: "Подробнее о программе Digital Humanities",
+                btn_more: "Подробнее",
+                advantages_title: "Преимущества школы", advantages_subtitle: "Почему выбирают нас",
+                advantage_1_title: "Исследовательские лаборатории", advantage_1_desc: "Центры изучения социальных инноваций, городской антропологии, цифровых методов.",
+                advantage_2_title: "Международные проекты", advantage_2_desc: "Сотрудничество с университетами Европы, совместные гранты и публикации.",
+                advantage_3_title: "Прикладные гуманитарные технологии", advantage_3_desc: "Применение гуманитарного знания в бизнесе, урбанистике, медиа и образовании.",
+                admission_title: "Как поступить", admission_subtitle: "Требования для абитуриентов",
+                admission_req_1_title: "ЕНТ / комплексное тестирование", admission_req_1_desc: "— история Казахстана, иностранный язык / литература",
+                admission_req_2_title: "Мотивационное эссе", admission_req_2_desc: "— описание интереса к гуманитарным наукам",
+                admission_req_3_title: "Собеседование", admission_req_3_desc: "— критическое мышление, кругозор",
+                admission_req_4_title: "Портфолио", admission_req_4_desc: "— публикации, исследовательские работы (приветствуется)",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по гуманитарным программам",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить"
+            },
+            kz: {
+                page_title: "AlmaU · Трансформациялық гуманитарлық ғылымдар мектебі",
+                hero_title: "Трансформациялық гуманитарлық ғылымдар мектебі",
+                hero_desc: "Гуманитарлық ғылымдар призмасы арқылы адамды, мәдениетті және қоғамды зерттейміз. Әлеуметтік шындықты талдайтын, интерпретациялайтын және түрлендіретін мамандар дайындаймыз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "8+", feature_1_label: "гуманитарлық бағдарлама",
+                feature_2_value: "20+", feature_2_label: "зерттеу жобасы",
+                feature_3_label: "Халықаралық", feature_3_value: "ынтымақтастық",
+                feature_4_label: "Қолданбалы", feature_4_value: "гуманитарлық технологиялар",
+                programs_title: "Трансформациялық гуманитарлық ғылымдар мектебінің бағдарламалары",
+                programs_subtitle: "Әлемді түсіну және өзгерту үшін заманауи гуманитарлық бағыттар",
+                program_1_title: "Психология", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Жалпы психология, клиникалық психология, психологиялық кеңес беру.",
+                program_1_tracks_title: "Траекториялар", program_1_track_1: "Ұйымдық психология", program_1_track_2: "Балалар психологиясы", program_1_track_3: "Когнитивтік психология",
+                program_1_alert: "Психология бағдарламасы туралы толығырақ",
+                program_2_title: "Әлеуметтану", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Әлеуметтанулық зерттеу әдістері, әлеуметтік құрылым, урбанистика.",
+                program_2_career_title: "Мансаптық тректер", program_2_career_1: "Деректер аналитигі", program_2_career_2: "Нарық зерттеушісі", program_2_career_3: "Қалалық жоспарлаушы",
+                program_2_alert: "Әлеуметтану бағдарламасы туралы толығырақ",
+                program_3_title: "Философия және этика", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Философия тарихы, қолданбалы этика, философиялық антропология, биоэтика.",
+                program_3_fields_title: "Салалар", program_3_field_1: "Академиялық мансап", program_3_field_2: "Этикалық консалтинг", program_3_field_3: "Корпоративтік этика",
+                program_3_alert: "Философия және этика бағдарламасы туралы толығырақ",
+                program_4_title: "Лингвистика", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Теориялық және қолданбалы лингвистика, аударма, мәдениетаралық коммуникация.",
+                program_4_tracks_title: "Траекториялар", program_4_track_1: "Компьютерлік лингвистика", program_4_track_2: "Аударматану", program_4_track_3: "Тілдерді оқыту",
+                program_4_alert: "Лингвистика бағдарламасы туралы толығырақ",
+                program_5_title: "Мәдениеттану", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Мәдениет теориясы, визуалды зерттеулер, мәдени индустриялар, мұра.",
+                program_5_career_title: "Мансап", program_5_career_1: "Көрме кураторы", program_5_career_2: "Мәдени жобалар менеджері", program_5_career_3: "Медиааналитик",
+                program_5_alert: "Мәдениеттану бағдарламасы туралы толығырақ",
+                program_6_title: "Digital Humanities", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Гуманитарлық ғылымдардағы цифрлық әдістер, деректерді визуализациялау, мәдени аналитика.",
+                program_6_tools_title: "Құралдар", program_6_tool_1: "Мәтіндік талдау", program_6_tool_2: "Картографиялау", program_6_tool_3: "Цифрлық мұрағаттар",
+                program_6_alert: "Digital Humanities бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Мектеп артықшылықтары", advantages_subtitle: "Неліктен бізді таңдайды",
+                advantage_1_title: "Зерттеу зертханалары", advantage_1_desc: "Әлеуметтік инновацияларды, қалалық антропологияны, цифрлық әдістерді зерттеу орталықтары.",
+                advantage_2_title: "Халықаралық жобалар", advantage_2_desc: "Еуропа университеттерімен ынтымақтастық, бірлескен гранттар мен жарияланымдар.",
+                advantage_3_title: "Қолданбалы гуманитарлық технологиялар", advantage_3_desc: "Гуманитарлық білімді бизнесте, урбанистикада, медиада және білім беруде қолдану.",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Абитуриенттерге қойылатын талаптар",
+                admission_req_1_title: "ҰБТ / кешенді тестілеу", admission_req_1_desc: "— Қазақстан тарихы, шет тілі / әдебиет",
+                admission_req_2_title: "Мотивациялық эссе", admission_req_2_desc: "— гуманитарлық ғылымдарға қызығушылықты сипаттау",
+                admission_req_3_title: "Сұхбат", admission_req_3_desc: "— сыни тұрғыдан ойлау, дүниетаным",
+                admission_req_4_title: "Портфолио", admission_req_4_desc: "— жарияланымдар, зерттеу жұмыстары (құпталады)",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Гуманитарлық бағдарламалар бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу"
+            },
+            en: {
+                page_title: "AlmaU · School of Transformative Humanities",
+                hero_title: "School of Transformative Humanities",
+                hero_desc: "Exploring humanity, culture, and society through the lens of the humanities. We train specialists capable of analyzing, interpreting, and transforming social reality.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "8+", feature_1_label: "humanities programs",
+                feature_2_value: "20+", feature_2_label: "research projects",
+                feature_3_label: "International", feature_3_value: "collaborations",
+                feature_4_label: "Applied", feature_4_value: "humanities technologies",
+                programs_title: "School of Transformative Humanities Programs",
+                programs_subtitle: "Modern humanities disciplines for understanding and transforming the world",
+                program_1_title: "Psychology", program_1_duration: "Bachelor's — 3 years", program_1_desc: "General psychology, clinical psychology, psychological counseling.",
+                program_1_tracks_title: "Tracks", program_1_track_1: "Organizational Psychology", program_1_track_2: "Child Psychology", program_1_track_3: "Cognitive Psychology",
+                program_1_alert: "More about Psychology program",
+                program_2_title: "Sociology", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Sociological research methods, social structure, urban studies.",
+                program_2_career_title: "Career tracks", program_2_career_1: "Data Analyst", program_2_career_2: "Market Researcher", program_2_career_3: "Urban Planner",
+                program_2_alert: "More about Sociology program",
+                program_3_title: "Philosophy and Ethics", program_3_duration: "Bachelor's — 3 years", program_3_desc: "History of philosophy, applied ethics, philosophical anthropology, bioethics.",
+                program_3_fields_title: "Fields", program_3_field_1: "Academic Career", program_3_field_2: "Ethical Consulting", program_3_field_3: "Corporate Ethics",
+                program_3_alert: "More about Philosophy and Ethics program",
+                program_4_title: "Linguistics", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Theoretical and applied linguistics, translation, intercultural communication.",
+                program_4_tracks_title: "Tracks", program_4_track_1: "Computational Linguistics", program_4_track_2: "Translation Studies", program_4_track_3: "Language Teaching",
+                program_4_alert: "More about Linguistics program",
+                program_5_title: "Cultural Studies", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Theory of culture, visual studies, cultural industries, heritage.",
+                program_5_career_title: "Career", program_5_career_1: "Exhibition Curator", program_5_career_2: "Cultural Project Manager", program_5_career_3: "Media Analyst",
+                program_5_alert: "More about Cultural Studies program",
+                program_6_title: "Digital Humanities", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Digital methods in humanities, data visualization, cultural analytics.",
+                program_6_tools_title: "Tools", program_6_tool_1: "Text Analysis", program_6_tool_2: "Mapping", program_6_tool_3: "Digital Archives",
+                program_6_alert: "More about Digital Humanities program",
+                btn_more: "Learn more",
+                advantages_title: "School Advantages", advantages_subtitle: "Why choose us",
+                advantage_1_title: "Research Laboratories", advantage_1_desc: "Centers for social innovation, urban anthropology, digital methods.",
+                advantage_2_title: "International Projects", advantage_2_desc: "Collaboration with European universities, joint grants and publications.",
+                advantage_3_title: "Applied Humanities Technologies", advantage_3_desc: "Applying humanities knowledge in business, urbanism, media and education.",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT / comprehensive testing", admission_req_1_desc: "— History of Kazakhstan, foreign language / literature",
+                admission_req_2_title: "Motivation Essay", admission_req_2_desc: "— description of interest in humanities",
+                admission_req_3_title: "Interview", admission_req_3_desc: "— critical thinking, general knowledge",
+                admission_req_4_title: "Portfolio", admission_req_4_desc: "— publications, research papers (welcome)",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on humanities programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'INPUT' && el.getAttribute('type') !== 'text') {
+                        // skip
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
             });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const successMsg = currentLang === 'ru' ? `Спасибо, ${name}! Мы свяжемся с вами в ближайшее время.` :
+                                      currentLang === 'kz' ? `Рахмет, ${name}! Біз сізбен жақын арада байланысамыз.` :
+                                      `Thank you, ${name}! We will contact you shortly.`;
+                    alert(successMsg);
+                    this.reset();
+                });
+            }
         });
     </script>
-        {% include 'partials/shared_chrome_scripts.html' %}
+    {% include 'partials/shared_chrome_scripts.html' %}
 </body>
 </html>

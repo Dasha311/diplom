@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU - Информационные системы</title>
+    <title data-i18n="page_title">AlmaU - Информационные системы</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -1237,7 +1237,6 @@
 </head>
 <body>
 
-
     <!-- Header -->
     {% include 'partials/site_header.html' %}
 
@@ -1246,23 +1245,23 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Информационные системы</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Информационные системы</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Программа готовит IT-специалистов, способных проектировать, внедрять и сопровождать информационные системы, 
                         работать с большими данными и создавать цифровые решения для бизнеса. Акцент на практических навыках 
                         и современных технологиях.
                     </p>
 
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявку</a>
-                        <a href="#consult" class="hero-cta ghost">Получить консультацию</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявку</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Получить консультацию</a>
                     </div>
 
                     <div class="hero-features">
-                        <div class="feature"><strong>Срок обучения:</strong> 3 года (очная)</div>
-                        <div class="feature"><strong>Язык обучения:</strong> казахский, русский, английский</div>
-                        <div class="feature"><strong>Форма обучения:</strong> очная (полный день)</div>
-                        <div class="feature"><strong>Оплата / гранты:</strong> возможны гранты и скидки</div>
+                        <div class="feature"><strong data-i18n="feature_duration_label">Срок обучения:</strong> <span data-i18n="feature_duration_value">3 года (очная)</span></div>
+                        <div class="feature"><strong data-i18n="feature_language_label">Язык обучения:</strong> <span data-i18n="feature_language_value">казахский, русский, английский</span></div>
+                        <div class="feature"><strong data-i18n="feature_format_label">Форма обучения:</strong> <span data-i18n="feature_format_value">очная (полный день)</span></div>
+                        <div class="feature"><strong data-i18n="feature_finance_label">Оплата / гранты:</strong> <span data-i18n="feature_finance_value">возможны гранты и скидки</span></div>
                     </div>
                 </div>
 
@@ -1277,23 +1276,23 @@
         <!-- Кому подходит -->
         <section class="who-suits">
             <div class="container">
-                <h2 class="section-title">Кому подходит программа</h2>
-                <p class="section-sub">Программа разработана для тех, кто хочет построить успешную карьеру в IT-индустрии</p>
+                <h2 class="section-title" data-i18n="suits_title">Кому подходит программа</h2>
+                <p class="section-sub" data-i18n="suits_subtitle">Программа разработана для тех, кто хочет построить успешную карьеру в IT-индустрии</p>
 
                 <div class="suits-grid">
                     <div class="suit-card">
-                        <h3>Будущим разработчикам и аналитикам</h3>
-                        <p>Тем, кто хочет создавать программные решения, работать с базами данных, проектировать архитектуру систем и разрабатывать веб-приложения. Идеально для любителей логических задач и программирования.</p>
+                        <h3 data-i18n="suit_1_title">Будущим разработчикам и аналитикам</h3>
+                        <p data-i18n="suit_1_desc">Тем, кто хочет создавать программные решения, работать с базами данных, проектировать архитектуру систем и разрабатывать веб-приложения. Идеально для любителей логических задач и программирования.</p>
                     </div>
 
                     <div class="suit-card">
-                        <h3>Любителям технологий и инноваций</h3>
-                        <p>Студентам с интересом к цифровой трансформации бизнеса, автоматизации процессов и современным IT-трендам. Для тех, кто следит за новинками в области AI, блокчейна и облачных технологий.</p>
+                        <h3 data-i18n="suit_2_title">Любителям технологий и инноваций</h3>
+                        <p data-i18n="suit_2_desc">Студентам с интересом к цифровой трансформации бизнеса, автоматизации процессов и современным IT-трендам. Для тех, кто следит за новинками в области AI, блокчейна и облачных технологий.</p>
                     </div>
 
                     <div class="suit-card">
-                        <h3>Будущим IT-предпринимателям</h3>
-                        <p>Тем, кто планирует создавать стартапы, запускать IT-проекты или управлять технологическими командами. Программа даёт не только технические, но и бизнес-навыки для успешного запуска продуктов.</p>
+                        <h3 data-i18n="suit_3_title">Будущим IT-предпринимателям</h3>
+                        <p data-i18n="suit_3_desc">Тем, кто планирует создавать стартапы, запускать IT-проекты или управлять технологическими командами. Программа даёт не только технические, но и бизнес-навыки для успешного запуска продуктов.</p>
                     </div>
                 </div>
             </div>
@@ -1302,44 +1301,44 @@
         <!-- Преимущества -->
         <section class="benefits">
             <div class="container">
-                <h2 class="section-title">Преимущества обучения</h2>
-                <p class="section-sub">Почему стоит выбрать программу "Информационные системы" в AlmaU</p>
+                <h2 class="section-title" data-i18n="benefits_title">Преимущества обучения</h2>
+                <p class="section-sub" data-i18n="benefits_subtitle">Почему стоит выбрать программу "Информационные системы" в AlmaU</p>
 
                 <div class="benefits-grid">
                     <div class="benefit-card">
                         <div class="benefit-icon">🎯</div>
-                        <h3>Практическая подготовка</h3>
-                        <p>Реальные проекты с первого курса, работа с актуальными технологиями и инструментами разработки. Студенты создают портфолио из реальных кейсов.</p>
+                        <h3 data-i18n="benefit_1_title">Практическая подготовка</h3>
+                        <p data-i18n="benefit_1_desc">Реальные проекты с первого курса, работа с актуальными технологиями и инструментами разработки. Студенты создают портфолио из реальных кейсов.</p>
                     </div>
 
                     <div class="benefit-card">
                         <div class="benefit-icon">🤝</div>
-                        <h3>Партнёры из индустрии</h3>
-                        <p>Сотрудничество с ведущими IT-компаниями Казахстана и зарубежья. Гостевые лекции от практиков, экскурсии в IT-компании, менторская программа.</p>
+                        <h3 data-i18n="benefit_2_title">Партнёры из индустрии</h3>
+                        <p data-i18n="benefit_2_desc">Сотрудничество с ведущими IT-компаниями Казахстана и зарубежья. Гостевые лекции от практиков, экскурсии в IT-компании, менторская программа.</p>
                     </div>
 
                     <div class="benefit-card">
                         <div class="benefit-icon">💼</div>
-                        <h3>Стажировки и трудоустройство</h3>
-                        <p>Помощь в поиске стажировок и первой работы через карьерный центр и партнёрскую сеть университета. 95% выпускников трудоустраиваются в течение 6 месяцев.</p>
+                        <h3 data-i18n="benefit_3_title">Стажировки и трудоустройство</h3>
+                        <p data-i18n="benefit_3_desc">Помощь в поиске стажировок и первой работы через карьерный центр и партнёрскую сеть университета. 95% выпускников трудоустраиваются в течение 6 месяцев.</p>
                     </div>
 
                     <div class="benefit-card">
                         <div class="benefit-icon">🖥️</div>
-                        <h3>Современная инфраструктура</h3>
-                        <p>Компьютерные лаборатории с мощным оборудованием, доступ к облачным платформам, лицензионному ПО и онлайн-курсам ведущих IT-компаний.</p>
+                        <h3 data-i18n="benefit_4_title">Современная инфраструктура</h3>
+                        <p data-i18n="benefit_4_desc">Компьютерные лаборатории с мощным оборудованием, доступ к облачным платформам, лицензионному ПО и онлайн-курсам ведущих IT-компаний.</p>
                     </div>
 
                     <div class="benefit-card">
                         <div class="benefit-icon">🌐</div>
-                        <h3>Международные стандарты</h3>
-                        <p>Программа соответствует требованиям ABET и международным образовательным стандартам в области IT. Возможность участия в программах обмена.</p>
+                        <h3 data-i18n="benefit_5_title">Международные стандарты</h3>
+                        <p data-i18n="benefit_5_desc">Программа соответствует требованиям ABET и международным образовательным стандартам в области IT. Возможность участия в программах обмена.</p>
                     </div>
 
                     <div class="benefit-card">
                         <div class="benefit-icon">🎓</div>
-                        <h3>Гибкий выбор специализации</h3>
-                        <p>Возможность углубиться в разработку ПО, анализ данных, кибербезопасность или управление IT-проектами. Индивидуальные образовательные траектории.</p>
+                        <h3 data-i18n="benefit_6_title">Гибкий выбор специализации</h3>
+                        <p data-i18n="benefit_6_desc">Возможность углубиться в разработку ПО, анализ данных, кибербезопасность или управление IT-проектами. Индивидуальные образовательные траектории.</p>
                     </div>
                 </div>
             </div>
@@ -1348,33 +1347,33 @@
         <!-- Программа обучения -->
         <section class="curriculum">
             <div class="container">
-                <h2 class="section-title">Программа обучения</h2>
-                <p class="section-sub">3-летняя программа бакалавриата с акцентом на практические навыки</p>
+                <h2 class="section-title" data-i18n="curriculum_title">Программа обучения</h2>
+                <p class="section-sub" data-i18n="curriculum_subtitle">3-летняя программа бакалавриата с акцентом на практические навыки</p>
 
                 <div class="semesters">
                     <!-- 1 курс -->
                     <div class="semester">
                         <div class="semester-header">
-                            <h3>Первый курс - Основы программирования</h3>
-                            <div class="semester-number">Год 1</div>
+                            <h3 data-i18n="semester_1_title">Первый курс - Основы программирования</h3>
+                            <div class="semester-number" data-i18n="semester_1_year">Год 1</div>
                         </div>
                         <div class="semester-body">
                             <div class="courses-grid">
                                 <div class="course">
-                                    <h4>Основы программирования</h4>
-                                    <p>Python, алгоритмы и структуры данных, основы ООП</p>
+                                    <h4 data-i18n="course_1_1_title">Основы программирования</h4>
+                                    <p data-i18n="course_1_1_desc">Python, алгоритмы и структуры данных, основы ООП</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Веб-разработка</h4>
-                                    <p>HTML, CSS, JavaScript, основы фронтенд-разработки</p>
+                                    <h4 data-i18n="course_1_2_title">Веб-разработка</h4>
+                                    <p data-i18n="course_1_2_desc">HTML, CSS, JavaScript, основы фронтенд-разработки</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Базы данных</h4>
-                                    <p>SQL, проектирование БД, MySQL/PostgreSQL</p>
+                                    <h4 data-i18n="course_1_3_title">Базы данных</h4>
+                                    <p data-i18n="course_1_3_desc">SQL, проектирование БД, MySQL/PostgreSQL</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Компьютерные сети</h4>
-                                    <p>Основы сетевых технологий, TCP/IP, HTTP/HTTPS</p>
+                                    <h4 data-i18n="course_1_4_title">Компьютерные сети</h4>
+                                    <p data-i18n="course_1_4_desc">Основы сетевых технологий, TCP/IP, HTTP/HTTPS</p>
                                 </div>
                             </div>
                         </div>
@@ -1383,26 +1382,26 @@
                     <!-- 2 курс -->
                     <div class="semester">
                         <div class="semester-header">
-                            <h3>Второй курс - Углублённое изучение</h3>
-                            <div class="semester-number">Год 2</div>
+                            <h3 data-i18n="semester_2_title">Второй курс - Углублённое изучение</h3>
+                            <div class="semester-number" data-i18n="semester_2_year">Год 2</div>
                         </div>
                         <div class="semester-body">
                             <div class="courses-grid">
                                 <div class="course">
-                                    <h4>Backend-разработка</h4>
-                                    <p>Node.js, Django, REST API, микросервисы</p>
+                                    <h4 data-i18n="course_2_1_title">Backend-разработка</h4>
+                                    <p data-i18n="course_2_1_desc">Node.js, Django, REST API, микросервисы</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Мобильная разработка</h4>
-                                    <p>React Native, Flutter, разработка под iOS/Android</p>
+                                    <h4 data-i18n="course_2_2_title">Мобильная разработка</h4>
+                                    <p data-i18n="course_2_2_desc">React Native, Flutter, разработка под iOS/Android</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Анализ данных</h4>
-                                    <p>Pandas, NumPy, визуализация данных, основы ML</p>
+                                    <h4 data-i18n="course_2_3_title">Анализ данных</h4>
+                                    <p data-i18n="course_2_3_desc">Pandas, NumPy, визуализация данных, основы ML</p>
                                 </div>
                                 <div class="course">
-                                    <h4>DevOps и облака</h4>
-                                    <p>Docker, Kubernetes, AWS/Azure основы</p>
+                                    <h4 data-i18n="course_2_4_title">DevOps и облака</h4>
+                                    <p data-i18n="course_2_4_desc">Docker, Kubernetes, AWS/Azure основы</p>
                                 </div>
                             </div>
                         </div>
@@ -1411,26 +1410,26 @@
                     <!-- 3 курс -->
                     <div class="semester">
                         <div class="semester-header">
-                            <h3>Третий курс - Специализация</h3>
-                            <div class="semester-number">Год 3</div>
+                            <h3 data-i18n="semester_3_title">Третий курс - Специализация</h3>
+                            <div class="semester-number" data-i18n="semester_3_year">Год 3</div>
                         </div>
                         <div class="semester-body">
                             <div class="courses-grid">
                                 <div class="course">
-                                    <h4>Дипломный проект</h4>
-                                    <p>Разработка реального IT-проекта под руководством ментора</p>
+                                    <h4 data-i18n="course_3_1_title">Дипломный проект</h4>
+                                    <p data-i18n="course_3_1_desc">Разработка реального IT-проекта под руководством ментора</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Кибербезопасность</h4>
-                                    <p>Основы информационной безопасности, защита данных</p>
+                                    <h4 data-i18n="course_3_2_title">Кибербезопасность</h4>
+                                    <p data-i18n="course_3_2_desc">Основы информационной безопасности, защита данных</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Управление проектами</h4>
-                                    <p>Agile, Scrum, управление IT-командами</p>
+                                    <h4 data-i18n="course_3_3_title">Управление проектами</h4>
+                                    <p data-i18n="course_3_3_desc">Agile, Scrum, управление IT-командами</p>
                                 </div>
                                 <div class="course">
-                                    <h4>Стажировка</h4>
-                                    <p>Практика в IT-компаниях-партнёрах университета</p>
+                                    <h4 data-i18n="course_3_4_title">Стажировка</h4>
+                                    <p data-i18n="course_3_4_desc">Практика в IT-компаниях-партнёрах университета</p>
                                 </div>
                             </div>
                         </div>
@@ -1442,142 +1441,140 @@
         <!-- Карьерные перспективы -->
         <section class="career">
             <div class="container">
-                <h2 class="section-title">Карьерные перспективы</h2>
-                <p class="section-sub">Выпускники программы востребованы на рынке труда</p>
+                <h2 class="section-title" data-i18n="career_title">Карьерные перспективы</h2>
+                <p class="section-sub" data-i18n="career_subtitle">Выпускники программы востребованы на рынке труда</p>
 
                 <div class="career-stats">
                     <div class="stat-card">
-                        <div class="stat-number">95%</div>
-                        <div class="stat-label">Трудоустройство в течение 6 месяцев</div>
+                        <div class="stat-number" data-stat-value="95">95%</div>
+                        <div class="stat-label" data-i18n="stat_1_label">Трудоустройство в течение 6 месяцев</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">450K+</div>
-                        <div class="stat-label">Средняя зарплата в тенге</div>
+                        <div class="stat-number" data-stat-value="450">450K+</div>
+                        <div class="stat-label" data-i18n="stat_2_label">Средняя зарплата в тенге</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Компаний-партнёров для стажировок</div>
+                        <div class="stat-number" data-stat-value="50">50+</div>
+                        <div class="stat-label" data-i18n="stat_3_label">Компаний-партнёров для стажировок</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">85%</div>
-                        <div class="stat-label">Выпускников работают в IT-сфере</div>
+                        <div class="stat-number" data-stat-value="85">85%</div>
+                        <div class="stat-label" data-i18n="stat_4_label">Выпускников работают в IT-сфере</div>
                     </div>
                 </div>
 
                 <div class="career-roles">
                     <div class="role-card">
-                        <h4>Веб-разработчик</h4>
-                        <p>Создание и поддержка веб-приложений, работа с современными фреймворками</p>
-                        <div class="salary">от 350 000 ₸</div>
+                        <h4 data-i18n="role_1_title">Веб-разработчик</h4>
+                        <p data-i18n="role_1_desc">Создание и поддержка веб-приложений, работа с современными фреймворками</p>
+                        <div class="salary" data-i18n="role_1_salary">от 350 000 ₸</div>
                     </div>
                     <div class="role-card">
-                        <h4>Системный аналитик</h4>
-                        <p>Анализ бизнес-процессов, проектирование информационных систем</p>
-                        <div class="salary">от 400 000 ₸</div>
+                        <h4 data-i18n="role_2_title">Системный аналитик</h4>
+                        <p data-i18n="role_2_desc">Анализ бизнес-процессов, проектирование информационных систем</p>
+                        <div class="salary" data-i18n="role_2_salary">от 400 000 ₸</div>
                     </div>
                     <div class="role-card">
-                        <h4>Data Analyst</h4>
-                        <p>Анализ данных, построение отчётов, работа с BI-инструментами</p>
-                        <div class="salary">от 450 000 ₸</div>
+                        <h4 data-i18n="role_3_title">Data Analyst</h4>
+                        <p data-i18n="role_3_desc">Анализ данных, построение отчётов, работа с BI-инструментами</p>
+                        <div class="salary" data-i18n="role_3_salary">от 450 000 ₸</div>
                     </div>
                     <div class="role-card">
-                        <h4>DevOps инженер</h4>
-                        <p>Автоматизация процессов, работа с облачными платформами</p>
-                        <div class="salary">от 500 000 ₸</div>
+                        <h4 data-i18n="role_4_title">DevOps инженер</h4>
+                        <p data-i18n="role_4_desc">Автоматизация процессов, работа с облачными платформами</p>
+                        <div class="salary" data-i18n="role_4_salary">от 500 000 ₸</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Поступление -->
-        <section class="admission">
+        <section class="admission" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 
                 <div class="admission-content">
                     <div class="admission-requirements">
-                        <h3 class="admission-subtitle">Требования для поступления</h3>
+                        <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для поступления</h3>
                         <ol class="admission-list">
                             <li>
-                                <strong>ЕНТ или комплексное тестирование</strong>
-                                — необходимо пройти вступительные испытания по профильным предметам (математика, информатика)
+                                <strong data-i18n="admission_req_1_title">ЕНТ или комплексное тестирование</strong>
+                                <span data-i18n="admission_req_1_desc">— необходимо пройти вступительные испытания по профильным предметам (математика, информатика)</span>
                             </li>
                             <li>
-                                <strong>Документы об образовании</strong>
-                                — аттестат о среднем образовании, удостоверение личности, фотографии 3×4
+                                <strong data-i18n="admission_req_2_title">Документы об образовании</strong>
+                                <span data-i18n="admission_req_2_desc">— аттестат о среднем образовании, удостоверение личности, фотографии 3×4</span>
                             </li>
                             <li>
-                                <strong>Портфолио (рекомендуется)</strong>
-                                — собственные проекты, участие в олимпиадах, IT-конкурсах или хакатонах
+                                <strong data-i18n="admission_req_3_title">Портфолио (рекомендуется)</strong>
+                                <span data-i18n="admission_req_3_desc">— собственные проекты, участие в олимпиадах, IT-конкурсах или хакатонах</span>
                             </li>
                             <li>
-                                <strong>Дедлайн подачи заявок</strong>
-                                — прием документов до 20 августа, зачисление по результатам конкурса
+                                <strong data-i18n="admission_req_4_title">Дедлайн подачи заявок</strong>
+                                <span data-i18n="admission_req_4_desc">— прием документов до 20 августа, зачисление по результатам конкурса</span>
                             </li>
                         </ol>
                     </div>
 
                     <div class="admission-action">
-                        <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;">
+                        <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;" data-i18n="admission_action_text">
                             Подайте заявку онлайн или посетите приёмную комиссию для получения подробной консультации
                         </p>
-                        <a href="#apply" class="btn">Подать заявку на поступление</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_action_btn">Подать заявку на поступление</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Консультация -->
-        <section class="consultation">
+        <section class="consultation" id="consult">
             <div class="container">
-                <h2 class="section-title">Консультация по поступлению</h2>
-                <p class="section-sub">Остались вопросы? Свяжитесь с нами для получения дополнительной информации</p>
+                <h2 class="section-title" data-i18n="consult_title">Консультация по поступлению</h2>
+                <p class="section-sub" data-i18n="consult_subtitle">Остались вопросы? Свяжитесь с нами для получения дополнительной информации</p>
 
                 <div class="consultation-grid">
                     <div class="consultation-info">
-                        <h3 class="consultation-subtitle">Свяжитесь с нами</h3>
+                        <h3 class="consultation-subtitle" data-i18n="consult_contact_title">Свяжитесь с нами</h3>
                         <div class="consultation-details">
                             <div class="detail-item">
-                                <strong>Телефон приёмной комиссии:</strong>
+                                <strong data-i18n="consult_phone_label">Телефон приёмной комиссии:</strong>
                                 <a href="tel:+77273133040" class="detail-link">+7 (727) 313 3040</a>
                             </div>
                             <div class="detail-item">
-                                <strong>Email для абитуриентов:</strong>
+                                <strong data-i18n="consult_email_label">Email для абитуриентов:</strong>
                                 <a href="mailto:admission@almau.kz" class="detail-link">admission@almau.kz</a>
                             </div>
                             <div class="detail-item">
-                                <strong>Адрес университета:</strong>
-                                ул. Розыбакиева, 227<br>
-                                Алматы, Казахстан
+                                <strong data-i18n="consult_address_label">Адрес университета:</strong>
+                                <span data-i18n="consult_address_value">ул. Розыбакиева, 227<br>Алматы, Казахстан</span>
                             </div>
                             <div class="detail-item">
-                                <strong>Часы работы приёмной комиссии:</strong>
-                                Пн–Пт: 9:00 – 18:00<br>
-                                Сб: 10:00 – 15:00
+                                <strong data-i18n="consult_hours_label">Часы работы приёмной комиссии:</strong>
+                                <span data-i18n="consult_hours_value">Пн–Пт: 9:00 – 18:00<br>Сб: 10:00 – 15:00</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="consultation-form-wrapper">
-                        <h3 class="consultation-subtitle">Запросить консультацию</h3>
+                        <h3 class="consultation-subtitle" data-i18n="consult_form_title">Запросить консультацию</h3>
                         <form class="consultation-form">
                             <div class="form-group">
-                                <label for="consultName" class="form-label">Ваше имя</label>
-                                <input type="text" id="consultName" class="form-input" placeholder="Иван Иванов" required>
+                                <label for="consultName" class="form-label" data-i18n="form_name_label">Ваше имя</label>
+                                <input type="text" id="consultName" class="form-input" data-i18n-placeholder="form_name_placeholder" placeholder="Иван Иванов" required>
                             </div>
                             <div class="form-group">
-                                <label for="consultContact" class="form-label">Телефон или Email</label>
-                                <input type="text" id="consultContact" class="form-input" placeholder="+7 (777) 123 4567" required>
+                                <label for="consultContact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label>
+                                <input type="text" id="consultContact" class="form-input" data-i18n-placeholder="form_contact_placeholder" placeholder="+7 (777) 123 4567" required>
                             </div>
                             <div class="form-group">
-                                <label for="consultProgram" class="form-label">Интересующая программа</label>
+                                <label for="consultProgram" class="form-label" data-i18n="form_program_label">Интересующая программа</label>
                                 <input type="text" id="consultProgram" class="form-input" value="Информационные системы" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="consultMessage" class="form-label">Ваш вопрос</label>
-                                <textarea id="consultMessage" class="form-textarea" placeholder="Интересуют детали поступления, стипендии и программа обучения..." required></textarea>
+                                <label for="consultMessage" class="form-label" data-i18n="form_message_label">Ваш вопрос</label>
+                                <textarea id="consultMessage" class="form-textarea" data-i18n-placeholder="form_message_placeholder" placeholder="Интересуют детали поступления, стипендии и программа обучения..." required></textarea>
                             </div>
-                            <button type="submit" class="form-submit">Отправить запрос</button>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить запрос</button>
                         </form>
                     </div>
                 </div>
@@ -1588,22 +1585,278 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU - Информационные системы",
+                hero_title: "Информационные системы",
+                hero_desc: "Программа готовит IT-специалистов, способных проектировать, внедрять и сопровождать информационные системы, работать с большими данными и создавать цифровые решения для бизнеса. Акцент на практических навыках и современных технологиях.",
+                hero_btn_apply: "Подать заявку",
+                hero_btn_consult: "Получить консультацию",
+                feature_duration_label: "Срок обучения:", feature_duration_value: "3 года (очная)",
+                feature_language_label: "Язык обучения:", feature_language_value: "казахский, русский, английский",
+                feature_format_label: "Форма обучения:", feature_format_value: "очная (полный день)",
+                feature_finance_label: "Оплата / гранты:", feature_finance_value: "возможны гранты и скидки",
+                suits_title: "Кому подходит программа", suits_subtitle: "Программа разработана для тех, кто хочет построить успешную карьеру в IT-индустрии",
+                suit_1_title: "Будущим разработчикам и аналитикам", suit_1_desc: "Тем, кто хочет создавать программные решения, работать с базами данных, проектировать архитектуру систем и разрабатывать веб-приложения. Идеально для любителей логических задач и программирования.",
+                suit_2_title: "Любителям технологий и инноваций", suit_2_desc: "Студентам с интересом к цифровой трансформации бизнеса, автоматизации процессов и современным IT-трендам. Для тех, кто следит за новинками в области AI, блокчейна и облачных технологий.",
+                suit_3_title: "Будущим IT-предпринимателям", suit_3_desc: "Тем, кто планирует создавать стартапы, запускать IT-проекты или управлять технологическими командами. Программа даёт не только технические, но и бизнес-навыки для успешного запуска продуктов.",
+                benefits_title: "Преимущества обучения", benefits_subtitle: "Почему стоит выбрать программу \"Информационные системы\" в AlmaU",
+                benefit_1_title: "Практическая подготовка", benefit_1_desc: "Реальные проекты с первого курса, работа с актуальными технологиями и инструментами разработки. Студенты создают портфолио из реальных кейсов.",
+                benefit_2_title: "Партнёры из индустрии", benefit_2_desc: "Сотрудничество с ведущими IT-компаниями Казахстана и зарубежья. Гостевые лекции от практиков, экскурсии в IT-компании, менторская программа.",
+                benefit_3_title: "Стажировки и трудоустройство", benefit_3_desc: "Помощь в поиске стажировок и первой работы через карьерный центр и партнёрскую сеть университета. 95% выпускников трудоустраиваются в течение 6 месяцев.",
+                benefit_4_title: "Современная инфраструктура", benefit_4_desc: "Компьютерные лаборатории с мощным оборудованием, доступ к облачным платформам, лицензионному ПО и онлайн-курсам ведущих IT-компаний.",
+                benefit_5_title: "Международные стандарты", benefit_5_desc: "Программа соответствует требованиям ABET и международным образовательным стандартам в области IT. Возможность участия в программах обмена.",
+                benefit_6_title: "Гибкий выбор специализации", benefit_6_desc: "Возможность углубиться в разработку ПО, анализ данных, кибербезопасность или управление IT-проектами. Индивидуальные образовательные траектории.",
+                curriculum_title: "Программа обучения", curriculum_subtitle: "3-летняя программа бакалавриата с акцентом на практические навыки",
+                semester_1_title: "Первый курс - Основы программирования", semester_1_year: "Год 1",
+                semester_2_title: "Второй курс - Углублённое изучение", semester_2_year: "Год 2",
+                semester_3_title: "Третий курс - Специализация", semester_3_year: "Год 3",
+                course_1_1_title: "Основы программирования", course_1_1_desc: "Python, алгоритмы и структуры данных, основы ООП",
+                course_1_2_title: "Веб-разработка", course_1_2_desc: "HTML, CSS, JavaScript, основы фронтенд-разработки",
+                course_1_3_title: "Базы данных", course_1_3_desc: "SQL, проектирование БД, MySQL/PostgreSQL",
+                course_1_4_title: "Компьютерные сети", course_1_4_desc: "Основы сетевых технологий, TCP/IP, HTTP/HTTPS",
+                course_2_1_title: "Backend-разработка", course_2_1_desc: "Node.js, Django, REST API, микросервисы",
+                course_2_2_title: "Мобильная разработка", course_2_2_desc: "React Native, Flutter, разработка под iOS/Android",
+                course_2_3_title: "Анализ данных", course_2_3_desc: "Pandas, NumPy, визуализация данных, основы ML",
+                course_2_4_title: "DevOps и облака", course_2_4_desc: "Docker, Kubernetes, AWS/Azure основы",
+                course_3_1_title: "Дипломный проект", course_3_1_desc: "Разработка реального IT-проекта под руководством ментора",
+                course_3_2_title: "Кибербезопасность", course_3_2_desc: "Основы информационной безопасности, защита данных",
+                course_3_3_title: "Управление проектами", course_3_3_desc: "Agile, Scrum, управление IT-командами",
+                course_3_4_title: "Стажировка", course_3_4_desc: "Практика в IT-компаниях-партнёрах университета",
+                career_title: "Карьерные перспективы", career_subtitle: "Выпускники программы востребованы на рынке труда",
+                stat_1_label: "Трудоустройство в течение 6 месяцев", stat_2_label: "Средняя зарплата в тенге", stat_3_label: "Компаний-партнёров для стажировок", stat_4_label: "Выпускников работают в IT-сфере",
+                role_1_title: "Веб-разработчик", role_1_desc: "Создание и поддержка веб-приложений, работа с современными фреймворками", role_1_salary: "от 350 000 ₸",
+                role_2_title: "Системный аналитик", role_2_desc: "Анализ бизнес-процессов, проектирование информационных систем", role_2_salary: "от 400 000 ₸",
+                role_3_title: "Data Analyst", role_3_desc: "Анализ данных, построение отчётов, работа с BI-инструментами", role_3_salary: "от 450 000 ₸",
+                role_4_title: "DevOps инженер", role_4_desc: "Автоматизация процессов, работа с облачными платформами", role_4_salary: "от 500 000 ₸",
+                admission_title: "Как поступить", admission_subtitle: "Требования для поступления",
+                admission_req_1_title: "ЕНТ или комплексное тестирование", admission_req_1_desc: "— необходимо пройти вступительные испытания по профильным предметам (математика, информатика)",
+                admission_req_2_title: "Документы об образовании", admission_req_2_desc: "— аттестат о среднем образовании, удостоверение личности, фотографии 3×4",
+                admission_req_3_title: "Портфолио (рекомендуется)", admission_req_3_desc: "— собственные проекты, участие в олимпиадах, IT-конкурсах или хакатонах",
+                admission_req_4_title: "Дедлайн подачи заявок", admission_req_4_desc: "— прием документов до 20 августа, зачисление по результатам конкурса",
+                admission_action_text: "Подайте заявку онлайн или посетите приёмную комиссию для получения подробной консультации",
+                admission_action_btn: "Подать заявку на поступление",
+                consult_title: "Консультация по поступлению", consult_subtitle: "Остались вопросы? Свяжитесь с нами для получения дополнительной информации",
+                consult_contact_title: "Свяжитесь с нами", consult_phone_label: "Телефон приёмной комиссии:", consult_email_label: "Email для абитуриентов:", consult_address_label: "Адрес университета:", consult_address_value: "ул. Розыбакиева, 227<br>Алматы, Казахстан", consult_hours_label: "Часы работы приёмной комиссии:", consult_hours_value: "Пн–Пт: 9:00 – 18:00<br>Сб: 10:00 – 15:00",
+                consult_form_title: "Запросить консультацию", form_name_label: "Ваше имя", form_name_placeholder: "Иван Иванов", form_contact_label: "Телефон или Email", form_contact_placeholder: "+7 (777) 123 4567", form_program_label: "Интересующая программа", form_message_label: "Ваш вопрос", form_message_placeholder: "Интересуют детали поступления, стипендии и программа обучения...", form_submit_btn: "Отправить запрос"
+            },
+            kz: {
+                page_title: "AlmaU - Ақпараттық жүйелер",
+                hero_title: "Ақпараттық жүйелер",
+                hero_desc: "Бағдарлама ақпараттық жүйелерді жобалайтын, енгізетін және сүйемелдейтін, үлкен деректермен жұмыс істейтін және бизнес үшін цифрлық шешімдер жасайтын IT-мамандарды дайындайды. Практикалық дағдылар мен заманауи технологияларға баса назар аударылады.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_duration_label: "Оқу мерзімі:", feature_duration_value: "3 жыл (күндізгі)",
+                feature_language_label: "Оқыту тілі:", feature_language_value: "қазақ, орыс, ағылшын",
+                feature_format_label: "Оқу формасы:", feature_format_value: "күндізгі (толық күн)",
+                feature_finance_label: "Төлем / гранттар:", feature_finance_value: "гранттар мен жеңілдіктер мүмкін",
+                suits_title: "Бағдарлама кімге арналған", suits_subtitle: "Бағдарлама IT-индустрияда табысты мансап құрғысы келетіндер үшін әзірленген",
+                suit_1_title: "Болашақ әзірлеушілер мен аналитиктерге", suit_1_desc: "Бағдарламалық шешімдер жасағысы келетіндер, дерекқорлармен жұмыс істегісі келетіндер, жүйе архитектурасын жобалағысы келетіндер және веб-қосымшаларды әзірлегісі келетіндер. Логикалық тапсырмалар мен бағдарламалауды ұнататындар үшін өте қолайлы.",
+                suit_2_title: "Технологиялар мен инновацияларды ұнататындарға", suit_2_desc: "Бизнесті цифрлық трансформациялауға, процестерді автоматтандыруға және заманауи IT-трендтерге қызығушылық танытатын студенттерге. AI, блокчейн және бұлтты технологиялар саласындағы жаңалықтарды қадағалайтындар үшін.",
+                suit_3_title: "Болашақ IT-кәсіпкерлерге", suit_3_desc: "Стартаптар құруды, IT-жобаларды іске қосуды немесе технологиялық командаларды басқаруды жоспарлайтындарға. Бағдарлама өнімдерді сәтті іске қосу үшін техникалық қана емес, сонымен қатар бизнес-дағдыларды да береді.",
+                benefits_title: "Оқытудың артықшылықтары", benefits_subtitle: "AlmaU-да «Ақпараттық жүйелер» бағдарламасын неге таңдау керек",
+                benefit_1_title: "Практикалық дайындық", benefit_1_desc: "Бірінші курстан бастап нақты жобалар, өзекті технологиялармен және әзірлеме құралдарымен жұмыс істеу. Студенттер нақты кейстерден портфолио құрады.",
+                benefit_2_title: "Индустрия серіктестері", benefit_2_desc: "Қазақстанның және шет елдердің жетекші IT-компанияларымен ынтымақтастық. Практиктердің қонақ дәрістері, IT-компанияларға экскурсиялар, менторлық бағдарлама.",
+                benefit_3_title: "Тағылымдама және жұмысқа орналасу", benefit_3_desc: "Мансап орталығы және университеттің серіктестік желісі арқылы тағылымдама және алғашқы жұмыс іздеуге көмектесу. Түлектердің 95% 6 ай ішінде жұмысқа орналасады.",
+                benefit_4_title: "Заманауи инфрақұрылым", benefit_4_desc: "Қуатты жабдықтары бар компьютерлік зертханалар, бұлтты платформаларға қол жеткізу, лицензиялық бағдарламалық қамтамасыз ету және жетекші IT-компаниялардың онлайн-курстары.",
+                benefit_5_title: "Халықаралық стандарттар", benefit_5_desc: "Бағдарлама ABET талаптарына және IT саласындағы халықаралық білім беру стандарттарына сәйкес келеді. Алмасу бағдарламаларына қатысу мүмкіндігі.",
+                benefit_6_title: "Мамандануды икемді таңдау", benefit_6_desc: "БҒ әзірлеуге, деректерді талдауға, киберқауіпсіздікке немесе IT-жобаларды басқаруға тереңірек үңілу мүмкіндігі. Жеке білім беру траекториялары.",
+                curriculum_title: "Оқу бағдарламасы", curriculum_subtitle: "Практикалық дағдыларға баса назар аударатын 3 жылдық бакалавриат бағдарламасы",
+                semester_1_title: "Бірінші курс - Бағдарламалау негіздері", semester_1_year: "1-курс",
+                semester_2_title: "Екінші курс - Тереңдетілген оқу", semester_2_year: "2-курс",
+                semester_3_title: "Үшінші курс - Мамандану", semester_3_year: "3-курс",
+                course_1_1_title: "Бағдарламалау негіздері", course_1_1_desc: "Python, алгоритмдер және деректер құрылымдары, ШББ негіздері",
+                course_1_2_title: "Веб-әзірлеу", course_1_2_desc: "HTML, CSS, JavaScript, фронтенд-әзірлеу негіздері",
+                course_1_3_title: "Дерекқорлар", course_1_3_desc: "SQL, ДҚ жобалау, MySQL/PostgreSQL",
+                course_1_4_title: "Компьютерлік желілер", course_1_4_desc: "Желілік технологиялар негіздері, TCP/IP, HTTP/HTTPS",
+                course_2_1_title: "Backend-әзірлеу", course_2_1_desc: "Node.js, Django, REST API, микросервистер",
+                course_2_2_title: "Мобильді әзірлеу", course_2_2_desc: "React Native, Flutter, iOS/Android әзірлеу",
+                course_2_3_title: "Деректерді талдау", course_2_3_desc: "Pandas, NumPy, деректерді визуализациялау, ML негіздері",
+                course_2_4_title: "DevOps және бұлттар", course_2_4_desc: "Docker, Kubernetes, AWS/Azure негіздері",
+                course_3_1_title: "Дипломдық жоба", course_3_1_desc: "Ментордың жетекшілігімен нақты IT-жобаны әзірлеу",
+                course_3_2_title: "Киберқауіпсіздік", course_3_2_desc: "Ақпараттық қауіпсіздік негіздері, деректерді қорғау",
+                course_3_3_title: "Жобаларды басқару", course_3_3_desc: "Agile, Scrum, IT-командаларды басқару",
+                course_3_4_title: "Тағылымдама", course_3_4_desc: "Университеттің серіктес IT-компанияларында тәжірибе",
+                career_title: "Мансаптық перспективалар", career_subtitle: "Бағдарлама түлектері еңбек нарығында сұранысқа ие",
+                stat_1_label: "6 ай ішінде жұмысқа орналасу", stat_2_label: "Орташа жалақы (теңге)", stat_3_label: "Тағылымдама үшін компания-серіктестер", stat_4_label: "Түлектер IT саласында жұмыс істейді",
+                role_1_title: "Веб-әзірлеуші", role_1_desc: "Веб-қосымшаларды құру және қолдау, заманауи фреймворктермен жұмыс", role_1_salary: "350 000 ₸-ден",
+                role_2_title: "Жүйелік аналитик", role_2_desc: "Бизнес-процестерді талдау, ақпараттық жүйелерді жобалау", role_2_salary: "400 000 ₸-ден",
+                role_3_title: "Data Analyst", role_3_desc: "Деректерді талдау, есептер құру, BI-құралдармен жұмыс", role_3_salary: "450 000 ₸-ден",
+                role_4_title: "DevOps инженер", role_4_desc: "Процестерді автоматтандыру, бұлтты платформалармен жұмыс", role_4_salary: "500 000 ₸-ден",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Түсу талаптары",
+                admission_req_1_title: "ҰБТ немесе кешенді тестілеу", admission_req_1_desc: "— бейіндік пәндер бойынша түсу емтихандарынан өту қажет (математика, информатика)",
+                admission_req_2_title: "Білім туралы құжаттар", admission_req_2_desc: "— орта білім туралы аттестат, жеке куәлік, 3×4 фотосуреттер",
+                admission_req_3_title: "Портфолио (ұсынылады)", admission_req_3_desc: "— жеке жобалар, олимпиадаларға, IT-байқауларға немесе хакатондарға қатысу",
+                admission_req_4_title: "Өтінімдерді қабылдаудың соңғы мерзімі", admission_req_4_desc: "— құжаттарды қабылдау 20 тамызға дейін, конкурс нәтижелері бойынша оқуға қабылдау",
+                admission_action_text: "Толық кеңес алу үшін өтінімді онлайн тапсырыңыз немесе қабылдау комиссиясына келіңіз",
+                admission_action_btn: "Оқуға түсуге өтінім беру",
+                consult_title: "Түсу бойынша кеңес", consult_subtitle: "Сұрақтарыңыз қалды ма? Қосымша ақпарат алу үшін бізге хабарласыңыз",
+                consult_contact_title: "Бізбен байланысыңыз", consult_phone_label: "Қабылдау комиссиясының телефоны:", consult_email_label: "Абитуриенттерге арналған Email:", consult_address_label: "Университет мекенжайы:", consult_address_value: "Розыбакиев көш., 227<br>Алматы, Қазақстан", consult_hours_label: "Қабылдау комиссиясының жұмыс уақыты:", consult_hours_value: "Дс–Жм: 9:00 – 18:00<br>Сб: 10:00 – 15:00",
+                consult_form_title: "Кеңес сұрау", form_name_label: "Аты-жөніңіз", form_name_placeholder: "Азамат Азаматов", form_contact_label: "Телефон немесе Email", form_contact_placeholder: "+7 (777) 123 4567", form_program_label: "Қызықтыратын бағдарлама", form_message_label: "Сұрағыңыз", form_message_placeholder: "Түсу, стипендиялар және оқу бағдарламасының егжей-тегжейлері қызықтырады...", form_submit_btn: "Сұраныс жіберу"
+            },
+            en: {
+                page_title: "AlmaU - Information Systems",
+                hero_title: "Information Systems",
+                hero_desc: "The program prepares IT specialists capable of designing, implementing and maintaining information systems, working with big data and creating digital solutions for business. Emphasis on practical skills and modern technologies.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Get consultation",
+                feature_duration_label: "Duration:", feature_duration_value: "3 years (full-time)",
+                feature_language_label: "Language of instruction:", feature_language_value: "Kazakh, Russian, English",
+                feature_format_label: "Study format:", feature_format_value: "full-time",
+                feature_finance_label: "Tuition / grants:", feature_finance_value: "grants and discounts available",
+                suits_title: "Who is this program for", suits_subtitle: "The program is designed for those who want to build a successful career in the IT industry",
+                suit_1_title: "Future developers and analysts", suit_1_desc: "For those who want to create software solutions, work with databases, design system architecture and develop web applications. Perfect for lovers of logic tasks and programming.",
+                suit_2_title: "Technology and innovation enthusiasts", suit_2_desc: "For students interested in digital transformation of business, process automation and modern IT trends. For those who follow innovations in AI, blockchain and cloud technologies.",
+                suit_3_title: "Future IT entrepreneurs", suit_3_desc: "For those planning to create startups, launch IT projects or manage technology teams. The program provides not only technical but also business skills for successful product launch.",
+                benefits_title: "Benefits of studying", benefits_subtitle: "Why choose the Information Systems program at AlmaU",
+                benefit_1_title: "Practical training", benefit_1_desc: "Real projects from the first year, work with current technologies and development tools. Students create a portfolio of real cases.",
+                benefit_2_title: "Industry partners", benefit_2_desc: "Cooperation with leading IT companies in Kazakhstan and abroad. Guest lectures from practitioners, excursions to IT companies, mentoring program.",
+                benefit_3_title: "Internships and employment", benefit_3_desc: "Assistance in finding internships and first jobs through the career center and the university's partner network. 95% of graduates are employed within 6 months.",
+                benefit_4_title: "Modern infrastructure", benefit_4_desc: "Computer labs with powerful equipment, access to cloud platforms, licensed software and online courses from leading IT companies.",
+                benefit_5_title: "International standards", benefit_5_desc: "The program meets ABET requirements and international educational standards in IT. Opportunity to participate in exchange programs.",
+                benefit_6_title: "Flexible specialization choice", benefit_6_desc: "Opportunity to delve deeper into software development, data analytics, cybersecurity or IT project management. Individual educational trajectories.",
+                curriculum_title: "Curriculum", curriculum_subtitle: "3-year bachelor's program with an emphasis on practical skills",
+                semester_1_title: "First year - Programming Fundamentals", semester_1_year: "Year 1",
+                semester_2_title: "Second year - Advanced Studies", semester_2_year: "Year 2",
+                semester_3_title: "Third year - Specialization", semester_3_year: "Year 3",
+                course_1_1_title: "Programming Fundamentals", course_1_1_desc: "Python, algorithms and data structures, OOP basics",
+                course_1_2_title: "Web Development", course_1_2_desc: "HTML, CSS, JavaScript, frontend development basics",
+                course_1_3_title: "Databases", course_1_3_desc: "SQL, database design, MySQL/PostgreSQL",
+                course_1_4_title: "Computer Networks", course_1_4_desc: "Network technologies basics, TCP/IP, HTTP/HTTPS",
+                course_2_1_title: "Backend Development", course_2_1_desc: "Node.js, Django, REST API, microservices",
+                course_2_2_title: "Mobile Development", course_2_2_desc: "React Native, Flutter, iOS/Android development",
+                course_2_3_title: "Data Analytics", course_2_3_desc: "Pandas, NumPy, data visualization, ML basics",
+                course_2_4_title: "DevOps and Cloud", course_2_4_desc: "Docker, Kubernetes, AWS/Azure basics",
+                course_3_1_title: "Graduation Project", course_3_1_desc: "Development of a real IT project under the guidance of a mentor",
+                course_3_2_title: "Cybersecurity", course_3_2_desc: "Information security basics, data protection",
+                course_3_3_title: "Project Management", course_3_3_desc: "Agile, Scrum, IT team management",
+                course_3_4_title: "Internship", course_3_4_desc: "Practice in partner IT companies of the university",
+                career_title: "Career Prospects", career_subtitle: "Program graduates are in demand in the labor market",
+                stat_1_label: "Employment within 6 months", stat_2_label: "Average salary in tenge", stat_3_label: "Partner companies for internships", stat_4_label: "Graduates work in IT sector",
+                role_1_title: "Web Developer", role_1_desc: "Creating and maintaining web applications, working with modern frameworks", role_1_salary: "from 350,000 ₸",
+                role_2_title: "System Analyst", role_2_desc: "Analysis of business processes, design of information systems", role_2_salary: "from 400,000 ₸",
+                role_3_title: "Data Analyst", role_3_desc: "Data analysis, report building, working with BI tools", role_3_salary: "from 450,000 ₸",
+                role_4_title: "DevOps Engineer", role_4_desc: "Process automation, working with cloud platforms", role_4_salary: "from 500,000 ₸",
+                admission_title: "How to Apply", admission_subtitle: "Admission requirements",
+                admission_req_1_title: "UNT or comprehensive testing", admission_req_1_desc: "— you must pass entrance exams in core subjects (mathematics, computer science)",
+                admission_req_2_title: "Education documents", admission_req_2_desc: "— secondary education certificate, identity document, 3×4 photos",
+                admission_req_3_title: "Portfolio (recommended)", admission_req_3_desc: "— personal projects, participation in olympiads, IT competitions or hackathons",
+                admission_req_4_title: "Application deadline", admission_req_4_desc: "— document submission until August 20, enrollment based on competition results",
+                admission_action_text: "Submit your application online or visit the admissions office for detailed consultation",
+                admission_action_btn: "Submit application for admission",
+                consult_title: "Admission Consultation", consult_subtitle: "Have questions? Contact us for more information",
+                consult_contact_title: "Contact Us", consult_phone_label: "Admissions Office phone:", consult_email_label: "Email for applicants:", consult_address_label: "University address:", consult_address_value: "227 Rozybakiev St.<br>Almaty, Kazakhstan", consult_hours_label: "Admissions Office hours:", consult_hours_value: "Mon–Fri: 9:00 – 18:00<br>Sat: 10:00 – 15:00",
+                consult_form_title: "Request Consultation", form_name_label: "Your name", form_name_placeholder: "Ivan Ivanov", form_contact_label: "Phone or Email", form_contact_placeholder: "+7 (777) 123 4567", form_program_label: "Program of interest", form_message_label: "Your question", form_message_placeholder: "I'm interested in admission details, scholarships and curriculum...", form_submit_btn: "Send request"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'INPUT' && el.getAttribute('type') !== 'text') {
+                        // для readonly полей
+                        if (el.id === 'consultProgram') {
+                            el.value = translations[currentLang][key];
+                        }
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+            
+            // Обновляем плейсхолдеры
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+            
+            // Обновляем статические значения
+            const consultProgramInput = document.getElementById('consultProgram');
+            if (consultProgramInput) {
+                consultProgramInput.value = translations[currentLang].hero_title || "Информационные системы";
+            }
+            
+            // Обновляем числовые значения в статистике (оставляем числа, меняем только знак % или +)
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const value = stat.getAttribute('data-stat-value');
+                if (value) {
+                    stat.textContent = value + (value === '95' || value === '85' ? '%' : 'K+');
+                }
+            });
+        }
+
+        function updatePlaceholders() {
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            // Привязываем кнопки переключения языка
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+
         // Автоматическое обновление года в футере
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
+        const footerYearSpan = document.getElementById('footerYear');
+        if (footerYearSpan) footerYearSpan.textContent = new Date().getFullYear();
         
         // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -1614,7 +1867,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -1623,47 +1876,41 @@
             });
         }, observerOptions);
 
-        // Наблюдаем за карточками
         document.querySelectorAll('.suit-card, .benefit-card, .semester, .stat-card, .role-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
-            observer.observe(card);
+            scrollObserver.observe(card);
         });
 
         // Обработка формы
-        document.querySelector('.consultation-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('consultName').value;
-            const contact = document.getElementById('consultContact').value;
-            const message = document.getElementById('consultMessage').value;
-            
-            if (name && contact && message) {
-                // В реальном проекте здесь был бы AJAX запрос
-                alert(`Спасибо, ${name}! Ваш запрос отправлен. Специалист приёмной комиссии свяжется с вами по ${contact} в ближайшее время.`);
-                this.reset();
-            } else {
-                alert('Пожалуйста, заполните все поля формы.');
-            }
-        });
-
-        // Динамическое изменение цвета header при скролле
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.main-header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'var(--white)';
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            }
-        });
+        const consultationForm = document.querySelector('.consultation-form');
+        if (consultationForm) {
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('consultName').value;
+                const contact = document.getElementById('consultContact').value;
+                const message = document.getElementById('consultMessage').value;
+                
+                if (name && contact && message) {
+                    const successMsg = currentLang === 'ru' ? `Спасибо, ${name}! Ваш запрос отправлен. Специалист приёмной комиссии свяжется с вами по ${contact} в ближайшее время.` :
+                                      currentLang === 'kz' ? `Рахмет, ${name}! Сұранысыңыз жіберілді. Қабылдау комиссиясының маманы ${contact} арқылы жақын арада байланысады.` :
+                                      `Thank you, ${name}! Your request has been sent. An admissions specialist will contact you via ${contact} shortly.`;
+                    alert(successMsg);
+                    this.reset();
+                } else {
+                    const errorMsg = currentLang === 'ru' ? 'Пожалуйста, заполните все поля формы.' :
+                                    currentLang === 'kz' ? 'Форманың барлық өрістерін толтырыңыз.' :
+                                    'Please fill in all fields.';
+                    alert(errorMsg);
+                }
+            });
+        }
 
         // Параллакс эффект для hero изображения
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const heroImg = document.querySelector('.hero-img');
-            
             if (heroImg && scrolled < 500) {
                 const rate = scrolled * -0.3;
                 heroImg.style.transform = `perspective(1500px) rotateY(15deg) rotateX(5deg) translateY(${rate}px)`;
@@ -1671,9 +1918,9 @@
         });
 
         // Анимация цифр статистики
-        function animateCounter(element, target, duration) {
+        function animateCounter(element, target, duration, isPercent) {
             const start = 0;
-            const increment = target / (duration / 16); // 16ms per frame
+            const increment = target / (duration / 16);
             let current = start;
             
             const timer = setInterval(() => {
@@ -1682,11 +1929,10 @@
                     current = target;
                     clearInterval(timer);
                 }
-                element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : 'K+');
+                element.textContent = Math.floor(current) + (isPercent ? '%' : 'K+');
             }, 16);
         }
 
-        // Запуск анимации при скролле к секции статистики
         const statsSection = document.querySelector('.career-stats');
         const statNumbers = document.querySelectorAll('.stat-number');
         let animated = false;
@@ -1695,15 +1941,11 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting && !animated) {
                     animated = true;
-                    
                     statNumbers.forEach(stat => {
-                        const text = stat.textContent;
-                        const value = parseInt(text);
-                        
-                        if (text.includes('%')) {
-                            animateCounter(stat, value, 1500);
-                        } else {
-                            animateCounter(stat, value, 2000);
+                        const value = parseInt(stat.getAttribute('data-stat-value'));
+                        const isPercent = value === 95 || value === 85;
+                        if (!isNaN(value)) {
+                            animateCounter(stat, value, 1500, isPercent);
                         }
                     });
                 }

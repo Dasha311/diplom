@@ -4,33 +4,33 @@
         <div class="footer__grid">
             <div class="footer__brand">
                 <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="footer__logo">
-                <p class="footer__desc">
+                <p class="footer__desc" data-i18n="footer_desc">
                     Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.
                 </p>
             </div>
 
             <nav class="footer__col">
-                <h4 class="footer__col-title">Обучение</h4>
+                <h4 class="footer__col-title" data-i18n="footer_learning">Обучение</h4>
                 <ul class="footer__list">
-                    <li><a href="{% url 'university:main_menu' %}#programs">Программы</a></li>
-                    <li><a href="{% url 'university:schools_menu' %}">Школы</a></li>
-                    <li><a href="{% url 'university:main_menu' %}#apply">Поступление</a></li>
-                    <li><a href="{% url 'university:main_menu' %}#scholarships">Стипендии</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#programs" data-i18n="footer_programs">Программы</a></li>
+                    <li><a href="{% url 'university:schools_menu' %}" data-i18n="nav_schools">Школы</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#apply" data-i18n="footer_admission">Поступление</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#scholarships" data-i18n="footer_scholarships">Стипендии</a></li>
                 </ul>
             </nav>
 
             <nav class="footer__col">
-                <h4 class="footer__col-title">Университет</h4>
+                <h4 class="footer__col-title" data-i18n="footer_university">Университет</h4>
                 <ul class="footer__list">
-                     <li><a href="{% url 'university:main_menu' %}#about">О нас</a></li>
-                    <li><a href="{% url 'university:main_menu' %}#news">Новости</a></li>
-                    <li><a href="{% url 'university:main_menu' %}#events">События</a></li>
-                    <li><a href="{% url 'university:main_menu' %}#partners">Партнёры</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#about" data-i18n="footer_about">О нас</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#news" data-i18n="footer_news">Новости</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#events" data-i18n="footer_events">События</a></li>
+                    <li><a href="{% url 'university:main_menu' %}#partners" data-i18n="footer_partners">Партнёры</a></li>
                 </ul>
             </nav>
 
             <div class="footer__col">
-                <h4 class="footer__col-title">Контакты</h4>
+                <h4 class="footer__col-title" data-i18n="footer_contacts">Контакты</h4>
                 <address class="footer__address">
                     ул. Розыбакиева, 227<br>
                     Алматы, Казахстан<br><br>
@@ -47,8 +47,9 @@
 
         <div class="footer__bottom">
             <p>
-                © <span id="footerYear">2025</span> AlmaU. Все права защищены.
-                <a href="{% url 'university:main_menu' %}#privacy">Политика конфиденциальности</a>
+                © <span id="footerYear">2025</span> AlmaU. <span data-i18n="footer_copyright">Все права защищены.</span>
+                <a href="{% url 'university:main_menu' %}#privacy" data-i18n="footer_privacy">Политика конфиденциальности</a>
+            </p>
         </div>
     </div>
 </footer>

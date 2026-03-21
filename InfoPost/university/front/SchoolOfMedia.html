@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Школа Медиа и Кино</title>
+    <title data-i18n="page_title">AlmaU · Школа Медиа и Кино</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -933,19 +933,19 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Школа Медиа и Кино</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа Медиа и Кино</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Готовим креативных продюсеров, режиссёров, журналистов и медиаменеджеров, способных создавать качественный контент и управлять медиапроектами в цифровую эпоху.
                     </p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Консультация</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                     <div class="hero-features">
-                        <div class="feature"><strong>8+</strong> творческих программ</div>
-                        <div class="feature"><strong>20+</strong> медиапартнёров</div>
-                        <div class="feature"><strong>Студии</strong> и оборудование</div>
-                        <div class="feature"><strong>Мастер-классы</strong> от звёзд</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">8+</strong> <span data-i18n="feature_1_label">творческих программ</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">20+</strong> <span data-i18n="feature_2_label">медиапартнёров</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_label">Студии</strong> <span data-i18n="feature_3_value">и оборудование</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_label">Мастер-классы</strong> <span data-i18n="feature_4_value">от звёзд</span></div>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -957,92 +957,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Медиа и Кино</h2>
-                <p class="section-sub">Актуальные программы для карьеры в киноиндустрии, телевидении, digital-медиа и журналистике</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Медиа и Кино</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Актуальные программы для карьеры в киноиндустрии, телевидении, digital-медиа и журналистике</p>
 
                 <div class="programs-grid">
                     <!-- 1. Режиссура кино и ТВ -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Режиссура кино и ТВ</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Режиссура кино и ТВ</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Режиссура игрового и документального кино, работа с актёрами, драматургия.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Режиссура игрового и документального кино, работа с актёрами, драматургия.</p>
                             <div class="program-details">
-                                <h4>Мастерские</h4>
-                                <ul><li>Игровое кино</li><li>Документалистика</li><li>Телевизионная режиссура</li></ul>
+                                <h4 data-i18n="program_1_workshops_title">Мастерские</h4>
+                                <ul>
+                                    <li data-i18n="program_1_workshop_1">Игровое кино</li>
+                                    <li data-i18n="program_1_workshop_2">Документалистика</li>
+                                    <li data-i18n="program_1_workshop_3">Телевизионная режиссура</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Режиссура')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Продюсирование кино и медиа -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Продюсирование</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Продюсирование</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Продюсирование фильмов, управление проектами, фандрайзинг, дистрибуция.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Продюсирование фильмов, управление проектами, фандрайзинг, дистрибуция.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Кинопродюсер</li><li>Телепродюсер</li><li>Креативный продюсер</li></ul>
+                                <h4 data-i18n="program_2_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_2_track_1">Кинопродюсер</li>
+                                    <li data-i18n="program_2_track_2">Телепродюсер</li>
+                                    <li data-i18n="program_2_track_3">Креативный продюсер</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Продюсирование')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Журналистика и новые медиа -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Журналистика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Журналистика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Мультимедийная журналистика, расследования, подкастинг, работа в соцсетях.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Мультимедийная журналистика, расследования, подкастинг, работа в соцсетях.</p>
                             <div class="program-details">
-                                <h4>Специализации</h4>
-                                <ul><li>Тележурналистика</li><li>Интернет-издания</li><li>Радиовещание</li></ul>
+                                <h4 data-i18n="program_3_specs_title">Специализации</h4>
+                                <ul>
+                                    <li data-i18n="program_3_spec_1">Тележурналистика</li>
+                                    <li data-i18n="program_3_spec_2">Интернет-издания</li>
+                                    <li data-i18n="program_3_spec_3">Радиовещание</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Журналистика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Операторское искусство -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Операторское искусство</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Операторское искусство</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Кинооператорская работа, свет, композиция, работа с цифровыми камерами.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Кинооператорская работа, свет, композиция, работа с цифровыми камерами.</p>
                             <div class="program-details">
-                                <h4>Практика</h4>
-                                <ul><li>Студийные съёмки</li><li>Натурные съёмки</li><li>Цветокоррекция</li></ul>
+                                <h4 data-i18n="program_4_practice_title">Практика</h4>
+                                <ul>
+                                    <li data-i18n="program_4_practice_1">Студийные съёмки</li>
+                                    <li data-i18n="program_4_practice_2">Натурные съёмки</li>
+                                    <li data-i18n="program_4_practice_3">Цветокоррекция</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Операторское искусство')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Анимация и визуальные эффекты -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Анимация и VFX</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Анимация и VFX</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>2D/3D анимация, компьютерная графика, спецэффекты, постпродакшн.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">2D/3D анимация, компьютерная графика, спецэффекты, постпродакшн.</p>
                             <div class="program-details">
-                                <h4>Инструменты</h4>
-                                <ul><li>Blender, Maya</li><li>After Effects</li><li>Nuke</li></ul>
+                                <h4 data-i18n="program_5_tools_title">Инструменты</h4>
+                                <ul>
+                                    <li data-i18n="program_5_tool_1">Blender, Maya</li>
+                                    <li data-i18n="program_5_tool_2">After Effects</li>
+                                    <li data-i18n="program_5_tool_3">Nuke</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Анимация')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Медиакоммуникации и PR -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Медиакоммуникации и PR</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Медиакоммуникации и PR</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Связи с общественностью, управление репутацией, SMM, event-менеджмент.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Связи с общественностью, управление репутацией, SMM, event-менеджмент.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>PR-менеджер</li><li>Пресс-секретарь</li><li>Медиастратег</li></ul>
+                                <h4 data-i18n="program_6_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_6_career_1">PR-менеджер</li>
+                                    <li data-i18n="program_6_career_2">Пресс-секретарь</li>
+                                    <li data-i18n="program_6_career_3">Медиастратег</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Медиакоммуникации')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -1051,12 +1075,12 @@
         <!-- Преимущества (3 шт) -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества школы</h2>
-                <p class="section-sub">Почему выбирают нас</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества школы</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему выбирают нас</p>
                 <div class="advantages-grid">
-                    <div class="advantage-card"><div class="advantage-icon">🎥</div><h3>Современное оборудование</h3><p>Студии с профессиональным светом, камерами ARRI, Sony, звукозаписывающие студии.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🎬</div><h3>Индустриальные партнёры</h3><p>Сотрудничество с Kazakhfilm, 31 канал, телеканалами и продакшн-студиями.</p></div>
-                    <div class="advantage-card"><div class="advantage-icon">🏆</div><h3>Кинофестивали и премии</h3><p>Студенческие работы участвуют в международных конкурсах и получают награды.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🎥</div><h3 data-i18n="advantage_1_title">Современное оборудование</h3><p data-i18n="advantage_1_desc">Студии с профессиональным светом, камерами ARRI, Sony, звукозаписывающие студии.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🎬</div><h3 data-i18n="advantage_2_title">Индустриальные партнёры</h3><p data-i18n="advantage_2_desc">Сотрудничество с Kazakhfilm, 31 канал, телеканалами и продакшн-студиями.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">🏆</div><h3 data-i18n="advantage_3_title">Кинофестивали и премии</h3><p data-i18n="advantage_3_desc">Студенческие работы участвуют в международных конкурсах и получают награды.</p></div>
                 </div>
             </div>
         </section>
@@ -1064,16 +1088,16 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 <div class="admission-content">
-                    <h3 class="admission-subtitle">Требования для абитуриентов</h3>
+                    <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для абитуриентов</h3>
                     <ol class="admission-list">
-                        <li><strong>Творческий конкурс</strong> — портфолио (видеоработы, сценарии, фото) или собеседование</li>
-                        <li><strong>ЕНТ / комплексное тестирование</strong> — история Казахстана, иностранный язык / литература</li>
-                        <li><strong>Собеседование</strong> — мотивация, знание кино и медиаиндустрии</li>
-                        <li><strong>Документы</strong> — аттестат, удостоверение личности, фото 3×4</li>
+                        <li><strong data-i18n="admission_req_1_title">Творческий конкурс</strong> <span data-i18n="admission_req_1_desc">— портфолио (видеоработы, сценарии, фото) или собеседование</span></li>
+                        <li><strong data-i18n="admission_req_2_title">ЕНТ / комплексное тестирование</strong> <span data-i18n="admission_req_2_desc">— история Казахстана, иностранный язык / литература</span></li>
+                        <li><strong data-i18n="admission_req_3_title">Собеседование</strong> <span data-i18n="admission_req_3_desc">— мотивация, знание кино и медиаиндустрии</span></li>
+                        <li><strong data-i18n="admission_req_4_title">Документы</strong> <span data-i18n="admission_req_4_desc">— аттестат, удостоверение личности, фото 3×4</span></li>
                     </ol>
-                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку</a></div>
+                    <div class="admission-action"><a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_btn">Подать заявку</a></div>
                 </div>
             </div>
         </section>
@@ -1081,25 +1105,25 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для консультации по программам медиа и кино</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для консультации по программам медиа и кино</p>
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Приёмная комиссия</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_commission_title">Приёмная комиссия</h3>
                         <address class="contacts-address">
-                            <div class="contacts-item"><strong>Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
-                            <div class="contacts-item"><strong>Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
-                            <div class="contacts-item"><strong>Адрес:</strong> ул. Розыбакиева, 227, Алматы</div>
-                            <div class="contacts-item"><strong>Часы работы:</strong> Пн–Пт 9:00–18:00, Сб 10:00–15:00</div>
+                            <div class="contacts-item"><strong data-i18n="contacts_phone_label">Телефон:</strong> <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_email_label">Email для заявок:</strong> <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_address_label">Адрес:</strong> <span data-i18n="contacts_address_value">ул. Розыбакиева, 227, Алматы</span></div>
+                            <div class="contacts-item"><strong data-i18n="contacts_hours_label">Часы работы:</strong> <span data-i18n="contacts_hours_value">Пн–Пт 9:00–18:00, Сб 10:00–15:00</span></div>
                         </address>
                     </div>
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Задать вопрос</h3>
-                        <form class="contacts-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                            <div class="form-group"><label for="name" class="form-label">Имя</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label for="contact" class="form-label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
-                            <div class="form-group"><label for="msg" class="form-label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
-                            <button type="submit" class="form-submit">Отправить</button>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Задать вопрос</h3>
+                        <form class="contacts-form" id="consultForm">
+                            <div class="form-group"><label for="name" class="form-label" data-i18n="form_name_label">Имя</label><input type="text" id="name" class="form-input" required></div>
+                            <div class="form-group"><label for="contact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label><input type="text" id="contact" class="form-input" required></div>
+                            <div class="form-group"><label for="msg" class="form-label" data-i18n="form_question_label">Вопрос / программа</label><textarea id="msg" class="form-textarea" required></textarea></div>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить</button>
                         </form>
                     </div>
                 </div>
@@ -1111,15 +1135,228 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Школа Медиа и Кино",
+                hero_title: "Школа Медиа и Кино",
+                hero_desc: "Готовим креативных продюсеров, режиссёров, журналистов и медиаменеджеров, способных создавать качественный контент и управлять медиапроектами в цифровую эпоху.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                feature_1_value: "8+", feature_1_label: "творческих программ",
+                feature_2_value: "20+", feature_2_label: "медиапартнёров",
+                feature_3_label: "Студии", feature_3_value: "и оборудование",
+                feature_4_label: "Мастер-классы", feature_4_value: "от звёзд",
+                programs_title: "Программы Школы Медиа и Кино",
+                programs_subtitle: "Актуальные программы для карьеры в киноиндустрии, телевидении, digital-медиа и журналистике",
+                program_1_title: "Режиссура кино и ТВ", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Режиссура игрового и документального кино, работа с актёрами, драматургия.",
+                program_1_workshops_title: "Мастерские", program_1_workshop_1: "Игровое кино", program_1_workshop_2: "Документалистика", program_1_workshop_3: "Телевизионная режиссура",
+                program_1_alert: "Подробнее о программе Режиссура",
+                program_2_title: "Продюсирование", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Продюсирование фильмов, управление проектами, фандрайзинг, дистрибуция.",
+                program_2_tracks_title: "Траектории", program_2_track_1: "Кинопродюсер", program_2_track_2: "Телепродюсер", program_2_track_3: "Креативный продюсер",
+                program_2_alert: "Подробнее о программе Продюсирование",
+                program_3_title: "Журналистика", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Мультимедийная журналистика, расследования, подкастинг, работа в соцсетях.",
+                program_3_specs_title: "Специализации", program_3_spec_1: "Тележурналистика", program_3_spec_2: "Интернет-издания", program_3_spec_3: "Радиовещание",
+                program_3_alert: "Подробнее о программе Журналистика",
+                program_4_title: "Операторское искусство", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Кинооператорская работа, свет, композиция, работа с цифровыми камерами.",
+                program_4_practice_title: "Практика", program_4_practice_1: "Студийные съёмки", program_4_practice_2: "Натурные съёмки", program_4_practice_3: "Цветокоррекция",
+                program_4_alert: "Подробнее о программе Операторское искусство",
+                program_5_title: "Анимация и VFX", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "2D/3D анимация, компьютерная графика, спецэффекты, постпродакшн.",
+                program_5_tools_title: "Инструменты", program_5_tool_1: "Blender, Maya", program_5_tool_2: "After Effects", program_5_tool_3: "Nuke",
+                program_5_alert: "Подробнее о программе Анимация и VFX",
+                program_6_title: "Медиакоммуникации и PR", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Связи с общественностью, управление репутацией, SMM, event-менеджмент.",
+                program_6_career_title: "Карьера", program_6_career_1: "PR-менеджер", program_6_career_2: "Пресс-секретарь", program_6_career_3: "Медиастратег",
+                program_6_alert: "Подробнее о программе Медиакоммуникации и PR",
+                btn_more: "Подробнее",
+                advantages_title: "Преимущества школы", advantages_subtitle: "Почему выбирают нас",
+                advantage_1_title: "Современное оборудование", advantage_1_desc: "Студии с профессиональным светом, камерами ARRI, Sony, звукозаписывающие студии.",
+                advantage_2_title: "Индустриальные партнёры", advantage_2_desc: "Сотрудничество с Kazakhfilm, 31 канал, телеканалами и продакшн-студиями.",
+                advantage_3_title: "Кинофестивали и премии", advantage_3_desc: "Студенческие работы участвуют в международных конкурсах и получают награды.",
+                admission_title: "Как поступить", admission_subtitle: "Требования для абитуриентов",
+                admission_req_1_title: "Творческий конкурс", admission_req_1_desc: "— портфолио (видеоработы, сценарии, фото) или собеседование",
+                admission_req_2_title: "ЕНТ / комплексное тестирование", admission_req_2_desc: "— история Казахстана, иностранный язык / литература",
+                admission_req_3_title: "Собеседование", admission_req_3_desc: "— мотивация, знание кино и медиаиндустрии",
+                admission_req_4_title: "Документы", admission_req_4_desc: "— аттестат, удостоверение личности, фото 3×4",
+                admission_btn: "Подать заявку",
+                contacts_title: "Контакты приёмной комиссии", contacts_subtitle: "Свяжитесь с нами для консультации по программам медиа и кино",
+                contacts_commission_title: "Приёмная комиссия", contacts_phone_label: "Телефон:", contacts_email_label: "Email для заявок:", contacts_address_label: "Адрес:", contacts_address_value: "ул. Розыбакиева, 227, Алматы", contacts_hours_label: "Часы работы:", contacts_hours_value: "Пн–Пт 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Задать вопрос", form_name_label: "Имя", form_contact_label: "Телефон или Email", form_question_label: "Вопрос / программа", form_submit_btn: "Отправить", form_success: "Спасибо! Мы свяжемся с вами в ближайшее время.", form_error: "Пожалуйста, заполните все поля формы."
+            },
+            kz: {
+                page_title: "AlmaU · Медиа және Кино мектебі",
+                hero_title: "Медиа және Кино мектебі",
+                hero_desc: "Цифрлық дәуірде сапалы контент жасай алатын және медиажобаларды басқара алатын креативті продюсерлерді, режиссерлерді, журналистерді және медиаменеджерлерді даярлаймыз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "8+", feature_1_label: "шығармашылық бағдарлама",
+                feature_2_value: "20+", feature_2_label: "медиасеріктес",
+                feature_3_label: "Студиялар", feature_3_value: "және жабдықтар",
+                feature_4_label: "Шеберлік сабақтары", feature_4_value: "жұлдыздардан",
+                programs_title: "Медиа және Кино мектебінің бағдарламалары",
+                programs_subtitle: "Киноиндустрия, телевидение, digital-медиа және журналистика саласындағы мансап үшін өзекті бағдарламалар",
+                program_1_title: "Кино және ТВ режиссурасы", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Көркем және деректі кино режиссурасы, актерлермен жұмыс, драматургия.",
+                program_1_workshops_title: "Шеберханалар", program_1_workshop_1: "Көркем кино", program_1_workshop_2: "Деректі фильм", program_1_workshop_3: "Телевизиялық режиссура",
+                program_1_alert: "Режиссура бағдарламасы туралы толығырақ",
+                program_2_title: "Продюсерлік", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Фильмдерді продюсерлеу, жобаларды басқару, фандрайзинг, дистрибуция.",
+                program_2_tracks_title: "Траекториялар", program_2_track_1: "Кинопродюсер", program_2_track_2: "Телепродюсер", program_2_track_3: "Креативті продюсер",
+                program_2_alert: "Продюсерлік бағдарламасы туралы толығырақ",
+                program_3_title: "Журналистика", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Мультимедиялық журналистика, тергеулер, подкастинг, әлеуметтік желілерде жұмыс.",
+                program_3_specs_title: "Мамандандырулар", program_3_spec_1: "Тележурналистика", program_3_spec_2: "Интернет-басылымдар", program_3_spec_3: "Радио хабарлары",
+                program_3_alert: "Журналистика бағдарламасы туралы толығырақ",
+                program_4_title: "Операторлық өнер", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Кинооператорлық жұмыс, жарық, композиция, цифрлық камералармен жұмыс.",
+                program_4_practice_title: "Практика", program_4_practice_1: "Студиялық түсірілімдер", program_4_practice_2: "Натуралы түсірілімдер", program_4_practice_3: "Түзету",
+                program_4_alert: "Операторлық өнер бағдарламасы туралы толығырақ",
+                program_5_title: "Анимация және VFX", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "2D/3D анимация, компьютерлік графика, арнайы эффектілер, постпродакшн.",
+                program_5_tools_title: "Құралдар", program_5_tool_1: "Blender, Maya", program_5_tool_2: "After Effects", program_5_tool_3: "Nuke",
+                program_5_alert: "Анимация және VFX бағдарламасы туралы толығырақ",
+                program_6_title: "Медиакоммуникация және PR", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Қоғаммен байланыс, беделді басқару, SMM, event-менеджмент.",
+                program_6_career_title: "Мансап", program_6_career_1: "PR-менеджер", program_6_career_2: "Баспасөз хатшысы", program_6_career_3: "Медиастратег",
+                program_6_alert: "Медиакоммуникация және PR бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                advantages_title: "Мектеп артықшылықтары", advantages_subtitle: "Неліктен бізді таңдайды",
+                advantage_1_title: "Заманауи жабдықтар", advantage_1_desc: "Кәсіби жарығы бар студиялар, ARRI, Sony камералары, дыбыс жазу студиялары.",
+                advantage_2_title: "Индустриялық серіктестер", advantage_2_desc: "Kazakhfilm, 31 арна, телеарналар және продакшн-студиялармен ынтымақтастық.",
+                advantage_3_title: "Кинофестивальдар және жүлделер", advantage_3_desc: "Студенттік жұмыстар халықаралық конкурстарға қатысып, жүлделерге ие болады.",
+                admission_title: "Қалай түсуге болады", admission_subtitle: "Абитуриенттерге қойылатын талаптар",
+                admission_req_1_title: "Шығармашылық конкурс", admission_req_1_desc: "— портфолио (видеожұмыстар, сценарийлер, фото) немесе сұхбат",
+                admission_req_2_title: "ҰБТ / кешенді тестілеу", admission_req_2_desc: "— Қазақстан тарихы, шет тілі / әдебиет",
+                admission_req_3_title: "Сұхбат", admission_req_3_desc: "— мотивация, кино және медиаиндустрияны білу",
+                admission_req_4_title: "Құжаттар", admission_req_4_desc: "— аттестат, жеке куәлік, фото 3×4",
+                admission_btn: "Өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары", contacts_subtitle: "Медиа және кино бағдарламалары бойынша кеңес алу үшін бізге хабарласыңыз",
+                contacts_commission_title: "Қабылдау комиссиясы", contacts_phone_label: "Телефон:", contacts_email_label: "Өтінімдерге арналған Email:", contacts_address_label: "Мекенжайы:", contacts_address_value: "Розыбакиев көш., 227, Алматы", contacts_hours_label: "Жұмыс уақыты:", contacts_hours_value: "Дс–Жм 9:00–18:00, Сб 10:00–15:00",
+                contacts_form_title: "Сұрақ қою", form_name_label: "Аты-жөні", form_contact_label: "Телефон немесе Email", form_question_label: "Сұрақ / бағдарлама", form_submit_btn: "Жіберу", form_success: "Рахмет! Біз сізбен жақын арада байланысамыз.", form_error: "Форманың барлық өрістерін толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU · School of Media and Film",
+                hero_title: "School of Media and Film",
+                hero_desc: "We train creative producers, directors, journalists and media managers capable of creating quality content and managing media projects in the digital age.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                feature_1_value: "8+", feature_1_label: "creative programs",
+                feature_2_value: "20+", feature_2_label: "media partners",
+                feature_3_label: "Studios", feature_3_value: "and equipment",
+                feature_4_label: "Master classes", feature_4_value: "from stars",
+                programs_title: "School of Media and Film Programs",
+                programs_subtitle: "Relevant programs for careers in film industry, television, digital media and journalism",
+                program_1_title: "Film and TV Directing", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Directing fiction and documentary films, working with actors, dramaturgy.",
+                program_1_workshops_title: "Workshops", program_1_workshop_1: "Fiction Film", program_1_workshop_2: "Documentary", program_1_workshop_3: "TV Directing",
+                program_1_alert: "More about Directing program",
+                program_2_title: "Producing", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Film producing, project management, fundraising, distribution.",
+                program_2_tracks_title: "Tracks", program_2_track_1: "Film Producer", program_2_track_2: "TV Producer", program_2_track_3: "Creative Producer",
+                program_2_alert: "More about Producing program",
+                program_3_title: "Journalism", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Multimedia journalism, investigations, podcasting, social media work.",
+                program_3_specs_title: "Specializations", program_3_spec_1: "TV Journalism", program_3_spec_2: "Online Media", program_3_spec_3: "Broadcasting",
+                program_3_alert: "More about Journalism program",
+                program_4_title: "Cinematography", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Cinematography, lighting, composition, working with digital cameras.",
+                program_4_practice_title: "Practice", program_4_practice_1: "Studio shooting", program_4_practice_2: "Location shooting", program_4_practice_3: "Color grading",
+                program_4_alert: "More about Cinematography program",
+                program_5_title: "Animation and VFX", program_5_duration: "Bachelor's — 3 years", program_5_desc: "2D/3D animation, computer graphics, special effects, post-production.",
+                program_5_tools_title: "Tools", program_5_tool_1: "Blender, Maya", program_5_tool_2: "After Effects", program_5_tool_3: "Nuke",
+                program_5_alert: "More about Animation and VFX program",
+                program_6_title: "Media Communications and PR", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Public relations, reputation management, SMM, event management.",
+                program_6_career_title: "Career", program_6_career_1: "PR Manager", program_6_career_2: "Press Secretary", program_6_career_3: "Media Strategist",
+                program_6_alert: "More about Media Communications and PR program",
+                btn_more: "Learn more",
+                advantages_title: "School Advantages", advantages_subtitle: "Why choose us",
+                advantage_1_title: "Modern Equipment", advantage_1_desc: "Studios with professional lighting, ARRI and Sony cameras, recording studios.",
+                advantage_2_title: "Industry Partners", advantage_2_desc: "Collaboration with Kazakhfilm, 31 Channel, TV channels and production studios.",
+                advantage_3_title: "Film Festivals and Awards", advantage_3_desc: "Student works participate in international competitions and receive awards.",
+                admission_title: "How to Apply", admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "Creative competition", admission_req_1_desc: "— portfolio (video works, scripts, photos) or interview",
+                admission_req_2_title: "UNT / comprehensive testing", admission_req_2_desc: "— History of Kazakhstan, foreign language / literature",
+                admission_req_3_title: "Interview", admission_req_3_desc: "— motivation, knowledge of film and media industry",
+                admission_req_4_title: "Documents", admission_req_4_desc: "— certificate, identity document, photo 3×4",
+                admission_btn: "Submit application",
+                contacts_title: "Admissions Office Contacts", contacts_subtitle: "Contact us for consultation on media and film programs",
+                contacts_commission_title: "Admissions Office", contacts_phone_label: "Phone:", contacts_email_label: "Email for applications:", contacts_address_label: "Address:", contacts_address_value: "227 Rozybakiev St., Almaty", contacts_hours_label: "Working hours:", contacts_hours_value: "Mon–Fri 9:00–18:00, Sat 10:00–15:00",
+                contacts_form_title: "Ask a Question", form_name_label: "Name", form_contact_label: "Phone or Email", form_question_label: "Question / Program", form_submit_btn: "Send", form_success: "Thank you! We will contact you shortly.", form_error: "Please fill in all fields."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
             });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const contact = document.getElementById('contact').value;
+                    const msg = document.getElementById('msg').value;
+                    
+                    if (name && contact && msg) {
+                        alert(getTranslation('form_success'));
+                        this.reset();
+                    } else {
+                        alert(getTranslation('form_error'));
+                    }
+                });
+            }
         });
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}

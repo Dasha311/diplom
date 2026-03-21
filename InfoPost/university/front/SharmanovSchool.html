@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Sharmanov School of Health Sciences</title>
+    <title data-i18n="page_title">AlmaU · Sharmanov School of Health Sciences</title>
     <!-- Подключаем шрифт Inter как на главной -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -825,13 +825,13 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Sharmanov School of Health Sciences</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Sharmanov School of Health Sciences</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Готовим специалистов в области общественного здравоохранения, медицинского менеджмента и сестринского дела, способных повышать качество жизни и управлять системами здравоохранения.
                     </p>
                     <div class="hero-actions">
-                        <a href="{% url 'university:chatbot_menu' %}" class="hero-cta primary">Подать заявление</a>
-                        <a href="mailto:admission@almau.kz" class="hero-cta ghost">Консультация</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="mailto:admission@almau.kz" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -845,20 +845,20 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">программ в сфере здоровья</div>
+                        <div class="stat-number" data-i18n="stat_1_value">6+</div>
+                        <div class="stat-label" data-i18n="stat_1_label">программ в сфере здоровья</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">клиник и партнёров</div>
+                        <div class="stat-number" data-i18n="stat_2_value">30+</div>
+                        <div class="stat-label" data-i18n="stat_2_label">клиник и партнёров</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">практика с 1 курса</div>
+                        <div class="stat-number" data-i18n="stat_3_value">100%</div>
+                        <div class="stat-label" data-i18n="stat_3_label">практика с 1 курса</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">международных стажировок</div>
+                        <div class="stat-number" data-i18n="stat_4_value">15+</div>
+                        <div class="stat-label" data-i18n="stat_4_label">международных стажировок</div>
                     </div>
                 </div>
             </div>
@@ -867,92 +867,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Наук о Здоровье</h2>
-                <p class="section-sub">Современные программы для карьеры в здравоохранении, управлении клиниками и общественном здоровье</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Наук о Здоровье</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Современные программы для карьеры в здравоохранении, управлении клиниками и общественном здоровье</p>
 
                 <div class="programs-grid">
                     <!-- 1. Общественное здравоохранение -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Общественное здравоохранение</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Общественное здравоохранение</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Эпидемиология, биостатистика, политика здравоохранения, глобальное здоровье.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Эпидемиология, биостатистика, политика здравоохранения, глобальное здоровье.</p>
                             <div class="program-details">
-                                <h4>Карьерные треки</h4>
-                                <ul><li>Аналитик в Минздраве</li><li>Специалист ВОЗ</li><li>Проекты в сфере общественного здоровья</li></ul>
+                                <h4 data-i18n="program_1_career_title">Карьерные треки</h4>
+                                <ul>
+                                    <li data-i18n="program_1_career_1">Аналитик в Минздраве</li>
+                                    <li data-i18n="program_1_career_2">Специалист ВОЗ</li>
+                                    <li data-i18n="program_1_career_3">Проекты в сфере общественного здоровья</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Общественное здравоохранение')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Менеджмент в здравоохранении -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Менеджмент в здравоохранении</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Менеджмент в здравоохранении</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Управление клиниками, экономика здравоохранения, медицинский маркетинг, лидерство.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Управление клиниками, экономика здравоохранения, медицинский маркетинг, лидерство.</p>
                             <div class="program-details">
-                                <h4>Практика</h4>
-                                <ul><li>Администрирование больниц</li><li>Страховые компании</li><li>Фармацевтический бизнес</li></ul>
+                                <h4 data-i18n="program_2_practice_title">Практика</h4>
+                                <ul>
+                                    <li data-i18n="program_2_practice_1">Администрирование больниц</li>
+                                    <li data-i18n="program_2_practice_2">Страховые компании</li>
+                                    <li data-i18n="program_2_practice_3">Фармацевтический бизнес</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Менеджмент в здравоохранении')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Сестринское дело -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Сестринское дело</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Сестринское дело</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Клинический уход, организация сестринской службы, пациентская безопасность.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Клинический уход, организация сестринской службы, пациентская безопасность.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Старшая медсестра</li><li>Преподаватель</li><li>Управление сестринским персоналом</li></ul>
+                                <h4 data-i18n="program_3_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_3_track_1">Старшая медсестра</li>
+                                    <li data-i18n="program_3_track_2">Преподаватель</li>
+                                    <li data-i18n="program_3_track_3">Управление сестринским персоналом</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Сестринское дело')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Нутрициология и диетология -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Нутрициология и диетология</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Нутрициология и диетология</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Наука о питании, диетотерапия, пищевая безопасность, здоровый образ жизни.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Наука о питании, диетотерапия, пищевая безопасность, здоровый образ жизни.</p>
                             <div class="program-details">
-                                <h4>Сферы</h4>
-                                <ul><li>Клинический диетолог</li><li>Фитнес-нутрициолог</li><li>Консультант по питанию</li></ul>
+                                <h4 data-i18n="program_4_fields_title">Сферы</h4>
+                                <ul>
+                                    <li data-i18n="program_4_field_1">Клинический диетолог</li>
+                                    <li data-i18n="program_4_field_2">Фитнес-нутрициолог</li>
+                                    <li data-i18n="program_4_field_3">Консультант по питанию</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Нутрициология')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Медицинская информатика -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Медицинская информатика</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Медицинская информатика</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Цифровое здравоохранение, EHR, телемедицина, анализ медицинских данных.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Цифровое здравоохранение, EHR, телемедицина, анализ медицинских данных.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>IT-специалист в клинике</li><li>BI-аналитик в фарме</li><li>Разработчик решений для здравоохранения</li></ul>
+                                <h4 data-i18n="program_5_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_5_career_1">IT-специалист в клинике</li>
+                                    <li data-i18n="program_5_career_2">BI-аналитик в фарме</li>
+                                    <li data-i18n="program_5_career_3">Разработчик решений для здравоохранения</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Медицинская информатика')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Психология здоровья -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Психология здоровья</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Психология здоровья</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Психосоматика, поведенческая медицина, консультирование, здоровый образ жизни.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Психосоматика, поведенческая медицина, консультирование, здоровый образ жизни.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Медицинский психолог</li><li>Коуч по здоровью</li><li>Реабилитолог</li></ul>
+                                <h4 data-i18n="program_6_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_6_track_1">Медицинский психолог</li>
+                                    <li data-i18n="program_6_track_2">Коуч по здоровью</li>
+                                    <li data-i18n="program_6_track_3">Реабилитолог</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Психология здоровья')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -961,23 +985,23 @@
         <!-- Почему эта школа -->
         <section class="why-section">
             <div class="container">
-                <h2 class="section-title">Почему эта школа</h2>
-                <p class="section-sub">Sharmanov School of Health Sciences — выбор будущих лидеров здравоохранения</p>
+                <h2 class="section-title" data-i18n="why_title">Почему эта школа</h2>
+                <p class="section-sub" data-i18n="why_subtitle">Sharmanov School of Health Sciences — выбор будущих лидеров здравоохранения</p>
                 <div class="why-grid">
                     <div class="why-card">
                         <div class="why-icon">🏥</div>
-                        <h3>Клиническая база</h3>
-                        <p>Практика в ведущих клиниках Алматы, центрах ПМСП, научно-исследовательских институтах с первого курса.</p>
+                        <h3 data-i18n="why_1_title">Клиническая база</h3>
+                        <p data-i18n="why_1_desc">Практика в ведущих клиниках Алматы, центрах ПМСП, научно-исследовательских институтах с первого курса.</p>
                     </div>
                     <div class="why-card">
                         <div class="why-icon">🌍</div>
-                        <h3>Международное партнёрство</h3>
-                        <p>Совместные программы с университетами Европы и США, участие в глобальных исследованиях и стажировках.</p>
+                        <h3 data-i18n="why_2_title">Международное партнёрство</h3>
+                        <p data-i18n="why_2_desc">Совместные программы с университетами Европы и США, участие в глобальных исследованиях и стажировках.</p>
                     </div>
                     <div class="why-card">
                         <div class="why-icon">🧪</div>
-                        <h3>Современные лаборатории</h3>
-                        <p>Симуляционные центры, оборудование для телемедицины, аналитические станции и цифровые технологии.</p>
+                        <h3 data-i18n="why_3_title">Современные лаборатории</h3>
+                        <p data-i18n="why_3_desc">Симуляционные центры, оборудование для телемедицины, аналитические станции и цифровые технологии.</p>
                     </div>
                 </div>
             </div>
@@ -986,8 +1010,8 @@
         <!-- Видео секция (YouTube) -->
         <section class="video-section">
             <div class="container">
-                <h2 class="section-title">О школе в деталях</h2>
-                <p class="section-sub">Узнайте больше о Sharmanov School of Health Sciences из нашего видео</p>
+                <h2 class="section-title" data-i18n="video_title">О школе в деталях</h2>
+                <p class="section-sub" data-i18n="video_subtitle">Узнайте больше о Sharmanov School of Health Sciences из нашего видео</p>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/c_tuWKdKBHM" title="Sharmanov School of Health Sciences" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
@@ -999,14 +1023,186 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Sharmanov School of Health Sciences",
+                hero_title: "Sharmanov School of Health Sciences",
+                hero_desc: "Готовим специалистов в области общественного здравоохранения, медицинского менеджмента и сестринского дела, способных повышать качество жизни и управлять системами здравоохранения.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                stat_1_value: "6+", stat_1_label: "программ в сфере здоровья",
+                stat_2_value: "30+", stat_2_label: "клиник и партнёров",
+                stat_3_value: "100%", stat_3_label: "практика с 1 курса",
+                stat_4_value: "15+", stat_4_label: "международных стажировок",
+                programs_title: "Программы Школы Наук о Здоровье",
+                programs_subtitle: "Современные программы для карьеры в здравоохранении, управлении клиниками и общественном здоровье",
+                program_1_title: "Общественное здравоохранение", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Эпидемиология, биостатистика, политика здравоохранения, глобальное здоровье.",
+                program_1_career_title: "Карьерные треки", program_1_career_1: "Аналитик в Минздраве", program_1_career_2: "Специалист ВОЗ", program_1_career_3: "Проекты в сфере общественного здоровья",
+                program_1_alert: "Подробнее о программе Общественное здравоохранение",
+                program_2_title: "Менеджмент в здравоохранении", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Управление клиниками, экономика здравоохранения, медицинский маркетинг, лидерство.",
+                program_2_practice_title: "Практика", program_2_practice_1: "Администрирование больниц", program_2_practice_2: "Страховые компании", program_2_practice_3: "Фармацевтический бизнес",
+                program_2_alert: "Подробнее о программе Менеджмент в здравоохранении",
+                program_3_title: "Сестринское дело", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Клинический уход, организация сестринской службы, пациентская безопасность.",
+                program_3_tracks_title: "Траектории", program_3_track_1: "Старшая медсестра", program_3_track_2: "Преподаватель", program_3_track_3: "Управление сестринским персоналом",
+                program_3_alert: "Подробнее о программе Сестринское дело",
+                program_4_title: "Нутрициология и диетология", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Наука о питании, диетотерапия, пищевая безопасность, здоровый образ жизни.",
+                program_4_fields_title: "Сферы", program_4_field_1: "Клинический диетолог", program_4_field_2: "Фитнес-нутрициолог", program_4_field_3: "Консультант по питанию",
+                program_4_alert: "Подробнее о программе Нутрициология",
+                program_5_title: "Медицинская информатика", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Цифровое здравоохранение, EHR, телемедицина, анализ медицинских данных.",
+                program_5_career_title: "Карьера", program_5_career_1: "IT-специалист в клинике", program_5_career_2: "BI-аналитик в фарме", program_5_career_3: "Разработчик решений для здравоохранения",
+                program_5_alert: "Подробнее о программе Медицинская информатика",
+                program_6_title: "Психология здоровья", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Психосоматика, поведенческая медицина, консультирование, здоровый образ жизни.",
+                program_6_tracks_title: "Траектории", program_6_track_1: "Медицинский психолог", program_6_track_2: "Коуч по здоровью", program_6_track_3: "Реабилитолог",
+                program_6_alert: "Подробнее о программе Психология здоровья",
+                btn_more: "Подробнее",
+                why_title: "Почему эта школа", why_subtitle: "Sharmanov School of Health Sciences — выбор будущих лидеров здравоохранения",
+                why_1_title: "Клиническая база", why_1_desc: "Практика в ведущих клиниках Алматы, центрах ПМСП, научно-исследовательских институтах с первого курса.",
+                why_2_title: "Международное партнёрство", why_2_desc: "Совместные программы с университетами Европы и США, участие в глобальных исследованиях и стажировках.",
+                why_3_title: "Современные лаборатории", why_3_desc: "Симуляционные центры, оборудование для телемедицины, аналитические станции и цифровые технологии.",
+                video_title: "О школе в деталях", video_subtitle: "Узнайте больше о Sharmanov School of Health Sciences из нашего видео"
+            },
+            kz: {
+                page_title: "AlmaU · Sharmanov Денсаулық Ғылымдары Мектебі",
+                hero_title: "Sharmanov Денсаулық Ғылымдары Мектебі",
+                hero_desc: "Қоғамдық денсаулық сақтау, медициналық менеджмент және мейіргер ісі саласындағы мамандарды даярлаймыз, олар өмір сапасын арттырып, денсаулық сақтау жүйелерін басқара алады.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                stat_1_value: "6+", stat_1_label: "денсаулық саласындағы бағдарлама",
+                stat_2_value: "30+", stat_2_label: "клиника және серіктес",
+                stat_3_value: "100%", stat_3_label: "1 курстан бастап практика",
+                stat_4_value: "15+", stat_4_label: "халықаралық тағылымдама",
+                programs_title: "Денсаулық Ғылымдары Мектебінің бағдарламалары",
+                programs_subtitle: "Денсаулық сақтау, клиникаларды басқару және қоғамдық денсаулық саласындағы мансап үшін заманауи бағдарламалар",
+                program_1_title: "Қоғамдық денсаулық сақтау", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Эпидемиология, биостатистика, денсаулық сақтау саясаты, жаһандық денсаулық.",
+                program_1_career_title: "Мансаптық тректер", program_1_career_1: "Денсаулық сақтау министрлігінде аналитик", program_1_career_2: "ДДҰ маманы", program_1_career_3: "Қоғамдық денсаулық саласындағы жобалар",
+                program_1_alert: "Қоғамдық денсаулық сақтау бағдарламасы туралы толығырақ",
+                program_2_title: "Денсаулық сақтаудағы менеджмент", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Клиникаларды басқару, денсаулық сақтау экономикасы, медициналық маркетинг, көшбасшылық.",
+                program_2_practice_title: "Практика", program_2_practice_1: "Ауруханаларды басқару", program_2_practice_2: "Сақтандыру компаниялары", program_2_practice_3: "Фармацевтикалық бизнес",
+                program_2_alert: "Денсаулық сақтаудағы менеджмент бағдарламасы туралы толығырақ",
+                program_3_title: "Мейіргер ісі", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Клиникалық күтім, мейіргерлік қызметті ұйымдастыру, пациент қауіпсіздігі.",
+                program_3_tracks_title: "Траекториялар", program_3_track_1: "Аға медбике", program_3_track_2: "Оқытушы", program_3_track_3: "Мейіргер персоналын басқару",
+                program_3_alert: "Мейіргер ісі бағдарламасы туралы толығырақ",
+                program_4_title: "Нутрициология және диетология", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Тамақтану туралы ғылым, диетотерапия, тағам қауіпсіздігі, салауатты өмір салты.",
+                program_4_fields_title: "Салалар", program_4_field_1: "Клиникалық диетолог", program_4_field_2: "Фитнес-нутрициолог", program_4_field_3: "Тамақтану жөніндегі кеңесші",
+                program_4_alert: "Нутрициология бағдарламасы туралы толығырақ",
+                program_5_title: "Медициналық информатика", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Цифрлық денсаулық сақтау, EHR, телемедицина, медициналық деректерді талдау.",
+                program_5_career_title: "Мансап", program_5_career_1: "Клиникадағы IT-маман", program_5_career_2: "Фармадағы BI-аналитик", program_5_career_3: "Денсаулық сақтауға арналған шешімдерді әзірлеуші",
+                program_5_alert: "Медициналық информатика бағдарламасы туралы толығырақ",
+                program_6_title: "Денсаулық психологиясы", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Психосоматика, мінез-құлық медицинасы, кеңес беру, салауатты өмір салты.",
+                program_6_tracks_title: "Траекториялар", program_6_track_1: "Медициналық психолог", program_6_track_2: "Денсаулық жаттықтырушысы", program_6_track_3: "Реабилитолог",
+                program_6_alert: "Денсаулық психологиясы бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                why_title: "Неліктен бұл мектеп", why_subtitle: "Sharmanov Денсаулық Ғылымдары Мектебі — болашақ денсаулық сақтау көшбасшыларының таңдауы",
+                why_1_title: "Клиникалық база", why_1_desc: "Алматының жетекші клиникаларында, БМСЖ орталықтарында, ғылыми-зерттеу институттарында бірінші курстан бастап практика.",
+                why_2_title: "Халықаралық әріптестік", why_2_desc: "Еуропа және АҚШ университеттерімен бірлескен бағдарламалар, жаһандық зерттеулерге және тағылымдамаларға қатысу.",
+                why_3_title: "Заманауи зертханалар", why_3_desc: "Симуляциялық орталықтар, телемедицинаға арналған жабдықтар, аналитикалық станциялар және цифрлық технологиялар.",
+                video_title: "Мектеп туралы егжей-тегжейлі", video_subtitle: "Sharmanov Денсаулық Ғылымдары Мектебі туралы біздің бейнематериалдан көбірек біліңіз"
+            },
+            en: {
+                page_title: "AlmaU · Sharmanov School of Health Sciences",
+                hero_title: "Sharmanov School of Health Sciences",
+                hero_desc: "We train specialists in public health, healthcare management, and nursing who can improve quality of life and manage healthcare systems.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                stat_1_value: "6+", stat_1_label: "health sciences programs",
+                stat_2_value: "30+", stat_2_label: "clinics and partners",
+                stat_3_value: "100%", stat_3_label: "practice from 1st year",
+                stat_4_value: "15+", stat_4_label: "international internships",
+                programs_title: "Health Sciences School Programs",
+                programs_subtitle: "Modern programs for careers in healthcare, clinic management, and public health",
+                program_1_title: "Public Health", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Epidemiology, biostatistics, health policy, global health.",
+                program_1_career_title: "Career tracks", program_1_career_1: "Analyst at Ministry of Health", program_1_career_2: "WHO Specialist", program_1_career_3: "Public Health Projects",
+                program_1_alert: "More about Public Health program",
+                program_2_title: "Healthcare Management", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Clinic management, healthcare economics, medical marketing, leadership.",
+                program_2_practice_title: "Practice", program_2_practice_1: "Hospital Administration", program_2_practice_2: "Insurance Companies", program_2_practice_3: "Pharmaceutical Business",
+                program_2_alert: "More about Healthcare Management program",
+                program_3_title: "Nursing", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Clinical care, nursing service organization, patient safety.",
+                program_3_tracks_title: "Tracks", program_3_track_1: "Head Nurse", program_3_track_2: "Educator", program_3_track_3: "Nursing Personnel Management",
+                program_3_alert: "More about Nursing program",
+                program_4_title: "Nutrition and Dietetics", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Nutrition science, diet therapy, food safety, healthy lifestyle.",
+                program_4_fields_title: "Fields", program_4_field_1: "Clinical Dietitian", program_4_field_2: "Fitness Nutritionist", program_4_field_3: "Nutrition Consultant",
+                program_4_alert: "More about Nutrition program",
+                program_5_title: "Medical Informatics", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Digital health, EHR, telemedicine, medical data analysis.",
+                program_5_career_title: "Career", program_5_career_1: "IT Specialist in Clinic", program_5_career_2: "BI Analyst in Pharma", program_5_career_3: "Healthcare Solutions Developer",
+                program_5_alert: "More about Medical Informatics program",
+                program_6_title: "Health Psychology", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Psychosomatics, behavioral medicine, counseling, healthy lifestyle.",
+                program_6_tracks_title: "Tracks", program_6_track_1: "Medical Psychologist", program_6_track_2: "Health Coach", program_6_track_3: "Rehabilitation Specialist",
+                program_6_alert: "More about Health Psychology program",
+                btn_more: "Learn more",
+                why_title: "Why this school", why_subtitle: "Sharmanov School of Health Sciences — choice of future healthcare leaders",
+                why_1_title: "Clinical base", why_1_desc: "Practice in leading clinics of Almaty, PHC centers, research institutes from the first year.",
+                why_2_title: "International partnership", why_2_desc: "Joint programs with European and US universities, participation in global research and internships.",
+                why_3_title: "Modern laboratories", why_3_desc: "Simulation centers, telemedicine equipment, analytical stations, and digital technologies.",
+                video_title: "About the school in detail", video_subtitle: "Learn more about Sharmanov School of Health Sciences from our video"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>

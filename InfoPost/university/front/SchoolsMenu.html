@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU - Школы университета</title>
+    <title data-i18n="page_title">AlmaU - Школы университета</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -572,16 +572,15 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-
-                    <h1 class="hero-title">Школы AlmaU</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школы AlmaU</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         AlmaU объединяет ведущие школы и факультеты для подготовки специалистов в области IT, бизнеса, права, искусств и социальных наук. Мы создаём условия для практико-ориентированного обучения, развития навыков лидерства и сотрудничества с индустриальными партнёрами.
                     </p>
 
                     <div class="hero-features">
-                        <div class="feature"><strong>8+</strong> школ и факультетов</div>
-                        <div class="feature"><strong>50+</strong> индустриальных партнёров</div>
-                        <div class="feature"><strong>100 %</strong> практико-ориентированное обучение</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">8+</strong> <span data-i18n="feature_1_label">школ и факультетов</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">50+</strong> <span data-i18n="feature_2_label">индустриальных партнёров</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_value">100 %</strong> <span data-i18n="feature_3_label">практико-ориентированное обучение</span></div>
                     </div>
                 </div>
 
@@ -596,36 +595,36 @@
         <!-- Школы -->
         <section class="schools-section">
             <div class="container">
-                <h2 class="section-title">Все школы AlmaU</h2>
-                <p class="section-sub">Выберите школу и направление, чтобы построить карьеру в интересующей сфере</p>
+                <h2 class="section-title" data-i18n="schools_title">Все школы AlmaU</h2>
+                <p class="section-sub" data-i18n="schools_subtitle">Выберите школу и направление, чтобы построить карьеру в интересующей сфере</p>
 
                 <div class="schools-grid">
                     <!-- Школа Digital -->
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">💻</div>
-                            <h3 class="school-title">School of Digital Technologies</h3>
-                            <p class="school-description">IT и цифровые технологии: разработка программного обеспечения, аналитика данных, дизайн и управление цифровыми продуктами</p>
+                            <h3 class="school-title" data-i18n="school_1_title">School of Digital Technologies</h3>
+                            <p class="school-description" data-i18n="school_1_desc">IT и цифровые технологии: разработка программного обеспечения, аналитика данных, дизайн и управление цифровыми продуктами</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>Information Systems</strong> - Web & Mobile Development, Machine Learning</li>
-                                <li><strong>Software Engineering</strong> - Разработка ПО, IoT</li>
-                                <li><strong>Data Science</strong> - Data Science, Machine Learning / AI</li>
-                                <li><strong>Product Management</strong> - Управление цифровыми продуктами</li>
+                                <li><strong data-i18n="school_1_prog_1">Information Systems</strong> <span data-i18n="school_1_prog_1_desc">- Web & Mobile Development, Machine Learning</span></li>
+                                <li><strong data-i18n="school_1_prog_2">Software Engineering</strong> <span data-i18n="school_1_prog_2_desc">- Разработка ПО, IoT</span></li>
+                                <li><strong data-i18n="school_1_prog_3">Data Science</strong> <span data-i18n="school_1_prog_3_desc">- Data Science, Machine Learning / AI</span></li>
+                                <li><strong data-i18n="school_1_prog_4">Product Management</strong> <span data-i18n="school_1_prog_4_desc">- Управление цифровыми продуктами</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_1_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Разработчик ПО</li>
-                                    <li>Data Scientist</li>
-                                    <li>Дизайнер UI/UX</li>
-                                    <li>Менеджер IT-проектов</li>
+                                    <li data-i18n="school_1_career_1">Разработчик ПО</li>
+                                    <li data-i18n="school_1_career_2">Data Scientist</li>
+                                    <li data-i18n="school_1_career_3">Дизайнер UI/UX</li>
+                                    <li data-i18n="school_1_career_4">Менеджер IT-проектов</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                             <a href="{% url 'university:school_of_digital' %}" class="btn">Подробнее о школе</a>
+                             <a href="{% url 'university:school_of_digital' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
 
@@ -633,28 +632,28 @@
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">💼</div>
-                            <h3 class="school-title">School of Business</h3>
-                            <p class="school-description">Бизнес, управление и экономика: развитие управленческих навыков, предпринимательства и стратегического мышления</p>
+                            <h3 class="school-title" data-i18n="school_2_title">School of Business</h3>
+                            <p class="school-description" data-i18n="school_2_desc">Бизнес, управление и экономика: развитие управленческих навыков, предпринимательства и стратегического мышления</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>Management</strong> - Управление бизнесом</li>
-                                <li><strong>Finance</strong> - Финансы и инвестиции</li>
-                                <li><strong>Marketing</strong> - Маркетинг и брендинг</li>
-                                <li><strong>International Business</strong> - Международный бизнес</li>
+                                <li><strong data-i18n="school_2_prog_1">Management</strong> <span data-i18n="school_2_prog_1_desc">- Управление бизнесом</span></li>
+                                <li><strong data-i18n="school_2_prog_2">Finance</strong> <span data-i18n="school_2_prog_2_desc">- Финансы и инвестиции</span></li>
+                                <li><strong data-i18n="school_2_prog_3">Marketing</strong> <span data-i18n="school_2_prog_3_desc">- Маркетинг и брендинг</span></li>
+                                <li><strong data-i18n="school_2_prog_4">International Business</strong> <span data-i18n="school_2_prog_4_desc">- Международный бизнес</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_2_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Менеджер проектов</li>
-                                    <li>Финансовый аналитик</li>
-                                    <li>Маркетолог</li>
-                                    <li>Предприниматель</li>
+                                    <li data-i18n="school_2_career_1">Менеджер проектов</li>
+                                    <li data-i18n="school_2_career_2">Финансовый аналитик</li>
+                                    <li data-i18n="school_2_career_3">Маркетолог</li>
+                                    <li data-i18n="school_2_career_4">Предприниматель</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                            <a href="{% url 'university:school_of_business' %}" class="btn">Подробнее о школе</a>
+                            <a href="{% url 'university:school_of_business' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
 
@@ -662,28 +661,28 @@
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">⚖️</div>
-                            <h3 class="school-title">School of Law</h3>
-                            <p class="school-description">Юриспруденция и правовое регулирование: подготовка квалифицированных юристов и специалистов по международному праву</p>
+                            <h3 class="school-title" data-i18n="school_3_title">School of Law</h3>
+                            <p class="school-description" data-i18n="school_3_desc">Юриспруденция и правовое регулирование: подготовка квалифицированных юристов и специалистов по международному праву</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>Law</strong> - Общее право</li>
-                                <li><strong>International Law</strong> - Международное право</li>
-                                <li><strong>Corporate Law</strong> - Корпоративное право</li>
-                                <li><strong>Cyber Law</strong> - Киберправо и защита данных</li>
+                                <li><strong data-i18n="school_3_prog_1">Law</strong> <span data-i18n="school_3_prog_1_desc">- Общее право</span></li>
+                                <li><strong data-i18n="school_3_prog_2">International Law</strong> <span data-i18n="school_3_prog_2_desc">- Международное право</span></li>
+                                <li><strong data-i18n="school_3_prog_3">Corporate Law</strong> <span data-i18n="school_3_prog_3_desc">- Корпоративное право</span></li>
+                                <li><strong data-i18n="school_3_prog_4">Cyber Law</strong> <span data-i18n="school_3_prog_4_desc">- Киберправо и защита данных</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_3_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Юрист</li>
-                                    <li>Адвокат</li>
-                                    <li>Консультант по праву</li>
-                                    <li>Государственный служащий</li>
+                                    <li data-i18n="school_3_career_1">Юрист</li>
+                                    <li data-i18n="school_3_career_2">Адвокат</li>
+                                    <li data-i18n="school_3_career_3">Консультант по праву</li>
+                                    <li data-i18n="school_3_career_4">Государственный служащий</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                             <a href="{% url 'university:school_of_politics' %}" class="btn">Подробнее о школе</a>
+                             <a href="{% url 'university:school_of_politics' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
 
@@ -691,28 +690,28 @@
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">🎨</div>
-                            <h3 class="school-title">School of Arts & Humanities</h3>
-                            <p class="school-description">Искусство, культура и гуманитарные науки: развитие креативности, навыков коммуникации и культурного понимания</p>
+                            <h3 class="school-title" data-i18n="school_4_title">School of Arts & Humanities</h3>
+                            <p class="school-description" data-i18n="school_4_desc">Искусство, культура и гуманитарные науки: развитие креативности, навыков коммуникации и культурного понимания</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>Design</strong> - Графический и веб-дизайн</li>
-                                <li><strong>Media & Communication</strong> - Медиа и коммуникации</li>
-                                <li><strong>Psychology</strong> - Психология</li>
-                                <li><strong>Sociology</strong> - Социология и культурология</li>
+                                <li><strong data-i18n="school_4_prog_1">Design</strong> <span data-i18n="school_4_prog_1_desc">- Графический и веб-дизайн</span></li>
+                                <li><strong data-i18n="school_4_prog_2">Media & Communication</strong> <span data-i18n="school_4_prog_2_desc">- Медиа и коммуникации</span></li>
+                                <li><strong data-i18n="school_4_prog_3">Psychology</strong> <span data-i18n="school_4_prog_3_desc">- Психология</span></li>
+                                <li><strong data-i18n="school_4_prog_4">Sociology</strong> <span data-i18n="school_4_prog_4_desc">- Социология и культурология</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_4_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Дизайнер</li>
-                                    <li>Медиа-специалист</li>
-                                    <li>Психолог</li>
-                                    <li>Исследователь</li>
+                                    <li data-i18n="school_4_career_1">Дизайнер</li>
+                                    <li data-i18n="school_4_career_2">Медиа-специалист</li>
+                                    <li data-i18n="school_4_career_3">Психолог</li>
+                                    <li data-i18n="school_4_career_4">Исследователь</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                            <a href="{% url 'university:school_of_transformative' %}" class="btn">Подробнее о школе</a>
+                            <a href="{% url 'university:school_of_transformative' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
 
@@ -720,28 +719,28 @@
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">🌐</div>
-                            <h3 class="school-title">School of Social Sciences</h3>
-                            <p class="school-description">Социальные науки и управление: подготовка специалистов для работы в государственных и международных организациях</p>
+                            <h3 class="school-title" data-i18n="school_5_title">School of Social Sciences</h3>
+                            <p class="school-description" data-i18n="school_5_desc">Социальные науки и управление: подготовка специалистов для работы в государственных и международных организациях</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>International Relations</strong> - Международные отношения</li>
-                                <li><strong>Public Policy</strong> - Государственная политика</li>
-                                <li><strong>Political Science</strong> - Политология</li>
-                                <li><strong>Diplomacy</strong> - Дипломатия</li>
+                                <li><strong data-i18n="school_5_prog_1">International Relations</strong> <span data-i18n="school_5_prog_1_desc">- Международные отношения</span></li>
+                                <li><strong data-i18n="school_5_prog_2">Public Policy</strong> <span data-i18n="school_5_prog_2_desc">- Государственная политика</span></li>
+                                <li><strong data-i18n="school_5_prog_3">Political Science</strong> <span data-i18n="school_5_prog_3_desc">- Политология</span></li>
+                                <li><strong data-i18n="school_5_prog_4">Diplomacy</strong> <span data-i18n="school_5_prog_4_desc">- Дипломатия</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_5_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Аналитик</li>
-                                    <li>Политолог</li>
-                                    <li>Эксперт по международным отношениям</li>
-                                    <li>Государственный служащий</li>
+                                    <li data-i18n="school_5_career_1">Аналитик</li>
+                                    <li data-i18n="school_5_career_2">Политолог</li>
+                                    <li data-i18n="school_5_career_3">Эксперт по международным отношениям</li>
+                                    <li data-i18n="school_5_career_4">Государственный служащий</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                            <a href="{% url 'university:school_of_media' %}" class="btn">Подробнее о школе</a>
+                            <a href="{% url 'university:school_of_media' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
 
@@ -749,28 +748,28 @@
                     <div class="school-card">
                         <div class="school-header">
                             <div class="school-icon">🩺</div>
-                            <h3 class="school-title">Sharmanov School of Health Sciences</h3>
-                            <p class="school-description">Здравоохранение и медицинские науки: подготовка специалистов в области медицины, общественного здоровья и биотехнологий</p>
+                            <h3 class="school-title" data-i18n="school_6_title">Sharmanov School of Health Sciences</h3>
+                            <p class="school-description" data-i18n="school_6_desc">Здравоохранение и медицинские науки: подготовка специалистов в области медицины, общественного здоровья и биотехнологий</p>
                         </div>
                         <div class="school-body">
                             <ul class="programs-list">
-                                <li><strong>Public Health</strong> - Общественное здоровье</li>
-                                <li><strong>Biotechnology</strong> - Биотехнологии</li>
-                                <li><strong>Healthcare Management</strong> - Управление здравоохранением</li>
-                                <li><strong>Nutrition Science</strong> - Наука о питании</li>
+                                <li><strong data-i18n="school_6_prog_1">Public Health</strong> <span data-i18n="school_6_prog_1_desc">- Общественное здоровье</span></li>
+                                <li><strong data-i18n="school_6_prog_2">Biotechnology</strong> <span data-i18n="school_6_prog_2_desc">- Биотехнологии</span></li>
+                                <li><strong data-i18n="school_6_prog_3">Healthcare Management</strong> <span data-i18n="school_6_prog_3_desc">- Управление здравоохранением</span></li>
+                                <li><strong data-i18n="school_6_prog_4">Nutrition Science</strong> <span data-i18n="school_6_prog_4_desc">- Наука о питании</span></li>
                             </ul>
                             <div class="career-list">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="school_6_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Специалист общественного здоровья</li>
-                                    <li>Биотехнолог</li>
-                                    <li>Менеджер здравоохранения</li>
-                                    <li>Нутрициолог</li>
+                                    <li data-i18n="school_6_career_1">Специалист общественного здоровья</li>
+                                    <li data-i18n="school_6_career_2">Биотехнолог</li>
+                                    <li data-i18n="school_6_career_3">Менеджер здравоохранения</li>
+                                    <li data-i18n="school_6_career_4">Нутрициолог</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="school-footer">
-                             <a href="{% url 'university:sharmanov_school' %}" class="btn">Подробнее о школе</a>
+                             <a href="{% url 'university:sharmanov_school' %}" class="btn" data-i18n="btn_more_school">Подробнее о школе</a>
                         </div>
                     </div>
                 </div>
@@ -780,44 +779,44 @@
         <!-- Особенности обучения -->
         <section class="features-section">
             <div class="container">
-                <h2 class="section-title">Преимущества обучения в AlmaU</h2>
-                <p class="section-sub">Почему студенты выбирают наши школы для получения образования</p>
+                <h2 class="section-title" data-i18n="features_title">Преимущества обучения в AlmaU</h2>
+                <p class="section-sub" data-i18n="features_subtitle">Почему студенты выбирают наши школы для получения образования</p>
 
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🎯</div>
-                        <h3>Практическая направленность</h3>
-                        <p>Реальные проекты, стажировки в компаниях-партнёрах и тесное сотрудничество с индустрией</p>
+                        <h3 data-i18n="feature_1_title">Практическая направленность</h3>
+                        <p data-i18n="feature_1_desc">Реальные проекты, стажировки в компаниях-партнёрах и тесное сотрудничество с индустрией</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">🌍</div>
-                        <h3>Международные возможности</h3>
-                        <p>Обменные программы, двойные дипломы с зарубежными университетами и глобальные карьерные перспективы</p>
+                        <h3 data-i18n="feature_2_title">Международные возможности</h3>
+                        <p data-i18n="feature_2_desc">Обменные программы, двойные дипломы с зарубежными университетами и глобальные карьерные перспективы</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">👨‍🏫</div>
-                        <h3>Опытные преподаватели</h3>
-                        <p>Преподаватели-практики с опытом работы в ведущих компаниях и научно-исследовательских центрах</p>
+                        <h3 data-i18n="feature_3_title">Опытные преподаватели</h3>
+                        <p data-i18n="feature_3_desc">Преподаватели-практики с опытом работы в ведущих компаниях и научно-исследовательских центрах</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">💡</div>
-                        <h3>Современная инфраструктура</h3>
-                        <p>Лаборатории, компьютерные классы, библиотеки и коворкинги с самым современным оборудованием</p>
+                        <h3 data-i18n="feature_4_title">Современная инфраструктура</h3>
+                        <p data-i18n="feature_4_desc">Лаборатории, компьютерные классы, библиотеки и коворкинги с самым современным оборудованием</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">🤝</div>
-                        <h3>Карьерная поддержка</h3>
-                        <p>Центр карьеры, помощь в трудоустройстве, менторская программа от успешных выпускников</p>
+                        <h3 data-i18n="feature_5_title">Карьерная поддержка</h3>
+                        <p data-i18n="feature_5_desc">Центр карьеры, помощь в трудоустройстве, менторская программа от успешных выпускников</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">🚀</div>
-                        <h3>Предпринимательская среда</h3>
-                        <p>Поддержка студенческих стартапов, акселерационные программы и доступ к инвестициям</p>
+                        <h3 data-i18n="feature_6_title">Предпринимательская среда</h3>
+                        <p data-i18n="feature_6_desc">Поддержка студенческих стартапов, акселерационные программы и доступ к инвестициям</p>
                     </div>
                 </div>
             </div>
@@ -828,56 +827,258 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        // Автоматическое обновление года в футере
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Анимация появления карточек при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU - Школы университета",
+                hero_title: "Школы AlmaU",
+                hero_desc: "AlmaU объединяет ведущие школы и факультеты для подготовки специалистов в области IT, бизнеса, права, искусств и социальных наук. Мы создаём условия для практико-ориентированного обучения, развития навыков лидерства и сотрудничества с индустриальными партнёрами.",
+                feature_1_value: "8+", feature_1_label: "школ и факультетов",
+                feature_2_value: "50+", feature_2_label: "индустриальных партнёров",
+                feature_3_value: "100 %", feature_3_label: "практико-ориентированное обучение",
+                schools_title: "Все школы AlmaU",
+                schools_subtitle: "Выберите школу и направление, чтобы построить карьеру в интересующей сфере",
+                school_1_title: "School of Digital Technologies",
+                school_1_desc: "IT и цифровые технологии: разработка программного обеспечения, аналитика данных, дизайн и управление цифровыми продуктами",
+                school_1_prog_1: "Information Systems", school_1_prog_1_desc: "- Web & Mobile Development, Machine Learning",
+                school_1_prog_2: "Software Engineering", school_1_prog_2_desc: "- Разработка ПО, IoT",
+                school_1_prog_3: "Data Science", school_1_prog_3_desc: "- Data Science, Machine Learning / AI",
+                school_1_prog_4: "Product Management", school_1_prog_4_desc: "- Управление цифровыми продуктами",
+                school_1_career_title: "Карьерные возможности:", school_1_career_1: "Разработчик ПО", school_1_career_2: "Data Scientist", school_1_career_3: "Дизайнер UI/UX", school_1_career_4: "Менеджер IT-проектов",
+                school_2_title: "School of Business",
+                school_2_desc: "Бизнес, управление и экономика: развитие управленческих навыков, предпринимательства и стратегического мышления",
+                school_2_prog_1: "Management", school_2_prog_1_desc: "- Управление бизнесом",
+                school_2_prog_2: "Finance", school_2_prog_2_desc: "- Финансы и инвестиции",
+                school_2_prog_3: "Marketing", school_2_prog_3_desc: "- Маркетинг и брендинг",
+                school_2_prog_4: "International Business", school_2_prog_4_desc: "- Международный бизнес",
+                school_2_career_title: "Карьерные возможности:", school_2_career_1: "Менеджер проектов", school_2_career_2: "Финансовый аналитик", school_2_career_3: "Маркетолог", school_2_career_4: "Предприниматель",
+                school_3_title: "School of Law",
+                school_3_desc: "Юриспруденция и правовое регулирование: подготовка квалифицированных юристов и специалистов по международному праву",
+                school_3_prog_1: "Law", school_3_prog_1_desc: "- Общее право",
+                school_3_prog_2: "International Law", school_3_prog_2_desc: "- Международное право",
+                school_3_prog_3: "Corporate Law", school_3_prog_3_desc: "- Корпоративное право",
+                school_3_prog_4: "Cyber Law", school_3_prog_4_desc: "- Киберправо и защита данных",
+                school_3_career_title: "Карьерные возможности:", school_3_career_1: "Юрист", school_3_career_2: "Адвокат", school_3_career_3: "Консультант по праву", school_3_career_4: "Государственный служащий",
+                school_4_title: "School of Arts & Humanities",
+                school_4_desc: "Искусство, культура и гуманитарные науки: развитие креативности, навыков коммуникации и культурного понимания",
+                school_4_prog_1: "Design", school_4_prog_1_desc: "- Графический и веб-дизайн",
+                school_4_prog_2: "Media & Communication", school_4_prog_2_desc: "- Медиа и коммуникации",
+                school_4_prog_3: "Psychology", school_4_prog_3_desc: "- Психология",
+                school_4_prog_4: "Sociology", school_4_prog_4_desc: "- Социология и культурология",
+                school_4_career_title: "Карьерные возможности:", school_4_career_1: "Дизайнер", school_4_career_2: "Медиа-специалист", school_4_career_3: "Психолог", school_4_career_4: "Исследователь",
+                school_5_title: "School of Social Sciences",
+                school_5_desc: "Социальные науки и управление: подготовка специалистов для работы в государственных и международных организациях",
+                school_5_prog_1: "International Relations", school_5_prog_1_desc: "- Международные отношения",
+                school_5_prog_2: "Public Policy", school_5_prog_2_desc: "- Государственная политика",
+                school_5_prog_3: "Political Science", school_5_prog_3_desc: "- Политология",
+                school_5_prog_4: "Diplomacy", school_5_prog_4_desc: "- Дипломатия",
+                school_5_career_title: "Карьерные возможности:", school_5_career_1: "Аналитик", school_5_career_2: "Политолог", school_5_career_3: "Эксперт по международным отношениям", school_5_career_4: "Государственный служащий",
+                school_6_title: "Sharmanov School of Health Sciences",
+                school_6_desc: "Здравоохранение и медицинские науки: подготовка специалистов в области медицины, общественного здоровья и биотехнологий",
+                school_6_prog_1: "Public Health", school_6_prog_1_desc: "- Общественное здоровье",
+                school_6_prog_2: "Biotechnology", school_6_prog_2_desc: "- Биотехнологии",
+                school_6_prog_3: "Healthcare Management", school_6_prog_3_desc: "- Управление здравоохранением",
+                school_6_prog_4: "Nutrition Science", school_6_prog_4_desc: "- Наука о питании",
+                school_6_career_title: "Карьерные возможности:", school_6_career_1: "Специалист общественного здоровья", school_6_career_2: "Биотехнолог", school_6_career_3: "Менеджер здравоохранения", school_6_career_4: "Нутрициолог",
+                btn_more_school: "Подробнее о школе",
+                features_title: "Преимущества обучения в AlmaU",
+                features_subtitle: "Почему студенты выбирают наши школы для получения образования",
+                feature_1_title: "Практическая направленность", feature_1_desc: "Реальные проекты, стажировки в компаниях-партнёрах и тесное сотрудничество с индустрией",
+                feature_2_title: "Международные возможности", feature_2_desc: "Обменные программы, двойные дипломы с зарубежными университетами и глобальные карьерные перспективы",
+                feature_3_title: "Опытные преподаватели", feature_3_desc: "Преподаватели-практики с опытом работы в ведущих компаниях и научно-исследовательских центрах",
+                feature_4_title: "Современная инфраструктура", feature_4_desc: "Лаборатории, компьютерные классы, библиотеки и коворкинги с самым современным оборудованием",
+                feature_5_title: "Карьерная поддержка", feature_5_desc: "Центр карьеры, помощь в трудоустройстве, менторская программа от успешных выпускников",
+                feature_6_title: "Предпринимательская среда", feature_6_desc: "Поддержка студенческих стартапов, акселерационные программы и доступ к инвестициям"
+            },
+            kz: {
+                page_title: "AlmaU - Университет мектептері",
+                hero_title: "AlmaU мектептері",
+                hero_desc: "AlmaU IT, бизнес, құқық, өнер және әлеуметтік ғылымдар саласында мамандар даярлау үшін жетекші мектептер мен факультеттерді біріктіреді. Біз практикаға бағытталған оқытуға, көшбасшылық дағдыларды дамытуға және индустриялық серіктестермен ынтымақтастыққа жағдай жасаймыз.",
+                feature_1_value: "8+", feature_1_label: "мектеп пен факультет",
+                feature_2_value: "50+", feature_2_label: "индустриялық серіктес",
+                feature_3_value: "100 %", feature_3_label: "практикаға бағытталған оқыту",
+                schools_title: "AlmaU барлық мектептері",
+                schools_subtitle: "Қызығушылық салаңызда мансап құру үшін мектеп пен бағытты таңдаңыз",
+                school_1_title: "School of Digital Technologies",
+                school_1_desc: "IT және цифрлық технологиялар: бағдарламалық қамтамасыз етуді әзірлеу, деректер аналитикасы, дизайн және цифрлық өнімдерді басқару",
+                school_1_prog_1: "Information Systems", school_1_prog_1_desc: "- Web & Mobile Development, Machine Learning",
+                school_1_prog_2: "Software Engineering", school_1_prog_2_desc: "- БҒ әзірлеу, IoT",
+                school_1_prog_3: "Data Science", school_1_prog_3_desc: "- Data Science, Machine Learning / AI",
+                school_1_prog_4: "Product Management", school_1_prog_4_desc: "- Цифрлық өнімдерді басқару",
+                school_1_career_title: "Мансаптық мүмкіндіктер:", school_1_career_1: "БҒ әзірлеуші", school_1_career_2: "Data Scientist", school_1_career_3: "UI/UX дизайнер", school_1_career_4: "IT-жобалар менеджері",
+                school_2_title: "School of Business",
+                school_2_desc: "Бизнес, басқару және экономика: басқару дағдыларын, кәсіпкерлікті және стратегиялық ойлауды дамыту",
+                school_2_prog_1: "Management", school_2_prog_1_desc: "- Бизнесті басқару",
+                school_2_prog_2: "Finance", school_2_prog_2_desc: "- Қаржы және инвестициялар",
+                school_2_prog_3: "Marketing", school_2_prog_3_desc: "- Маркетинг және брендинг",
+                school_2_prog_4: "International Business", school_2_prog_4_desc: "- Халықаралық бизнес",
+                school_2_career_title: "Мансаптық мүмкіндіктер:", school_2_career_1: "Жоба менеджері", school_2_career_2: "Қаржы аналитигі", school_2_career_3: "Маркетолог", school_2_career_4: "Кәсіпкер",
+                school_3_title: "School of Law",
+                school_3_desc: "Құқықтану және құқықтық реттеу: білікті заңгерлер мен халықаралық құқық мамандарын даярлау",
+                school_3_prog_1: "Law", school_3_prog_1_desc: "- Жалпы құқық",
+                school_3_prog_2: "International Law", school_3_prog_2_desc: "- Халықаралық құқық",
+                school_3_prog_3: "Corporate Law", school_3_prog_3_desc: "- Корпоративтік құқық",
+                school_3_prog_4: "Cyber Law", school_3_prog_4_desc: "- Киберқұқық және деректерді қорғау",
+                school_3_career_title: "Мансаптық мүмкіндіктер:", school_3_career_1: "Заңгер", school_3_career_2: "Адвокат", school_3_career_3: "Құқық жөніндегі кеңесші", school_3_career_4: "Мемлекеттік қызметкер",
+                school_4_title: "School of Arts & Humanities",
+                school_4_desc: "Өнер, мәдениет және гуманитарлық ғылымдар: креативтілікті, коммуникация дағдыларын және мәдени түсінікті дамыту",
+                school_4_prog_1: "Design", school_4_prog_1_desc: "- Графикалық және веб-дизайн",
+                school_4_prog_2: "Media & Communication", school_4_prog_2_desc: "- Медиа және коммуникация",
+                school_4_prog_3: "Psychology", school_4_prog_3_desc: "- Психология",
+                school_4_prog_4: "Sociology", school_4_prog_4_desc: "- Әлеуметтану және мәдениеттану",
+                school_4_career_title: "Мансаптық мүмкіндіктер:", school_4_career_1: "Дизайнер", school_4_career_2: "Медиа-маман", school_4_career_3: "Психолог", school_4_career_4: "Зерттеуші",
+                school_5_title: "School of Social Sciences",
+                school_5_desc: "Әлеуметтік ғылымдар және басқару: мемлекеттік және халықаралық ұйымдарда жұмыс істеу үшін мамандар даярлау",
+                school_5_prog_1: "International Relations", school_5_prog_1_desc: "- Халықаралық қатынастар",
+                school_5_prog_2: "Public Policy", school_5_prog_2_desc: "- Мемлекеттік саясат",
+                school_5_prog_3: "Political Science", school_5_prog_3_desc: "- Саясаттану",
+                school_5_prog_4: "Diplomacy", school_5_prog_4_desc: "- Дипломатия",
+                school_5_career_title: "Мансаптық мүмкіндіктер:", school_5_career_1: "Аналитик", school_5_career_2: "Саясаттанушы", school_5_career_3: "Халықаралық қатынастар жөніндегі сарапшы", school_5_career_4: "Мемлекеттік қызметкер",
+                school_6_title: "Sharmanov School of Health Sciences",
+                school_6_desc: "Денсаулық сақтау және медицина ғылымдары: медицина, қоғамдық денсаулық және биотехнология саласындағы мамандарды даярлау",
+                school_6_prog_1: "Public Health", school_6_prog_1_desc: "- Қоғамдық денсаулық",
+                school_6_prog_2: "Biotechnology", school_6_prog_2_desc: "- Биотехнология",
+                school_6_prog_3: "Healthcare Management", school_6_prog_3_desc: "- Денсаулық сақтауды басқару",
+                school_6_prog_4: "Nutrition Science", school_6_prog_4_desc: "- Тамақтану туралы ғылым",
+                school_6_career_title: "Мансаптық мүмкіндіктер:", school_6_career_1: "Қоғамдық денсаулық маманы", school_6_career_2: "Биотехнолог", school_6_career_3: "Денсаулық сақтау менеджері", school_6_career_4: "Нутрициолог",
+                btn_more_school: "Мектеп туралы толығырақ",
+                features_title: "AlmaU-да оқудың артықшылықтары",
+                features_subtitle: "Студенттер білім алу үшін неліктен біздің мектептерімізді таңдайды",
+                feature_1_title: "Практикалық бағыт", feature_1_desc: "Нақты жобалар, серіктес компанияларда тағылымдама және индустриямен тығыз ынтымақтастық",
+                feature_2_title: "Халықаралық мүмкіндіктер", feature_2_desc: "Алмасу бағдарламалары, шетелдік ЖОО-лармен қос дипломдар және жаһандық мансаптық перспективалар",
+                feature_3_title: "Тәжірибелі оқытушылар", feature_3_desc: "Жетекші компаниялар мен ғылыми-зерттеу орталықтарында жұмыс тәжірибесі бар оқытушылар-практиктер",
+                feature_4_title: "Заманауи инфрақұрылым", feature_4_desc: "Зертханалар, компьютерлік сыныптар, кітапханалар және ең заманауи жабдықтары бар коворкингтер",
+                feature_5_title: "Мансаптық қолдау", feature_5_desc: "Мансап орталығы, жұмысқа орналасуға көмек, табысты түлектердің менторлық бағдарламасы",
+                feature_6_title: "Кәсіпкерлік орта", feature_6_desc: "Студенттік стартаптарды қолдау, акселерациялық бағдарламалар және инвестицияларға қол жеткізу"
+            },
+            en: {
+                page_title: "AlmaU - University Schools",
+                hero_title: "AlmaU Schools",
+                hero_desc: "AlmaU brings together leading schools and faculties to train specialists in IT, business, law, arts, and social sciences. We create conditions for practice-oriented education, leadership development, and collaboration with industry partners.",
+                feature_1_value: "8+", feature_1_label: "schools and faculties",
+                feature_2_value: "50+", feature_2_label: "industry partners",
+                feature_3_value: "100%", feature_3_label: "practice-oriented education",
+                schools_title: "All AlmaU Schools",
+                schools_subtitle: "Choose a school and direction to build a career in your field of interest",
+                school_1_title: "School of Digital Technologies",
+                school_1_desc: "IT and digital technologies: software development, data analytics, design, and digital product management",
+                school_1_prog_1: "Information Systems", school_1_prog_1_desc: "- Web & Mobile Development, Machine Learning",
+                school_1_prog_2: "Software Engineering", school_1_prog_2_desc: "- Software Development, IoT",
+                school_1_prog_3: "Data Science", school_1_prog_3_desc: "- Data Science, Machine Learning / AI",
+                school_1_prog_4: "Product Management", school_1_prog_4_desc: "- Digital Product Management",
+                school_1_career_title: "Career opportunities:", school_1_career_1: "Software Developer", school_1_career_2: "Data Scientist", school_1_career_3: "UI/UX Designer", school_1_career_4: "IT Project Manager",
+                school_2_title: "School of Business",
+                school_2_desc: "Business, management, and economics: developing management skills, entrepreneurship, and strategic thinking",
+                school_2_prog_1: "Management", school_2_prog_1_desc: "- Business Management",
+                school_2_prog_2: "Finance", school_2_prog_2_desc: "- Finance and Investment",
+                school_2_prog_3: "Marketing", school_2_prog_3_desc: "- Marketing and Branding",
+                school_2_prog_4: "International Business", school_2_prog_4_desc: "- International Business",
+                school_2_career_title: "Career opportunities:", school_2_career_1: "Project Manager", school_2_career_2: "Financial Analyst", school_2_career_3: "Marketer", school_2_career_4: "Entrepreneur",
+                school_3_title: "School of Law",
+                school_3_desc: "Jurisprudence and legal regulation: training qualified lawyers and specialists in international law",
+                school_3_prog_1: "Law", school_3_prog_1_desc: "- General Law",
+                school_3_prog_2: "International Law", school_3_prog_2_desc: "- International Law",
+                school_3_prog_3: "Corporate Law", school_3_prog_3_desc: "- Corporate Law",
+                school_3_prog_4: "Cyber Law", school_3_prog_4_desc: "- Cyber Law and Data Protection",
+                school_3_career_title: "Career opportunities:", school_3_career_1: "Lawyer", school_3_career_2: "Advocate", school_3_career_3: "Legal Consultant", school_3_career_4: "Civil Servant",
+                school_4_title: "School of Arts & Humanities",
+                school_4_desc: "Art, culture, and humanities: developing creativity, communication skills, and cultural understanding",
+                school_4_prog_1: "Design", school_4_prog_1_desc: "- Graphic and Web Design",
+                school_4_prog_2: "Media & Communication", school_4_prog_2_desc: "- Media and Communication",
+                school_4_prog_3: "Psychology", school_4_prog_3_desc: "- Psychology",
+                school_4_prog_4: "Sociology", school_4_prog_4_desc: "- Sociology and Cultural Studies",
+                school_4_career_title: "Career opportunities:", school_4_career_1: "Designer", school_4_career_2: "Media Specialist", school_4_career_3: "Psychologist", school_4_career_4: "Researcher",
+                school_5_title: "School of Social Sciences",
+                school_5_desc: "Social sciences and management: training specialists for work in government and international organizations",
+                school_5_prog_1: "International Relations", school_5_prog_1_desc: "- International Relations",
+                school_5_prog_2: "Public Policy", school_5_prog_2_desc: "- Public Policy",
+                school_5_prog_3: "Political Science", school_5_prog_3_desc: "- Political Science",
+                school_5_prog_4: "Diplomacy", school_5_prog_4_desc: "- Diplomacy",
+                school_5_career_title: "Career opportunities:", school_5_career_1: "Analyst", school_5_career_2: "Political Scientist", school_5_career_3: "International Relations Expert", school_5_career_4: "Civil Servant",
+                school_6_title: "Sharmanov School of Health Sciences",
+                school_6_desc: "Healthcare and medical sciences: training specialists in medicine, public health, and biotechnology",
+                school_6_prog_1: "Public Health", school_6_prog_1_desc: "- Public Health",
+                school_6_prog_2: "Biotechnology", school_6_prog_2_desc: "- Biotechnology",
+                school_6_prog_3: "Healthcare Management", school_6_prog_3_desc: "- Healthcare Management",
+                school_6_prog_4: "Nutrition Science", school_6_prog_4_desc: "- Nutrition Science",
+                school_6_career_title: "Career opportunities:", school_6_career_1: "Public Health Specialist", school_6_career_2: "Biotechnologist", school_6_career_3: "Healthcare Manager", school_6_career_4: "Nutritionist",
+                btn_more_school: "Learn more about the school",
+                features_title: "Advantages of Studying at AlmaU",
+                features_subtitle: "Why students choose our schools for education",
+                feature_1_title: "Practical focus", feature_1_desc: "Real projects, internships with partner companies, and close collaboration with industry",
+                feature_2_title: "International opportunities", feature_2_desc: "Exchange programs, double degrees with foreign universities, and global career prospects",
+                feature_3_title: "Experienced faculty", feature_3_desc: "Practitioner teachers with experience in leading companies and research centers",
+                feature_4_title: "Modern infrastructure", feature_4_desc: "Laboratories, computer classrooms, libraries, and coworking spaces with state-of-the-art equipment",
+                feature_5_title: "Career support", feature_5_desc: "Career center, employment assistance, mentoring program from successful alumni",
+                feature_6_title: "Entrepreneurial environment", feature_6_desc: "Support for student startups, acceleration programs, and access to investment"
+            }
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
                 }
             });
-        }, observerOptions);
+        }
 
-        // Наблюдаем за всеми карточками школ
-        document.querySelectorAll('.school-card').forEach(card => {
-            observer.observe(card);
-        });
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
 
-        // Подсветка текущей школы в навигации
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav__list a');
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
             
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.style.color = 'var(--blue)';
-                    link.style.fontWeight = '600';
-                }
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>

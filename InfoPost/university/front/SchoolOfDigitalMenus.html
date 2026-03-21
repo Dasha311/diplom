@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU - Школа цифровых технологий</title>
+    <title data-i18n="page_title">AlmaU - Школа цифровых технологий</title>
     <style>
         /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
@@ -1067,24 +1067,23 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-
-                    <h1 class="hero-title">Школа цифровых технологий</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа цифровых технологий</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Подготавливаем специалистов, способных создавать цифровые продукты, управлять IT-проектами
                         и развивать технологические решения для бизнеса и общества. Обучение основано на практике,
                         современных технологиях и сотрудничестве с ведущими компаниями.
                     </p>
 
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary">Подать заявление</a>
-                        <a href="#consult" class="hero-cta ghost">Получить консультацию</a>
+                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="#consult" class="hero-cta ghost" data-i18n="hero_btn_consult">Получить консультацию</a>
                     </div>
 
                     <div class="hero-features">
-                        <div class="feature"><strong>30+</strong> программ IT-направлений</div>
-                        <div class="feature"><strong>50+</strong> индустриальных партнёров</div>
-                        <div class="feature"><strong>100 %</strong> практико-ориентированное обучение</div>
-                        <div class="feature"><strong>95%</strong> трудоустройство выпускников</div>
+                        <div class="feature"><strong data-i18n="feature_1_value">30+</strong> <span data-i18n="feature_1_label">программ IT-направлений</span></div>
+                        <div class="feature"><strong data-i18n="feature_2_value">50+</strong> <span data-i18n="feature_2_label">индустриальных партнёров</span></div>
+                        <div class="feature"><strong data-i18n="feature_3_value">100 %</strong> <span data-i18n="feature_3_label">практико-ориентированное обучение</span></div>
+                        <div class="feature"><strong data-i18n="feature_4_value">95%</strong> <span data-i18n="feature_4_label">трудоустройство выпускников</span></div>
                     </div>
                 </div>
 
@@ -1099,143 +1098,143 @@
         <!-- Программы -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы School of Digital Technologies</h2>
-                <p class="section-sub">Выберите программу, чтобы построить карьеру в IT и цифровых технологиях. Все программы разработаны совместно с лидерами индустрии.</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы School of Digital Technologies</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Выберите программу, чтобы построить карьеру в IT и цифровых технологиях. Все программы разработаны совместно с лидерами индустрии.</p>
 
                 <div class="programs-grid">
                     <!-- Information Systems -->
                     <div class="program-card">
                         <div class="program-card-header">
-                            <h3>Information Systems</h3>
+                            <h3 data-i18n="program_1_title">Information Systems</h3>
                         </div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong> (или 2 года для выпускников ТиПО / НИШ)</p>
-                            <p>Программа готовит специалистов по разработке и внедрению информационных систем для бизнеса.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong> <span data-i18n="program_1_duration_note">(или 2 года для выпускников ТиПО / НИШ)</span></p>
+                            <p data-i18n="program_1_desc">Программа готовит специалистов по разработке и внедрению информационных систем для бизнеса.</p>
                             
                             <div class="program-details">
-                                <h4>Траектории обучения:</h4>
+                                <h4 data-i18n="program_1_tracks_title">Траектории обучения:</h4>
                                 <ul>
-                                    <li>Web & Mobile Development</li>
-                                    <li>Machine Learning & Big Data</li>
-                                    <li>Graphic Design & Game Development</li>
+                                    <li data-i18n="program_1_track_1">Web & Mobile Development</li>
+                                    <li data-i18n="program_1_track_2">Machine Learning & Big Data</li>
+                                    <li data-i18n="program_1_track_3">Graphic Design & Game Development</li>
                                 </ul>
                             </div>
                             
                             <div class="program-details">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="program_1_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Веб/мобильный разработчик</li>
-                                    <li>Дизайнер UX/UI</li>
-                                    <li>Разработчик игр</li>
-                                    <li>Data Scientist</li>
-                                    <li>Основатель IT-проекта</li>
+                                    <li data-i18n="program_1_career_1">Веб/мобильный разработчик</li>
+                                    <li data-i18n="program_1_career_2">Дизайнер UX/UI</li>
+                                    <li data-i18n="program_1_career_3">Разработчик игр</li>
+                                    <li data-i18n="program_1_career_4">Data Scientist</li>
+                                    <li data-i18n="program_1_career_5">Основатель IT-проекта</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="program-card-footer">
-                            <a href="{% url 'university:info_systems_menu' %}" class="btn">Подробнее о программе</a>
+                            <a href="{% url 'university:info_systems_menu' %}" class="btn" data-i18n="btn_more">Подробнее о программе</a>
                         </div>
                     </div>
 
                     <!-- Software Engineering -->
                     <div class="program-card">
                         <div class="program-card-header">
-                            <h3>Software Engineering</h3>
+                            <h3 data-i18n="program_2_title">Software Engineering</h3>
                         </div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong> (или 2 года для выпускников ТиПО / НИШ)</p>
-                            <p>Подготовка инженеров-программистов для создания высоконагруженных систем и приложений.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong> <span data-i18n="program_2_duration_note">(или 2 года для выпускников ТиПО / НИШ)</span></p>
+                            <p data-i18n="program_2_desc">Подготовка инженеров-программистов для создания высоконагруженных систем и приложений.</p>
                             
                             <div class="program-details">
-                                <h4>Траектории обучения:</h4>
+                                <h4 data-i18n="program_2_tracks_title">Траектории обучения:</h4>
                                 <ul>
-                                    <li>Web & Mobile Development</li>
-                                    <li>Internet of Things (IoT)</li>
-                                    <li>Cloud & DevOps Engineering</li>
+                                    <li data-i18n="program_2_track_1">Web & Mobile Development</li>
+                                    <li data-i18n="program_2_track_2">Internet of Things (IoT)</li>
+                                    <li data-i18n="program_2_track_3">Cloud & DevOps Engineering</li>
                                 </ul>
                             </div>
                             
                             <div class="program-details">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="program_2_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Разработчик ПО</li>
-                                    <li>Мобильный разработчик</li>
-                                    <li>DevOps инженер</li>
-                                    <li>Специалист IoT</li>
-                                    <li>Технический директор</li>
+                                    <li data-i18n="program_2_career_1">Разработчик ПО</li>
+                                    <li data-i18n="program_2_career_2">Мобильный разработчик</li>
+                                    <li data-i18n="program_2_career_3">DevOps инженер</li>
+                                    <li data-i18n="program_2_career_4">Специалист IoT</li>
+                                    <li data-i18n="program_2_career_5">Технический директор</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="program-card-footer">
-                            <button class="btn" onclick="alert('Страница в разработке')">Подробнее о программе</button>
+                            <button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее о программе</button>
                         </div>
                     </div>
 
                     <!-- Data Science -->
                     <div class="program-card">
                         <div class="program-card-header">
-                            <h3>Data Science</h3>
+                            <h3 data-i18n="program_3_title">Data Science</h3>
                         </div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong> (или 2 года для выпускников ТиПО / НИШ)</p>
-                            <p>Программа готовит специалистов по анализу данных, машинному обучению и искусственному интеллекту.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong> <span data-i18n="program_3_duration_note">(или 2 года для выпускников ТиПО / НИШ)</span></p>
+                            <p data-i18n="program_3_desc">Программа готовит специалистов по анализу данных, машинному обучению и искусственному интеллекту.</p>
                             
                             <div class="program-details">
-                                <h4>Траектории обучения:</h4>
+                                <h4 data-i18n="program_3_tracks_title">Траектории обучения:</h4>
                                 <ul>
-                                    <li>Data Science and Business Analytics</li>
-                                    <li>Machine Learning / AI & Big Data</li>
-                                    <li>Data Engineering</li>
+                                    <li data-i18n="program_3_track_1">Data Science and Business Analytics</li>
+                                    <li data-i18n="program_3_track_2">Machine Learning / AI & Big Data</li>
+                                    <li data-i18n="program_3_track_3">Data Engineering</li>
                                 </ul>
                             </div>
                             
                             <div class="program-details">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="program_3_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Data Scientist</li>
-                                    <li>ML инженер</li>
-                                    <li>Бизнес-аналитик</li>
-                                    <li>Chief Data Officer</li>
-                                    <li>Chief Product Officer</li>
+                                    <li data-i18n="program_3_career_1">Data Scientist</li>
+                                    <li data-i18n="program_3_career_2">ML инженер</li>
+                                    <li data-i18n="program_3_career_3">Бизнес-аналитик</li>
+                                    <li data-i18n="program_3_career_4">Chief Data Officer</li>
+                                    <li data-i18n="program_3_career_5">Chief Product Officer</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="program-card-footer">
-                            <button class="btn" onclick="alert('Страница в разработке')">Подробнее о программе</button>
+                            <button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее о программе</button>
                         </div>
                     </div>
 
                     <!-- Product Management -->
                     <div class="program-card">
                         <div class="program-card-header">
-                            <h3>Product Management</h3>
+                            <h3 data-i18n="program_4_title">Product Management</h3>
                         </div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong> (или 2 года для выпускников ТиПО / НИШ)</p>
-                            <p>Подготовка специалистов по управлению цифровыми продуктами и IT-проектами от идеи до запуска.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong> <span data-i18n="program_4_duration_note">(или 2 года для выпускников ТиПО / НИШ)</span></p>
+                            <p data-i18n="program_4_desc">Подготовка специалистов по управлению цифровыми продуктами и IT-проектами от идеи до запуска.</p>
                             
                             <div class="program-details">
-                                <h4>Траектории обучения:</h4>
+                                <h4 data-i18n="program_4_tracks_title">Траектории обучения:</h4>
                                 <ul>
-                                    <li>Digital Product Management</li>
-                                    <li>Agile & Scrum Methodologies</li>
-                                    <li>UX Research & Strategy</li>
+                                    <li data-i18n="program_4_track_1">Digital Product Management</li>
+                                    <li data-i18n="program_4_track_2">Agile & Scrum Methodologies</li>
+                                    <li data-i18n="program_4_track_3">UX Research & Strategy</li>
                                 </ul>
                             </div>
                             
                             <div class="program-details">
-                                <h4>Карьерные возможности:</h4>
+                                <h4 data-i18n="program_4_career_title">Карьерные возможности:</h4>
                                 <ul>
-                                    <li>Product Manager</li>
-                                    <li>Project Manager</li>
-                                    <li>Senior Product Manager</li>
-                                    <li>Director of Product</li>
-                                    <li>Chief Product Officer</li>
+                                    <li data-i18n="program_4_career_1">Product Manager</li>
+                                    <li data-i18n="program_4_career_2">Project Manager</li>
+                                    <li data-i18n="program_4_career_3">Senior Product Manager</li>
+                                    <li data-i18n="program_4_career_4">Director of Product</li>
+                                    <li data-i18n="program_4_career_5">Chief Product Officer</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="program-card-footer">
-                            <button class="btn" onclick="alert('Страница в разработке')">Подробнее о программе</button>
+                            <button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее о программе</button>
                         </div>
                     </div>
                 </div>
@@ -1245,26 +1244,26 @@
         <!-- Преимущества -->
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Преимущества нашей школы</h2>
-                <p class="section-sub">Почему студенты выбирают AlmaU для IT-образования</p>
+                <h2 class="section-title" data-i18n="advantages_title">Преимущества нашей школы</h2>
+                <p class="section-sub" data-i18n="advantages_subtitle">Почему студенты выбирают AlmaU для IT-образования</p>
 
                 <div class="advantages-grid">
                     <div class="advantage-card">
                         <div class="advantage-icon">💼</div>
-                        <h3>Практико-ориентированное обучение</h3>
-                        <p>Реальные проекты, стажировки в IT-компаниях и тесное сотрудничество с индустрией</p>
+                        <h3 data-i18n="advantage_1_title">Практико-ориентированное обучение</h3>
+                        <p data-i18n="advantage_1_desc">Реальные проекты, стажировки в IT-компаниях и тесное сотрудничество с индустрией</p>
                     </div>
 
                     <div class="advantage-card">
                         <div class="advantage-icon">🌍</div>
-                        <h3>Международные возможности</h3>
-                        <p>Обменные программы, двойные дипломы с зарубежными вузами и глобальные карьерные перспективы</p>
+                        <h3 data-i18n="advantage_2_title">Международные возможности</h3>
+                        <p data-i18n="advantage_2_desc">Обменные программы, двойные дипломы с зарубежными вузами и глобальные карьерные перспективы</p>
                     </div>
 
                     <div class="advantage-card">
                         <div class="advantage-icon">🎓</div>
-                        <h3>Активная студенческая жизнь</h3>
-                        <p>IT-лаборатории, хакатоны, студенческие проекты и профессиональные сообщества</p>
+                        <h3 data-i18n="advantage_3_title">Активная студенческая жизнь</h3>
+                        <p data-i18n="advantage_3_desc">IT-лаборатории, хакатоны, студенческие проекты и профессиональные сообщества</p>
                     </div>
                 </div>
             </div>
@@ -1273,36 +1272,36 @@
         <!-- Поступление -->
         <section class="admission-section" id="apply">
             <div class="container">
-                <h2 class="section-title">Как поступить</h2>
+                <h2 class="section-title" data-i18n="admission_title">Как поступить</h2>
                 
                 <div class="admission-content">
                     <div class="admission-requirements">
-                        <h3 class="admission-subtitle">Требования для поступления</h3>
+                        <h3 class="admission-subtitle" data-i18n="admission_subtitle">Требования для поступления</h3>
                         <ol class="admission-list">
                             <li>
-                                <strong>ЕНТ или комплексное тестирование</strong>
-                                — необходимо пройти вступительные испытания по профильным предметам (математика, информатика)
+                                <strong data-i18n="admission_req_1_title">ЕНТ или комплексное тестирование</strong>
+                                <span data-i18n="admission_req_1_desc">— необходимо пройти вступительные испытания по профильным предметам (математика, информатика)</span>
                             </li>
                             <li>
-                                <strong>Документы об образовании</strong>
-                                — аттестат о среднем образовании, удостоверение личности, фотографии 3×4
+                                <strong data-i18n="admission_req_2_title">Документы об образовании</strong>
+                                <span data-i18n="admission_req_2_desc">— аттестат о среднем образовании, удостоверение личности, фотографии 3×4</span>
                             </li>
                             <li>
-                                <strong>Портфолио (опционально)</strong>
-                                — собственные проекты, участие в олимпиадах или IT-конкурсах
+                                <strong data-i18n="admission_req_3_title">Портфолио (опционально)</strong>
+                                <span data-i18n="admission_req_3_desc">— собственные проекты, участие в олимпиадах или IT-конкурсах</span>
                             </li>
                             <li>
-                                <strong>Дедлайн подачи заявок</strong>
-                                — прием документов до 20 августа, зачисление по результатам конкурса
+                                <strong data-i18n="admission_req_4_title">Дедлайн подачи заявок</strong>
+                                <span data-i18n="admission_req_4_desc">— прием документов до 20 августа, зачисление по результатам конкурса</span>
                             </li>
                         </ol>
                     </div>
 
                     <div class="admission-action">
-                        <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;">
+                        <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.9;" data-i18n="admission_action_text">
                             Подайте заявку онлайн или посетите приёмную комиссию для получения подробной консультации
                         </p>
-                        <a href="{% url 'university:chatbot_menu' %}" class="btn">Подать заявку на поступление</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="admission_action_btn">Подать заявку на поступление</a>
                     </div>
                 </div>
             </div>
@@ -1311,50 +1310,48 @@
         <!-- Контакты -->
         <section class="contacts-section" id="consult">
             <div class="container">
-                <h2 class="section-title">Контакты приёмной комиссии</h2>
-                <p class="section-sub">Свяжитесь с нами для получения дополнительной информации</p>
+                <h2 class="section-title" data-i18n="contacts_title">Контакты приёмной комиссии</h2>
+                <p class="section-sub" data-i18n="contacts_subtitle">Свяжитесь с нами для получения дополнительной информации</p>
 
                 <div class="contacts-grid">
                     <div class="contacts-info">
-                        <h3 class="contacts-subtitle">Свяжитесь с нами</h3>
+                        <h3 class="contacts-subtitle" data-i18n="contacts_contact_title">Свяжитесь с нами</h3>
                         <address class="contacts-address">
                             <div class="contacts-item">
-                                <strong>Телефон:</strong>
+                                <strong data-i18n="contacts_phone_label">Телефон:</strong>
                                 <a href="tel:+77273133040" class="contacts-link">+7 (727) 313 3040</a>
                             </div>
                             <div class="contacts-item">
-                                <strong>Email для абитуриентов:</strong>
+                                <strong data-i18n="contacts_email_label">Email для абитуриентов:</strong>
                                 <a href="mailto:admission@almau.kz" class="contacts-link">admission@almau.kz</a>
                             </div>
                             <div class="contacts-item">
-                                <strong>Адрес:</strong>
-                                ул. Розыбакиева, 227<br>
-                                Алматы, Казахстан
+                                <strong data-i18n="contacts_address_label">Адрес:</strong>
+                                <span data-i18n="contacts_address_value">ул. Розыбакиева, 227<br>Алматы, Казахстан</span>
                             </div>
                             <div class="contacts-item">
-                                <strong>Часы работы:</strong>
-                                Пн–Пт: 9:00 – 18:00<br>
-                                Сб: 10:00 – 15:00
+                                <strong data-i18n="contacts_hours_label">Часы работы:</strong>
+                                <span data-i18n="contacts_hours_value">Пн–Пт: 9:00 – 18:00<br>Сб: 10:00 – 15:00</span>
                             </div>
                         </address>
                     </div>
 
                     <div class="contacts-form-wrapper">
-                        <h3 class="contacts-subtitle">Запросить консультацию</h3>
-                        <form class="contacts-form">
+                        <h3 class="contacts-subtitle" data-i18n="contacts_form_title">Запросить консультацию</h3>
+                        <form class="contacts-form" id="consultForm">
                             <div class="form-group">
-                                <label for="consultName" class="form-label">Ваше имя</label>
-                                <input type="text" id="consultName" class="form-input" placeholder="Иван Иванов" required>
+                                <label for="consultName" class="form-label" data-i18n="form_name_label">Ваше имя</label>
+                                <input type="text" id="consultName" class="form-input" data-i18n-placeholder="form_name_placeholder" placeholder="Иван Иванов" required>
                             </div>
                             <div class="form-group">
-                                <label for="consultContact" class="form-label">Телефон или Email</label>
-                                <input type="text" id="consultContact" class="form-input" placeholder="+7 (777) 123 4567" required>
+                                <label for="consultContact" class="form-label" data-i18n="form_contact_label">Телефон или Email</label>
+                                <input type="text" id="consultContact" class="form-input" data-i18n-placeholder="form_contact_placeholder" placeholder="+7 (777) 123 4567" required>
                             </div>
                             <div class="form-group">
-                                <label for="consultMessage" class="form-label">Ваш вопрос или программа</label>
-                                <textarea id="consultMessage" class="form-textarea" placeholder="Интересует программа Data Science..." required></textarea>
+                                <label for="consultMessage" class="form-label" data-i18n="form_message_label">Ваш вопрос или программа</label>
+                                <textarea id="consultMessage" class="form-textarea" data-i18n-placeholder="form_message_placeholder" placeholder="Интересует программа Data Science..." required></textarea>
                             </div>
-                            <button type="submit" class="form-submit">Отправить запрос</button>
+                            <button type="submit" class="form-submit" data-i18n="form_submit_btn">Отправить запрос</button>
                         </form>
                     </div>
                 </div>
@@ -1366,105 +1363,438 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        // Автоматическое обновление года в футере
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        
-        // Плавная прокрутка
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Анимация появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU - Школа цифровых технологий",
+                hero_title: "Школа цифровых технологий",
+                hero_desc: "Подготавливаем специалистов, способных создавать цифровые продукты, управлять IT-проектами и развивать технологические решения для бизнеса и общества. Обучение основано на практике, современных технологиях и сотрудничестве с ведущими компаниями.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Получить консультацию",
+                feature_1_value: "30+", feature_1_label: "программ IT-направлений",
+                feature_2_value: "50+", feature_2_label: "индустриальных партнёров",
+                feature_3_value: "100 %", feature_3_label: "практико-ориентированное обучение",
+                feature_4_value: "95%", feature_4_label: "трудоустройство выпускников",
+                programs_title: "Программы School of Digital Technologies",
+                programs_subtitle: "Выберите программу, чтобы построить карьеру в IT и цифровых технологиях. Все программы разработаны совместно с лидерами индустрии.",
+                program_1_title: "Information Systems",
+                program_1_duration: "Бакалавриат — 3 года",
+                program_1_duration_note: "(или 2 года для выпускников ТиПО / НИШ)",
+                program_1_desc: "Программа готовит специалистов по разработке и внедрению информационных систем для бизнеса.",
+                program_1_tracks_title: "Траектории обучения:",
+                program_1_track_1: "Web & Mobile Development",
+                program_1_track_2: "Machine Learning & Big Data",
+                program_1_track_3: "Graphic Design & Game Development",
+                program_1_career_title: "Карьерные возможности:",
+                program_1_career_1: "Веб/мобильный разработчик",
+                program_1_career_2: "Дизайнер UX/UI",
+                program_1_career_3: "Разработчик игр",
+                program_1_career_4: "Data Scientist",
+                program_1_career_5: "Основатель IT-проекта",
+                program_2_title: "Software Engineering",
+                program_2_duration: "Бакалавриат — 3 года",
+                program_2_duration_note: "(или 2 года для выпускников ТиПО / НИШ)",
+                program_2_desc: "Подготовка инженеров-программистов для создания высоконагруженных систем и приложений.",
+                program_2_tracks_title: "Траектории обучения:",
+                program_2_track_1: "Web & Mobile Development",
+                program_2_track_2: "Internet of Things (IoT)",
+                program_2_track_3: "Cloud & DevOps Engineering",
+                program_2_career_title: "Карьерные возможности:",
+                program_2_career_1: "Разработчик ПО",
+                program_2_career_2: "Мобильный разработчик",
+                program_2_career_3: "DevOps инженер",
+                program_2_career_4: "Специалист IoT",
+                program_2_career_5: "Технический директор",
+                program_2_alert: "Страница в разработке",
+                program_3_title: "Data Science",
+                program_3_duration: "Бакалавриат — 3 года",
+                program_3_duration_note: "(или 2 года для выпускников ТиПО / НИШ)",
+                program_3_desc: "Программа готовит специалистов по анализу данных, машинному обучению и искусственному интеллекту.",
+                program_3_tracks_title: "Траектории обучения:",
+                program_3_track_1: "Data Science and Business Analytics",
+                program_3_track_2: "Machine Learning / AI & Big Data",
+                program_3_track_3: "Data Engineering",
+                program_3_career_title: "Карьерные возможности:",
+                program_3_career_1: "Data Scientist",
+                program_3_career_2: "ML инженер",
+                program_3_career_3: "Бизнес-аналитик",
+                program_3_career_4: "Chief Data Officer",
+                program_3_career_5: "Chief Product Officer",
+                program_3_alert: "Страница в разработке",
+                program_4_title: "Product Management",
+                program_4_duration: "Бакалавриат — 3 года",
+                program_4_duration_note: "(или 2 года для выпускников ТиПО / НИШ)",
+                program_4_desc: "Подготовка специалистов по управлению цифровыми продуктами и IT-проектами от идеи до запуска.",
+                program_4_tracks_title: "Траектории обучения:",
+                program_4_track_1: "Digital Product Management",
+                program_4_track_2: "Agile & Scrum Methodologies",
+                program_4_track_3: "UX Research & Strategy",
+                program_4_career_title: "Карьерные возможности:",
+                program_4_career_1: "Product Manager",
+                program_4_career_2: "Project Manager",
+                program_4_career_3: "Senior Product Manager",
+                program_4_career_4: "Director of Product",
+                program_4_career_5: "Chief Product Officer",
+                program_4_alert: "Страница в разработке",
+                btn_more: "Подробнее о программе",
+                advantages_title: "Преимущества нашей школы",
+                advantages_subtitle: "Почему студенты выбирают AlmaU для IT-образования",
+                advantage_1_title: "Практико-ориентированное обучение",
+                advantage_1_desc: "Реальные проекты, стажировки в IT-компаниях и тесное сотрудничество с индустрией",
+                advantage_2_title: "Международные возможности",
+                advantage_2_desc: "Обменные программы, двойные дипломы с зарубежными вузами и глобальные карьерные перспективы",
+                advantage_3_title: "Активная студенческая жизнь",
+                advantage_3_desc: "IT-лаборатории, хакатоны, студенческие проекты и профессиональные сообщества",
+                admission_title: "Как поступить",
+                admission_subtitle: "Требования для поступления",
+                admission_req_1_title: "ЕНТ или комплексное тестирование",
+                admission_req_1_desc: "— необходимо пройти вступительные испытания по профильным предметам (математика, информатика)",
+                admission_req_2_title: "Документы об образовании",
+                admission_req_2_desc: "— аттестат о среднем образовании, удостоверение личности, фотографии 3×4",
+                admission_req_3_title: "Портфолио (опционально)",
+                admission_req_3_desc: "— собственные проекты, участие в олимпиадах или IT-конкурсах",
+                admission_req_4_title: "Дедлайн подачи заявок",
+                admission_req_4_desc: "— прием документов до 20 августа, зачисление по результатам конкурса",
+                admission_action_text: "Подайте заявку онлайн или посетите приёмную комиссию для получения подробной консультации",
+                admission_action_btn: "Подать заявку на поступление",
+                contacts_title: "Контакты приёмной комиссии",
+                contacts_subtitle: "Свяжитесь с нами для получения дополнительной информации",
+                contacts_contact_title: "Свяжитесь с нами",
+                contacts_phone_label: "Телефон:",
+                contacts_email_label: "Email для абитуриентов:",
+                contacts_address_label: "Адрес:",
+                contacts_address_value: "ул. Розыбакиева, 227<br>Алматы, Казахстан",
+                contacts_hours_label: "Часы работы:",
+                contacts_hours_value: "Пн–Пт: 9:00 – 18:00<br>Сб: 10:00 – 15:00",
+                contacts_form_title: "Запросить консультацию",
+                form_name_label: "Ваше имя",
+                form_name_placeholder: "Иван Иванов",
+                form_contact_label: "Телефон или Email",
+                form_contact_placeholder: "+7 (777) 123 4567",
+                form_message_label: "Ваш вопрос или программа",
+                form_message_placeholder: "Интересует программа Data Science...",
+                form_submit_btn: "Отправить запрос",
+                form_success: "Спасибо! Ваш запрос отправлен. Мы свяжемся с вами в ближайшее время.",
+                form_error: "Пожалуйста, заполните все поля формы."
+            },
+            kz: {
+                page_title: "AlmaU - Цифрлық технологиялар мектебі",
+                hero_title: "Цифрлық технологиялар мектебі",
+                hero_desc: "Цифрлық өнімдерді құруға, IT-жобаларды басқаруға және бизнес пен қоғам үшін технологиялық шешімдерді дамытуға қабілетті мамандар даярлаймыз. Оқыту практикаға, заманауи технологияларға және жетекші компаниялармен ынтымақтастыққа негізделген.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                feature_1_value: "30+", feature_1_label: "IT бағдарлама",
+                feature_2_value: "50+", feature_2_label: "индустриялық серіктес",
+                feature_3_value: "100 %", feature_3_label: "практикаға бағытталған оқыту",
+                feature_4_value: "95%", feature_4_label: "түлектердің жұмысқа орналасуы",
+                programs_title: "Цифрлық технологиялар мектебінің бағдарламалары",
+                programs_subtitle: "IT және цифрлық технологияларда мансап құру үшін бағдарламаны таңдаңыз. Барлық бағдарламалар индустрия көшбасшыларымен бірлесіп әзірленген.",
+                program_1_title: "Information Systems",
+                program_1_duration: "Бакалавриат — 3 жыл",
+                program_1_duration_note: "(немесе КҚБ / НЗМ түлектері үшін 2 жыл)",
+                program_1_desc: "Бағдарлама бизнес үшін ақпараттық жүйелерді әзірлеу және енгізу бойынша мамандар даярлайды.",
+                program_1_tracks_title: "Оқу траекториялары:",
+                program_1_track_1: "Web & Mobile Development",
+                program_1_track_2: "Machine Learning & Big Data",
+                program_1_track_3: "Graphic Design & Game Development",
+                program_1_career_title: "Мансаптық мүмкіндіктер:",
+                program_1_career_1: "Веб/мобильді әзірлеуші",
+                program_1_career_2: "UX/UI дизайнер",
+                program_1_career_3: "Ойын әзірлеуші",
+                program_1_career_4: "Data Scientist",
+                program_1_career_5: "IT-жобаның негізін қалаушы",
+                program_2_title: "Software Engineering",
+                program_2_duration: "Бакалавриат — 3 жыл",
+                program_2_duration_note: "(немесе КҚБ / НЗМ түлектері үшін 2 жыл)",
+                program_2_desc: "Жоғары жүктемелі жүйелер мен қосымшаларды құру үшін бағдарламашы-инженерлерді даярлау.",
+                program_2_tracks_title: "Оқу траекториялары:",
+                program_2_track_1: "Web & Mobile Development",
+                program_2_track_2: "Internet of Things (IoT)",
+                program_2_track_3: "Cloud & DevOps Engineering",
+                program_2_career_title: "Мансаптық мүмкіндіктер:",
+                program_2_career_1: "БҒ әзірлеуші",
+                program_2_career_2: "Мобильді әзірлеуші",
+                program_2_career_3: "DevOps инженер",
+                program_2_career_4: "IoT маманы",
+                program_2_career_5: "Техникалық директор",
+                program_2_alert: "Бет әзірленуде",
+                program_3_title: "Data Science",
+                program_3_duration: "Бакалавриат — 3 жыл",
+                program_3_duration_note: "(немесе КҚБ / НЗМ түлектері үшін 2 жыл)",
+                program_3_desc: "Бағдарлама деректерді талдау, машиналық оқыту және жасанды интеллект саласындағы мамандарды даярлайды.",
+                program_3_tracks_title: "Оқу траекториялары:",
+                program_3_track_1: "Data Science and Business Analytics",
+                program_3_track_2: "Machine Learning / AI & Big Data",
+                program_3_track_3: "Data Engineering",
+                program_3_career_title: "Мансаптық мүмкіндіктер:",
+                program_3_career_1: "Data Scientist",
+                program_3_career_2: "ML инженер",
+                program_3_career_3: "Бизнес-аналитик",
+                program_3_career_4: "Chief Data Officer",
+                program_3_career_5: "Chief Product Officer",
+                program_3_alert: "Бет әзірленуде",
+                program_4_title: "Product Management",
+                program_4_duration: "Бакалавриат — 3 жыл",
+                program_4_duration_note: "(немесе КҚБ / НЗМ түлектері үшін 2 жыл)",
+                program_4_desc: "Идеядан іске қосуға дейінгі цифрлық өнімдер мен IT-жобаларды басқару бойынша мамандарды даярлау.",
+                program_4_tracks_title: "Оқу траекториялары:",
+                program_4_track_1: "Digital Product Management",
+                program_4_track_2: "Agile & Scrum Methodologies",
+                program_4_track_3: "UX Research & Strategy",
+                program_4_career_title: "Мансаптық мүмкіндіктер:",
+                program_4_career_1: "Product Manager",
+                program_4_career_2: "Project Manager",
+                program_4_career_3: "Senior Product Manager",
+                program_4_career_4: "Director of Product",
+                program_4_career_5: "Chief Product Officer",
+                program_4_alert: "Бет әзірленуде",
+                btn_more: "Бағдарлама туралы толығырақ",
+                advantages_title: "Мектептің артықшылықтары",
+                advantages_subtitle: "Студенттер IT-білім алу үшін неліктен AlmaU-ны таңдайды",
+                advantage_1_title: "Практикаға бағытталған оқыту",
+                advantage_1_desc: "Нақты жобалар, IT-компанияларда тағылымдама және индустриямен тығыз ынтымақтастық",
+                advantage_2_title: "Халықаралық мүмкіндіктер",
+                advantage_2_desc: "Алмасу бағдарламалары, шетелдік ЖОО-лармен қос дипломдар және жаһандық мансаптық перспективалар",
+                advantage_3_title: "Белсенді студенттік өмір",
+                advantage_3_desc: "IT-зертханалар, хакатондар, студенттік жобалар және кәсіби қауымдастықтар",
+                admission_title: "Қалай түсуге болады",
+                admission_subtitle: "Түсу талаптары",
+                admission_req_1_title: "ҰБТ немесе кешенді тестілеу",
+                admission_req_1_desc: "— бейіндік пәндер бойынша түсу емтихандарынан өту қажет (математика, информатика)",
+                admission_req_2_title: "Білім туралы құжаттар",
+                admission_req_2_desc: "— орта білім туралы аттестат, жеке куәлік, 3×4 фотосуреттер",
+                admission_req_3_title: "Портфолио (міндетті емес)",
+                admission_req_3_desc: "— жеке жобалар, олимпиадаларға немесе IT-байқауларға қатысу",
+                admission_req_4_title: "Өтінімдерді қабылдаудың соңғы мерзімі",
+                admission_req_4_desc: "— құжаттарды қабылдау 20 тамызға дейін, конкурс нәтижелері бойынша оқуға қабылдау",
+                admission_action_text: "Толық кеңес алу үшін өтінімді онлайн тапсырыңыз немесе қабылдау комиссиясына келіңіз",
+                admission_action_btn: "Оқуға түсуге өтінім беру",
+                contacts_title: "Қабылдау комиссиясының байланыстары",
+                contacts_subtitle: "Қосымша ақпарат алу үшін бізге хабарласыңыз",
+                contacts_contact_title: "Бізбен байланысыңыз",
+                contacts_phone_label: "Телефон:",
+                contacts_email_label: "Абитуриенттерге арналған Email:",
+                contacts_address_label: "Мекенжайы:",
+                contacts_address_value: "Розыбакиев көш., 227<br>Алматы, Қазақстан",
+                contacts_hours_label: "Жұмыс уақыты:",
+                contacts_hours_value: "Дс–Жм: 9:00 – 18:00<br>Сб: 10:00 – 15:00",
+                contacts_form_title: "Кеңес сұрау",
+                form_name_label: "Аты-жөніңіз",
+                form_name_placeholder: "Азамат Азаматов",
+                form_contact_label: "Телефон немесе Email",
+                form_contact_placeholder: "+7 (777) 123 4567",
+                form_message_label: "Сұрағыңыз немесе бағдарлама",
+                form_message_placeholder: "Data Science бағдарламасы қызықтырады...",
+                form_submit_btn: "Сұраныс жіберу",
+                form_success: "Рахмет! Сұранысыңыз жіберілді. Біз сізбен жақын арада байланысамыз.",
+                form_error: "Форманың барлық өрістерін толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU - School of Digital Technologies",
+                hero_title: "School of Digital Technologies",
+                hero_desc: "We train specialists capable of creating digital products, managing IT projects, and developing technological solutions for business and society. Training is based on practice, modern technologies, and collaboration with leading companies.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Get consultation",
+                feature_1_value: "30+", feature_1_label: "IT programs",
+                feature_2_value: "50+", feature_2_label: "industry partners",
+                feature_3_value: "100%", feature_3_label: "practice-oriented education",
+                feature_4_value: "95%", feature_4_label: "graduate employment rate",
+                programs_title: "School of Digital Technologies Programs",
+                programs_subtitle: "Choose a program to build your career in IT and digital technologies. All programs are developed in collaboration with industry leaders.",
+                program_1_title: "Information Systems",
+                program_1_duration: "Bachelor's — 3 years",
+                program_1_duration_note: "(or 2 years for TVET / NIS graduates)",
+                program_1_desc: "The program trains specialists in the development and implementation of information systems for business.",
+                program_1_tracks_title: "Learning tracks:",
+                program_1_track_1: "Web & Mobile Development",
+                program_1_track_2: "Machine Learning & Big Data",
+                program_1_track_3: "Graphic Design & Game Development",
+                program_1_career_title: "Career opportunities:",
+                program_1_career_1: "Web/Mobile Developer",
+                program_1_career_2: "UX/UI Designer",
+                program_1_career_3: "Game Developer",
+                program_1_career_4: "Data Scientist",
+                program_1_career_5: "IT Project Founder",
+                program_2_title: "Software Engineering",
+                program_2_duration: "Bachelor's — 3 years",
+                program_2_duration_note: "(or 2 years for TVET / NIS graduates)",
+                program_2_desc: "Training software engineers to create high-load systems and applications.",
+                program_2_tracks_title: "Learning tracks:",
+                program_2_track_1: "Web & Mobile Development",
+                program_2_track_2: "Internet of Things (IoT)",
+                program_2_track_3: "Cloud & DevOps Engineering",
+                program_2_career_title: "Career opportunities:",
+                program_2_career_1: "Software Developer",
+                program_2_career_2: "Mobile Developer",
+                program_2_career_3: "DevOps Engineer",
+                program_2_career_4: "IoT Specialist",
+                program_2_career_5: "Technical Director",
+                program_2_alert: "Page under development",
+                program_3_title: "Data Science",
+                program_3_duration: "Bachelor's — 3 years",
+                program_3_duration_note: "(or 2 years for TVET / NIS graduates)",
+                program_3_desc: "The program trains specialists in data analysis, machine learning, and artificial intelligence.",
+                program_3_tracks_title: "Learning tracks:",
+                program_3_track_1: "Data Science and Business Analytics",
+                program_3_track_2: "Machine Learning / AI & Big Data",
+                program_3_track_3: "Data Engineering",
+                program_3_career_title: "Career opportunities:",
+                program_3_career_1: "Data Scientist",
+                program_3_career_2: "ML Engineer",
+                program_3_career_3: "Business Analyst",
+                program_3_career_4: "Chief Data Officer",
+                program_3_career_5: "Chief Product Officer",
+                program_3_alert: "Page under development",
+                program_4_title: "Product Management",
+                program_4_duration: "Bachelor's — 3 years",
+                program_4_duration_note: "(or 2 years for TVET / NIS graduates)",
+                program_4_desc: "Training specialists in digital product and IT project management from idea to launch.",
+                program_4_tracks_title: "Learning tracks:",
+                program_4_track_1: "Digital Product Management",
+                program_4_track_2: "Agile & Scrum Methodologies",
+                program_4_track_3: "UX Research & Strategy",
+                program_4_career_title: "Career opportunities:",
+                program_4_career_1: "Product Manager",
+                program_4_career_2: "Project Manager",
+                program_4_career_3: "Senior Product Manager",
+                program_4_career_4: "Director of Product",
+                program_4_career_5: "Chief Product Officer",
+                program_4_alert: "Page under development",
+                btn_more: "Learn more",
+                advantages_title: "School Advantages",
+                advantages_subtitle: "Why students choose AlmaU for IT education",
+                advantage_1_title: "Practice-oriented education",
+                advantage_1_desc: "Real projects, internships in IT companies, and close cooperation with industry",
+                advantage_2_title: "International opportunities",
+                advantage_2_desc: "Exchange programs, double degrees with foreign universities, and global career prospects",
+                advantage_3_title: "Active student life",
+                advantage_3_desc: "IT labs, hackathons, student projects, and professional communities",
+                admission_title: "How to Apply",
+                admission_subtitle: "Admission Requirements",
+                admission_req_1_title: "UNT or comprehensive testing",
+                admission_req_1_desc: "— you must pass entrance exams in core subjects (mathematics, computer science)",
+                admission_req_2_title: "Education documents",
+                admission_req_2_desc: "— secondary education certificate, identity document, 3×4 photos",
+                admission_req_3_title: "Portfolio (optional)",
+                admission_req_3_desc: "— personal projects, participation in olympiads or IT competitions",
+                admission_req_4_title: "Application deadline",
+                admission_req_4_desc: "— document submission until August 20, enrollment based on competition results",
+                admission_action_text: "Submit your application online or visit the admissions office for detailed consultation",
+                admission_action_btn: "Submit application for admission",
+                contacts_title: "Admissions Office Contacts",
+                contacts_subtitle: "Contact us for more information",
+                contacts_contact_title: "Contact Us",
+                contacts_phone_label: "Phone:",
+                contacts_email_label: "Email for applicants:",
+                contacts_address_label: "Address:",
+                contacts_address_value: "227 Rozybakiev St.<br>Almaty, Kazakhstan",
+                contacts_hours_label: "Working hours:",
+                contacts_hours_value: "Mon–Fri: 9:00 – 18:00<br>Sat: 10:00 – 15:00",
+                contacts_form_title: "Request Consultation",
+                form_name_label: "Your name",
+                form_name_placeholder: "Ivan Ivanov",
+                form_contact_label: "Phone or Email",
+                form_contact_placeholder: "+7 (777) 123 4567",
+                form_message_label: "Your question or program",
+                form_message_placeholder: "I'm interested in Data Science program...",
+                form_submit_btn: "Send request",
+                form_success: "Thank you! Your request has been sent. We will contact you shortly.",
+                form_error: "Please fill in all fields."
+            }
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'INPUT' && el.getAttribute('type') !== 'text') {
+                        // skip
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
                 }
             });
-        }, observerOptions);
-
-        // Наблюдаем за карточками программ
-        document.querySelectorAll('.program-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            observer.observe(card);
-        });
-
-        // Наблюдаем за карточками преимуществ
-        document.querySelectorAll('.advantage-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            observer.observe(card);
-        });
-
-        // Обработка формы
-        document.querySelector('.contacts-form').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            const name = document.getElementById('consultName').value;
-            const contact = document.getElementById('consultContact').value;
-            const message = document.getElementById('consultMessage').value;
-            
-            if (name && contact && message) {
-                // В реальном проекте здесь был бы AJAX запрос
-                alert(`Спасибо, ${name}! Ваш запрос отправлен. Мы свяжемся с вами по ${contact} в ближайшее время.`);
-                this.reset();
-            } else {
-                alert('Пожалуйста, заполните все поля формы.');
-            }
-        });
-
-        // Динамическое изменение цвета header при скролле
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.main-header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'var(--white)';
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // Подсветка активной ссылки в навигации
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav__list a');
-            
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.style.color = 'var(--blue)';
-                    link.style.fontWeight = '600';
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
                 }
             });
-        });
+        }
 
-        // Параллакс эффект для hero изображения
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroImg = document.querySelector('.hero-img');
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
             
-            if (heroImg && scrolled < 500) {
-                const rate = scrolled * -0.3;
-                heroImg.style.transform = `perspective(1500px) rotateY(-15deg) rotateX(5deg) translateY(${rate}px)`;
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const consultForm = document.getElementById('consultForm');
+            if (consultForm) {
+                consultForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('consultName').value;
+                    const contact = document.getElementById('consultContact').value;
+                    const message = document.getElementById('consultMessage').value;
+                    
+                    if (name && contact && message) {
+                        alert(getTranslation('form_success'));
+                        this.reset();
+                    } else {
+                        alert(getTranslation('form_error'));
+                    }
+                });
             }
         });
     </script>

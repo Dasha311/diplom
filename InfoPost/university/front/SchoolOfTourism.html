@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU · Школа Гостеприимства и Туризма</title>
+    <title data-i18n="page_title">AlmaU · Школа Гостеприимства и Туризма</title>
     <!-- Подключаем шрифт Inter как на главной -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -826,13 +826,13 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-left">
-                    <h1 class="hero-title">Школа Гостеприимства и Туризма</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">Школа Гостеприимства и Туризма</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Готовим профессионалов для отельного бизнеса, ресторанного дела, туризма и event-индустрии. Сочетание управленческих навыков, сервисных стандартов и международного опыта.
                     </p>
                     <div class="hero-actions">
-                        <a href="{% url 'university:chatbot_menu' %}" class="hero-cta primary">Подать заявление</a>
-                        <a href="mailto:admission@almau.kz" class="hero-cta ghost">Консультация</a>
+                        <a href="{% url 'university:chatbot_menu' %}" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="mailto:admission@almau.kz" class="hero-cta ghost" data-i18n="hero_btn_consult">Консультация</a>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -846,20 +846,20 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">программ в сфере HoReCa</div>
+                        <div class="stat-number" data-i18n="stat_1_value">6+</div>
+                        <div class="stat-label" data-i18n="stat_1_label">программ в сфере HoReCa</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">отелей и туроператоров</div>
+                        <div class="stat-number" data-i18n="stat_2_value">30+</div>
+                        <div class="stat-label" data-i18n="stat_2_label">отелей и туроператоров</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">международных стажировок</div>
+                        <div class="stat-number" data-i18n="stat_3_value">15+</div>
+                        <div class="stat-label" data-i18n="stat_3_label">международных стажировок</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">90%</div>
-                        <div class="stat-label">трудоустройство в индустрии</div>
+                        <div class="stat-number" data-i18n="stat_4_value">90%</div>
+                        <div class="stat-label" data-i18n="stat_4_label">трудоустройство в индустрии</div>
                     </div>
                 </div>
             </div>
@@ -868,92 +868,116 @@
         <!-- ПРОГРАММЫ (6 штук, 3 в ряд) -->
         <section class="programs-section">
             <div class="container">
-                <h2 class="section-title">Программы Школы Гостеприимства и Туризма</h2>
-                <p class="section-sub">Актуальные программы для карьеры в отельном бизнесе, туризме, ресторанном деле и ивент-менеджменте</p>
+                <h2 class="section-title" data-i18n="programs_title">Программы Школы Гостеприимства и Туризма</h2>
+                <p class="section-sub" data-i18n="programs_subtitle">Актуальные программы для карьеры в отельном бизнесе, туризме, ресторанном деле и ивент-менеджменте</p>
 
                 <div class="programs-grid">
                     <!-- 1. Гостиничный бизнес -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Гостиничный бизнес</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_1_title">Гостиничный бизнес</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Управление отелями, стандарты обслуживания, доходность, франчайзинг.</p>
+                            <p><strong data-i18n="program_1_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_1_desc">Управление отелями, стандарты обслуживания, доходность, франчайзинг.</p>
                             <div class="program-details">
-                                <h4>Карьерные треки</h4>
-                                <ul><li>Менеджер отеля</li><li>Front office manager</li><li>Revenue manager</li></ul>
+                                <h4 data-i18n="program_1_career_title">Карьерные треки</h4>
+                                <ul>
+                                    <li data-i18n="program_1_career_1">Менеджер отеля</li>
+                                    <li data-i18n="program_1_career_2">Front office manager</li>
+                                    <li data-i18n="program_1_career_3">Revenue manager</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Гостиничный бизнес')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_1_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 2. Туризм и экскурсионное дело -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Туризм и экскурсионное дело</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_2_title">Туризм и экскурсионное дело</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Туроперейтинг, тревел-технологии, гиды-переводчики, туристический маркетинг.</p>
+                            <p><strong data-i18n="program_2_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_2_desc">Туроперейтинг, тревел-технологии, гиды-переводчики, туристический маркетинг.</p>
                             <div class="program-details">
-                                <h4>Траектории</h4>
-                                <ul><li>Въездной туризм</li><li>Выездной туризм</li><li>Экскурсионное дело</li></ul>
+                                <h4 data-i18n="program_2_tracks_title">Траектории</h4>
+                                <ul>
+                                    <li data-i18n="program_2_track_1">Въездной туризм</li>
+                                    <li data-i18n="program_2_track_2">Выездной туризм</li>
+                                    <li data-i18n="program_2_track_3">Экскурсионное дело</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Туризм')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_2_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 3. Ресторанный бизнес и кейтеринг -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Ресторанный бизнес</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_3_title">Ресторанный бизнес</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Управление рестораном, кулинарное искусство, винная культура, кейтеринг.</p>
+                            <p><strong data-i18n="program_3_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_3_desc">Управление рестораном, кулинарное искусство, винная культура, кейтеринг.</p>
                             <div class="program-details">
-                                <h4>Практика</h4>
-                                <ul><li>Ресторанные концепции</li><li>Бренд-шеф</li><li>Ресторанный менеджмент</li></ul>
+                                <h4 data-i18n="program_3_practice_title">Практика</h4>
+                                <ul>
+                                    <li data-i18n="program_3_practice_1">Ресторанные концепции</li>
+                                    <li data-i18n="program_3_practice_2">Бренд-шеф</li>
+                                    <li data-i18n="program_3_practice_3">Ресторанный менеджмент</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Ресторанный бизнес')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_3_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 4. Event-менеджмент -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Event-менеджмент</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_4_title">Event-менеджмент</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Организация мероприятий, свадеб, конференций, фестивалей, ивент-маркетинг.</p>
+                            <p><strong data-i18n="program_4_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_4_desc">Организация мероприятий, свадеб, конференций, фестивалей, ивент-маркетинг.</p>
                             <div class="program-details">
-                                <h4>Сферы</h4>
-                                <ul><li>Корпоративные ивенты</li><li>Private events</li><li>Фестивальный менеджмент</li></ul>
+                                <h4 data-i18n="program_4_fields_title">Сферы</h4>
+                                <ul>
+                                    <li data-i18n="program_4_field_1">Корпоративные ивенты</li>
+                                    <li data-i18n="program_4_field_2">Private events</li>
+                                    <li data-i18n="program_4_field_3">Фестивальный менеджмент</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Event-менеджмент')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_4_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 5. Spa & wellness менеджмент -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Spa & wellness менеджмент</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_5_title">Spa & wellness менеджмент</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Управление спа-центрами, оздоровительный туризм, велнес-технологии.</p>
+                            <p><strong data-i18n="program_5_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_5_desc">Управление спа-центрами, оздоровительный туризм, велнес-технологии.</p>
                             <div class="program-details">
-                                <h4>Карьера</h4>
-                                <ul><li>Spa-директор</li><li>Wellness-координатор</li><li>Менеджер оздоровительных программ</li></ul>
+                                <h4 data-i18n="program_5_career_title">Карьера</h4>
+                                <ul>
+                                    <li data-i18n="program_5_career_1">Spa-директор</li>
+                                    <li data-i18n="program_5_career_2">Wellness-координатор</li>
+                                    <li data-i18n="program_5_career_3">Менеджер оздоровительных программ</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Spa-менеджмент')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_5_alert'))">Подробнее</button></div>
                     </div>
 
                     <!-- 6. Международный туризм и авиаперевозки -->
                     <div class="program-card">
-                        <div class="program-card-header"><h3>Международный туризм</h3></div>
+                        <div class="program-card-header"><h3 data-i18n="program_6_title">Международный туризм</h3></div>
                         <div class="program-card-body">
-                            <p><strong>Бакалавриат — 3 года</strong></p>
-                            <p>Авиаперевозки, бронирование, визовая поддержка, международный туризм.</p>
+                            <p><strong data-i18n="program_6_duration">Бакалавриат — 3 года</strong></p>
+                            <p data-i18n="program_6_desc">Авиаперевозки, бронирование, визовая поддержка, международный туризм.</p>
                             <div class="program-details">
-                                <h4>Партнёры</h4>
-                                <ul><li>Авиакомпании</li><li>GDS системы</li><li>Tour operators</li></ul>
+                                <h4 data-i18n="program_6_partners_title">Партнёры</h4>
+                                <ul>
+                                    <li data-i18n="program_6_partner_1">Авиакомпании</li>
+                                    <li data-i18n="program_6_partner_2">GDS системы</li>
+                                    <li data-i18n="program_6_partner_3">Tour operators</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="program-card-footer"><button class="btn" onclick="alert('Подробнее о программе Международный туризм')">Подробнее</button></div>
+                        <div class="program-card-footer"><button class="btn" data-i18n="btn_more" onclick="alert(getTranslation('program_6_alert'))">Подробнее</button></div>
                     </div>
                 </div>
             </div>
@@ -962,23 +986,23 @@
         <!-- Почему эта школа -->
         <section class="why-section">
             <div class="container">
-                <h2 class="section-title">Почему эта школа</h2>
-                <p class="section-sub">Школа Гостеприимства и Туризма — ваш путь в мировой HoReCa</p>
+                <h2 class="section-title" data-i18n="why_title">Почему эта школа</h2>
+                <p class="section-sub" data-i18n="why_subtitle">Школа Гостеприимства и Туризма — ваш путь в мировой HoReCa</p>
                 <div class="why-grid">
                     <div class="why-card">
                         <div class="why-icon">🍽️</div>
-                        <h3>Тренировочные рестораны</h3>
-                        <p>Собственные учебные кухни и рестораны для отработки навыков сервиса и управления.</p>
+                        <h3 data-i18n="why_1_title">Тренировочные рестораны</h3>
+                        <p data-i18n="why_1_desc">Собственные учебные кухни и рестораны для отработки навыков сервиса и управления.</p>
                     </div>
                     <div class="why-card">
                         <div class="why-icon">🌍</div>
-                        <h3>Международные стажировки</h3>
-                        <p>Практика в отелях Ritz-Carlton, Marriott, Kempinski по всему миру.</p>
+                        <h3 data-i18n="why_2_title">Международные стажировки</h3>
+                        <p data-i18n="why_2_desc">Практика в отелях Ritz-Carlton, Marriott, Kempinski по всему миру.</p>
                     </div>
                     <div class="why-card">
                         <div class="why-icon">🎓</div>
-                        <h3>Двойные дипломы</h3>
-                        <p>Программы с университетами Швейцарии, Франции, ОАЭ.</p>
+                        <h3 data-i18n="why_3_title">Двойные дипломы</h3>
+                        <p data-i18n="why_3_desc">Программы с университетами Швейцарии, Франции, ОАЭ.</p>
                     </div>
                 </div>
             </div>
@@ -987,8 +1011,8 @@
         <!-- Видео секция (YouTube) -->
         <section class="video-section">
             <div class="container">
-                <h2 class="section-title">О школе в деталях</h2>
-                <p class="section-sub">Узнайте больше о Школе Гостеприимства и Туризма из нашего видео</p>
+                <h2 class="section-title" data-i18n="video_title">О школе в деталях</h2>
+                <p class="section-sub" data-i18n="video_subtitle">Узнайте больше о Школе Гостеприимства и Туризма из нашего видео</p>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/XtLSUAlZ8lo" title="Школа Гостеприимства и Туризма" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
@@ -1000,14 +1024,186 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id === '#') return;
-                const el = document.querySelector(id);
-                if(el) el.scrollIntoView({behavior:'smooth'});
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                page_title: "AlmaU · Школа Гостеприимства и Туризма",
+                hero_title: "Школа Гостеприимства и Туризма",
+                hero_desc: "Готовим профессионалов для отельного бизнеса, ресторанного дела, туризма и event-индустрии. Сочетание управленческих навыков, сервисных стандартов и международного опыта.",
+                hero_btn_apply: "Подать заявление",
+                hero_btn_consult: "Консультация",
+                stat_1_value: "6+", stat_1_label: "программ в сфере HoReCa",
+                stat_2_value: "30+", stat_2_label: "отелей и туроператоров",
+                stat_3_value: "15+", stat_3_label: "международных стажировок",
+                stat_4_value: "90%", stat_4_label: "трудоустройство в индустрии",
+                programs_title: "Программы Школы Гостеприимства и Туризма",
+                programs_subtitle: "Актуальные программы для карьеры в отельном бизнесе, туризме, ресторанном деле и ивент-менеджменте",
+                program_1_title: "Гостиничный бизнес", program_1_duration: "Бакалавриат — 3 года", program_1_desc: "Управление отелями, стандарты обслуживания, доходность, франчайзинг.",
+                program_1_career_title: "Карьерные треки", program_1_career_1: "Менеджер отеля", program_1_career_2: "Front office manager", program_1_career_3: "Revenue manager",
+                program_1_alert: "Подробнее о программе Гостиничный бизнес",
+                program_2_title: "Туризм и экскурсионное дело", program_2_duration: "Бакалавриат — 3 года", program_2_desc: "Туроперейтинг, тревел-технологии, гиды-переводчики, туристический маркетинг.",
+                program_2_tracks_title: "Траектории", program_2_track_1: "Въездной туризм", program_2_track_2: "Выездной туризм", program_2_track_3: "Экскурсионное дело",
+                program_2_alert: "Подробнее о программе Туризм",
+                program_3_title: "Ресторанный бизнес", program_3_duration: "Бакалавриат — 3 года", program_3_desc: "Управление рестораном, кулинарное искусство, винная культура, кейтеринг.",
+                program_3_practice_title: "Практика", program_3_practice_1: "Ресторанные концепции", program_3_practice_2: "Бренд-шеф", program_3_practice_3: "Ресторанный менеджмент",
+                program_3_alert: "Подробнее о программе Ресторанный бизнес",
+                program_4_title: "Event-менеджмент", program_4_duration: "Бакалавриат — 3 года", program_4_desc: "Организация мероприятий, свадеб, конференций, фестивалей, ивент-маркетинг.",
+                program_4_fields_title: "Сферы", program_4_field_1: "Корпоративные ивенты", program_4_field_2: "Private events", program_4_field_3: "Фестивальный менеджмент",
+                program_4_alert: "Подробнее о программе Event-менеджмент",
+                program_5_title: "Spa & wellness менеджмент", program_5_duration: "Бакалавриат — 3 года", program_5_desc: "Управление спа-центрами, оздоровительный туризм, велнес-технологии.",
+                program_5_career_title: "Карьера", program_5_career_1: "Spa-директор", program_5_career_2: "Wellness-координатор", program_5_career_3: "Менеджер оздоровительных программ",
+                program_5_alert: "Подробнее о программе Spa-менеджмент",
+                program_6_title: "Международный туризм", program_6_duration: "Бакалавриат — 3 года", program_6_desc: "Авиаперевозки, бронирование, визовая поддержка, международный туризм.",
+                program_6_partners_title: "Партнёры", program_6_partner_1: "Авиакомпании", program_6_partner_2: "GDS системы", program_6_partner_3: "Tour operators",
+                program_6_alert: "Подробнее о программе Международный туризм",
+                btn_more: "Подробнее",
+                why_title: "Почему эта школа", why_subtitle: "Школа Гостеприимства и Туризма — ваш путь в мировой HoReCa",
+                why_1_title: "Тренировочные рестораны", why_1_desc: "Собственные учебные кухни и рестораны для отработки навыков сервиса и управления.",
+                why_2_title: "Международные стажировки", why_2_desc: "Практика в отелях Ritz-Carlton, Marriott, Kempinski по всему миру.",
+                why_3_title: "Двойные дипломы", why_3_desc: "Программы с университетами Швейцарии, Франции, ОАЭ.",
+                video_title: "О школе в деталях", video_subtitle: "Узнайте больше о Школе Гостеприимства и Туризма из нашего видео"
+            },
+            kz: {
+                page_title: "AlmaU · Қонақжайлылық және Туризм мектебі",
+                hero_title: "Қонақжайлылық және Туризм мектебі",
+                hero_desc: "Қонақ үй бизнесі, мейрамхана ісі, туризм және іс-шаралар индустриясы үшін мамандар даярлаймыз. Басқару дағдыларын, сервистік стандарттарды және халықаралық тәжірибені үйлестіру.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_consult: "Кеңес алу",
+                stat_1_value: "6+", stat_1_label: "HoReCa саласындағы бағдарлама",
+                stat_2_value: "30+", stat_2_label: "қонақ үй және туроператор",
+                stat_3_value: "15+", stat_3_label: "халықаралық тағылымдама",
+                stat_4_value: "90%", stat_4_label: "индустрияда жұмысқа орналасу",
+                programs_title: "Қонақжайлылық және Туризм мектебінің бағдарламалары",
+                programs_subtitle: "Қонақ үй бизнесінде, туризмде, мейрамхана ісінде және іс-шаралар менеджментінде мансап үшін өзекті бағдарламалар",
+                program_1_title: "Қонақ үй бизнесі", program_1_duration: "Бакалавриат — 3 жыл", program_1_desc: "Қонақ үйлерді басқару, қызмет көрсету стандарттары, табыстылық, франчайзинг.",
+                program_1_career_title: "Мансаптық тректер", program_1_career_1: "Қонақ үй менеджері", program_1_career_2: "Front office manager", program_1_career_3: "Revenue manager",
+                program_1_alert: "Қонақ үй бизнесі бағдарламасы туралы толығырақ",
+                program_2_title: "Туризм және экскурсия ісі", program_2_duration: "Бакалавриат — 3 жыл", program_2_desc: "Туроператорлық, тревел-технологиялар, гид-аудармашылар, туристік маркетинг.",
+                program_2_tracks_title: "Траекториялар", program_2_track_1: "Кіріс туризм", program_2_track_2: "Шығыс туризм", program_2_track_3: "Экскурсия ісі",
+                program_2_alert: "Туризм бағдарламасы туралы толығырақ",
+                program_3_title: "Мейрамхана бизнесі", program_3_duration: "Бакалавриат — 3 жыл", program_3_desc: "Мейрамхананы басқару, аспаздық өнер, шарап мәдениеті, кейтеринг.",
+                program_3_practice_title: "Практика", program_3_practice_1: "Мейрамхана концепциялары", program_3_practice_2: "Бренд-шеф", program_3_practice_3: "Мейрамхана менеджменті",
+                program_3_alert: "Мейрамхана бизнесі бағдарламасы туралы толығырақ",
+                program_4_title: "Event-менеджмент", program_4_duration: "Бакалавриат — 3 жыл", program_4_desc: "Іс-шараларды ұйымдастыру, үйлену тойлары, конференциялар, фестивальдар, ивент-маркетинг.",
+                program_4_fields_title: "Салалар", program_4_field_1: "Корпоративтік ивенттер", program_4_field_2: "Private events", program_4_field_3: "Фестивальдық менеджмент",
+                program_4_alert: "Event-менеджмент бағдарламасы туралы толығырақ",
+                program_5_title: "Spa & wellness менеджмент", program_5_duration: "Бакалавриат — 3 жыл", program_5_desc: "Спа-орталықтарды басқару, сауықтыру туризмі, велнес-технологиялар.",
+                program_5_career_title: "Мансап", program_5_career_1: "Spa-директор", program_5_career_2: "Wellness-координатор", program_5_career_3: "Сауықтыру бағдарламалары менеджері",
+                program_5_alert: "Spa-менеджмент бағдарламасы туралы толығырақ",
+                program_6_title: "Халықаралық туризм", program_6_duration: "Бакалавриат — 3 жыл", program_6_desc: "Әуе тасымалдары, броньдау, визалық қолдау, халықаралық туризм.",
+                program_6_partners_title: "Серіктестер", program_6_partner_1: "Әуекомпаниялар", program_6_partner_2: "GDS жүйелері", program_6_partner_3: "Туроператорлар",
+                program_6_alert: "Халықаралық туризм бағдарламасы туралы толығырақ",
+                btn_more: "Толығырақ",
+                why_title: "Неліктен бұл мектеп", why_subtitle: "Қонақжайлылық және Туризм мектебі — сіздің әлемдік HoReCa-ға жолыңыз",
+                why_1_title: "Жаттығу мейрамханалары", why_1_desc: "Қызмет көрсету және басқару дағдыларын жетілдіру үшін меншікті оқу асүйлері мен мейрамханалар.",
+                why_2_title: "Халықаралық тағылымдамалар", why_2_desc: "Ritz-Carlton, Marriott, Kempinski қонақ үйлерінде бүкіл әлем бойынша практика.",
+                why_3_title: "Қос дипломдар", why_3_desc: "Швейцария, Франция, БАӘ университеттерімен бағдарламалар.",
+                video_title: "Мектеп туралы егжей-тегжейлі", video_subtitle: "Қонақжайлылық және Туризм мектебі туралы біздің бейнематериалдан көбірек біліңіз"
+            },
+            en: {
+                page_title: "AlmaU · School of Hospitality and Tourism",
+                hero_title: "School of Hospitality and Tourism",
+                hero_desc: "We train professionals for hotel business, restaurant management, tourism and event industry. A combination of management skills, service standards and international experience.",
+                hero_btn_apply: "Apply now",
+                hero_btn_consult: "Consultation",
+                stat_1_value: "6+", stat_1_label: "HoReCa programs",
+                stat_2_value: "30+", stat_2_label: "hotels and tour operators",
+                stat_3_value: "15+", stat_3_label: "international internships",
+                stat_4_value: "90%", stat_4_label: "industry employment rate",
+                programs_title: "School of Hospitality and Tourism Programs",
+                programs_subtitle: "Relevant programs for careers in hotel business, tourism, restaurant management and event management",
+                program_1_title: "Hotel Business", program_1_duration: "Bachelor's — 3 years", program_1_desc: "Hotel management, service standards, revenue management, franchising.",
+                program_1_career_title: "Career tracks", program_1_career_1: "Hotel Manager", program_1_career_2: "Front Office Manager", program_1_career_3: "Revenue Manager",
+                program_1_alert: "More about Hotel Business program",
+                program_2_title: "Tourism and Excursion Management", program_2_duration: "Bachelor's — 3 years", program_2_desc: "Tour operating, travel technologies, tour guides, tourism marketing.",
+                program_2_tracks_title: "Tracks", program_2_track_1: "Inbound Tourism", program_2_track_2: "Outbound Tourism", program_2_track_3: "Excursion Management",
+                program_2_alert: "More about Tourism program",
+                program_3_title: "Restaurant Business", program_3_duration: "Bachelor's — 3 years", program_3_desc: "Restaurant management, culinary arts, wine culture, catering.",
+                program_3_practice_title: "Practice", program_3_practice_1: "Restaurant concepts", program_3_practice_2: "Brand Chef", program_3_practice_3: "Restaurant Management",
+                program_3_alert: "More about Restaurant Business program",
+                program_4_title: "Event Management", program_4_duration: "Bachelor's — 3 years", program_4_desc: "Event organization, weddings, conferences, festivals, event marketing.",
+                program_4_fields_title: "Fields", program_4_field_1: "Corporate events", program_4_field_2: "Private events", program_4_field_3: "Festival Management",
+                program_4_alert: "More about Event Management program",
+                program_5_title: "Spa & Wellness Management", program_5_duration: "Bachelor's — 3 years", program_5_desc: "Spa center management, wellness tourism, health technologies.",
+                program_5_career_title: "Career", program_5_career_1: "Spa Director", program_5_career_2: "Wellness Coordinator", program_5_career_3: "Health Programs Manager",
+                program_5_alert: "More about Spa Management program",
+                program_6_title: "International Tourism", program_6_duration: "Bachelor's — 3 years", program_6_desc: "Air transportation, booking systems, visa support, international tourism.",
+                program_6_partners_title: "Partners", program_6_partner_1: "Airlines", program_6_partner_2: "GDS systems", program_6_partner_3: "Tour operators",
+                program_6_alert: "More about International Tourism program",
+                btn_more: "Learn more",
+                why_title: "Why this school", why_subtitle: "School of Hospitality and Tourism — your path to global HoReCa",
+                why_1_title: "Training restaurants", why_1_desc: "Own educational kitchens and restaurants to practice service and management skills.",
+                why_2_title: "International internships", why_2_desc: "Practice at Ritz-Carlton, Marriott, Kempinski hotels worldwide.",
+                why_3_title: "Double degrees", why_3_desc: "Programs with universities in Switzerland, France, UAE.",
+                video_title: "About the school in detail", video_subtitle: "Learn more about the School of Hospitality and Tourism from our video"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function getTranslation(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else if (el.tagName === 'BUTTON' && el.hasAttribute('data-i18n')) {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    if (href.startsWith('#') && !this.hasAttribute('data-lang-option')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>

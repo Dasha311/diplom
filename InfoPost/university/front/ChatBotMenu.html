@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ current_language|default:'ru' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlmaU — ИИ‑ассистент</title>
+    <title data-i18n="title">AlmaU — ИИ‑ассистент</title>
     <style>
         * {
             margin: 0;
@@ -191,7 +191,7 @@
             box-shadow: 0 18px 30px -6px rgba(90, 60, 200, 0.5);
         }
 
-        /* ===== HERO (стилизован под единый стиль) ===== */
+        /* ===== HERO ===== */
         .hero {
             background: radial-gradient(145% 110% at 20% 10%, #f2f0ff, #ffffff 80%);
             padding: 3rem 0 4rem;
@@ -239,7 +239,7 @@
             transform: rotate(0) scale(1.02);
         }
 
-        /* ===== СЕКЦИЯ ЧАТА (полностью интегрирована) ===== */
+        /* ===== СЕКЦИЯ ЧАТА ===== */
         .chat-section {
             padding: 3rem 0 5rem;
             background: #fbfbfd;
@@ -415,7 +415,6 @@
             text-align: center;
         }
 
-        /* скроллбар */
         .chat-messages::-webkit-scrollbar {
             width: 6px;
         }
@@ -424,7 +423,6 @@
             border-radius: 3px;
         }
 
-        /* индикатор печати */
         .typing-indicator {
             display: flex;
             gap: 5px;
@@ -545,8 +543,8 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <h1 class="hero-title">ИИ‑ассистент AlmaU</h1>
-                    <p class="hero-description">
+                    <h1 class="hero-title" data-i18n="hero_title">ИИ‑ассистент AlmaU</h1>
+                    <p class="hero-description" data-i18n="hero_desc">
                         Персональный помощник абитуриента и студента: консультации по программам, поступлению, грантам, событиям и цифровым сервисам университета.
                     </p>
                 </div>
@@ -564,31 +562,23 @@
                         <span>AI</span>
                     </div>
                     <div class="chat-info">
-                        <h2 class="chat-title">AlmaU AI</h2>
-                        <p class="chat-subtitle">помощник по поступлению и учебе</p>
+                        <h2 class="chat-title" data-i18n="chat_title">AlmaU AI</h2>
+                        <p class="chat-subtitle" data-i18n="chat_subtitle">помощник по поступлению и учебе</p>
                     </div>
                 </div>
 
                 <div class="chat-messages" id="chatMessages">
-                    <div class="message message--bot">
-                        <div class="message-content">
-                            Привет! Я ИИ‑ассистент AlmaU. <br>
-                            • расскажу о программах и школах<br>
-                            • помогу с поступлением и грантами<br>
-                            • подскажу контакты и события<br>
-                            Задай вопрос!
-                        </div>
-                    </div>
+                    <!-- Приветственное сообщение будет вставлено через JS с учетом языка -->
                 </div>
 
                 <div class="chat-input-wrapper">
                     <form id="chatForm" class="chat-form">
-                        <textarea id="userInput" class="chat-textarea" placeholder="Ваш вопрос..." rows="1" required></textarea>
+                        <textarea id="userInput" class="chat-textarea" data-i18n-placeholder="input_placeholder" placeholder="Ваш вопрос..." rows="1" required></textarea>
                         <button type="submit" class="chat-send-btn" aria-label="Отправить">
                             <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                         </button>
                     </form>
-                    <p class="chat-hint">ИИ может ошибаться. Проверяйте важную информацию на сайте AlmaU.</p>
+                    <p class="chat-hint" data-i18n="chat_hint">ИИ может ошибаться. Проверяйте важную информацию на сайте AlmaU.</p>
                 </div>
             </div>
         </section>
@@ -598,24 +588,127 @@
     {% include 'partials/site_footer.html' %}
 
     <script>
-        // год
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
+        // ========== МУЛЬТИЯЗЫЧНЫЙ СЛОВАРЬ ==========
+        const translations = {
+            ru: {
+                title: "AlmaU — ИИ‑ассистент",
+                hero_title: "ИИ‑ассистент AlmaU",
+                hero_desc: "Персональный помощник абитуриента и студента: консультации по программам, поступлению, грантам, событиям и цифровым сервисам университета.",
+                chat_title: "AlmaU AI",
+                chat_subtitle: "помощник по поступлению и учебе",
+                welcome: "Привет! Я ИИ‑ассистент AlmaU.<br>• расскажу о программах и школах<br>• помогу с поступлением и грантами<br>• подскажу контакты и события<br>Задай вопрос!",
+                input_placeholder: "Ваш вопрос...",
+                chat_hint: "ИИ может ошибаться. Проверяйте важную информацию на сайте AlmaU.",
+                // ответы бота
+                answer_admission: "Для поступления нужно сдать ЕНТ (математика+информатика) и подать документы до 20 августа. Подробнее на сайте almau.edu.kz/admission/",
+                answer_programs: "Мы предлагаем бакалавриат: Information Systems, Software Engineering, Data Science, Product Management. Есть магистратура.",
+                answer_grant: "Гранты выделяются на конкурсной основе. Высокий балл ЕНТ + портфолио. Также есть скидки от партнёров.",
+                answer_contacts: "Приёмная комиссия: +7 (727) 313 3040, admission@almau.kz. Адрес: ул. Розыбакиева 227.",
+                answer_events: "Ближайшее событие: День открытых дверей 15 апреля. Следите в разделе новостей.",
+                answer_thanks: "Всегда рад помочь! Обращайтесь 🙂",
+                answer_default: "Уточните, пожалуйста, вопрос. Я могу рассказать о программах, поступлении, грантах, контактах и мероприятиях."
+            },
+            kz: {
+                title: "AlmaU — Жасанды интеллект көмекші",
+                hero_title: "AlmaU Жасанды интеллект көмекші",
+                hero_desc: "Талапкерлер мен студенттерге арналған жеке көмекші: бағдарламалар, қабылдау, гранттар, іс-шаралар және университеттің цифрлық қызметтері бойынша кеңестер.",
+                chat_title: "AlmaU AI",
+                chat_subtitle: "қабылдау және оқу бойынша көмекші",
+                welcome: "Сәлем! Мен AlmaU жасанды интеллект көмекшісімін.<br>• бағдарламалар мен мектептер туралы айтамын<br>• қабылдау және гранттарға көмектесемін<br>• байланыстар мен оқиғаларды көрсетемін<br>Сұрақ қойыңыз!",
+                input_placeholder: "Сұрағыңызды жазыңыз...",
+                chat_hint: "Жасанды интеллект қателесуі мүмкін. Маңызды ақпаратты AlmaU сайтынан тексеріңіз.",
+                answer_admission: "Түсу үшін ҰБТ (математика+информатика) тапсырып, құжаттарды 20 тамызға дейін тапсыру керек. Толығырақ almau.edu.kz/admission/ сайтында.",
+                answer_programs: "Біз бакалавриат бағдарламаларын ұсынамыз: Information Systems, Software Engineering, Data Science, Product Management. Магистратура да бар.",
+                answer_grant: "Гранттар конкурстық негізде беріледі. Жоғары ҰБТ ұпайы + портфолио. Сондай-ақ серіктестерден жеңілдіктер бар.",
+                answer_contacts: "Қабылдау комиссиясы: +7 (727) 313 3040, admission@almau.kz. Мекенжайы: Розыбакиев көш. 227.",
+                answer_events: "Жақындағы іс-шара: Ашық есік күні 15 сәуір. Жаңалықтар бөлімінде қараңыз.",
+                answer_thanks: "Көмектесуге әрдайым қуаныштымын! Сұрақ қойыңыз 🙂",
+                answer_default: "Сұрағыңызды нақтылаңыз. Мен бағдарламалар, қабылдау, гранттар, байланыстар және іс-шаралар туралы айта аламын."
+            },
+            en: {
+                title: "AlmaU — AI Assistant",
+                hero_title: "AlmaU AI Assistant",
+                hero_desc: "Personal assistant for applicants and students: consultations on programs, admission, grants, events, and university digital services.",
+                chat_title: "AlmaU AI",
+                chat_subtitle: "admission and study assistant",
+                welcome: "Hi! I'm AlmaU AI Assistant.<br>• I'll tell you about programs and schools<br>• I'll help with admission and grants<br>• I'll share contacts and events<br>Ask me anything!",
+                input_placeholder: "Type your question...",
+                chat_hint: "AI may make mistakes. Verify important information on the AlmaU website.",
+                answer_admission: "For admission you need to take UNT (Math+CS) and submit documents by August 20. More details at almau.edu.kz/admission/",
+                answer_programs: "We offer Bachelor's programs: Information Systems, Software Engineering, Data Science, Product Management. Master's programs are also available.",
+                answer_grant: "Grants are awarded on a competitive basis. High UNT score + portfolio. There are also partner discounts.",
+                answer_contacts: "Admissions Office: +7 (727) 313 3040, admission@almau.kz. Address: 227 Rozybakiev St.",
+                answer_events: "Upcoming event: Open House on April 15. Follow news section.",
+                answer_thanks: "Always happy to help! Feel free to ask 🙂",
+                answer_default: "Please clarify your question. I can tell you about programs, admission, grants, contacts, and events."
+            }
+        };
 
-        // рабочий чат с имитацией ответов
+        let currentLang = 'ru';
+
+        function updatePlaceholders() {
+            const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+            placeholderElements.forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updatePageLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = translations[currentLang][key];
+                    } else {
+                        el.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+            updatePlaceholders();
+            updateWelcomeMessage();
+        }
+
+        function updateWelcomeMessage() {
+            // Очищаем сообщения, но сохраняем только приветственное (если оно одно)
+            const chatMessages = document.getElementById('chatMessages');
+            // Удаляем все сообщения, кроме возможно добавленных пользователем, но для простоты очистим и добавим приветствие
+            const existingMessages = chatMessages.querySelectorAll('.message');
+            if (existingMessages.length === 0 || (existingMessages.length === 1 && existingMessages[0].querySelector('.message-content')?.innerHTML.includes('AlmaU'))) {
+                chatMessages.innerHTML = '';
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.className = 'message message--bot';
+                welcomeDiv.innerHTML = `<div class="message-content">${translations[currentLang].welcome}</div>`;
+                chatMessages.appendChild(welcomeDiv);
+            } else {
+                // Если есть история, не трогаем её, но обновляем только если нет сообщений
+                if (chatMessages.children.length === 0) {
+                    const welcomeDiv = document.createElement('div');
+                    welcomeDiv.className = 'message message--bot';
+                    welcomeDiv.innerHTML = `<div class="message-content">${translations[currentLang].welcome}</div>`;
+                    chatMessages.appendChild(welcomeDiv);
+                }
+            }
+        }
+
+        function getBotAnswer(userMsg, lang) {
+            const lower = userMsg.toLowerCase();
+            const t = translations[lang];
+            if (lower.includes('поступл') || lower.includes('абитур') || lower.includes('түсу') || lower.includes('қабылдау') || lower.includes('admission') || lower.includes('apply')) return t.answer_admission;
+            if (lower.includes('программ') || lower.includes('направл') || lower.includes('бағдарлама') || lower.includes('program')) return t.answer_programs;
+            if (lower.includes('грант') || lower.includes('скидк') || lower.includes('грант') || lower.includes('жеңілдік') || lower.includes('grant') || lower.includes('scholarship')) return t.answer_grant;
+            if (lower.includes('контакт') || lower.includes('телефон') || lower.includes('адрес') || lower.includes('байланыс') || lower.includes('contact') || lower.includes('phone')) return t.answer_contacts;
+            if (lower.includes('мероприят') || lower.includes('день открытых') || lower.includes('событ') || lower.includes('іс-шара') || lower.includes('event') || lower.includes('open house')) return t.answer_events;
+            if (lower.includes('спасиб') || lower.includes('благодар') || lower.includes('рахмет') || lower.includes('thank')) return t.answer_thanks;
+            return t.answer_default;
+        }
+
+        // Чат логика с учетом языка
         const chatMessages = document.getElementById('chatMessages');
         const chatForm = document.getElementById('chatForm');
         const userInput = document.getElementById('userInput');
-        const sendBtn = document.querySelector('.chat-send-btn');
-
-        // база простых ответов (имитация)
-        const answers = {
-            'поступление': 'Для поступления нужно сдать ЕНТ (математика+информатика) и подать документы до 20 августа. Подробнее на сайте almau.edu.kz/admission/',
-            'программа': 'Мы предлагаем бакалавриат: Information Systems, Software Engineering, Data Science, Product Management. Есть магистратура.',
-            'грант': 'Гранты выделяются на конкурсной основе. Высокий балл ЕНТ + портфолио. Также есть скидки от партнёров.',
-            'контакты': 'Приёмная комиссия: +7 (727) 313 3040, admission@almau.kz. Адрес: ул. Розыбакиева 227.',
-            'событие': 'Ближайшее событие: День открытых дверей 15 апреля. Следите в разделе новостей.',
-            'спасибо': 'Всегда рад помочь! Обращайтесь 🙂',
-        };
 
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
@@ -625,17 +718,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function getBotAnswer(userMsg) {
-            const lower = userMsg.toLowerCase();
-            if (lower.includes('поступл') || lower.includes('абитур')) return answers['поступление'];
-            if (lower.includes('программ') || lower.includes('направл')) return answers['программа'];
-            if (lower.includes('грант') || lower.includes('скидк')) return answers['грант'];
-            if (lower.includes('контакт') || lower.includes('телефон') || lower.includes('адрес')) return answers['контакты'];
-            if (lower.includes('мероприят') || lower.includes('день открытых') || lower.includes('событ')) return answers['событие'];
-            if (lower.includes('спасиб') || lower.includes('благодар')) return answers['спасибо'];
-            return 'Уточните, пожалуйста, вопрос. Я могу рассказать о программах, поступлении, грантах, контактах и мероприятиях.';
-        }
-
         async function sendMessage() {
             const msg = userInput.value.trim();
             if (!msg) return;
@@ -643,7 +725,6 @@
             addMessage(msg, 'user');
             userInput.value = '';
             userInput.style.height = 'auto';
-            sendBtn.disabled = true;
 
             // индикатор печати
             const typingDiv = document.createElement('div');
@@ -652,13 +733,11 @@
             chatMessages.appendChild(typingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // имитация задержки
             setTimeout(() => {
                 chatMessages.removeChild(typingDiv);
-                const answer = getBotAnswer(msg);
+                const answer = getBotAnswer(msg, currentLang);
                 addMessage(answer, 'bot');
-                sendBtn.disabled = false;
-            }, 800);
+            }, 600);
         }
 
         chatForm.addEventListener('submit', (e) => {
@@ -671,7 +750,46 @@
             this.style.height = Math.min(this.scrollHeight, 100) + 'px';
         });
 
-        // кнопка назад
+        // Функция для переключения языка (вызывается из кнопок в header)
+        window.setLanguage = function(lang) {
+            if (!translations[lang]) lang = 'ru';
+            currentLang = lang;
+            updatePageLanguage();
+            localStorage.setItem('preferred_language', lang);
+        };
+
+        // Инициализация: берем язык из localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            // Привязываемся к кнопкам переключения языка (которые в site_header.html)
+            // Ждем, пока они появятся в DOM, и добавляем обработчики
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            // Наблюдатель на случай динамической подгрузки
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+
+        // год в футере
+        const yearSpan = document.getElementById('footerYear');
+        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}
 </body>
