@@ -1,0 +1,1010 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'ru' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">AlmaU · Startup School Launchpad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --blue-dark: #0066CC;
+            --green: #34C759;
+            --orange: #FF9500;
+            --purple: #AF52DE;
+            --cyan: #00D4FF;
+            --magenta: #FF44CC;
+            --gold: #FFD700;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo__img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+        }
+
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 50%, #d35400 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #ffe6b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== БЛОКИ С ИНФОРМАЦИЕЙ ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p, .info-card ul {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .info-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== ТАБЛИЦА БАЛЛОВ ===== */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .score-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table .highlight {
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        /* ===== КЛЮЧЕВЫЕ НАВЫКИ ===== */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== ЭТАПЫ ПРОГРАММЫ ===== */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .stage-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-top: 4px solid var(--gold);
+        }
+
+        .stage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stage-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .stage-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stage-card p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ===== КАРЬЕРНЫЕ ВОЗМОЖНОСТИ ===== */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .career-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--magenta);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .career-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== ВИДЕО ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10,132,255,0.3);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue);
+            color: var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__col-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .nav__list {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'partials/site_header.html' %}
+
+    <main>
+        <!-- Hero секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">🚀 Интенсивная программа · 1 год</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Startup School Launchpad</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Преврати свою идею в успешный бизнес! Интенсивная годовая программа для будущих предпринимателей: от концепции до запуска стартапа, питчей перед инвесторами и первых продаж.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="hero_btn_apply">Подать заявку</a>
+                        <a href="#video" class="btn btn-outline" data-i18n="hero_btn_video">Смотреть видео</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Статистика -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_1_num">1</div>
+                    <div class="stat-label" data-i18n="stat_1_label">год интенсивного обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_2_num">100%</div>
+                    <div class="stat-label" data-i18n="stat_2_label">работа над реальным проектом</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_3_num">75%</div>
+                    <div class="stat-label" data-i18n="stat_3_label">выпускников привлекают инвестиции</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_4_num">50+</div>
+                    <div class="stat-label" data-i18n="stat_4_label">успешных стартапов в портфолио</div>
+                </div>
+            </div>
+
+            <!-- Пороговые баллы / Требования -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="scores_title">📋 Требования для поступления</h2>
+                <p class="section-subtitle" data-i18n="scores_subtitle">Актуальные данные на 2025/2026 учебный год</p>
+                
+                <table class="score-table">
+                    <thead>
+                        <tr><th data-i18n="scores_type">Категория</th><th data-i18n="scores_requirement">Требование</th>\
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="scores_grant">Грант / Стипендия</td><td class="highlight">Успешная защита бизнес-идеи перед экспертной комиссией</td>\
+                         </tr>
+                          <tr>
+                            <td data-i18n="scores_paid">Платное обучение</td><td>Заполнение заявки, собеседование, бизнес-идея</td>
+                         </tr>
+                          <tr>
+                            <td data-i18n="scores_creative">Творческий конкурс</td><td>Презентация стартап-проекта (5-7 минут), портфолио достижений</td>
+                         </tr>
+                    </tbody>
+                 </table>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);" data-i18n="scores_note">
+                    * Программа открыта для всех желающих: студентов, выпускников, действующих предпринимателей. Приоритет — наличие бизнес-идеи или прототипа.
+                </p>
+            </section>
+
+            <!-- Возможности программы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="opportunities_title">💡 Что дает программа</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">🚀</div>
+                        <h3 data-i18n="opp_1_title">Запуск своего стартапа</h3>
+                        <p data-i18n="opp_1_desc">Полный цикл создания бизнеса: от идеи до регистрации компании, первых клиентов и масштабирования.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">💰</div>
+                        <h3 data-i18n="opp_2_title">Инвестиционные раунды</h3>
+                        <p data-i18n="opp_2_desc">Питчи перед бизнес-ангелами и венчурными фондами. Лучшие проекты получают инвестиции до 10 млн тенге.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">👨‍🏫</div>
+                        <h3 data-i18n="opp_3_title">Менторство от топ-предпринимателей</h3>
+                        <p data-i18n="opp_3_desc">Персональные менторы — успешные основатели компаний, серийные предприниматели, инвесторы.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🌍</div>
+                        <h3 data-i18n="opp_4_title">Международные акселераторы</h3>
+                        <p data-i18n="opp_4_desc">Возможность участия в глобальных акселерационных программах США, Европы, ОАЭ, Сингапура.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Этапы программы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="stages_title">🗺️ Этапы программы Launchpad</h2>
+                <p class="section-subtitle" data-i18n="stages_subtitle">Как проходит обучение</p>
+                <div class="stages-grid">
+                    <div class="stage-card">
+                        <div class="stage-number">1</div>
+                        <h3 data-i18n="stage_1_title">Идея и валидация</h3>
+                        <p data-i18n="stage_1_desc">Генерация идей, анализ рынка, интервью с потенциальными клиентами, проверка гипотез.</p>
+                    </div>
+                    <div class="stage-card">
+                        <div class="stage-number">2</div>
+                        <h3 data-i18n="stage_2_title">MVP и продукт</h3>
+                        <p data-i18n="stage_2_desc">Создание минимально жизнеспособного продукта, тестирование, сбор обратной связи.</p>
+                    </div>
+                    <div class="stage-card">
+                        <div class="stage-number">3</div>
+                        <h3 data-i18n="stage_3_title">Бизнес-модель</h3>
+                        <p data-i18n="stage_3_desc">Разработка бизнес-модели, юнит-экономика, финансовое планирование, ценообразование.</p>
+                    </div>
+                    <div class="stage-card">
+                        <div class="stage-number">4</div>
+                        <h3 data-i18n="stage_4_title">Маркетинг и продажи</h3>
+                        <p data-i18n="stage_4_desc">Стратегии привлечения клиентов, digital-маркетинг, первые продажи, работа с отзывами.</p>
+                    </div>
+                    <div class="stage-card">
+                        <div class="stage-number">5</div>
+                        <h3 data-i18n="stage_5_title">Инвестиции</h3>
+                        <p data-i18n="stage_5_desc">Подготовка питч-дека, презентация инвесторам, юридическое сопровождение сделок.</p>
+                    </div>
+                    <div class="stage-card">
+                        <div class="stage-number">6</div>
+                        <h3 data-i18n="stage_6_title">Масштабирование</h3>
+                        <p data-i18n="stage_6_desc">Выход на новые рынки, масштабирование бизнеса, формирование команды, управление ростом.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ключевые навыки -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="skills_title">🎯 Ключевые навыки</h2>
+                <p class="section-subtitle" data-i18n="skills_subtitle">Чему вы научитесь за время программы</p>
+                <div class="skills-grid">
+                    <span class="skill-tag">Lean Startup</span>
+                    <span class="skill-tag">Customer Development</span>
+                    <span class="skill-tag">MVP разработка</span>
+                    <span class="skill-tag">Юнит-экономика</span>
+                    <span class="skill-tag">Питчинг</span>
+                    <span class="skill-tag">Бизнес-моделирование</span>
+                    <span class="skill-tag">Привлечение инвестиций</span>
+                    <span class="skill-tag">Стартап-маркетинг</span>
+                    <span class="skill-tag">Agile / Scrum</span>
+                    <span class="skill-tag">Управление командой</span>
+                    <span class="skill-tag">Продуктовая аналитика</span>
+                    <span class="skill-tag">Юридические аспекты</span>
+                </div>
+            </section>
+
+            <!-- Карьерные перспективы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="career_title">💼 Карьерные перспективы</h2>
+                <p class="section-subtitle" data-i18n="career_subtitle">Что ждет выпускников программы Launchpad</p>
+                
+                <div class="career-grid">
+                    <div class="career-item">
+                        <h4 data-i18n="career_1_title">Основатель стартапа</h4>
+                        <p data-i18n="career_1_desc">Создание собственного бизнеса с нуля, привлечение инвестиций, выход на международные рынки.</p>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_2_title">Product Manager в IT-компании</h4>
+                        <p data-i18n="career_2_desc">Управление развитием продуктов, работа с командами разработки, стратегия продукта.</p>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_3_title">Бизнес-ангел / Инвестор</h4>
+                        <p data-i18n="career_3_desc">Инвестирование в перспективные стартапы, работа в венчурных фондах, акселераторах.</p>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_4_title">CEO / Топ-менеджер</h4>
+                        <p data-i18n="career_4_desc">Управление компанией, стратегическое развитие, руководство командами.</p>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_5_title">Стартап-консультант</h4>
+                        <p data-i18n="career_5_desc">Консультирование начинающих предпринимателей, помощь в запуске и масштабировании бизнеса.</p>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_6_title">Корпоративный инноватор</h4>
+                        <p data-i18n="career_6_desc">Развитие инновационных проектов внутри крупных компаний, интрапренерство.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Условия обучения -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="conditions_title">🏛️ Условия обучения</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">📅</div>
+                        <h3 data-i18n="cond_1_title">Форма и сроки</h3>
+                        <p data-i18n="cond_1_desc">Интенсивная программа (1 год). Вечерние занятия, воркшопы по выходным, индивидуальные консультации с менторами.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">💰</div>
+                        <h3 data-i18n="cond_2_title">Стоимость обучения</h3>
+                        <p data-i18n="cond_2_desc">1 500 000 ₸ / год. Возможна рассрочка, оплата частями, гранты для перспективных проектов.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏆</div>
+                        <h3 data-i18n="cond_3_title">Гранты и скидки</h3>
+                        <p data-i18n="cond_3_desc">Гранты от фонда «Даму», скидки для победителей стартап-конкурсов, стипендии от инвесторов, оплата доли в проекте.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🎒</div>
+                        <h3 data-i18n="cond_4_title">Студенческая жизнь</h3>
+                        <p data-i18n="cond_4_desc">Стартап-лаборатория, нетворкинг-вечеринки, демо-дни, встречи с инвесторами, работа в коворкинге 24/7.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Видео секция -->
+            <section class="section" id="video">
+                <h2 class="section-title" data-i18n="video_title">🎬 О программе в деталях</h2>
+                <p class="section-subtitle" data-i18n="video_subtitle">Узнайте больше о Startup School Launchpad из нашего видео</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Startup School Launchpad" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- CTA секция -->
+            <section class="section" style="text-align: center; background: linear-gradient(135deg, var(--light-gray), var(--white)); border-radius: var(--border-radius); margin-bottom: 2rem;">
+                <h2 class="section-title" data-i18n="cta_title">🚀 Готовы запустить свой стартап?</h2>
+                <p class="section-subtitle" data-i18n="cta_desc">Оставьте заявку, и наш консультант свяжется с вами для подробной консультации</p>
+                <a href="{% url 'university:chatbot_menu' %}" class="btn" style="margin-top: 1rem;" data-i18n="cta_btn">Подать заявку сейчас</a>
+            </section>
+        </div>
+    </main>
+
+    {% include 'partials/site_footer.html' %}
+
+    <script>
+        // Мультиязычный словарь для страницы
+        const pageTranslations = {
+            ru: {
+                page_title: "AlmaU · Startup School Launchpad",
+                hero_badge: "🚀 Интенсивная программа · 1 год",
+                hero_title: "Startup School Launchpad",
+                hero_desc: "Преврати свою идею в успешный бизнес! Интенсивная годовая программа для будущих предпринимателей: от концепции до запуска стартапа, питчей перед инвесторами и первых продаж.",
+                hero_btn_apply: "Подать заявку",
+                hero_btn_video: "Смотреть видео",
+                stat_1_num: "1", stat_1_label: "год интенсивного обучения",
+                stat_2_num: "100%", stat_2_label: "работа над реальным проектом",
+                stat_3_num: "75%", stat_3_label: "выпускников привлекают инвестиции",
+                stat_4_num: "50+", stat_4_label: "успешных стартапов в портфолио",
+                scores_title: "📋 Требования для поступления",
+                scores_subtitle: "Актуальные данные на 2025/2026 учебный год",
+                scores_type: "Категория", scores_requirement: "Требование",
+                scores_grant: "Грант / Стипендия", scores_paid: "Платное обучение", scores_creative: "Творческий конкурс",
+                scores_note: "* Программа открыта для всех желающих: студентов, выпускников, действующих предпринимателей. Приоритет — наличие бизнес-идеи или прототипа.",
+                opportunities_title: "💡 Что дает программа",
+                opp_1_title: "Запуск своего стартапа", opp_1_desc: "Полный цикл создания бизнеса: от идеи до регистрации компании, первых клиентов и масштабирования.",
+                opp_2_title: "Инвестиционные раунды", opp_2_desc: "Питчи перед бизнес-ангелами и венчурными фондами. Лучшие проекты получают инвестиции до 10 млн тенге.",
+                opp_3_title: "Менторство от топ-предпринимателей", opp_3_desc: "Персональные менторы — успешные основатели компаний, серийные предприниматели, инвесторы.",
+                opp_4_title: "Международные акселераторы", opp_4_desc: "Возможность участия в глобальных акселерационных программах США, Европы, ОАЭ, Сингапура.",
+                stages_title: "🗺️ Этапы программы Launchpad",
+                stages_subtitle: "Как проходит обучение",
+                stage_1_title: "Идея и валидация", stage_1_desc: "Генерация идей, анализ рынка, интервью с потенциальными клиентами, проверка гипотез.",
+                stage_2_title: "MVP и продукт", stage_2_desc: "Создание минимально жизнеспособного продукта, тестирование, сбор обратной связи.",
+                stage_3_title: "Бизнес-модель", stage_3_desc: "Разработка бизнес-модели, юнит-экономика, финансовое планирование, ценообразование.",
+                stage_4_title: "Маркетинг и продажи", stage_4_desc: "Стратегии привлечения клиентов, digital-маркетинг, первые продажи, работа с отзывами.",
+                stage_5_title: "Инвестиции", stage_5_desc: "Подготовка питч-дека, презентация инвесторам, юридическое сопровождение сделок.",
+                stage_6_title: "Масштабирование", stage_6_desc: "Выход на новые рынки, масштабирование бизнеса, формирование команды, управление ростом.",
+                skills_title: "🎯 Ключевые навыки",
+                skills_subtitle: "Чему вы научитесь за время программы",
+                career_title: "💼 Карьерные перспективы",
+                career_subtitle: "Что ждет выпускников программы Launchpad",
+                career_1_title: "Основатель стартапа", career_1_desc: "Создание собственного бизнеса с нуля, привлечение инвестиций, выход на международные рынки.",
+                career_2_title: "Product Manager в IT-компании", career_2_desc: "Управление развитием продуктов, работа с командами разработки, стратегия продукта.",
+                career_3_title: "Бизнес-ангел / Инвестор", career_3_desc: "Инвестирование в перспективные стартапы, работа в венчурных фондах, акселераторах.",
+                career_4_title: "CEO / Топ-менеджер", career_4_desc: "Управление компанией, стратегическое развитие, руководство командами.",
+                career_5_title: "Стартап-консультант", career_5_desc: "Консультирование начинающих предпринимателей, помощь в запуске и масштабировании бизнеса.",
+                career_6_title: "Корпоративный инноватор", career_6_desc: "Развитие инновационных проектов внутри крупных компаний, интрапренерство.",
+                conditions_title: "🏛️ Условия обучения",
+                cond_1_title: "Форма и сроки", cond_1_desc: "Интенсивная программа (1 год). Вечерние занятия, воркшопы по выходным, индивидуальные консультации с менторами.",
+                cond_2_title: "Стоимость обучения", cond_2_desc: "1 500 000 ₸ / год. Возможна рассрочка, оплата частями, гранты для перспективных проектов.",
+                cond_3_title: "Гранты и скидки", cond_3_desc: "Гранты от фонда «Даму», скидки для победителей стартап-конкурсов, стипендии от инвесторов, оплата доли в проекте.",
+                cond_4_title: "Студенческая жизнь", cond_4_desc: "Стартап-лаборатория, нетворкинг-вечеринки, демо-дни, встречи с инвесторами, работа в коворкинге 24/7.",
+                video_title: "🎬 О программе в деталях",
+                video_subtitle: "Узнайте больше о Startup School Launchpad из нашего видео",
+                cta_title: "🚀 Готовы запустить свой стартап?",
+                cta_desc: "Оставьте заявку, и наш консультант свяжется с вами для подробной консультации",
+                cta_btn: "Подать заявку сейчас"
+            },
+            kz: {
+                page_title: "AlmaU · Startup School Launchpad",
+                hero_badge: "🚀 Қарқынды бағдарлама · 1 жыл",
+                hero_title: "Startup School Launchpad",
+                hero_desc: "Идеяңызды табысты бизнеске айналдырыңыз! Болашақ кәсіпкерлерге арналған қарқынды бір жылдық бағдарлама: тұжырымдамадан стартапты іске қосуға, инвесторлар алдында питчингке және алғашқы сатуға дейін.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_video: "Бейнені көру",
+                stat_1_num: "1", stat_1_label: "қарқынды оқу жылы",
+                stat_2_num: "100%", stat_2_label: "нақты жобамен жұмыс",
+                stat_3_num: "75%", stat_3_label: "түлектер инвестиция тартады",
+                stat_4_num: "50+", stat_4_label: "портфолиодағы табысты стартап",
+                scores_title: "📋 Түсу талаптары",
+                scores_subtitle: "2025/2026 оқу жылына арналған ағымдағы деректер",
+                scores_type: "Санат", scores_requirement: "Талап",
+                scores_grant: "Грант / Стипендия", scores_paid: "Ақылы оқу", scores_creative: "Шығармашылық конкурс",
+                scores_note: "* Бағдарлама барлық қалаушыларға ашық: студенттер, түлектер, кәсіпкерлер. Басымдық — бизнес-идеяның немесе прототиптің болуы.",
+                opportunities_title: "💡 Бағдарлама не береді",
+                opp_1_title: "Өз стартапыңызды іске қосу", opp_1_desc: "Бизнесті құрудың толық циклі: идеядан компанияны тіркеуге, алғашқы клиенттерге және масштабтауға дейін.",
+                opp_2_title: "Инвестициялық раундтар", opp_2_desc: "Бизнес-ангелдар мен венчурлық қорлар алдында питчинг. Үздік жобалар 10 млн теңгеге дейін инвестиция алады.",
+                opp_3_title: "Топ-кәсіпкерлерден менторлық", opp_3_desc: "Жеке менторлар — табысты компаниялардың негізін қалаушылар, сериялық кәсіпкерлер, инвесторлар.",
+                opp_4_title: "Халықаралық акселераторлар", opp_4_desc: "АҚШ, Еуропа, БАӘ, Сингапурдың жаһандық акселерациялық бағдарламаларына қатысу мүмкіндігі.",
+                stages_title: "🗺️ Launchpad бағдарламасының кезеңдері",
+                stages_subtitle: "Оқыту қалай өтеді",
+                stage_1_title: "Идея және валидация", stage_1_desc: "Идеяларды генерациялау, нарықты талдау, әлеуетті клиенттермен сұхбат, гипотезаларды тексеру.",
+                stage_2_title: "MVP және өнім", stage_2_desc: "Ең төменгі өміршең өнімді жасау, тестілеу, кері байланыс жинау.",
+                stage_3_title: "Бизнес-модель", stage_3_desc: "Бизнес-модельді әзірлеу, юнит-экономика, қаржылық жоспарлау, баға белгілеу.",
+                stage_4_title: "Маркетинг және сату", stage_4_desc: "Клиенттерді тарту стратегиялары, digital-маркетинг, алғашқы сатулар, пікірлермен жұмыс.",
+                stage_5_title: "Инвестициялар", stage_5_desc: "Питч-дек дайындау, инвесторларға презентация, мәмілелерді заңды сүйемелдеу.",
+                stage_6_title: "Масштабтау", stage_6_desc: "Жаңа нарықтарға шығу, бизнесті масштабтау, команда құру, өсуді басқару.",
+                skills_title: "🎯 Негізгі дағдылар",
+                skills_subtitle: "Бағдарлама барысында не үйренесіз",
+                career_title: "💼 Мансаптық перспективалар",
+                career_subtitle: "Launchpad бағдарламасының түлектерін не күтеді",
+                career_1_title: "Стартап негізін қалаушы", career_1_desc: "Нөлден өз бизнесін құру, инвестицияларды тарту, халықаралық нарықтарға шығу.",
+                career_2_title: "IT-компаниядағы Product Manager", career_2_desc: "Өнімдердің дамуын басқару, әзірлеуші командалармен жұмыс, өнім стратегиясы.",
+                career_3_title: "Бизнес-ангел / Инвестор", career_3_desc: "Перспективалы стартаптарға инвестициялау, венчурлық қорларда, акселераторларда жұмыс.",
+                career_4_title: "CEO / Топ-менеджер", career_4_desc: "Компанияны басқару, стратегиялық даму, командаларды басқару.",
+                career_5_title: "Стартап-кеңесші", career_5_desc: "Жаңа кәсіпкерлерге кеңес беру, бизнесті іске қосу және масштабтауға көмектесу.",
+                career_6_title: "Корпоративтік инноватор", career_6_desc: "Ірі компанияларда инновациялық жобаларды дамыту, интрапренерство.",
+                conditions_title: "🏛️ Оқу шарттары",
+                cond_1_title: "Формасы және мерзімдері", cond_1_desc: "Қарқынды бағдарлама (1 жыл). Кешкі сабақтар, демалыс күндері воркшоптар, менторлармен жеке кеңестер.",
+                cond_2_title: "Оқу ақысы", cond_2_desc: "1 500 000 ₸ / жыл. Бөліп төлеу, бөліктермен төлеу, перспективалы жобаларға гранттар мүмкіндігі.",
+                cond_3_title: "Гранттар мен жеңілдіктер", cond_3_desc: "«Даму» қорының гранттары, стартап-байқаулар жеңімпаздарына жеңілдіктер, инвесторлардан стипендиялар, жобадағы үлеспен төлеу.",
+                cond_4_title: "Студенттік өмір", cond_4_desc: "Стартап-зертхана, нетворкинг-кештер, демо-күндер, инвесторлармен кездесулер, коворкингте 24/7 жұмыс.",
+                video_title: "🎬 Бағдарлама туралы егжей-тегжейлі",
+                video_subtitle: "Startup School Launchpad туралы біздің бейнематериалдан көбірек біліңіз",
+                cta_title: "🚀 Өз стартапыңызды іске қосуға дайынсыз ба?",
+                cta_desc: "Өтінім қалдырыңыз, біздің кеңесші егжей-тегжейлі кеңес беру үшін сізбен байланысады",
+                cta_btn: "Қазір өтінім беру"
+            },
+            en: {
+                page_title: "AlmaU · Startup School Launchpad",
+                hero_badge: "🚀 Intensive program · 1 year",
+                hero_title: "Startup School Launchpad",
+                hero_desc: "Turn your idea into a successful business! An intensive one-year program for future entrepreneurs: from concept to startup launch, pitching to investors, and first sales.",
+                hero_btn_apply: "Apply now",
+                hero_btn_video: "Watch video",
+                stat_1_num: "1", stat_1_label: "year of intensive training",
+                stat_2_num: "100%", stat_2_label: "work on a real project",
+                stat_3_num: "75%", stat_3_label: "graduates attract investment",
+                stat_4_num: "50+", stat_4_label: "successful startups in portfolio",
+                scores_title: "📋 Admission requirements",
+                scores_subtitle: "Current data for 2025/2026 academic year",
+                scores_type: "Category", scores_requirement: "Requirement",
+                scores_grant: "Grant / Scholarship", scores_paid: "Paid tuition", scores_creative: "Creative competition",
+                scores_note: "* The program is open to everyone: students, graduates, entrepreneurs. Priority is given to those with a business idea or prototype.",
+                opportunities_title: "💡 What the program offers",
+                opp_1_title: "Launch your own startup", opp_1_desc: "Full business creation cycle: from idea to company registration, first customers, and scaling.",
+                opp_2_title: "Investment rounds", opp_2_desc: "Pitching to business angels and venture funds. Top projects receive investments up to 10 million tenge.",
+                opp_3_title: "Mentoring from top entrepreneurs", opp_3_desc: "Personal mentors — successful company founders, serial entrepreneurs, investors.",
+                opp_4_title: "International accelerators", opp_4_desc: "Opportunity to participate in global acceleration programs in USA, Europe, UAE, Singapore.",
+                stages_title: "🗺️ Launchpad Program Stages",
+                stages_subtitle: "How the training works",
+                stage_1_title: "Idea & Validation", stage_1_desc: "Idea generation, market analysis, interviews with potential customers, hypothesis testing.",
+                stage_2_title: "MVP & Product", stage_2_desc: "Creating a minimum viable product, testing, collecting feedback.",
+                stage_3_title: "Business Model", stage_3_desc: "Business model development, unit economics, financial planning, pricing.",
+                stage_4_title: "Marketing & Sales", stage_4_desc: "Customer acquisition strategies, digital marketing, first sales, feedback management.",
+                stage_5_title: "Investment", stage_5_desc: "Pitch deck preparation, presentation to investors, legal transaction support.",
+                stage_6_title: "Scaling", stage_6_desc: "Entering new markets, business scaling, team building, growth management.",
+                skills_title: "🎯 Key skills",
+                skills_subtitle: "What you will learn during the program",
+                career_title: "💼 Career prospects",
+                career_subtitle: "What awaits Launchpad program graduates",
+                career_1_title: "Startup Founder", career_1_desc: "Creating your own business from scratch, attracting investment, entering international markets.",
+                career_2_title: "Product Manager in IT company", career_2_desc: "Managing product development, working with development teams, product strategy.",
+                career_3_title: "Business Angel / Investor", career_3_desc: "Investing in promising startups, working in venture funds, accelerators.",
+                career_4_title: "CEO / Top Manager", career_4_desc: "Company management, strategic development, team leadership.",
+                career_5_title: "Startup Consultant", career_5_desc: "Advising aspiring entrepreneurs, helping launch and scale businesses.",
+                career_6_title: "Corporate Innovator", career_6_desc: "Developing innovation projects within large companies, intrapreneurship.",
+                conditions_title: "🏛️ Study conditions",
+                cond_1_title: "Form and duration", cond_1_desc: "Intensive program (1 year). Evening classes, weekend workshops, individual consultations with mentors.",
+                cond_2_title: "Tuition fee", cond_2_desc: "1,500,000 ₸ / year. Installment plans, partial payments, grants for promising projects available.",
+                cond_3_title: "Grants and discounts", cond_3_desc: "Grants from Damu Foundation, discounts for startup competition winners, scholarships from investors, equity-based payment.",
+                cond_4_title: "Student life", cond_4_desc: "Startup lab, networking parties, demo days, meetings with investors, 24/7 coworking space.",
+                video_title: "🎬 About the program in detail",
+                video_subtitle: "Learn more about Startup School Launchpad from our video",
+                cta_title: "🚀 Ready to launch your startup?",
+                cta_desc: "Leave a request and our consultant will contact you for detailed consultation",
+                cta_btn: "Apply now"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            const t = pageTranslations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (pageTranslations[lang]) {
+                currentLang = lang;
+                updatePageLanguage();
+                localStorage.setItem('preferred_language', lang);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+        });
+    </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
+</body>
+</html>

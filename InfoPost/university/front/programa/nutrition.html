@@ -1,0 +1,939 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'ru' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">AlmaU · Nutrition and Dietetics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --blue-dark: #0066CC;
+            --green: #34C759;
+            --orange: #FF9500;
+            --purple: #AF52DE;
+            --cyan: #00D4FF;
+            --teal: #20B2AA;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo__img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+        }
+
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #2d6a4f 0%, #40916c 50%, #2d6a4f 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(52,199,89,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #a8e6cf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== БЛОКИ С ИНФОРМАЦИЕЙ ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p, .info-card ul {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .info-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== ТАБЛИЦА БАЛЛОВ ===== */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .score-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table .highlight {
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        /* ===== КЛЮЧЕВЫЕ КОМПЕТЕНЦИИ ===== */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== КАРЬЕРНЫЕ ВОЗМОЖНОСТИ ===== */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .career-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--teal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .career-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-item .salary {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== НАПРАВЛЕНИЯ ===== */
+        .directions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .direction-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .direction-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== ВИДЕО ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10,132,255,0.3);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue);
+            color: var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__col-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .nav__list {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'partials/site_header.html' %}
+
+    <main>
+        <!-- Hero секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">🥗 Бакалавриат · 3 года</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Nutrition and Dietetics</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Программа готовит высококвалифицированных специалистов в области нутрициологии и диетологии, способных разрабатывать индивидуальные программы питания, консультировать пациентов, проводить оценку пищевого статуса и внедрять научно обоснованные подходы к здоровому питанию.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="hero_btn_apply">Подать заявку</a>
+                        <a href="#video" class="btn btn-outline" data-i18n="hero_btn_video">Смотреть видео</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Статистика -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_1_num">3</div>
+                    <div class="stat-label" data-i18n="stat_1_label">года обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_2_num">100%</div>
+                    <div class="stat-label" data-i18n="stat_2_label">работа с реальными клиническими кейсами</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_3_num">93%</div>
+                    <div class="stat-label" data-i18n="stat_3_label">трудоустройство в сфере нутрициологии</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_4_num">30+</div>
+                    <div class="stat-label" data-i18n="stat_4_label">партнёров: клиники, wellness-центры, фитнес-клубы, санатории</div>
+                </div>
+            </div>
+
+            <!-- Пороговые баллы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="scores_title">📊 Пороговые баллы для поступления</h2>
+                <p class="section-subtitle" data-i18n="scores_subtitle">Актуальные данные на 2025/2026 учебный год</p>
+                
+                <table class="score-table">
+                    <thead>
+                        <tr><th data-i18n="scores_type">Категория</th><th data-i18n="scores_min">Минимальный балл</th><th data-i18n="scores_recommended">Рекомендуемый балл</th>\
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="scores_grant">Государственный грант<td class="highlight">65+<\/td><td class="highlight">75+<\/td>
+                        <\/tr>
+                        <tr>
+                            <td data-i18n="scores_paid">Платное отделение<\/td><td>50+<\/td><td>70+<\/td>
+                        <\/tr>
+                        <tr>
+                            <td data-i18n="scores_creative">Творческий конкурс (собеседование)<\/td><td>—<\/td><td>зачёт\/незачёт<\/td>
+                        <\/tr>
+                    <\/tbody>
+                <\/table>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);" data-i18n="scores_note">
+                    * Для поступления необходимы результаты ЕНТ по профильным предметам: биология, химия \/ иностранный язык.
+                <\/p>
+            <\/section>
+
+            <!-- Возможности специальности -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="opportunities_title">💡 Возможности специальности</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">🥗</div>
+                        <h3 data-i18n="opp_1_title">Клиническая диетология</h3>
+                        <p data-i18n="opp_1_desc">Разработка лечебных диет для пациентов с различными заболеваниями, оценка пищевого статуса, коррекция нарушений питания, работа в стационарах и санаториях.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🍎</div>
+                        <h3 data-i18n="opp_2_title">Нутрициологическое консультирование</h3>
+                        <p data-i18n="opp_2_desc">Индивидуальное консультирование по вопросам здорового питания, разработка персональных программ питания, коррекция веса, профилактика заболеваний.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏋️</div>
+                        <h3 data-i18n="opp_3_title">Спортивная нутрициология</h3>
+                        <p data-i18n="opp_3_desc">Разработка программ питания для спортсменов, оптимизация рациона для достижения спортивных результатов, работа в фитнес-клубах и спортивных командах.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🍽️</div>
+                        <h3 data-i18n="opp_4_title">Пищевая безопасность</h3>
+                        <p data-i18n="opp_4_desc">Контроль качества продуктов питания, оценка пищевых рисков, работа в лабораториях, контроль за соблюдением санитарных норм.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Направления -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="directions_title">🥗 Направления нутрициологии и диетологии</h2>
+                <p class="section-subtitle" data-i18n="directions_subtitle">Что вы будете изучать</p>
+                <div class="directions-grid">
+                    <span class="direction-tag">Основы нутрициологии</span>
+                    <span class="direction-tag">Клиническая диетология</span>
+                    <span class="direction-tag">Биохимия питания</span>
+                    <span class="direction-tag">Спортивная нутрициология</span>
+                    <span class="direction-tag">Детская диетология</span>
+                    <span class="direction-tag">Пищевая безопасность</span>
+                    <span class="direction-tag">Лечебное питание</span>
+                    <span class="direction-tag">Психология питания</span>
+                    <span class="direction-tag">Физиология пищеварения</span>
+                    <span class="direction-tag">Нутригенетика</span>
+                    <span class="direction-tag">Диетотерапия</span>
+                    <span class="direction-tag">Организация питания в ЛПУ</span>
+                </div>
+            </section>
+
+            <!-- Карьерные перспективы и зарплаты -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="career_title">💼 Карьерные перспективы</h2>
+                <p class="section-subtitle" data-i18n="career_subtitle">Кем вы сможете работать после окончания программы</p>
+                
+                <div class="career-grid">
+                    <div class="career-item">
+                        <h4 data-i18n="career_1_title">Диетолог / Нутрициолог</h4>
+                        <p data-i18n="career_1_desc">Работа в медицинских учреждениях, санаториях, реабилитационных центрах. Разработка лечебных диет, консультирование пациентов.</p>
+                        <span class="salary" data-i18n="career_1_salary">от 400 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_2_title">Консультант по здоровому питанию</h4>
+                        <p data-i18n="career_2_desc">Индивидуальное консультирование, разработка программ питания для коррекции веса, улучшения самочувствия, профилактики заболеваний.</p>
+                        <span class="salary" data-i18n="career_2_salary">от 350 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_3_title">Спортивный нутрициолог</h4>
+                        <p data-i18n="career_3_desc">Разработка программ питания для спортсменов, работа в фитнес-клубах, спортивных командах, консультирование по спортивному питанию.</p>
+                        <span class="salary" data-i18n="career_3_salary">от 450 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_4_title">Специалист по пищевой безопасности</h4>
+                        <p data-i18n="career_4_desc">Контроль качества продуктов, работа в лабораториях, надзорных органах, на пищевых производствах.</p>
+                        <span class="salary" data-i18n="career_4_salary">от 400 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_5_title">Менеджер по организации питания</h4>
+                        <p data-i18n="career_5_desc">Организация питания в лечебных учреждениях, школах, детских садах, разработка меню, контроль качества.</p>
+                        <span class="salary" data-i18n="career_5_salary">от 400 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_6_title">Научный сотрудник / Исследователь</h4>
+                        <p data-i18n="career_6_desc">Научная работа в области нутрициологии, участие в исследовательских проектах, разработка новых методик питания.</p>
+                        <span class="salary" data-i18n="career_6_salary">от 400 000 ₸</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Условия обучения -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="conditions_title">🏛️ Условия обучения</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">📅</div>
+                        <h3 data-i18n="cond_1_title">Форма и сроки</h3>
+                        <p data-i18n="cond_1_desc">Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">💰</div>
+                        <h3 data-i18n="cond_2_title">Стоимость обучения</h3>
+                        <p data-i18n="cond_2_desc">1 000 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏆</div>
+                        <h3 data-i18n="cond_3_title">Гранты и скидки</h3>
+                        <p data-i18n="cond_3_desc">Государственный грант, скидки для отличников (до 50%), гранты от медицинских организаций, стипендии для будущих нутрициологов.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🎒</div>
+                        <h3 data-i18n="cond_4_title">Студенческая жизнь</h3>
+                        <p data-i18n="cond_4_desc">Современный кампус, общежитие, лаборатория нутрициологии, клинические базы в ведущих медицинских учреждениях, стажировки в wellness-центрах и клиниках диетологии.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Видео секция -->
+            <section class="section" id="video">
+                <h2 class="section-title" data-i18n="video_title">🎬 О программе в деталях</h2>
+                <p class="section-subtitle" data-i18n="video_subtitle">Узнайте больше о нутрициологии и диетологии из нашего видео</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Nutrition and Dietetics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- CTA секция -->
+            <section class="section" style="text-align: center; background: linear-gradient(135deg, var(--light-gray), var(--white)); border-radius: var(--border-radius); margin-bottom: 2rem;">
+                <h2 class="section-title" data-i18n="cta_title">🥗 Готовы помогать людям становиться здоровее через правильное питание?</h2>
+                <p class="section-subtitle" data-i18n="cta_desc">Оставьте заявку, и наш консультант свяжется с вами для подробной консультации</p>
+                <a href="{% url 'university:chatbot_menu' %}" class="btn" style="margin-top: 1rem;" data-i18n="cta_btn">Подать заявку сейчас</a>
+            </section>
+        </div>
+    </main>
+
+    {% include 'partials/site_footer.html' %}
+
+    <script>
+        // Мультиязычный словарь для страницы
+        const pageTranslations = {
+            ru: {
+                page_title: "AlmaU · Nutrition and Dietetics",
+                hero_badge: "🥗 Бакалавриат · 3 года",
+                hero_title: "Nutrition and Dietetics",
+                hero_desc: "Программа готовит высококвалифицированных специалистов в области нутрициологии и диетологии, способных разрабатывать индивидуальные программы питания, консультировать пациентов, проводить оценку пищевого статуса и внедрять научно обоснованные подходы к здоровому питанию.",
+                hero_btn_apply: "Подать заявку",
+                hero_btn_video: "Смотреть видео",
+                stat_1_num: "3", stat_1_label: "года обучения",
+                stat_2_num: "100%", stat_2_label: "работа с реальными клиническими кейсами",
+                stat_3_num: "93%", stat_3_label: "трудоустройство в сфере нутрициологии",
+                stat_4_num: "30+", stat_4_label: "партнёров: клиники, wellness-центры, фитнес-клубы, санатории",
+                scores_title: "📊 Пороговые баллы для поступления",
+                scores_subtitle: "Актуальные данные на 2025/2026 учебный год",
+                scores_type: "Категория", scores_min: "Минимальный балл", scores_recommended: "Рекомендуемый балл",
+                scores_grant: "Государственный грант", scores_paid: "Платное отделение", scores_creative: "Творческий конкурс (собеседование)",
+                scores_note: "* Для поступления необходимы результаты ЕНТ по профильным предметам: биология, химия / иностранный язык.",
+                opportunities_title: "💡 Возможности специальности",
+                opp_1_title: "Клиническая диетология", opp_1_desc: "Разработка лечебных диет для пациентов с различными заболеваниями, оценка пищевого статуса, коррекция нарушений питания, работа в стационарах и санаториях.",
+                opp_2_title: "Нутрициологическое консультирование", opp_2_desc: "Индивидуальное консультирование по вопросам здорового питания, разработка персональных программ питания, коррекция веса, профилактика заболеваний.",
+                opp_3_title: "Спортивная нутрициология", opp_3_desc: "Разработка программ питания для спортсменов, оптимизация рациона для достижения спортивных результатов, работа в фитнес-клубах и спортивных командах.",
+                opp_4_title: "Пищевая безопасность", opp_4_desc: "Контроль качества продуктов питания, оценка пищевых рисков, работа в лабораториях, контроль за соблюдением санитарных норм.",
+                directions_title: "🥗 Направления нутрициологии и диетологии",
+                directions_subtitle: "Что вы будете изучать",
+                career_title: "💼 Карьерные перспективы",
+                career_subtitle: "Кем вы сможете работать после окончания программы",
+                career_1_title: "Диетолог / Нутрициолог", career_1_desc: "Работа в медицинских учреждениях, санаториях, реабилитационных центрах. Разработка лечебных диет, консультирование пациентов.", career_1_salary: "от 400 000 ₸",
+                career_2_title: "Консультант по здоровому питанию", career_2_desc: "Индивидуальное консультирование, разработка программ питания для коррекции веса, улучшения самочувствия, профилактики заболеваний.", career_2_salary: "от 350 000 ₸",
+                career_3_title: "Спортивный нутрициолог", career_3_desc: "Разработка программ питания для спортсменов, работа в фитнес-клубах, спортивных командах, консультирование по спортивному питанию.", career_3_salary: "от 450 000 ₸",
+                career_4_title: "Специалист по пищевой безопасности", career_4_desc: "Контроль качества продуктов, работа в лабораториях, надзорных органах, на пищевых производствах.", career_4_salary: "от 400 000 ₸",
+                career_5_title: "Менеджер по организации питания", career_5_desc: "Организация питания в лечебных учреждениях, школах, детских садах, разработка меню, контроль качества.", career_5_salary: "от 400 000 ₸",
+                career_6_title: "Научный сотрудник / Исследователь", career_6_desc: "Научная работа в области нутрициологии, участие в исследовательских проектах, разработка новых методик питания.", career_6_salary: "от 400 000 ₸",
+                conditions_title: "🏛️ Условия обучения",
+                cond_1_title: "Форма и сроки", cond_1_desc: "Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).",
+                cond_2_title: "Стоимость обучения", cond_2_desc: "1 000 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.",
+                cond_3_title: "Гранты и скидки", cond_3_desc: "Государственный грант, скидки для отличников (до 50%), гранты от медицинских организаций, стипендии для будущих нутрициологов.",
+                cond_4_title: "Студенческая жизнь", cond_4_desc: "Современный кампус, общежитие, лаборатория нутрициологии, клинические базы в ведущих медицинских учреждениях, стажировки в wellness-центрах и клиниках диетологии.",
+                video_title: "🎬 О программе в деталях",
+                video_subtitle: "Узнайте больше о нутрициологии и диетологии из нашего видео",
+                cta_title: "🥗 Готовы помогать людям становиться здоровее через правильное питание?",
+                cta_desc: "Оставьте заявку, и наш консультант свяжется с вами для подробной консультации",
+                cta_btn: "Подать заявку сейчас"
+            },
+            kz: {
+                page_title: "AlmaU · Nutrition and Dietetics",
+                hero_badge: "🥗 Бакалавриат · 3 жыл",
+                hero_title: "Nutrition and Dietetics",
+                hero_desc: "Бағдарлама жеке тамақтану бағдарламаларын әзірлей алатын, пациенттерге кеңес бере алатын, тағамдық статусты бағалай алатын және салауатты тамақтанудың ғылыми негізделген тәсілдерін енгізе алатын нутрициология және диетология саласындағы жоғары білікті мамандарды дайындайды.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_video: "Бейнені көру",
+                stat_1_num: "3", stat_1_label: "оқу жылы",
+                stat_2_num: "100%", stat_2_label: "нақты клиникалық кейстермен жұмыс",
+                stat_3_num: "93%", stat_3_label: "нутрициология саласында жұмысқа орналасу",
+                stat_4_num: "30+", stat_4_label: "серіктестер: клиникалар, wellness-орталықтар, фитнес-клубтар, санаторийлер",
+                scores_title: "📊 Түсу үшін шекті баллдар",
+                scores_subtitle: "2025/2026 оқу жылына арналған ағымдағы деректер",
+                scores_type: "Санат", scores_min: "Ең төменгі балл", scores_recommended: "Ұсынылатын балл",
+                scores_grant: "Мемлекеттік грант", scores_paid: "Ақылы бөлім", scores_creative: "Шығармашылық конкурс (сұхбат)",
+                scores_note: "* Түсу үшін бейіндік пәндер бойынша ҰБТ нәтижелері қажет: биология, химия / шет тілі.",
+                opportunities_title: "💡 Мамандықтың мүмкіндіктері",
+                opp_1_title: "Клиникалық диетология", opp_1_desc: "Әртүрлі аурулары бар пациенттерге емдік диеталарды әзірлеу, тағамдық статусты бағалау, тамақтану бұзылыстарын түзету, стационарлар мен санаторийлерде жұмыс.",
+                opp_2_title: "Нутрициологиялық кеңес беру", opp_2_desc: "Салауатты тамақтану мәселелері бойынша жеке кеңес беру, дербес тамақтану бағдарламаларын әзірлеу, салмақты түзету, аурулардың алдын алу.",
+                opp_3_title: "Спорттық нутрициология", opp_3_desc: "Спортшыларға арналған тамақтану бағдарламаларын әзірлеу, спорттық нәтижелерге жету үшін рационды оңтайландыру, фитнес-клубтар мен спорттық командаларда жұмыс.",
+                opp_4_title: "Тағам қауіпсіздігі", opp_4_desc: "Азық-түлік өнімдерінің сапасын бақылау, тағамдық тәуекелдерді бағалау, зертханаларда жұмыс, санитарлық нормалардың сақталуын бақылау.",
+                directions_title: "🥗 Нутрициология және диетология бағыттары",
+                directions_subtitle: "Сіз не зерттейсіз",
+                career_title: "💼 Мансаптық перспективалар",
+                career_subtitle: "Бағдарламаны бітіргеннен кейін қайда жұмыс істей аласыз",
+                career_1_title: "Диетолог / Нутрициолог", career_1_desc: "Медициналық мекемелерде, санаторийлерде, оңалту орталықтарында жұмыс. Емдік диеталарды әзірлеу, пациенттерге кеңес беру.", career_1_salary: "400 000 ₸-ден",
+                career_2_title: "Салауатты тамақтану жөніндегі кеңесші", career_2_desc: "Жеке кеңес беру, салмақты түзету, әл-ауқатты жақсарту, аурулардың алдын алу үшін тамақтану бағдарламаларын әзірлеу.", career_2_salary: "350 000 ₸-ден",
+                career_3_title: "Спорттық нутрициолог", career_3_desc: "Спортшыларға арналған тамақтану бағдарламаларын әзірлеу, фитнес-клубтарда, спорттық командаларда жұмыс, спорттық тамақтану бойынша кеңес беру.", career_3_salary: "450 000 ₸-ден",
+                career_4_title: "Тағам қауіпсіздігі жөніндегі маман", career_4_desc: "Өнімдердің сапасын бақылау, зертханаларда, қадағалау органдарында, тамақ өндірістерінде жұмыс.", career_4_salary: "400 000 ₸-ден",
+                career_5_title: "Тамақтануды ұйымдастыру жөніндегі менеджер", career_5_desc: "Емдеу мекемелерінде, мектептерде, балабақшаларда тамақтануды ұйымдастыру, мәзірді әзірлеу, сапаны бақылау.", career_5_salary: "400 000 ₸-ден",
+                career_6_title: "Ғылыми қызметкер / Зерттеуші", career_6_desc: "Нутрициология саласындағы ғылыми жұмыс, зерттеу жобаларына қатысу, тамақтанудың жаңа әдістемелерін әзірлеу.", career_6_salary: "400 000 ₸-ден",
+                conditions_title: "🏛️ Оқу шарттары",
+                cond_1_title: "Формасы және мерзімдері", cond_1_desc: "Күндізгі оқу нысаны. Бағдарламаны меңгеру мерзімі: 3 жыл (бакалавриат).",
+                cond_2_title: "Оқу ақысы", cond_2_desc: "1 000 000 ₸ / жыл. Ерте төлеу кезінде бөліп төлеу және жеңілдіктер мүмкіндігі.",
+                cond_3_title: "Гранттар мен жеңілдіктер", cond_3_desc: "Мемлекеттік грант, үздік оқушыларға жеңілдіктер (50% дейін), медициналық ұйымдардың гранттары, болашақ нутрициологтарға арналған стипендиялар.",
+                cond_4_title: "Студенттік өмір", cond_4_desc: "Заманауи кампус, жатақхана, нутрициология зертханасы, жетекші медициналық мекемелердегі клиникалық базалар, wellness-орталықтар мен диетология клиникаларында тағылымдама.",
+                video_title: "🎬 Бағдарлама туралы егжей-тегжейлі",
+                video_subtitle: "Нутрициология және диетология туралы біздің бейнематериалдан көбірек біліңіз",
+                cta_title: "🥗 Дұрыс тамақтану арқылы адамдарға сау болуға көмектесуге дайынсыз ба?",
+                cta_desc: "Өтінім қалдырыңыз, біздің кеңесші егжей-тегжейлі кеңес беру үшін сізбен байланысады",
+                cta_btn: "Қазір өтінім беру"
+            },
+            en: {
+                page_title: "AlmaU · Nutrition and Dietetics",
+                hero_badge: "🥗 Bachelor's · 3 years",
+                hero_title: "Nutrition and Dietetics",
+                hero_desc: "The program trains highly qualified specialists in nutrition and dietetics capable of developing individual nutrition programs, counseling patients, assessing nutritional status and implementing evidence-based approaches to healthy eating.",
+                hero_btn_apply: "Apply now",
+                hero_btn_video: "Watch video",
+                stat_1_num: "3", stat_1_label: "years of study",
+                stat_2_num: "100%", stat_2_label: "work with real clinical cases",
+                stat_3_num: "93%", stat_3_label: "employment in nutrition",
+                stat_4_num: "30+", stat_4_label: "partners: clinics, wellness centers, fitness clubs, sanatoriums",
+                scores_title: "📊 Admission scores",
+                scores_subtitle: "Current data for 2025/2026 academic year",
+                scores_type: "Category", scores_min: "Minimum score", scores_recommended: "Recommended score",
+                scores_grant: "State grant", scores_paid: "Paid tuition", scores_creative: "Creative competition (interview)",
+                scores_note: "* UNT results in core subjects are required: biology, chemistry / foreign language.",
+                opportunities_title: "💡 Program opportunities",
+                opp_1_title: "Clinical dietetics", opp_1_desc: "Development of therapeutic diets for patients with various diseases, assessment of nutritional status, correction of eating disorders, work in hospitals and sanatoriums.",
+                opp_2_title: "Nutrition counseling", opp_2_desc: "Individual counseling on healthy eating, development of personal nutrition programs, weight correction, disease prevention.",
+                opp_3_title: "Sports nutrition", opp_3_desc: "Development of nutrition programs for athletes, optimization of diet to achieve sports results, work in fitness clubs and sports teams.",
+                opp_4_title: "Food safety", opp_4_desc: "Quality control of food products, assessment of food risks, work in laboratories, control over compliance with sanitary standards.",
+                directions_title: "🥗 Nutrition and Dietetics fields",
+                directions_subtitle: "What you will study",
+                career_title: "💼 Career prospects",
+                career_subtitle: "Where you can work after graduation",
+                career_1_title: "Dietitian / Nutritionist", career_1_desc: "Work in medical institutions, sanatoriums, rehabilitation centers. Development of therapeutic diets, patient counseling.", career_1_salary: "from 400,000 ₸",
+                career_2_title: "Healthy Eating Consultant", career_2_desc: "Individual counseling, development of nutrition programs for weight correction, improving well-being, disease prevention.", career_2_salary: "from 350,000 ₸",
+                career_3_title: "Sports Nutritionist", career_3_desc: "Development of nutrition programs for athletes, work in fitness clubs, sports teams, sports nutrition consulting.", career_3_salary: "from 450,000 ₸",
+                career_4_title: "Food Safety Specialist", career_4_desc: "Product quality control, work in laboratories, supervisory authorities, food production facilities.", career_4_salary: "from 400,000 ₸",
+                career_5_title: "Nutrition Organization Manager", career_5_desc: "Organization of nutrition in medical institutions, schools, kindergartens, menu development, quality control.", career_5_salary: "from 400,000 ₸",
+                career_6_title: "Researcher / Scientist", career_6_desc: "Scientific work in nutrition, participation in research projects, development of new nutrition methods.", career_6_salary: "from 400,000 ₸",
+                conditions_title: "🏛️ Study conditions",
+                cond_1_title: "Form and duration", cond_1_desc: "Full-time study. Program duration: 3 years (Bachelor's).",
+                cond_2_title: "Tuition fee", cond_2_desc: "1,000,000 ₸ / year. Installment plans and early payment discounts available.",
+                cond_3_title: "Grants and discounts", cond_3_desc: "State grant, discounts for excellent students (up to 50%), grants from medical organizations, scholarships for future nutritionists.",
+                cond_4_title: "Student life", cond_4_desc: "Modern campus, dormitory, nutrition lab, clinical bases in leading medical institutions, internships in wellness centers and dietetics clinics.",
+                video_title: "🎬 About the program in detail",
+                video_subtitle: "Learn more about Nutrition and Dietetics from our video",
+                cta_title: "🥗 Ready to help people become healthier through proper nutrition?",
+                cta_desc: "Leave a request and our consultant will contact you for detailed consultation",
+                cta_btn: "Apply now"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            const t = pageTranslations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (pageTranslations[lang]) {
+                currentLang = lang;
+                updatePageLanguage();
+                localStorage.setItem('preferred_language', lang);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+        });
+    </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
+</body>
+</html>

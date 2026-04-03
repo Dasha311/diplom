@@ -32,8 +32,8 @@
             <div class="footer__col">
                 <h4 class="footer__col-title" data-i18n="footer_contacts">Контакты</h4>
                 <address class="footer__address">
-                    ул. Розыбакиева, 227<br>
-                    Алматы, Казахстан<br><br>
+                    <span data-i18n="footer_address_street">ул. Розыбакиева, 227</span><br>
+                    <span data-i18n="footer_address_city">Алматы, Казахстан</span><br><br>
                     <a href="tel:+77273133040">+7 (727) 313 3040</a><br>
                     <a href="mailto:info@almau.kz">info@almau.kz</a>
                 </address>
@@ -53,3 +53,66 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Добавляем переводы для футера в глобальный словарь (если еще не добавлены)
+    if (typeof translations !== 'undefined') {
+        // Расширяем существующие переводы для футера
+        if (translations.ru) {
+            translations.ru.footer_desc = "Almaty Management University — ведущий университет Казахстана, формирующий профессионалов мирового уровня и лидеров нового поколения.";
+            translations.ru.footer_learning = "Обучение";
+            translations.ru.footer_programs = "Программы";
+            translations.ru.footer_admission = "Поступление";
+            translations.ru.footer_scholarships = "Стипендии";
+            translations.ru.footer_university = "Университет";
+            translations.ru.footer_about = "О нас";
+            translations.ru.footer_news = "Новости";
+            translations.ru.footer_events = "События";
+            translations.ru.footer_partners = "Партнёры";
+            translations.ru.footer_contacts = "Контакты";
+            translations.ru.footer_address_street = "ул. Розыбакиева, 227";
+            translations.ru.footer_address_city = "Алматы, Казахстан";
+            translations.ru.footer_copyright = "Все права защищены.";
+            translations.ru.footer_privacy = "Политика конфиденциальности";
+        }
+        
+        if (translations.kz) {
+            translations.kz.footer_desc = "Almaty Management University — Қазақстанның жетекші университеті, әлемдік деңгейдегі мамандар мен жаңа буын көшбасшыларын қалыптастырады.";
+            translations.kz.footer_learning = "Оқыту";
+            translations.kz.footer_programs = "Бағдарламалар";
+            translations.kz.footer_admission = "Түсу";
+            translations.kz.footer_scholarships = "Стипендиялар";
+            translations.kz.footer_university = "Университет";
+            translations.kz.footer_about = "Біз туралы";
+            translations.kz.footer_news = "Жаңалықтар";
+            translations.kz.footer_events = "Іс-шаралар";
+            translations.kz.footer_partners = "Серіктестер";
+            translations.kz.footer_contacts = "Байланыстар";
+            translations.kz.footer_address_street = "Розыбакиев көшесі, 227";
+            translations.kz.footer_address_city = "Алматы, Қазақстан";
+            translations.kz.footer_copyright = "Барлық құқықтар қорғалған.";
+            translations.kz.footer_privacy = "Құпиялық саясаты";
+        }
+        
+        if (translations.en) {
+            translations.en.footer_desc = "Almaty Management University — Kazakhstan's leading university, shaping world-class professionals and new generation leaders.";
+            translations.en.footer_learning = "Education";
+            translations.en.footer_programs = "Programs";
+            translations.en.footer_admission = "Admission";
+            translations.en.footer_scholarships = "Scholarships";
+            translations.en.footer_university = "University";
+            translations.en.footer_about = "About Us";
+            translations.en.footer_news = "News";
+            translations.en.footer_events = "Events";
+            translations.en.footer_partners = "Partners";
+            translations.en.footer_contacts = "Contacts";
+            translations.en.footer_address_street = "227 Rozybakiev St.";
+            translations.en.footer_address_city = "Almaty, Kazakhstan";
+            translations.en.footer_copyright = "All rights reserved.";
+            translations.en.footer_privacy = "Privacy Policy";
+        }
+    }
+    
+    // Обновляем год в футере
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>

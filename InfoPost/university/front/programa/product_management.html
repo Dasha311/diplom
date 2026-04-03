@@ -1,0 +1,916 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'ru' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">AlmaU · Product Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --blue-dark: #0066CC;
+            --green: #34C759;
+            --orange: #FF9500;
+            --purple: #AF52DE;
+            --cyan: #00D4FF;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo__img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+        }
+
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #1e2a3a 0%, #2c3e50 50%, #1a2632 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,165,0,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== БЛОКИ С ИНФОРМАЦИЕЙ ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p, .info-card ul {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .info-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== ТАБЛИЦА БАЛЛОВ ===== */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .score-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table .highlight {
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        /* ===== КАРЬЕРНЫЕ ВОЗМОЖНОСТИ ===== */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .career-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid #ffa500;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .career-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-item .salary {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== КОМПЕТЕНЦИИ ===== */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== ВИДЕО ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10,132,255,0.3);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue);
+            color: var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__col-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .nav__list {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'partials/site_header.html' %}
+
+    <main>
+        <!-- Hero секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">🎓 Бакалавриат · 3 года</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Product Management</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Программа готовит специалистов по управлению цифровыми продуктами и IT-проектами от идеи до запуска. Вы научитесь создавать успешные продукты, управлять командами и принимать стратегические решения.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="hero_btn_apply">Подать заявку</a>
+                        <a href="#video" class="btn btn-outline" data-i18n="hero_btn_video">Смотреть видео</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Статистика -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_1_num">3</div>
+                    <div class="stat-label" data-i18n="stat_1_label">года обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_2_num">5+</div>
+                    <div class="stat-label" data-i18n="stat_2_label">реальных продуктов в портфолио</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_3_num">94%</div>
+                    <div class="stat-label" data-i18n="stat_3_label">трудоустройство</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_4_num">40+</div>
+                    <div class="stat-label" data-i18n="stat_4_label">компаний-партнёров</div>
+                </div>
+            </div>
+
+            <!-- Пороговые баллы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="scores_title">📊 Пороговые баллы для поступления</h2>
+                <p class="section-subtitle" data-i18n="scores_subtitle">Актуальные данные на 2025/2026 учебный год</p>
+                
+                <table class="score-table">
+                    <thead>
+                        <tr><th data-i18n="scores_type">Категория</th><th data-i18n="scores_min">Минимальный балл</th><th data-i18n="scores_recommended">Рекомендуемый балл</th>\
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="scores_grant">Государственный грант</td><td class="highlight">80+</td><td>85+</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="scores_paid">Платное отделение</td><td>50+</td><td>70+</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="scores_creative">Творческий конкурс (портфолио)</td><td>—</td><td>зачёт/незачёт</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);" data-i18n="scores_note">
+                    * Для поступления необходимы результаты ЕНТ по профильным предметам: математика, иностранный язык / география.
+                </p>
+            </section>
+
+            <!-- Возможности специальности -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="opportunities_title">💡 Возможности специальности</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">🎯</div>
+                        <h3 data-i18n="opp_1_title">Создание продуктов с нуля</h3>
+                        <p data-i18n="opp_1_desc">Полный цикл разработки продукта: от идеи до вывода на рынок. Работа с MVP, продуктовой стратегией, метриками и аналитикой.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🤝</div>
+                        <h3 data-i18n="opp_2_title">Управление командами</h3>
+                        <p data-i18n="opp_2_desc">Agile и Scrum методологии, работа с разработчиками, дизайнерами, маркетологами. Лидерство и коммуникации.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">📊</div>
+                        <h3 data-i18n="opp_3_title">Продуктовая аналитика</h3>
+                        <p data-i18n="opp_3_desc">Работа с метриками (DAU/MAU, LTV, ARPU), A/B тестирование, принятие решений на основе данных.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🌍</div>
+                        <h3 data-i18n="opp_4_title">Глобальные рынки</h3>
+                        <p data-i18n="opp_4_desc">Запуск продуктов на международных рынках, адаптация под разные культуры, продуктовый маркетинг.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ключевые компетенции -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="skills_title">🎯 Ключевые компетенции</h2>
+                <p class="section-subtitle" data-i18n="skills_subtitle">Чему вы научитесь за время обучения</p>
+                <div class="skills-grid">
+                    <span class="skill-tag">Стратегическое мышление</span>
+                    <span class="skill-tag">Agile / Scrum</span>
+                    <span class="skill-tag">Продуктовая аналитика</span>
+                    <span class="skill-tag">User Experience Research</span>
+                    <span class="skill-tag">SQL / Python</span>
+                    <span class="skill-tag">Roadmap planning</span>
+                    <span class="skill-tag">OKR / KPI</span>
+                    <span class="skill-tag">Бизнес-моделирование</span>
+                    <span class="skill-tag">Презентации и питчи</span>
+                    <span class="skill-tag">Jira / Confluence</span>
+                    <span class="skill-tag">MVP разработка</span>
+                    <span class="skill-tag">Лидерство</span>
+                </div>
+            </section>
+
+            <!-- Карьерные перспективы и зарплаты -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="career_title">💼 Карьерные перспективы</h2>
+                <p class="section-subtitle" data-i18n="career_subtitle">Кем вы сможете работать после окончания программы</p>
+                
+                <div class="career-grid">
+                    <div class="career-item">
+                        <h4 data-i18n="career_1_title">Product Manager</h4>
+                        <p data-i18n="career_1_desc">Управление развитием продукта, формирование видения, приоритизация задач, работа с командой.</p>
+                        <span class="salary" data-i18n="career_1_salary">от 500 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_2_title">Project Manager</h4>
+                        <p data-i18n="career_2_desc">Управление проектами, контроль сроков и ресурсов, коммуникация с заказчиками.</p>
+                        <span class="salary" data-i18n="career_2_salary">от 450 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_3_title">Product Analyst</h4>
+                        <p data-i18n="career_3_desc">Анализ продуктовых метрик, построение дашбордов, A/B тестирование.</p>
+                        <span class="salary" data-i18n="career_3_salary">от 450 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_4_title">Product Owner</h4>
+                        <p data-i18n="career_4_desc">Работа с бэклогом, взаимодействие со стейкхолдерами, определение требований к продукту.</p>
+                        <span class="salary" data-i18n="career_4_salary">от 550 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_5_title">Growth Manager</h4>
+                        <p data-i18n="career_5_desc">Управление ростом продукта, эксперименты, привлечение и удержание пользователей.</p>
+                        <span class="salary" data-i18n="career_5_salary">от 500 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_6_title">Senior Product Manager / CPO</h4>
+                        <p data-i18n="career_6_desc">Стратегическое управление продуктовым портфелем, руководство отделом продуктов.</p>
+                        <span class="salary" data-i18n="career_6_salary">от 800 000 ₸</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Условия обучения -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="conditions_title">🏛️ Условия обучения</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">📅</div>
+                        <h3 data-i18n="cond_1_title">Форма и сроки</h3>
+                        <p data-i18n="cond_1_desc">Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">💰</div>
+                        <h3 data-i18n="cond_2_title">Стоимость обучения</h3>
+                        <p data-i18n="cond_2_desc">1 100 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏆</div>
+                        <h3 data-i18n="cond_3_title">Гранты и скидки</h3>
+                        <p data-i18n="cond_3_desc">Государственный грант, скидки для отличников (до 50%), гранты от IT-компаний-партнёров.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🎒</div>
+                        <h3 data-i18n="cond_4_title">Студенческая жизнь</h3>
+                        <p data-i18n="cond_4_desc">Современный кампус, общежитие, продуктовые лаборатории, стартап-клубы, менторство от успешных Product Manager'ов.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Видео секция -->
+            <section class="section" id="video">
+                <h2 class="section-title" data-i18n="video_title">🎬 О программе в деталях</h2>
+                <p class="section-subtitle" data-i18n="video_subtitle">Узнайте больше о Product Management из нашего видео</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Product Management" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- CTA секция -->
+            <section class="section" style="text-align: center; background: linear-gradient(135deg, var(--light-gray), var(--white)); border-radius: var(--border-radius); margin-bottom: 2rem;">
+                <h2 class="section-title" data-i18n="cta_title">🚀 Готовы стать продуктовым лидером?</h2>
+                <p class="section-subtitle" data-i18n="cta_desc">Оставьте заявку, и наш консультант свяжется с вами для подробной консультации</p>
+                <a href="{% url 'university:chatbot_menu' %}" class="btn" style="margin-top: 1rem;" data-i18n="cta_btn">Подать заявку сейчас</a>
+            </section>
+        </div>
+    </main>
+
+    {% include 'partials/site_footer.html' %}
+
+    <script>
+        // Мультиязычный словарь для страницы
+        const pageTranslations = {
+            ru: {
+                page_title: "AlmaU · Product Management",
+                hero_badge: "🎓 Бакалавриат · 3 года",
+                hero_title: "Product Management",
+                hero_desc: "Программа готовит специалистов по управлению цифровыми продуктами и IT-проектами от идеи до запуска. Вы научитесь создавать успешные продукты, управлять командами и принимать стратегические решения.",
+                hero_btn_apply: "Подать заявку",
+                hero_btn_video: "Смотреть видео",
+                stat_1_num: "3", stat_1_label: "года обучения",
+                stat_2_num: "5+", stat_2_label: "реальных продуктов в портфолио",
+                stat_3_num: "94%", stat_3_label: "трудоустройство",
+                stat_4_num: "40+", stat_4_label: "компаний-партнёров",
+                scores_title: "📊 Пороговые баллы для поступления",
+                scores_subtitle: "Актуальные данные на 2025/2026 учебный год",
+                scores_type: "Категория", scores_min: "Минимальный балл", scores_recommended: "Рекомендуемый балл",
+                scores_grant: "Государственный грант", scores_paid: "Платное отделение", scores_creative: "Творческий конкурс (портфолио)",
+                scores_note: "* Для поступления необходимы результаты ЕНТ по профильным предметам: математика, иностранный язык / география.",
+                opportunities_title: "💡 Возможности специальности",
+                opp_1_title: "Создание продуктов с нуля", opp_1_desc: "Полный цикл разработки продукта: от идеи до вывода на рынок. Работа с MVP, продуктовой стратегией, метриками и аналитикой.",
+                opp_2_title: "Управление командами", opp_2_desc: "Agile и Scrum методологии, работа с разработчиками, дизайнерами, маркетологами. Лидерство и коммуникации.",
+                opp_3_title: "Продуктовая аналитика", opp_3_desc: "Работа с метриками (DAU/MAU, LTV, ARPU), A/B тестирование, принятие решений на основе данных.",
+                opp_4_title: "Глобальные рынки", opp_4_desc: "Запуск продуктов на международных рынках, адаптация под разные культуры, продуктовый маркетинг.",
+                skills_title: "🎯 Ключевые компетенции",
+                skills_subtitle: "Чему вы научитесь за время обучения",
+                career_title: "💼 Карьерные перспективы",
+                career_subtitle: "Кем вы сможете работать после окончания программы",
+                career_1_title: "Product Manager", career_1_desc: "Управление развитием продукта, формирование видения, приоритизация задач, работа с командой.", career_1_salary: "от 500 000 ₸",
+                career_2_title: "Project Manager", career_2_desc: "Управление проектами, контроль сроков и ресурсов, коммуникация с заказчиками.", career_2_salary: "от 450 000 ₸",
+                career_3_title: "Product Analyst", career_3_desc: "Анализ продуктовых метрик, построение дашбордов, A/B тестирование.", career_3_salary: "от 450 000 ₸",
+                career_4_title: "Product Owner", career_4_desc: "Работа с бэклогом, взаимодействие со стейкхолдерами, определение требований к продукту.", career_4_salary: "от 550 000 ₸",
+                career_5_title: "Growth Manager", career_5_desc: "Управление ростом продукта, эксперименты, привлечение и удержание пользователей.", career_5_salary: "от 500 000 ₸",
+                career_6_title: "Senior Product Manager / CPO", career_6_desc: "Стратегическое управление продуктовым портфелем, руководство отделом продуктов.", career_6_salary: "от 800 000 ₸",
+                conditions_title: "🏛️ Условия обучения",
+                cond_1_title: "Форма и сроки", cond_1_desc: "Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).",
+                cond_2_title: "Стоимость обучения", cond_2_desc: "1 100 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.",
+                cond_3_title: "Гранты и скидки", cond_3_desc: "Государственный грант, скидки для отличников (до 50%), гранты от IT-компаний-партнёров.",
+                cond_4_title: "Студенческая жизнь", cond_4_desc: "Современный кампус, общежитие, продуктовые лаборатории, стартап-клубы, менторство от успешных Product Manager'ов.",
+                video_title: "🎬 О программе в деталях",
+                video_subtitle: "Узнайте больше о Product Management из нашего видео",
+                cta_title: "🚀 Готовы стать продуктовым лидером?",
+                cta_desc: "Оставьте заявку, и наш консультант свяжется с вами для подробной консультации",
+                cta_btn: "Подать заявку сейчас"
+            },
+            kz: {
+                page_title: "AlmaU · Product Management",
+                hero_badge: "🎓 Бакалавриат · 3 жыл",
+                hero_title: "Product Management",
+                hero_desc: "Бағдарлама идеядан іске қосуға дейінгі цифрлық өнімдер мен IT-жобаларды басқару бойынша мамандарды дайындайды. Сіз табысты өнімдер жасауды, командаларды басқаруды және стратегиялық шешімдер қабылдауды үйренесіз.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_video: "Бейнені көру",
+                stat_1_num: "3", stat_1_label: "оқу жылы",
+                stat_2_num: "5+", stat_2_label: "портфолиодағы нақты өнім",
+                stat_3_num: "94%", stat_3_label: "жұмысқа орналасу",
+                stat_4_num: "40+", stat_4_label: "серіктес-компания",
+                scores_title: "📊 Түсу үшін шекті баллдар",
+                scores_subtitle: "2025/2026 оқу жылына арналған ағымдағы деректер",
+                scores_type: "Санат", scores_min: "Ең төменгі балл", scores_recommended: "Ұсынылатын балл",
+                scores_grant: "Мемлекеттік грант", scores_paid: "Ақылы бөлім", scores_creative: "Шығармашылық конкурс (портфолио)",
+                scores_note: "* Түсу үшін бейіндік пәндер бойынша ҰБТ нәтижелері қажет: математика, шет тілі / география.",
+                opportunities_title: "💡 Мамандықтың мүмкіндіктері",
+                opp_1_title: "Өнімді нөлден жасау", opp_1_desc: "Өнімді әзірлеудің толық циклі: идеядан нарыққа шығаруға дейін. MVP, өнім стратегиясы, метрикалар және аналитикамен жұмыс.",
+                opp_2_title: "Командаларды басқару", opp_2_desc: "Agile және Scrum әдістемелері, әзірлеушілермен, дизайнерлермен, маркетологтармен жұмыс. Көшбасшылық және коммуникациялар.",
+                opp_3_title: "Өнімдік аналитика", opp_3_desc: "Метрикалармен жұмыс (DAU/MAU, LTV, ARPU), A/B тестілеу, деректерге негізделген шешімдер қабылдау.",
+                opp_4_title: "Жаһандық нарықтар", opp_4_desc: "Өнімдерді халықаралық нарықтарға шығару, әртүрлі мәдениеттерге бейімделу, өнімдік маркетинг.",
+                skills_title: "🎯 Негізгі құзыреттер",
+                skills_subtitle: "Оқу барысында не үйренесіз",
+                career_title: "💼 Мансаптық перспективалар",
+                career_subtitle: "Бағдарламаны бітіргеннен кейін қайда жұмыс істей аласыз",
+                career_1_title: "Product Manager", career_1_desc: "Өнімнің дамуын басқару, көзқарасты қалыптастыру, міндеттерді басымдықтау, командамен жұмыс.", career_1_salary: "500 000 ₸-ден",
+                career_2_title: "Project Manager", career_2_desc: "Жобаларды басқару, мерзімдер мен ресурстарды бақылау, тапсырыс берушілермен байланыс.", career_2_salary: "450 000 ₸-ден",
+                career_3_title: "Product Analyst", career_3_desc: "Өнімдік метрикаларды талдау, дашбордтар құру, A/B тестілеу.", career_3_salary: "450 000 ₸-ден",
+                career_4_title: "Product Owner", career_4_desc: "Бэклогпен жұмыс, стейкхолдерлермен өзара әрекеттесу, өнімге қойылатын талаптарды анықтау.", career_4_salary: "550 000 ₸-ден",
+                career_5_title: "Growth Manager", career_5_desc: "Өнімнің өсуін басқару, эксперименттер, пайдаланушыларды тарту және ұстап қалу.", career_5_salary: "500 000 ₸-ден",
+                career_6_title: "Senior Product Manager / CPO", career_6_desc: "Өнім портфелін стратегиялық басқару, өнім бөлімін басқару.", career_6_salary: "800 000 ₸-ден",
+                conditions_title: "🏛️ Оқу шарттары",
+                cond_1_title: "Формасы және мерзімдері", cond_1_desc: "Күндізгі оқу нысаны. Бағдарламаны меңгеру мерзімі: 3 жыл (бакалавриат).",
+                cond_2_title: "Оқу ақысы", cond_2_desc: "1 100 000 ₸ / жыл. Ерте төлеу кезінде бөліп төлеу және жеңілдіктер мүмкіндігі.",
+                cond_3_title: "Гранттар мен жеңілдіктер", cond_3_desc: "Мемлекеттік грант, үздік оқушыларға жеңілдіктер (50% дейін), IT-компания-серіктестердің гранттары.",
+                cond_4_title: "Студенттік өмір", cond_4_desc: "Заманауи кампус, жатақхана, өнімдік зертханалар, стартап-клубтар, табысты Product Manager'лардан менторлық.",
+                video_title: "🎬 Бағдарлама туралы егжей-тегжейлі",
+                video_subtitle: "Product Management туралы біздің бейнематериалдан көбірек біліңіз",
+                cta_title: "🚀 Өнімдік көшбасшы болуға дайынсыз ба?",
+                cta_desc: "Өтінім қалдырыңыз, біздің кеңесші егжей-тегжейлі кеңес беру үшін сізбен байланысады",
+                cta_btn: "Қазір өтінім беру"
+            },
+            en: {
+                page_title: "AlmaU · Product Management",
+                hero_badge: "🎓 Bachelor's · 3 years",
+                hero_title: "Product Management",
+                hero_desc: "The program trains specialists in digital product and IT project management from idea to launch. You will learn how to create successful products, manage teams, and make strategic decisions.",
+                hero_btn_apply: "Apply now",
+                hero_btn_video: "Watch video",
+                stat_1_num: "3", stat_1_label: "years of study",
+                stat_2_num: "5+", stat_2_label: "real products in portfolio",
+                stat_3_num: "94%", stat_3_label: "employment rate",
+                stat_4_num: "40+", stat_4_label: "partner companies",
+                scores_title: "📊 Admission scores",
+                scores_subtitle: "Current data for 2025/2026 academic year",
+                scores_type: "Category", scores_min: "Minimum score", scores_recommended: "Recommended score",
+                scores_grant: "State grant", scores_paid: "Paid tuition", scores_creative: "Creative competition (portfolio)",
+                scores_note: "* UNT results in core subjects are required: mathematics, foreign language / geography.",
+                opportunities_title: "💡 Program opportunities",
+                opp_1_title: "Building products from scratch", opp_1_desc: "Full product development cycle: from idea to market launch. Working with MVP, product strategy, metrics, and analytics.",
+                opp_2_title: "Team management", opp_2_desc: "Agile and Scrum methodologies, working with developers, designers, marketers. Leadership and communication skills.",
+                opp_3_title: "Product analytics", opp_3_desc: "Working with metrics (DAU/MAU, LTV, ARPU), A/B testing, data-driven decision making.",
+                opp_4_title: "Global markets", opp_4_desc: "Launching products in international markets, adapting to different cultures, product marketing.",
+                skills_title: "🎯 Key competencies",
+                skills_subtitle: "What you will learn during your studies",
+                career_title: "💼 Career prospects",
+                career_subtitle: "Where you can work after graduation",
+                career_1_title: "Product Manager", career_1_desc: "Managing product development, forming vision, prioritizing tasks, working with the team.", career_1_salary: "from 500,000 ₸",
+                career_2_title: "Project Manager", career_2_desc: "Project management, timeline and resource control, communication with clients.", career_2_salary: "from 450,000 ₸",
+                career_3_title: "Product Analyst", career_3_desc: "Product metrics analysis, dashboard building, A/B testing.", career_3_salary: "from 450,000 ₸",
+                career_4_title: "Product Owner", career_4_desc: "Backlog management, stakeholder interaction, defining product requirements.", career_4_salary: "from 550,000 ₸",
+                career_5_title: "Growth Manager", career_5_desc: "Managing product growth, experiments, user acquisition and retention.", career_5_salary: "from 500,000 ₸",
+                career_6_title: "Senior Product Manager / CPO", career_6_desc: "Strategic management of product portfolio, leading product department.", career_6_salary: "from 800,000 ₸",
+                conditions_title: "🏛️ Study conditions",
+                cond_1_title: "Form and duration", cond_1_desc: "Full-time study. Program duration: 3 years (Bachelor's).",
+                cond_2_title: "Tuition fee", cond_2_desc: "1,100,000 ₸ / year. Installment plans and early payment discounts available.",
+                cond_3_title: "Grants and discounts", cond_3_desc: "State grant, discounts for excellent students (up to 50%), grants from IT partner companies.",
+                cond_4_title: "Student life", cond_4_desc: "Modern campus, dormitory, product labs, startup clubs, mentoring from successful Product Managers.",
+                video_title: "🎬 About the program in detail",
+                video_subtitle: "Learn more about Product Management from our video",
+                cta_title: "🚀 Ready to become a product leader?",
+                cta_desc: "Leave a request and our consultant will contact you for detailed consultation",
+                cta_btn: "Apply now"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            const t = pageTranslations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (pageTranslations[lang]) {
+                currentLang = lang;
+                updatePageLanguage();
+                localStorage.setItem('preferred_language', lang);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+        });
+    </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
+</body>
+</html>

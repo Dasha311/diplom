@@ -1,0 +1,939 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'ru' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">AlmaU · Restaurant Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --blue-dark: #0066CC;
+            --green: #34C759;
+            --orange: #FF9500;
+            --purple: #AF52DE;
+            --cyan: #00D4FF;
+            --coral: #FF6B6B;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo__img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+        }
+
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #8B4513 0%, #CD5C5C 50%, #8B4513 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,107,107,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #ffb6b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== БЛОКИ С ИНФОРМАЦИЕЙ ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p, .info-card ul {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .info-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== ТАБЛИЦА БАЛЛОВ ===== */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .score-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table .highlight {
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        /* ===== КЛЮЧЕВЫЕ КОМПЕТЕНЦИИ ===== */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== КАРЬЕРНЫЕ ВОЗМОЖНОСТИ ===== */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .career-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--coral);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .career-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-item .salary {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== НАПРАВЛЕНИЯ РЕСТОРАННОГО БИЗНЕСА ===== */
+        .directions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .direction-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .direction-tag:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== ВИДЕО ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10,132,255,0.3);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue);
+            color: var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__col-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .nav__list {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'partials/site_header.html' %}
+
+    <main>
+        <!-- Hero секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">🍽️ Бакалавриат · 3 года</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Restaurant Business</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Программа готовит высококвалифицированных специалистов в области ресторанного бизнеса, способных управлять ресторанами, кафе, барами, разрабатывать концепции заведений, создавать уникальное меню и обеспечивать высокий уровень сервиса.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="hero_btn_apply">Подать заявку</a>
+                        <a href="#video" class="btn btn-outline" data-i18n="hero_btn_video">Смотреть видео</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Статистика -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_1_num">3</div>
+                    <div class="stat-label" data-i18n="stat_1_label">года обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_2_num">100%</div>
+                    <div class="stat-label" data-i18n="stat_2_label">работа с реальными ресторанными кейсами</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_3_num">92%</div>
+                    <div class="stat-label" data-i18n="stat_3_label">трудоустройство в индустрии питания</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-i18n="stat_4_num">30+</div>
+                    <div class="stat-label" data-i18n="stat_4_label">партнёров: рестораны, кафе, сети общепита</div>
+                </div>
+            </div>
+
+            <!-- Пороговые баллы -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="scores_title">📊 Пороговые баллы для поступления</h2>
+                <p class="section-subtitle" data-i18n="scores_subtitle">Актуальные данные на 2025/2026 учебный год</p>
+                
+                <table class="score-table">
+                    <thead>
+                        <tr><th data-i18n="scores_type">Категория</th><th data-i18n="scores_min">Минимальный балл</th><th data-i18n="scores_recommended">Рекомендуемый балл</th>\
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="scores_grant">Государственный грант<td class="highlight">70+</td><td class="highlight">80+</td>
+                        </tr>
+                         <tr>
+                            <td data-i18n="scores_paid">Платное отделение</td><td>50+</td><td>70+</td>
+                         </tr>
+                         <tr>
+                            <td data-i18n="scores_creative">Творческий конкурс (собеседование)</td><td>—</td><td>зачёт/незачёт</td>
+                         </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);" data-i18n="scores_note">
+                    * Для поступления необходимы результаты ЕНТ по профильным предметам: математика, иностранный язык / география.
+                </p>
+            </section>
+
+            <!-- Возможности специальности -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="opportunities_title">💡 Возможности специальности</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">🍽️</div>
+                        <h3 data-i18n="opp_1_title">Управление рестораном</h3>
+                        <p data-i18n="opp_1_desc">Операционное управление рестораном, управление персоналом, контроль качества, работа с поставщиками, управление затратами.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">📋</div>
+                        <h3 data-i18n="opp_2_title">Разработка концепции</h3>
+                        <p data-i18n="opp_2_desc">Создание уникальных концепций ресторанов, разработка меню, дизайн интерьера, позиционирование, брендинг.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🍷</div>
+                        <h3 data-i18n="opp_3_title">Ресторанный маркетинг</h3>
+                        <p data-i18n="opp_3_desc">Продвижение ресторанов, работа с отзывами, организация мероприятий, управление репутацией, работа с блогерами.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🍳</div>
+                        <h3 data-i18n="opp_4_title">Кейтеринг и банкетный сервис</h3>
+                        <p data-i18n="opp_4_desc">Организация выездного обслуживания, банкетов, фуршетов, корпоративных мероприятий, работа с крупными заказчиками.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Направления -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="directions_title">🍕 Направления ресторанного бизнеса</h2>
+                <p class="section-subtitle" data-i18n="directions_subtitle">Что вы будете изучать</p>
+                <div class="directions-grid">
+                    <span class="direction-tag">Управление рестораном</span>
+                    <span class="direction-tag">Ресторанный маркетинг</span>
+                    <span class="direction-tag">Кулинарное искусство</span>
+                    <span class="direction-tag">Винная культура</span>
+                    <span class="direction-tag">Кейтеринг</span>
+                    <span class="direction-tag">Банкетный сервис</span>
+                    <span class="direction-tag">Кофейни и кондитерские</span>
+                    <span class="direction-tag">Fast casual и фаст-фуд</span>
+                    <span class="direction-tag">Авторская кухня</span>
+                    <span class="direction-tag">Управление затратами</span>
+                    <span class="direction-tag">Санитарные нормы</span>
+                    <span class="direction-tag">Ресторанное право</span>
+                </div>
+            </section>
+
+            <!-- Карьерные перспективы и зарплаты -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="career_title">💼 Карьерные перспективы</h2>
+                <p class="section-subtitle" data-i18n="career_subtitle">Кем вы сможете работать после окончания программы</p>
+                
+                <div class="career-grid">
+                    <div class="career-item">
+                        <h4 data-i18n="career_1_title">Ресторанный менеджер / General Manager</h4>
+                        <p data-i18n="career_1_desc">Операционное управление рестораном, управление командой, финансовые показатели, контроль качества.</p>
+                        <span class="salary" data-i18n="career_1_salary">от 500 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_2_title">Шеф-повар / Бренд-шеф</h4>
+                        <p data-i18n="career_2_desc">Управление кухней, разработка меню, контроль качества блюд, работа с продуктами, управление командой поваров.</p>
+                        <span class="salary" data-i18n="career_2_salary">от 450 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_3_title">Менеджер ресторанной сети</h4>
+                        <p data-i18n="career_3_desc">Управление сетью ресторанов, стандартизация процессов, открытие новых точек, контроль показателей.</p>
+                        <span class="salary" data-i18n="career_3_salary">от 550 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_4_title">Бренд-менеджер в общепите</h4>
+                        <p data-i18n="career_4_desc">Развитие ресторанного бренда, маркетинговые стратегии, открытие новых концепций, управление репутацией.</p>
+                        <span class="salary" data-i18n="career_4_salary">от 500 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_5_title">Сомелье / Менеджер винной карты</h4>
+                        <p data-i18n="career_5_desc">Составление винной карты, работа с поставщиками, обучение персонала, организация дегустаций.</p>
+                        <span class="salary" data-i18n="career_5_salary">от 400 000 ₸</span>
+                    </div>
+                    <div class="career-item">
+                        <h4 data-i18n="career_6_title">Собственник ресторана / Ресторатор</h4>
+                        <p data-i18n="career_6_desc">Создание и развитие собственного ресторанного бизнеса, разработка концепции, управление, инвестиции.</p>
+                        <span class="salary" data-i18n="career_6_salary">от 600 000 ₸ (доход от бизнеса)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Условия обучения -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="conditions_title">🏛️ Условия обучения</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">📅</div>
+                        <h3 data-i18n="cond_1_title">Форма и сроки</h3>
+                        <p data-i18n="cond_1_desc">Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">💰</div>
+                        <h3 data-i18n="cond_2_title">Стоимость обучения</h3>
+                        <p data-i18n="cond_2_desc">1 100 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏆</div>
+                        <h3 data-i18n="cond_3_title">Гранты и скидки</h3>
+                        <p data-i18n="cond_3_desc">Государственный грант, скидки для отличников (до 50%), гранты от ресторанных холдингов, стипендии для будущих рестораторов.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🎒</div>
+                        <h3 data-i18n="cond_4_title">Студенческая жизнь</h3>
+                        <p data-i18n="cond_4_desc">Современный кампус, общежитие, учебная кухня, ресторанная лаборатория, стажировки в ведущих ресторанах Казахстана и зарубежья, мастер-классы от топ-шефов.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Видео секция -->
+            <section class="section" id="video">
+                <h2 class="section-title" data-i18n="video_title">🎬 О программе в деталях</h2>
+                <p class="section-subtitle" data-i18n="video_subtitle">Узнайте больше о ресторанном бизнесе из нашего видео</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Restaurant Business" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- CTA секция -->
+            <section class="section" style="text-align: center; background: linear-gradient(135deg, var(--light-gray), var(--white)); border-radius: var(--border-radius); margin-bottom: 2rem;">
+                <h2 class="section-title" data-i18n="cta_title">🍽️ Готовы создавать лучшие рестораны и удивлять гостей?</h2>
+                <p class="section-subtitle" data-i18n="cta_desc">Оставьте заявку, и наш консультант свяжется с вами для подробной консультации</p>
+                <a href="{% url 'university:chatbot_menu' %}" class="btn" style="margin-top: 1rem;" data-i18n="cta_btn">Подать заявку сейчас</a>
+            </section>
+        </div>
+    </main>
+
+    {% include 'partials/site_footer.html' %}
+
+    <script>
+        // Мультиязычный словарь для страницы
+        const pageTranslations = {
+            ru: {
+                page_title: "AlmaU · Restaurant Business",
+                hero_badge: "🍽️ Бакалавриат · 3 года",
+                hero_title: "Restaurant Business",
+                hero_desc: "Программа готовит высококвалифицированных специалистов в области ресторанного бизнеса, способных управлять ресторанами, кафе, барами, разрабатывать концепции заведений, создавать уникальное меню и обеспечивать высокий уровень сервиса.",
+                hero_btn_apply: "Подать заявку",
+                hero_btn_video: "Смотреть видео",
+                stat_1_num: "3", stat_1_label: "года обучения",
+                stat_2_num: "100%", stat_2_label: "работа с реальными ресторанными кейсами",
+                stat_3_num: "92%", stat_3_label: "трудоустройство в индустрии питания",
+                stat_4_num: "30+", stat_4_label: "партнёров: рестораны, кафе, сети общепита",
+                scores_title: "📊 Пороговые баллы для поступления",
+                scores_subtitle: "Актуальные данные на 2025/2026 учебный год",
+                scores_type: "Категория", scores_min: "Минимальный балл", scores_recommended: "Рекомендуемый балл",
+                scores_grant: "Государственный грант", scores_paid: "Платное отделение", scores_creative: "Творческий конкурс (собеседование)",
+                scores_note: "* Для поступления необходимы результаты ЕНТ по профильным предметам: математика, иностранный язык / география.",
+                opportunities_title: "💡 Возможности специальности",
+                opp_1_title: "Управление рестораном", opp_1_desc: "Операционное управление рестораном, управление персоналом, контроль качества, работа с поставщиками, управление затратами.",
+                opp_2_title: "Разработка концепции", opp_2_desc: "Создание уникальных концепций ресторанов, разработка меню, дизайн интерьера, позиционирование, брендинг.",
+                opp_3_title: "Ресторанный маркетинг", opp_3_desc: "Продвижение ресторанов, работа с отзывами, организация мероприятий, управление репутацией, работа с блогерами.",
+                opp_4_title: "Кейтеринг и банкетный сервис", opp_4_desc: "Организация выездного обслуживания, банкетов, фуршетов, корпоративных мероприятий, работа с крупными заказчиками.",
+                directions_title: "🍕 Направления ресторанного бизнеса",
+                directions_subtitle: "Что вы будете изучать",
+                career_title: "💼 Карьерные перспективы",
+                career_subtitle: "Кем вы сможете работать после окончания программы",
+                career_1_title: "Ресторанный менеджер / General Manager", career_1_desc: "Операционное управление рестораном, управление командой, финансовые показатели, контроль качества.", career_1_salary: "от 500 000 ₸",
+                career_2_title: "Шеф-повар / Бренд-шеф", career_2_desc: "Управление кухней, разработка меню, контроль качества блюд, работа с продуктами, управление командой поваров.", career_2_salary: "от 450 000 ₸",
+                career_3_title: "Менеджер ресторанной сети", career_3_desc: "Управление сетью ресторанов, стандартизация процессов, открытие новых точек, контроль показателей.", career_3_salary: "от 550 000 ₸",
+                career_4_title: "Бренд-менеджер в общепите", career_4_desc: "Развитие ресторанного бренда, маркетинговые стратегии, открытие новых концепций, управление репутацией.", career_4_salary: "от 500 000 ₸",
+                career_5_title: "Сомелье / Менеджер винной карты", career_5_desc: "Составление винной карты, работа с поставщиками, обучение персонала, организация дегустаций.", career_5_salary: "от 400 000 ₸",
+                career_6_title: "Собственник ресторана / Ресторатор", career_6_desc: "Создание и развитие собственного ресторанного бизнеса, разработка концепции, управление, инвестиции.", career_6_salary: "от 600 000 ₸ (доход от бизнеса)",
+                conditions_title: "🏛️ Условия обучения",
+                cond_1_title: "Форма и сроки", cond_1_desc: "Очная форма обучения. Срок освоения программы: 3 года (бакалавриат).",
+                cond_2_title: "Стоимость обучения", cond_2_desc: "1 100 000 ₸ / год. Возможна рассрочка и скидки при ранней оплате.",
+                cond_3_title: "Гранты и скидки", cond_3_desc: "Государственный грант, скидки для отличников (до 50%), гранты от ресторанных холдингов, стипендии для будущих рестораторов.",
+                cond_4_title: "Студенческая жизнь", cond_4_desc: "Современный кампус, общежитие, учебная кухня, ресторанная лаборатория, стажировки в ведущих ресторанах Казахстана и зарубежья, мастер-классы от топ-шефов.",
+                video_title: "🎬 О программе в деталях",
+                video_subtitle: "Узнайте больше о ресторанном бизнесе из нашего видео",
+                cta_title: "🍽️ Готовы создавать лучшие рестораны и удивлять гостей?",
+                cta_desc: "Оставьте заявку, и наш консультант свяжется с вами для подробной консультации",
+                cta_btn: "Подать заявку сейчас"
+            },
+            kz: {
+                page_title: "AlmaU · Restaurant Business",
+                hero_badge: "🍽️ Бакалавриат · 3 жыл",
+                hero_title: "Restaurant Business",
+                hero_desc: "Бағдарлама мейрамхана бизнесі саласындағы жоғары білікті мамандарды дайындайды, олар мейрамханаларды, кафелерді, барларды басқара алады, мекемелердің тұжырымдамаларын әзірлей алады, бірегей мәзір жасай алады және қызмет көрсетудің жоғары деңгейін қамтамасыз ете алады.",
+                hero_btn_apply: "Өтінім беру",
+                hero_btn_video: "Бейнені көру",
+                stat_1_num: "3", stat_1_label: "оқу жылы",
+                stat_2_num: "100%", stat_2_label: "нақты мейрамхана кейстерімен жұмыс",
+                stat_3_num: "92%", stat_3_label: "тамақтандыру индустриясында жұмысқа орналасу",
+                stat_4_num: "30+", stat_4_label: "серіктестер: мейрамханалар, кафелер, қоғамдық тамақтандыру желілері",
+                scores_title: "📊 Түсу үшін шекті баллдар",
+                scores_subtitle: "2025/2026 оқу жылына арналған ағымдағы деректер",
+                scores_type: "Санат", scores_min: "Ең төменгі балл", scores_recommended: "Ұсынылатын балл",
+                scores_grant: "Мемлекеттік грант", scores_paid: "Ақылы бөлім", scores_creative: "Шығармашылық конкурс (сұхбат)",
+                scores_note: "* Түсу үшін бейіндік пәндер бойынша ҰБТ нәтижелері қажет: математика, шет тілі / география.",
+                opportunities_title: "💡 Мамандықтың мүмкіндіктері",
+                opp_1_title: "Мейрамхананы басқару", opp_1_desc: "Мейрамхананы операциялық басқару, персоналды басқару, сапаны бақылау, жеткізушілермен жұмыс, шығындарды басқару.",
+                opp_2_title: "Тұжырымдаманы әзірлеу", opp_2_desc: "Мейрамханалардың бірегей тұжырымдамаларын жасау, мәзірді әзірлеу, интерьер дизайны, позициялау, брендинг.",
+                opp_3_title: "Мейрамханалық маркетинг", opp_3_desc: "Мейрамханаларды жылжыту, пікірлермен жұмыс, іс-шараларды ұйымдастыру, беделді басқару, блогерлермен жұмыс.",
+                opp_4_title: "Кейтеринг және банкеттік сервис", opp_4_desc: "Көшпелі қызмет көрсетуді, банкеттерді, фуршеттерді, корпоративтік іс-шараларды ұйымдастыру, ірі тапсырыс берушілермен жұмыс.",
+                directions_title: "🍕 Мейрамхана бизнесінің бағыттары",
+                directions_subtitle: "Сіз не зерттейсіз",
+                career_title: "💼 Мансаптық перспективалар",
+                career_subtitle: "Бағдарламаны бітіргеннен кейін қайда жұмыс істей аласыз",
+                career_1_title: "Мейрамхана менеджері / General Manager", career_1_desc: "Мейрамхананы операциялық басқару, команданы басқару, қаржылық көрсеткіштер, сапаны бақылау.", career_1_salary: "500 000 ₸-ден",
+                career_2_title: "Шеф-повар / Бренд-шеф", career_2_desc: "Асүйді басқару, мәзірді әзірлеу, тағамдардың сапасын бақылау, өнімдермен жұмыс, аспаздар командасын басқару.", career_2_salary: "450 000 ₸-ден",
+                career_3_title: "Мейрамхана желісінің менеджері", career_3_desc: "Мейрамхана желісін басқару, процестерді стандарттау, жаңа нүктелерді ашу, көрсеткіштерді бақылау.", career_3_salary: "550 000 ₸-ден",
+                career_4_title: "Қоғамдық тамақтандырудағы бренд-менеджер", career_4_desc: "Мейрамхана брендін дамыту, маркетингтік стратегиялар, жаңа тұжырымдамаларды ашу, беделді басқару.", career_4_salary: "500 000 ₸-ден",
+                career_5_title: "Сомелье / Шарап картасының менеджері", career_5_desc: "Шарап картасын құру, жеткізушілермен жұмыс, персоналды оқыту, дегустацияларды ұйымдастыру.", career_5_salary: "400 000 ₸-ден",
+                career_6_title: "Мейрамхана иесі / Ресторатор", career_6_desc: "Өзіңіздің мейрамхана бизнесіңізді құру және дамыту, тұжырымдаманы әзірлеу, басқару, инвестициялар.", career_6_salary: "600 000 ₸-ден (бизнестен түсетін табыс)",
+                conditions_title: "🏛️ Оқу шарттары",
+                cond_1_title: "Формасы және мерзімдері", cond_1_desc: "Күндізгі оқу нысаны. Бағдарламаны меңгеру мерзімі: 3 жыл (бакалавриат).",
+                cond_2_title: "Оқу ақысы", cond_2_desc: "1 100 000 ₸ / жыл. Ерте төлеу кезінде бөліп төлеу және жеңілдіктер мүмкіндігі.",
+                cond_3_title: "Гранттар мен жеңілдіктер", cond_3_desc: "Мемлекеттік грант, үздік оқушыларға жеңілдіктер (50% дейін), мейрамхана холдингтерінің гранттары, болашақ рестораторларға арналған стипендиялар.",
+                cond_4_title: "Студенттік өмір", cond_4_desc: "Заманауи кампус, жатақхана, оқу асүйі, мейрамхана зертханасы, Қазақстанның және шетелдің жетекші мейрамханаларында тағылымдама, топ-шефтердің шеберлік сабақтары.",
+                video_title: "🎬 Бағдарлама туралы егжей-тегжейлі",
+                video_subtitle: "Мейрамхана бизнесі туралы біздің бейнематериалдан көбірек біліңіз",
+                cta_title: "🍽️ Үздік мейрамханалар жасауға және қонақтарды таң қалдыруға дайынсыз ба?",
+                cta_desc: "Өтінім қалдырыңыз, біздің кеңесші егжей-тегжейлі кеңес беру үшін сізбен байланысады",
+                cta_btn: "Қазір өтінім беру"
+            },
+            en: {
+                page_title: "AlmaU · Restaurant Business",
+                hero_badge: "🍽️ Bachelor's · 3 years",
+                hero_title: "Restaurant Business",
+                hero_desc: "The program trains highly qualified specialists in the restaurant business capable of managing restaurants, cafes, bars, developing establishment concepts, creating unique menus and ensuring a high level of service.",
+                hero_btn_apply: "Apply now",
+                hero_btn_video: "Watch video",
+                stat_1_num: "3", stat_1_label: "years of study",
+                stat_2_num: "100%", stat_2_label: "work with real restaurant cases",
+                stat_3_num: "92%", stat_3_label: "employment in the food industry",
+                stat_4_num: "30+", stat_4_label: "partners: restaurants, cafes, food service chains",
+                scores_title: "📊 Admission scores",
+                scores_subtitle: "Current data for 2025/2026 academic year",
+                scores_type: "Category", scores_min: "Minimum score", scores_recommended: "Recommended score",
+                scores_grant: "State grant", scores_paid: "Paid tuition", scores_creative: "Creative competition (interview)",
+                scores_note: "* UNT results in core subjects are required: mathematics, foreign language / geography.",
+                opportunities_title: "💡 Program opportunities",
+                opp_1_title: "Restaurant management", opp_1_desc: "Operational management of a restaurant, personnel management, quality control, work with suppliers, cost management.",
+                opp_2_title: "Concept development", opp_2_desc: "Creating unique restaurant concepts, menu development, interior design, positioning, branding.",
+                opp_3_title: "Restaurant marketing", opp_3_desc: "Restaurant promotion, working with reviews, event organization, reputation management, working with bloggers.",
+                opp_4_title: "Catering and banquet service", opp_4_desc: "Organization of off-site service, banquets, buffets, corporate events, working with large clients.",
+                directions_title: "🍕 Restaurant business fields",
+                directions_subtitle: "What you will study",
+                career_title: "💼 Career prospects",
+                career_subtitle: "Where you can work after graduation",
+                career_1_title: "Restaurant Manager / General Manager", career_1_desc: "Operational management of the restaurant, team management, financial performance, quality control.", career_1_salary: "from 500,000 ₸",
+                career_2_title: "Chef / Brand Chef", career_2_desc: "Kitchen management, menu development, quality control of dishes, working with products, managing a team of chefs.", career_2_salary: "from 450,000 ₸",
+                career_3_title: "Restaurant Chain Manager", career_3_desc: "Managing a chain of restaurants, standardizing processes, opening new locations, monitoring performance.", career_3_salary: "from 550,000 ₸",
+                career_4_title: "Brand Manager in Food Service", career_4_desc: "Developing a restaurant brand, marketing strategies, launching new concepts, reputation management.", career_4_salary: "from 500,000 ₸",
+                career_5_title: "Sommelier / Wine List Manager", career_5_desc: "Creating a wine list, working with suppliers, staff training, organizing tastings.", career_5_salary: "from 400,000 ₸",
+                career_6_title: "Restaurant Owner / Restaurateur", career_6_desc: "Creating and developing your own restaurant business, developing concepts, management, investment.", career_6_salary: "from 600,000 ₸ (business income)",
+                conditions_title: "🏛️ Study conditions",
+                cond_1_title: "Form and duration", cond_1_desc: "Full-time study. Program duration: 3 years (Bachelor's).",
+                cond_2_title: "Tuition fee", cond_2_desc: "1,100,000 ₸ / year. Installment plans and early payment discounts available.",
+                cond_3_title: "Grants and discounts", cond_3_desc: "State grant, discounts for excellent students (up to 50%), grants from restaurant holdings, scholarships for future restaurateurs.",
+                cond_4_title: "Student life", cond_4_desc: "Modern campus, dormitory, teaching kitchen, restaurant lab, internships in leading restaurants in Kazakhstan and abroad, master classes from top chefs.",
+                video_title: "🎬 About the program in detail",
+                video_subtitle: "Learn more about Restaurant Business from our video",
+                cta_title: "🍽️ Ready to create the best restaurants and amaze guests?",
+                cta_desc: "Leave a request and our consultant will contact you for detailed consultation",
+                cta_btn: "Apply now"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            const t = pageTranslations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+        }
+
+        window.setLanguage = function(lang) {
+            if (pageTranslations[lang]) {
+                currentLang = lang;
+                updatePageLanguage();
+                localStorage.setItem('preferred_language', lang);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+        });
+    </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
+</body>
+</html>

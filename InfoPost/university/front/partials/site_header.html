@@ -1,39 +1,128 @@
 {% load static %}
 <header class="main-header">
     <div class="container main-header__inner">
-        <a href="{% url 'university:main_menu' %}" class="logo">
+        <a href="{% url 'university:main_menu' %}" class="logo" aria-label="AlmaU home">
             <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU" class="logo__img">
         </a>
 
         <nav class="nav" aria-label="Основная навигация">
             <ul class="nav__list">
                 <li class="nav__item nav__item--dropdown">
-                    <a href="{% url 'university:schools_menu' %}">Школы</a>
+                    <a href="{% url 'university:schools_menu' %}" data-i18n="nav_schools">Школы</a>
                     <ul class="dropdown">
-                        <li><a href="{% url 'university:school_of_transformative' %}">School of Transformative Humanities</a></li>
-                        <li><a href="{% url 'university:school_of_business' %}">School Of Business</a></li>
-                        <li><a href="{% url 'university:school_of_digital' %}">School Of Digital Technologies</a></li>
-                        <li><a href="{% url 'university:school_of_economics' %}">School Of Economics</a></li>
-                        <li><a href="{% url 'university:school_of_management' %}">School Of Management</a></li>
-                        <li><a href="{% url 'university:school_of_media' %}">School Of Media</a></li>
-                        <li><a href="{% url 'university:school_of_politics' %}">School Of Politics</a></li>
-                        <li><a href="{% url 'university:school_of_tourism' %}">School Of Tourism</a></li>
-                        <li><a href="{% url 'university:sharmanov_school' %}">Sharmanov School</a></li>
+                        <li><a href="{% url 'university:school_of_transformative' %}" data-i18n="nav_school_transformative">School of Transformative Humanities</a></li>
+                        <li><a href="{% url 'university:school_of_business' %}" data-i18n="nav_school_business">School Of Business</a></li>
+                        <li><a href="{% url 'university:school_of_digital' %}" data-i18n="nav_school_digital">School Of Digital Technologies</a></li>
+                        <li><a href="{% url 'university:school_of_economics' %}" data-i18n="nav_school_economics">School Of Economics</a></li>
+                        <li><a href="{% url 'university:school_of_management' %}" data-i18n="nav_school_management">School Of Management</a></li>
+                        <li><a href="{% url 'university:school_of_media' %}" data-i18n="nav_school_media">School Of Media</a></li>
+                        <li><a href="{% url 'university:school_of_politics' %}" data-i18n="nav_school_politics">School Of Politics</a></li>
+                        <li><a href="{% url 'university:school_of_tourism' %}" data-i18n="nav_school_tourism">School Of Tourism</a></li>
+                        <li><a href="{% url 'university:sharmanov_school' %}" data-i18n="nav_school_sharmanov">Sharmanov School</a></li>
                     </ul>
                 </li>
-                <li class="nav__item"><a href="{% url 'university:chatbot_menu' %}">ИИ бот</a></li>
-                <li class="nav__item"><a href="{% url 'university:main_menu' %}#about">Об AlmaU</a></li>
-                <li class="nav__item"><a href="{% url 'university:main_menu' %}#apply" class="nav-cta-link">Оставить заявку</a></li>
+                <li class="nav__item"><a href="{% url 'university:chatbot_menu' %}" data-i18n="nav_ai_bot">ИИ бот</a></li>
+                <li class="nav__item"><a href="{% url 'university:main_menu' %}#about" data-i18n="nav_about">Об AlmaU</a></li>
+                <li class="nav__item"><a href="{% url 'university:main_menu' %}#apply" class="nav-cta-link" data-i18n="nav_apply">Оставить заявку</a></li>
             </ul>
         </nav>
 
         <div class="lang-switcher">
-            <div class="lang-current" data-lang-current>ru</div>
+            <button type="button" class="lang-current" data-lang-current>{{ current_language|default:'ru' }}</button>
             <div class="lang-dropdown">
-                <a href="#ru" data-lang-option="ru">Русский</a>
-                <a href="#kz" data-lang-option="kz">Қазақша</a>
-                <a href="#en" data-lang-option="en">English</a>
+                <a href="#" data-lang-option="ru" data-i18n="lang_ru">Русский</a>
+                <a href="#" data-lang-option="kz" data-i18n="lang_kz">Қазақша</a>
+                <a href="#" data-lang-option="en" data-i18n="lang_en">English</a>
             </div>
         </div>
     </div>
 </header>
+
+<script>
+    // Расширяем словарь для хедера (если translations уже определен в основном скрипте)
+    if (typeof translations !== 'undefined') {
+        if (translations.ru) {
+            translations.ru.nav_schools = "Школы";
+            translations.ru.nav_ai_bot = "ИИ бот";
+            translations.ru.nav_about = "Об AlmaU";
+            translations.ru.nav_apply = "Оставить заявку";
+            translations.ru.nav_school_transformative = "School of Transformative Humanities";
+            translations.ru.nav_school_business = "School Of Business";
+            translations.ru.nav_school_digital = "School Of Digital Technologies";
+            translations.ru.nav_school_economics = "School Of Economics";
+            translations.ru.nav_school_management = "School Of Management";
+            translations.ru.nav_school_media = "School Of Media";
+            translations.ru.nav_school_politics = "School Of Politics";
+            translations.ru.nav_school_tourism = "School Of Tourism";
+            translations.ru.nav_school_sharmanov = "Sharmanov School";
+            translations.ru.lang_ru = "Русский";
+            translations.ru.lang_kz = "Қазақша";
+            translations.ru.lang_en = "English";
+        }
+        
+        if (translations.kz) {
+            translations.kz.nav_schools = "Мектептер";
+            translations.kz.nav_ai_bot = "ЖИ бот";
+            translations.kz.nav_about = "AlmaU туралы";
+            translations.kz.nav_apply = "Өтінім қалдыру";
+            translations.kz.nav_school_transformative = "Трансформациялық гуманитарлық ғылымдар мектебі";
+            translations.kz.nav_school_business = "Бизнес мектебі";
+            translations.kz.nav_school_digital = "Цифрлық технологиялар мектебі";
+            translations.kz.nav_school_economics = "Экономика мектебі";
+            translations.kz.nav_school_management = "Менеджмент мектебі";
+            translations.kz.nav_school_media = "Медиа мектебі";
+            translations.kz.nav_school_politics = "Саясат мектебі";
+            translations.kz.nav_school_tourism = "Туризм мектебі";
+            translations.kz.nav_school_sharmanov = "Sharmanov мектебі";
+            translations.kz.lang_ru = "Русский";
+            translations.kz.lang_kz = "Қазақша";
+            translations.kz.lang_en = "English";
+        }
+        
+        if (translations.en) {
+            translations.en.nav_schools = "Schools";
+            translations.en.nav_ai_bot = "AI Bot";
+            translations.en.nav_about = "About AlmaU";
+            translations.en.nav_apply = "Apply Now";
+            translations.en.nav_school_transformative = "School of Transformative Humanities";
+            translations.en.nav_school_business = "School of Business";
+            translations.en.nav_school_digital = "School of Digital Technologies";
+            translations.en.nav_school_economics = "School of Economics";
+            translations.en.nav_school_management = "School of Management";
+            translations.en.nav_school_media = "School of Media";
+            translations.en.nav_school_politics = "School of Politics";
+            translations.en.nav_school_tourism = "School of Tourism";
+            translations.en.nav_school_sharmanov = "Sharmanov School";
+            translations.en.lang_ru = "Russian";
+            translations.en.lang_kz = "Kazakh";
+            translations.en.lang_en = "English";
+        }
+    }
+    
+    // Функция для обновления отображения текущего языка в кнопке
+    function updateLanguageDisplay() {
+        const langCurrentBtn = document.querySelector('.lang-current');
+        if (langCurrentBtn && typeof currentLang !== 'undefined') {
+            const langMap = {
+                'ru': 'Русский',
+                'kz': 'Қазақша',
+                'en': 'English'
+            };
+            langCurrentBtn.textContent = langMap[currentLang] || currentLang;
+        }
+    }
+    
+    // Переопределяем setLanguage для обновления отображения языка в кнопке
+    if (typeof window.setLanguage === 'function') {
+        const originalSetLanguage = window.setLanguage;
+        window.setLanguage = function(lang) {
+            originalSetLanguage(lang);
+            updateLanguageDisplay();
+        };
+    }
+    
+    // Обновляем отображение при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        updateLanguageDisplay();
+    });
+</script>
