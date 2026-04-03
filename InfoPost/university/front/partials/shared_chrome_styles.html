@@ -305,3 +305,37 @@
         gap: 2rem;
     }
 }
+.almau-side-icon {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
+
+.almau-side-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .almau-side-icon {
+        width: 48px;
+        height: 48px;
+        right: 10px;
+    }
+
+    .almau-side-icon img {
+        width: 36px;
+        height: 36px;
+    }
+}

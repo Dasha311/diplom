@@ -126,9 +126,9 @@
 
         const currentNode = document.querySelector('[data-lang-current]');
         const options = document.querySelectorAll('[data-lang-option]');
-        const savedLang = localStorage.getItem('almau-language') || 'ru';
+        const savedLang = localStorage.getItem('preferred_language') || localStorage.getItem('almau-language') || 'ru';
         const pageLanguage = '{{ current_language|default:"ru"|escapejs }}' || 'ru';
-        const labels = { ru: 'ru', kz: 'kz', en: 'eng' };
+        const labels = { ru: 'Русский', kz: 'Қазақша', en: 'English' };
         const nodeStore = new WeakMap();
         const attrStore = new WeakMap();
 
@@ -232,6 +232,8 @@
             translateTextNodes(currentLang);
             translateAttributes(currentLang);
             translateTitle(currentLang);
+            localStorage.setItem('preferred_language', currentLang);
+            localStorage.setItem('almau-language', currentLang);
             window.__almauLanguage = currentLang;
         }
 
@@ -253,7 +255,8 @@
             applyLang(lang);
         }
 
-        applyLang(pageLanguage);
+        const initialLang = labels[savedLang] ? savedLang : pageLanguage;
+        applyLang(initialLang);
 
         options.forEach((option) => {
             option.addEventListener('click', function (event) {

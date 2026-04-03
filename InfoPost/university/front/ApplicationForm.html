@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'ru' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="apply_page_title">AlmaU · Заявка на поступление</title>
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --black: #1C1C1E;
+            --light-gray: #F5F5F7;
+            --blue: #0A84FF;
+            --dark-gray: #4A4A4A;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 14px;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: var(--font-family); color: var(--black); background: var(--white); }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+        .apply-hero { padding: 3.5rem 0 1.5rem; }
+        .apply-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.8rem; }
+        .apply-sub { color: var(--dark-gray); margin: 0 0 1rem; }
+        .apply-form-wrap { padding: 1rem 0 4rem; }
+        .apply-form { background: var(--light-gray); border-radius: var(--border-radius); padding: 1.5rem; display: grid; gap: 1rem; }
+        .field { display: grid; gap: 0.5rem; }
+        .field label { font-weight: 600; }
+        .field input, .field select, .field textarea {
+            border: 1px solid #d9d9df; border-radius: 10px; padding: 0.75rem 0.9rem; font-size: 1rem; background: var(--white);
+        }
+        .field textarea { min-height: 120px; resize: vertical; }
+        .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .btn { border: 0; border-radius: 999px; padding: 0.75rem 1.2rem; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-secondary { background: #e9eefc; color: #0d47a1; text-decoration: none; display: inline-flex; align-items: center; }
+    </style>
+    {% include 'partials/shared_chrome_styles.html' %}
+</head>
+<body>
+    {% include 'partials/site_header.html' %}
+
+    <main>
+        <section class="apply-hero">
+            <div class="container">
+                <h1 class="apply-title" data-i18n="apply_title">Оставить заявку на поступление</h1>
+                <p class="apply-sub" data-i18n="apply_subtitle">Заполните форму, и приёмная комиссия AlmaU свяжется с вами.</p>
+            </div>
+        </section>
+
+        <section class="apply-form-wrap">
+            <div class="container">
+                <form class="apply-form" action="#" method="post">
+                    <div class="field">
+                        <label for="full_name" data-i18n="apply_name_label">ФИО</label>
+                        <input id="full_name" name="full_name" type="text" data-i18n-attr="placeholder" data-i18n-attr-key="apply_name_ph" placeholder="Ваше имя и фамилия">
+                    </div>
+                    <div class="field">
+                        <label for="phone" data-i18n="apply_phone_label">Телефон</label>
+                        <input id="phone" name="phone" type="tel" data-i18n-attr="placeholder" data-i18n-attr-key="apply_phone_ph" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="field">
+                        <label for="email" data-i18n="apply_email_label">Email</label>
+                        <input id="email" name="email" type="email" data-i18n-attr="placeholder" data-i18n-attr-key="apply_email_ph" placeholder="example@mail.com">
+                    </div>
+                    <div class="field">
+                        <label for="program" data-i18n="apply_program_label">Интересующая программа</label>
+                        <select id="program" name="program">
+                            <option data-i18n="apply_program_opt_default">Выберите программу</option>
+                            <option>Business Management</option>
+                            <option>Data Science</option>
+                            <option>Tourism</option>
+                            <option>Media & Cinema</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="comment" data-i18n="apply_comment_label">Комментарий</label>
+                        <textarea id="comment" name="comment" data-i18n-attr="placeholder" data-i18n-attr-key="apply_comment_ph" placeholder="Напишите ваш вопрос"></textarea>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" class="btn btn-primary" data-i18n="apply_submit">Отправить заявку</button>
+                        <a class="btn btn-secondary" href="{% url 'university:main_menu' %}" data-i18n="apply_back">Вернуться на главную</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    {% include 'partials/site_footer.html' %}
+
+    <script>
+        if (typeof translations !== 'undefined') {
+            Object.assign(translations.ru || {}, {
+                apply_page_title: 'AlmaU · Заявка на поступление',
+                apply_title: 'Оставить заявку на поступление',
+                apply_subtitle: 'Заполните форму, и приёмная комиссия AlmaU свяжется с вами.',
+                apply_name_label: 'ФИО',
+                apply_phone_label: 'Телефон',
+                apply_email_label: 'Email',
+                apply_program_label: 'Интересующая программа',
+                apply_program_opt_default: 'Выберите программу',
+                apply_comment_label: 'Комментарий',
+                apply_submit: 'Отправить заявку',
+                apply_back: 'Вернуться на главную',
+                apply_name_ph: 'Ваше имя и фамилия',
+                apply_phone_ph: '+7 (___) ___-__-__',
+                apply_email_ph: 'example@mail.com',
+                apply_comment_ph: 'Напишите ваш вопрос'
+            });
+            Object.assign(translations.kz || {}, {
+                apply_page_title: 'AlmaU · Оқуға түсуге өтінім',
+                apply_title: 'Оқуға түсуге өтінім қалдыру',
+                apply_subtitle: 'Форманы толтырыңыз, AlmaU қабылдау комиссиясы сізбен хабарласады.',
+                apply_name_label: 'Аты-жөні',
+                apply_phone_label: 'Телефон',
+                apply_email_label: 'Email',
+                apply_program_label: 'Қызықтыратын бағдарлама',
+                apply_program_opt_default: 'Бағдарламаны таңдаңыз',
+                apply_comment_label: 'Пікір',
+                apply_submit: 'Өтінімді жіберу',
+                apply_back: 'Басты бетке оралу',
+                apply_name_ph: 'Аты-жөніңіз',
+                apply_phone_ph: '+7 (___) ___-__-__',
+                apply_email_ph: 'example@mail.com',
+                apply_comment_ph: 'Сұрағыңызды жазыңыз'
+            });
+            Object.assign(translations.en || {}, {
+                apply_page_title: 'AlmaU · Admission application',
+                apply_title: 'Submit an admission application',
+                apply_subtitle: 'Fill out the form and AlmaU admissions team will contact you.',
+                apply_name_label: 'Full name',
+                apply_phone_label: 'Phone',
+                apply_email_label: 'Email',
+                apply_program_label: 'Program of interest',
+                apply_program_opt_default: 'Select a program',
+                apply_comment_label: 'Comment',
+                apply_submit: 'Send application',
+                apply_back: 'Back to main page',
+                apply_name_ph: 'Your full name',
+                apply_phone_ph: '+7 (___) ___-__-__',
+                apply_email_ph: 'example@mail.com',
+                apply_comment_ph: 'Type your question'
+            });
+        }
+    </script>
+    {% include 'partials/shared_chrome_scripts.html' %}
+</body>
+</html>

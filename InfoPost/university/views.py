@@ -66,6 +66,8 @@ def info_systems_menu(request):
 def chatbot_menu(request):
     return render_page(request, 'ChatBotMenu.html')
 
+def apply_page(request):
+    return render_page(request, 'ApplicationForm.html')
 
 def set_language(request, lang_code):
     lang = (lang_code or '').lower()

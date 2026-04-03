@@ -799,7 +799,7 @@
                     <h1 class="hero-title" data-i18n="hero_title">Almaty Management University — AlmaU</h1>
                     <p class="hero-description" data-i18n="hero_desc">Формируем лидеров нового поколения: современные кампусы, международные программы и активное сообщество.</p>
                     <div class="hero-actions">
-                        <a href="#apply" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
+                        <a href="{% url 'university:apply_page' %}" class="hero-cta primary" data-i18n="hero_btn_apply">Подать заявление</a>
                         <a href="#programs" class="hero-cta ghost" data-i18n="hero_btn_programs">Узнать о программах</a>
                     </div>
                 </div>
@@ -976,7 +976,7 @@
                     <article class="hub-card" id="privacy">
                         <h3 data-i18n="privacy_title">Подача заявки и конфиденциальность</h3>
                         <p data-i18n="privacy_desc">Оставьте заявку через онлайн-канал AlmaU. Мы используем контактные данные только для связи по вопросам поступления.</p>
-                        <a href="{% url 'university:chatbot_menu' %}" class="btn" data-i18n="btn_apply_now">Подать заявку</a>
+                        <a href="{% url 'university:apply_page' %}" class="btn" data-i18n="btn_apply_now">Подать заявку</a>
                     </article>
                 </div>
             </div>

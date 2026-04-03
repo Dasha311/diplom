@@ -23,19 +23,22 @@
                 </li>
                 <li class="nav__item"><a href="{% url 'university:chatbot_menu' %}" data-i18n="nav_ai_bot">ИИ бот</a></li>
                 <li class="nav__item"><a href="{% url 'university:main_menu' %}#about" data-i18n="nav_about">Об AlmaU</a></li>
-                <li class="nav__item"><a href="{% url 'university:main_menu' %}#apply" class="nav-cta-link" data-i18n="nav_apply">Оставить заявку</a></li>
+                <li class="nav__item"><a href="{% url 'university:apply_page' %}" class="nav-cta-link" data-i18n="nav_apply">Оставить заявку</a></li>
             </ul>
         </nav>
 
         <div class="lang-switcher">
             <button type="button" class="lang-current" data-lang-current>{{ current_language|default:'ru' }}</button>
             <div class="lang-dropdown">
-                <a href="#" data-lang-option="ru" data-i18n="lang_ru">Русский</a>
-                <a href="#" data-lang-option="kz" data-i18n="lang_kz">Қазақша</a>
-                <a href="#" data-lang-option="en" data-i18n="lang_en">English</a>
+                <a href="{% url 'university:set_language' 'ru' %}?next={{ request.path|urlencode }}" data-lang-option="ru" data-i18n="lang_ru">Русский</a>
+                <a href="{% url 'university:set_language' 'kz' %}?next={{ request.path|urlencode }}" data-lang-option="kz" data-i18n="lang_kz">Қазақша</a>
+                <a href="{% url 'university:set_language' 'en' %}?next={{ request.path|urlencode }}" data-lang-option="en" data-i18n="lang_en">English</a>
             </div>
         </div>
     </div>
+    <a class="almau-side-icon" href="{% url 'university:main_menu' %}" aria-label="AlmaU">
+        <img src="{% static 'png/AlmaU.png' %}" alt="AlmaU">
+    </a>    
 </header>
 
 <script>
