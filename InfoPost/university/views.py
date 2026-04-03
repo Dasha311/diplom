@@ -2,6 +2,9 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
+import requests
+import json
+
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
 
@@ -28,8 +31,9 @@ def schools_menu(request):
 def school_of_digital(request):
     return render_page(request, 'SchoolOfDigitalMenus.html')
 
+
 def school_of_management(request):
-   return render_page(request, 'SchoolOfManagement.html')
+    return render_page(request, 'SchoolOfManagement.html')
 
 
 def school_of_economics(request):
@@ -57,17 +61,20 @@ def sharmanov_school(request):
 
 
 def school_of_transformative(request):
-    return render_page(request, 'School ofTransformative.html')
+    return render_page(request, 'SchoolOfTransformative.html')
 
 
 def info_systems_menu(request):
     return render_page(request, 'InfoSystemsMenu.html')
 
+
 def chatbot_menu(request):
     return render_page(request, 'ChatBotMenu.html')
 
+
 def apply_page(request):
     return render_page(request, 'ApplicationForm.html')
+
 
 def set_language(request, lang_code):
     lang = (lang_code or '').lower()
@@ -81,3 +88,47 @@ def set_language(request, lang_code):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return JsonResponse({'ok': True, 'language': lang})
     return redirect(next_url)
+
+
+# =========================
+# 🤖 ВОТ ТВОЙ ИИ БОТ
+# =========================
+
+def chat(request):
+    try:
+        data = json.loads(request.body)
+        user_message = data.get("message", "")
+
+        # читаем файл с данными
+        with open("data.txt", encoding="utf-8") as f:
+            context = f.read()
+
+        prompt = f"""
+Ты помощник абитуриента университета.
+Отвечай на русском, казахском или английском.
+Отвечай КОРОТКО и по делу.
+Отвечай на том же языке, что и вопрос.
+Если нет информации — скажи "Не найдено".
+
+Информация:
+{context}
+
+Вопрос:
+{user_message}
+"""
+
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": "mistral",
+                "prompt": prompt,
+                "stream": False
+            }
+        )
+
+        answer = response.json().get("response", "Ошибка ответа от ИИ")
+
+        return JsonResponse({"answer": answer})
+
+    except Exception as e:
+        return JsonResponse({"answer": f"Ошибка: {str(e)}"})
