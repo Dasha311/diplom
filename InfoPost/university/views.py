@@ -182,7 +182,7 @@ def chat(request):
 Вопрос:
 {user_message}
 """
-
+        answer = ask_ollama(prompt)
 
         return JsonResponse({"answer": answer})
 
