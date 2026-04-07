@@ -8,20 +8,33 @@ import requests
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
+OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
+MAX_TURNS = 10
 
 def ask_ollama(prompt):
-    import requests
     response = requests.post(
-        "http://127.0.0.1:11434/api/generate",
+        OLLAMA_URL,
         json={
-            "model": "phi3",
-            "prompt": prompt,
-            "stream": False
+            'model': 'phi3',
+            'prompt': prompt,
+            'stream': False,
         },
-        timeout=30
+        timeout=30,
     )
     response.raise_for_status()
-    return response.json()["response"]
+    return response.json().get('response', '').strip()
+
+
+def build_prompt(history, user_message):
+    lines = ['Отвечай на том же языке, что и последнее сообщение пользователя.']
+
+    for turn in history[-MAX_TURNS:]:
+        lines.append(f"Пользователь: {turn['user']}")
+        lines.append(f"ИИ: {turn['assistant']}")
+
+    lines.append(f'Пользователь: {user_message}')
+    lines.append('ИИ:')
+    return '\n'.join(lines)
 
 
 def get_current_language(request):
@@ -104,21 +117,33 @@ def set_language(request, lang_code):
         return JsonResponse({'ok': True, 'language': lang})
     return redirect(next_url)
 
+
 @csrf_exempt
 def chat(request):
+    if request.method != 'POST':
+        return JsonResponse({'answer': 'Метод не поддерживается.'}, status=405)
     try:
-        if request.method != "POST":
-            return JsonResponse({"answer": "Метод не поддерживается"}, status=405)
-        
         data = json.loads(request.body)
-        user_message = data.get("message", "").strip()
-        if not user_message:
-            return JsonResponse({"answer": "Введите сообщение"}, status=400)
+    except json.JSONDecodeError:
+        return JsonResponse({'answer': 'Некорректный JSON в запросе.'}, status=400)
 
-        prompt = user_message
+    user_message = data.get('message', '').strip()
+    if not user_message:
+        return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
+
+    history = request.session.get('chat_history', [])
+    if not isinstance(history, list):
+        history = []
+
+    prompt = build_prompt(history, user_message)
+
+    try:
         answer = ask_ollama(prompt)
+    except requests.exceptions.RequestException:
+        return JsonResponse({'answer': 'Сервис ответа временно недоступен. Попробуйте еще раз через минуту.'}, status=503)
 
-        return JsonResponse({"answer": answer})
+    history.append({'user': user_message, 'assistant': answer})
+    request.session['chat_history'] = history[-MAX_TURNS:]
+    request.session.modified = True
 
-    except Exception as e:
-        return JsonResponse({"answer": f"Ошибка: {str(e)}"})
+    return JsonResponse({'answer': answer})

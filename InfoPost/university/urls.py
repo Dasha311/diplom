@@ -20,6 +20,5 @@ urlpatterns = [
     path('schools/digital-technologies/', views.school_of_digital, name='school_of_digital'),
     path('programs/information-systems/', views.info_systems_menu, name='info_systems_menu'),
     path('chatbot/', views.chatbot_menu, name='chatbot_menu'),
-    path('api/chat/', views.chat, name='chat_api'),
     path('apply/', views.apply_page, name='apply_page'),
 ]
