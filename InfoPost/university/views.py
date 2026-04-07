@@ -6,12 +6,69 @@ from django.views.decorators.csrf import csrf_exempt
 
 import requests
 import json
+import os
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
-OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "mistral"
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "phi3")
 DATA_FILE = Path(__file__).resolve().parents[2] / "data.txt"
+
+
+
+def ask_ollama(prompt):
+    endpoints = [
+        f"{OLLAMA_BASE_URL}/api/generate",
+        f"{OLLAMA_BASE_URL}/api/chat",
+        f"{OLLAMA_BASE_URL}/v1/chat/completions",
+    ]
+
+    last_error = None
+    for endpoint in endpoints:
+        try:
+            if endpoint.endswith("/api/generate"):
+                payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
+            elif endpoint.endswith("/api/chat"):
+                payload = {
+                    "model": OLLAMA_MODEL,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "stream": False,
+                }
+            else:
+                payload = {
+                    "model": OLLAMA_MODEL,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "stream": False,
+                }
+
+            response = requests.post(endpoint, json=payload, timeout=60)
+
+            if response.status_code == 404:
+                last_error = f"{endpoint} вернул 404"
+                continue
+
+            response.raise_for_status()
+            data = response.json()
+
+            if endpoint.endswith("/api/generate"):
+                return data.get("response", "Ошибка ответа от ИИ")
+
+            if endpoint.endswith("/api/chat"):
+                return (data.get("message") or {}).get("content", "Ошибка ответа от ИИ")
+
+            choices = data.get("choices", [])
+            if choices:
+                return (choices[0].get("message") or {}).get("content", "Ошибка ответа от ИИ")
+            return "Ошибка ответа от ИИ"
+
+        except requests.RequestException as exc:
+            last_error = str(exc)
+            continue
+
+    raise RuntimeError(
+        "Не удалось подключиться к ИИ. Проверьте OLLAMA_BASE_URL и доступность сервера. "
+        f"Последняя ошибка: {last_error}"
+    )
 
 
 def get_current_language(request):
@@ -126,18 +183,6 @@ def chat(request):
 {user_message}
 """
 
-        response = requests.post(
-            OLLAMA_URL,
-            json={
-                "model": "phi3",
-                "prompt": prompt,
-                "stream": False
-            },
-            timeout=60,
-        )
-        response.raise_for_status()
-
-        answer = response.json().get("response", "Ошибка ответа от ИИ")
 
         return JsonResponse({"answer": answer})
 
