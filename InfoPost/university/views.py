@@ -27,59 +27,104 @@ def _build_ollama_endpoints():
     return list(dict.fromkeys(endpoints))
 
 
+def _extract_error_details(response):
+    try:
+        payload = response.json()
+        if isinstance(payload, dict):
+            return payload.get("error") or payload.get("message") or str(payload)
+        return str(payload)
+    except ValueError:
+        return response.text.strip()
+
+
+def _get_available_ollama_models():
+    base = OLLAMA_BASE_URL.rstrip("/")
+    normalized_base = base.removesuffix("/v1").removesuffix("/api")
+    for tags_endpoint in (f"{normalized_base}/api/tags", f"{normalized_base}/v1/models"):
+        try:
+            response = requests.get(tags_endpoint, timeout=15)
+            response.raise_for_status()
+            payload = response.json()
+
+            if tags_endpoint.endswith("/api/tags"):
+                models = payload.get("models") or []
+                names = [m.get("name") for m in models if isinstance(m, dict) and m.get("name")]
+            else:
+                models = payload.get("data") or []
+                names = [m.get("id") for m in models if isinstance(m, dict) and m.get("id")]
+
+            if names:
+                return names
+        except requests.RequestException:
+            continue
+        except ValueError:
+            continue
+    return []
+
+def _candidate_models():
+    available_models = _get_available_ollama_models()
+    if not available_models:
+        return [OLLAMA_MODEL]
+
+        preferred_prefixes = [OLLAMA_MODEL, "phi3", "llama3", "qwen", "mistral", "gemma"]
+    ordered = []
+
+    for prefix in preferred_prefixes:
+        for model_name in available_models:
+            if model_name.startswith(prefix) and model_name not in ordered:
+                ordered.append(model_name)
+
+    for model_name in available_models:
+        if model_name not in ordered:
+            ordered.append(model_name)
+
+    return ordered
+
+
 def ask_ollama(prompt):
     endpoints = _build_ollama_endpoints()
+    models = _candidate_models()
 
     last_error = None
-    for endpoint in endpoints:
-        try:
-            if endpoint.endswith("/api/generate"):
-                payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
-            elif endpoint.endswith("/api/chat"):
-                payload = {
-                    "model": OLLAMA_MODEL,
-                    "messages": [{"role": "user", "content": prompt}],
-                    "stream": False,
-                }
-            else:
-                payload = {
-                    "model": OLLAMA_MODEL,
-                    "messages": [{"role": "user", "content": prompt}],
-                    "stream": False,
-                }
+    for model_name in models:
+        for endpoint in endpoints:
+            try:
+                if endpoint.endswith("/api/generate"):
+                    payload = {"model": model_name, "prompt": prompt, "stream": False}
+                else:
+                    payload = {
+                        "model": model_name,
+                        "messages": [{"role": "user", "content": prompt}],
+                        "stream": False,
+                    }
 
-            response = requests.post(endpoint, json=payload, timeout=60)
+                response = requests.post(endpoint, json=payload, timeout=60)
 
-            if response.status_code == 404:
-                details = ""
-                try:
-                    details = response.json().get("error", "")
-                except ValueError:
-                    details = response.text.strip()
-                details = f" ({details})" if details else ""
-                last_error = f"{endpoint} вернул 404{details}"
+                if response.status_code == 404:
+                    details = _extract_error_details(response)
+                    details = f" ({details})" if details else ""
+                    last_error = f"{endpoint} вернул 404{details}"
+                    continue
+
+                response.raise_for_status()
+                data = response.json()
+
+                if endpoint.endswith("/api/generate"):
+                    return data.get("response", "Ошибка ответа от ИИ")
+
+                if endpoint.endswith("/api/chat"):
+                    return (data.get("message") or {}).get("content", "Ошибка ответа от ИИ")
+
+                choices = data.get("choices", [])
+                if choices:
+                    return (choices[0].get("message") or {}).get("content", "Ошибка ответа от ИИ")
+                return "Ошибка ответа от ИИ"
+
+            except requests.RequestException as exc:
+                last_error = str(exc)
                 continue
-
-            response.raise_for_status()
-            data = response.json()
-
-            if endpoint.endswith("/api/generate"):
-                return data.get("response", "Ошибка ответа от ИИ")
-
-            if endpoint.endswith("/api/chat"):
-                return (data.get("message") or {}).get("content", "Ошибка ответа от ИИ")
-
-            choices = data.get("choices", [])
-            if choices:
-                return (choices[0].get("message") or {}).get("content", "Ошибка ответа от ИИ")
-            return "Ошибка ответа от ИИ"
-
-        except requests.RequestException as exc:
-            last_error = str(exc)
-            continue
-
     raise RuntimeError(
-        "Не удалось подключиться к ИИ. Проверьте OLLAMA_BASE_URL и доступность сервера. "
+        "Не удалось подключиться к ИИ. Проверьте OLLAMA_BASE_URL, доступность сервера и установленные модели. "
         f"Последняя ошибка: {last_error}"
     )
 
