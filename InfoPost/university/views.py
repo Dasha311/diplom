@@ -16,12 +16,19 @@ DATA_FILE = Path(__file__).resolve().parents[2] / "data.txt"
 
 
 
-def ask_ollama(prompt):
+def _build_ollama_endpoints():
+    base = OLLAMA_BASE_URL.rstrip("/")
+    normalized_base = base.removesuffix("/v1").removesuffix("/api")
     endpoints = [
-        f"{OLLAMA_BASE_URL}/api/generate",
-        f"{OLLAMA_BASE_URL}/api/chat",
-        f"{OLLAMA_BASE_URL}/v1/chat/completions",
+        f"{normalized_base}/api/generate",
+        f"{normalized_base}/api/chat",
+        f"{normalized_base}/v1/chat/completions",
     ]
+    return list(dict.fromkeys(endpoints))
+
+
+def ask_ollama(prompt):
+    endpoints = _build_ollama_endpoints()
 
     last_error = None
     for endpoint in endpoints:
@@ -44,7 +51,13 @@ def ask_ollama(prompt):
             response = requests.post(endpoint, json=payload, timeout=60)
 
             if response.status_code == 404:
-                last_error = f"{endpoint} вернул 404"
+                details = ""
+                try:
+                    details = response.json().get("error", "")
+                except ValueError:
+                    details = response.text.strip()
+                details = f" ({details})" if details else ""
+                last_error = f"{endpoint} вернул 404{details}"
                 continue
 
             response.raise_for_status()
