@@ -693,18 +693,6 @@
             }
         }
 
-        function getBotAnswer(userMsg, lang) {
-            const lower = userMsg.toLowerCase();
-            const t = translations[lang];
-            if (lower.includes('поступл') || lower.includes('абитур') || lower.includes('түсу') || lower.includes('қабылдау') || lower.includes('admission') || lower.includes('apply')) return t.answer_admission;
-            if (lower.includes('программ') || lower.includes('направл') || lower.includes('бағдарлама') || lower.includes('program')) return t.answer_programs;
-            if (lower.includes('грант') || lower.includes('скидк') || lower.includes('грант') || lower.includes('жеңілдік') || lower.includes('grant') || lower.includes('scholarship')) return t.answer_grant;
-            if (lower.includes('контакт') || lower.includes('телефон') || lower.includes('адрес') || lower.includes('байланыс') || lower.includes('contact') || lower.includes('phone')) return t.answer_contacts;
-            if (lower.includes('мероприят') || lower.includes('день открытых') || lower.includes('событ') || lower.includes('іс-шара') || lower.includes('event') || lower.includes('open house')) return t.answer_events;
-            if (lower.includes('спасиб') || lower.includes('благодар') || lower.includes('рахмет') || lower.includes('thank')) return t.answer_thanks;
-            return t.answer_default;
-        }
-
         // Чат логика с учетом языка
         const chatMessages = document.getElementById('chatMessages');
         const chatForm = document.getElementById('chatForm');
@@ -733,11 +721,30 @@
             chatMessages.appendChild(typingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            setTimeout(() => {
-                chatMessages.removeChild(typingDiv);
-                const answer = getBotAnswer(msg, currentLang);
-                addMessage(answer, 'bot');
-            }, 600);
+            try {
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: msg,
+                        language: currentLang,
+                    }),
+                });
+
+                const payload = await response.json();
+                if (!response.ok) {
+                    throw new Error(payload.answer || 'Ошибка запроса к серверу');
+                }
+                addMessage(payload.answer || translations[currentLang].answer_default, 'bot');
+            } catch (error) {
+                addMessage(`Ошибка подключения к Ollama: ${error.message}`, 'bot');
+            } finally {
+                if (chatMessages.contains(typingDiv)) {
+                    chatMessages.removeChild(typingDiv);
+                }
+            }
         }
 
         chatForm.addEventListener('submit', (e) => {

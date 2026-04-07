@@ -1,12 +1,17 @@
+from pathlib import Path
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 import requests
 import json
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
+OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "mistral"
+DATA_FILE = Path(__file__).resolve().parents[2] / "data.txt"
 
 
 def get_current_language(request):
@@ -93,14 +98,18 @@ def set_language(request, lang_code):
 # =========================
 # 🤖 ВОТ ТВОЙ ИИ БОТ
 # =========================
-
+@csrf_exempt
 def chat(request):
     try:
+        if request.method != "POST":
+            return JsonResponse({"answer": "Метод не поддерживается"}, status=405)
         data = json.loads(request.body)
-        user_message = data.get("message", "")
+        user_message = data.get("message", "").strip()
+        if not user_message:
+            return JsonResponse({"answer": "Введите сообщение"}, status=400)
 
         # читаем файл с данными
-        with open("data.txt", encoding="utf-8") as f:
+        with open(DATA_FILE, encoding="utf-8") as f:
             context = f.read()
 
         prompt = f"""
@@ -118,13 +127,15 @@ def chat(request):
 """
 
         response = requests.post(
-            "http://localhost:11434/api/generate",
+            OLLAMA_URL,
             json={
-                "model": "mistral",
+                "model": OLLAMA_MODEL,
                 "prompt": prompt,
                 "stream": False
-            }
+            },
+            timeout=60,
         )
+        response.raise_for_status()
 
         answer = response.json().get("response", "Ошибка ответа от ИИ")
 
