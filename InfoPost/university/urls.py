@@ -6,6 +6,7 @@ app_name = 'university'
 
 urlpatterns = [
     path('', views.main_menu, name='main_menu'),
+    path('api/chat/', views.chat, name='chat_api'),
     path('language/<str:lang_code>/', views.set_language, name='set_language'),
     path('schools/', views.schools_menu, name='schools_menu'),
     path('schools/management/', views.school_of_management, name='school_of_management'),
@@ -19,5 +20,6 @@ urlpatterns = [
     path('schools/digital-technologies/', views.school_of_digital, name='school_of_digital'),
     path('programs/information-systems/', views.info_systems_menu, name='info_systems_menu'),
     path('chatbot/', views.chatbot_menu, name='chatbot_menu'),
+    path('api/chat/', views.chat, name='chat_api'),
     path('apply/', views.apply_page, name='apply_page'),
 ]

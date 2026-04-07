@@ -733,7 +733,13 @@
                     }),
                 });
 
-                const payload = await response.json();
+                const rawBody = await response.text();
+                let payload;
+                try {
+                    payload = JSON.parse(rawBody);
+                } catch (_) {
+                    throw new Error(`Сервер вернул не JSON (status ${response.status})`);
+                }
                 if (!response.ok) {
                     throw new Error(payload.answer || 'Ошибка запроса к серверу');
                 }

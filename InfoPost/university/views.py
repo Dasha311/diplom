@@ -129,7 +129,7 @@ def chat(request):
         response = requests.post(
             OLLAMA_URL,
             json={
-                "model": OLLAMA_MODEL,
+                "model": "phi3",
                 "prompt": prompt,
                 "stream": False
             },
