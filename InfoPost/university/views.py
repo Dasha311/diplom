@@ -66,7 +66,7 @@ def _candidate_models():
     if not available_models:
         return [OLLAMA_MODEL]
 
-        preferred_prefixes = [OLLAMA_MODEL, "phi3", "llama3", "qwen", "mistral", "gemma"]
+    preferred_prefixes = [OLLAMA_MODEL, "phi3", "llama3", "qwen", "mistral", "gemma"]
     ordered = []
 
     for prefix in preferred_prefixes:
