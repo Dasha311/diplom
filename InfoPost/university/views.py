@@ -24,6 +24,18 @@ LANGUAGE_PROMPTS = {
     'en': 'Answer only in English using the knowledge base facts.',
 }
 
+FALLBACK_RESPONSES = {
+    'ru': 'Простите, я не могу ответить на этот вопрос, но с радостью помогу вам с любой информацией о поступлении.',
+    'kz': 'Кешіріңіз, бұл сұраққа жауап бере алмаймын, бірақ оқуға түсу туралы кез келген ақпаратпен қуана көмектесемін.',
+    'en': 'Sorry, I cant answer this question, but I ll gladly help you with any admission information.',
+}
+
+SMALL_TALK_RULES = {
+    'ru': 'Если пользователь здоровается или спрашивает "как дела", ответь дружелюбно и кратко.',
+    'kz': 'Егер пайдаланушы амандасса немесе көңіл-күйді сұраса, қысқа әрі жылы жауап бер.',
+    'en': 'If the user greets you or asks how you are, respond briefly and warmly.',
+}
+
 KNOWLEDGE_TRANSLATION_RULE = (
     'База знаний приведена на русском. Если пользователь пишет на казахском или английском, '
     'переводи релевантные факты из базы знаний на язык пользователя без потери смысла.'
@@ -89,12 +101,20 @@ def normalize_history(raw_history):
 
 
 def build_prompt(knowledge_base, history, user_message, language_code):
+    fallback_message = FALLBACK_RESPONSES.get(language_code, FALLBACK_RESPONSES[DEFAULT_LANGUAGE])
+    small_talk_rule = SMALL_TALK_RULES.get(language_code, SMALL_TALK_RULES[DEFAULT_LANGUAGE])
+
     lines = [
         '[Информация из базы знаний]',
         knowledge_base,
         '',
         KNOWLEDGE_TRANSLATION_RULE,
         LANGUAGE_PROMPTS.get(language_code, LANGUAGE_PROMPTS[DEFAULT_LANGUAGE]),
+        small_talk_rule,
+        (
+            'Если точного ответа нет в базе знаний или вопрос не относится к поступлению, программам, '
+            f'контактам и учебному процессу, ответь только этой фразой: "{fallback_message}"'
+        ),
         'Отвечай кратко, точно и по делу.',
     ]
 

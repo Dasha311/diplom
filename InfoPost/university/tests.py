@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from unittest.mock import Mock, patch
 
+
 class UniversityRoutesTests(TestCase):
     def test_pages_are_available(self):
         route_names = [
@@ -47,3 +48,11 @@ class UniversityRoutesTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertJSONEqual(response.content, {'answer': 'Тестовый ответ'})
+
+        payload = mock_post.call_args.kwargs['json']
+        prompt = payload['prompt']
+        self.assertIn('Если пользователь здоровается или спрашивает "как дела"', prompt)
+        self.assertIn(
+            'Простите, я не могу ответить на этот вопрос, но с радостью помогу вам с любой информацией о поступлении.',
+            prompt,
+        )
