@@ -5,11 +5,30 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 import requests
+import re
+from pathlib import Path
+
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
 OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
-MAX_TURNS = 10
+MAX_HISTORY_MESSAGES = 10
+KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
+KAZAKH_CHARS_RE = re.compile(r'[әіңғүұқөһ]', re.IGNORECASE)
+CYRILLIC_RE = re.compile(r'[а-яё]', re.IGNORECASE)
+LATIN_RE = re.compile(r'[a-z]', re.IGNORECASE)
+
+LANGUAGE_PROMPTS = {
+    'ru': 'Отвечай только на русском языке, опираясь на базу знаний.',
+    'kz': 'Тек қазақ тілінде жауап бер. Жауап базалық ақпаратқа сүйенсін.',
+    'en': 'Answer only in English using the knowledge base facts.',
+}
+
+KNOWLEDGE_TRANSLATION_RULE = (
+    'База знаний приведена на русском. Если пользователь пишет на казахском или английском, '
+    'переводи релевантные факты из базы знаний на язык пользователя без потери смысла.'
+)
+_KNOWLEDGE_BASE_TEXT = None
 
 def ask_ollama(prompt):
     response = requests.post(
@@ -25,12 +44,63 @@ def ask_ollama(prompt):
     return response.json().get('response', '').strip()
 
 
-def build_prompt(history, user_message):
-    lines = ['Отвечай на том же языке, что и последнее сообщение пользователя.']
+def load_knowledge_base():
+    global _KNOWLEDGE_BASE_TEXT
+    if _KNOWLEDGE_BASE_TEXT is None:
+        _KNOWLEDGE_BASE_TEXT = KNOWLEDGE_BASE_PATH.read_text(encoding='utf-8').strip()
+    return _KNOWLEDGE_BASE_TEXT
 
-    for turn in history[-MAX_TURNS:]:
-        lines.append(f"Пользователь: {turn['user']}")
-        lines.append(f"ИИ: {turn['assistant']}")
+
+def detect_language(message):
+    text = (message or '').strip().lower()
+    if not text:
+        return DEFAULT_LANGUAGE
+    if KAZAKH_CHARS_RE.search(text):
+        return 'kz'
+
+    cyrillic_count = len(CYRILLIC_RE.findall(text))
+    latin_count = len(LATIN_RE.findall(text))
+    if latin_count > cyrillic_count:
+        return 'en'
+    if cyrillic_count > 0:
+        return 'ru'
+    return DEFAULT_LANGUAGE
+
+
+def normalize_history(raw_history):
+    if not isinstance(raw_history, list):
+        return []
+
+    normalized = []
+    for item in raw_history:
+        if isinstance(item, dict) and 'role' in item and 'content' in item:
+            role = item.get('role')
+            content = (item.get('content') or '').strip()
+            if role in {'user', 'assistant'} and content:
+                normalized.append({'role': role, 'content': content})
+        elif isinstance(item, dict) and 'user' in item and 'assistant' in item:
+            user_content = (item.get('user') or '').strip()
+            assistant_content = (item.get('assistant') or '').strip()
+            if user_content:
+                normalized.append({'role': 'user', 'content': user_content})
+            if assistant_content:
+                normalized.append({'role': 'assistant', 'content': assistant_content})
+    return normalized[-MAX_HISTORY_MESSAGES:]
+
+
+def build_prompt(knowledge_base, history, user_message, language_code):
+    lines = [
+        '[Информация из базы знаний]',
+        knowledge_base,
+        '',
+        KNOWLEDGE_TRANSLATION_RULE,
+        LANGUAGE_PROMPTS.get(language_code, LANGUAGE_PROMPTS[DEFAULT_LANGUAGE]),
+        'Отвечай кратко, точно и по делу.',
+    ]
+
+    for message in history[-MAX_HISTORY_MESSAGES:]:
+        speaker = 'Пользователь' if message['role'] == 'user' else 'ИИ'
+        lines.append(f"{speaker}: {message['content']}")
 
     lines.append(f'Пользователь: {user_message}')
     lines.append('ИИ:')
@@ -131,19 +201,24 @@ def chat(request):
     if not user_message:
         return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
 
-    history = request.session.get('chat_history', [])
-    if not isinstance(history, list):
-        history = []
-
-    prompt = build_prompt(history, user_message)
+    language_code = detect_language(user_message)
+    history = normalize_history(request.session.get('chat_history', []))
+    knowledge_base = load_knowledge_base()
+    prompt = build_prompt(knowledge_base, history, user_message, language_code)
 
     try:
         answer = ask_ollama(prompt)
+    except requests.exceptions.Timeout:
+        return JsonResponse({'answer': 'Ответ занял слишком много времени. Попробуйте еще раз чуть позже.'}, status=504)        
     except requests.exceptions.RequestException:
         return JsonResponse({'answer': 'Сервис ответа временно недоступен. Попробуйте еще раз через минуту.'}, status=503)
+    except Exception:
+        return JsonResponse({'answer': 'Произошла непредвиденная ошибка. Попробуйте снова.'}, status=500)
 
-    history.append({'user': user_message, 'assistant': answer})
-    request.session['chat_history'] = history[-MAX_TURNS:]
+    history.append({'role': 'user', 'content': user_message})
+    history.append({'role': 'assistant', 'content': answer})
+    request.session['chat_history'] = history[-MAX_HISTORY_MESSAGES:]
+    request.session['chat_language'] = language_code
     request.session.modified = True
 
     return JsonResponse({'answer': answer})
