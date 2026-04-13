@@ -166,39 +166,39 @@ def detect_language(message):
     return DEFAULT_LANGUAGE
 
 
-def build_prompt(knowledge_base, user_message, language_code):
-    knowledge_base = knowledge_base[:200]  # 🔥 ЖЁСТКИЙ ЛИМИТ
-
+def build_prompt(context, question, lang):
     return f"""
-Ты AI-помощник AlmaU.
-Отвечай кратко.
+Ты консультант AlmaU.
 
-Язык: {language_code}
+Отвечай:
+- строго по фактам
+- кратко
+- без воды
 
 Контекст:
-{knowledge_base}
+{context}
 
 Вопрос:
-{user_message}
+{question}
 
 Ответ:
 """
 
-def simple_search_kb(kb, question):
-    q_words = set(question.lower().split())
-    parts = kb.split("\n\n")
+def smart_search(kb, question):
+    question = question.lower()
 
-    best = ""
+    blocks = kb.split("###")
+    best_block = ""
     best_score = 0
 
-    for p in parts:
-        score = sum(1 for w in q_words if w in p.lower())
+    for block in blocks:
+        score = sum(word in block.lower() for word in question.split())
 
         if score > best_score:
             best_score = score
-            best = p
+            best_block = block
 
-    return best[:300]   # 🔥 ТОЛЬКО ОДИН САМЫЙ ЛУЧШИЙ БЛОК
+    return best_block[:200]
 
 def get_current_language(request):
     lang = request.session.get('site_language', DEFAULT_LANGUAGE)
@@ -266,6 +266,9 @@ def chatbot_menu(request):
 def apply_page(request):
     return render_page(request, 'ApplicationForm.html')
 
+def is_simple_question(text):
+    return len(text.split()) <= 4
+
 
 def set_language(request, lang_code):
     lang = (lang_code or '').lower()
@@ -295,7 +298,7 @@ def chat(request):
 
         language_code = detect_language(user_message)
         knowledge_base = load_knowledge_base()
-        relevant_knowledge = simple_search_kb(knowledge_base, user_message)
+        relevant_knowledge = smart_search(knowledge_base, user_message)
         prompt = build_prompt(relevant_knowledge, user_message, language_code)
 
         cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
