@@ -682,14 +682,6 @@
                 welcomeDiv.className = 'message message--bot';
                 welcomeDiv.innerHTML = `<div class="message-content">${translations[currentLang].welcome}</div>`;
                 chatMessages.appendChild(welcomeDiv);
-            } else {
-                // Если есть история, не трогаем её, но обновляем только если нет сообщений
-                if (chatMessages.children.length === 0) {
-                    const welcomeDiv = document.createElement('div');
-                    welcomeDiv.className = 'message message--bot';
-                    welcomeDiv.innerHTML = `<div class="message-content">${translations[currentLang].welcome}</div>`;
-                    chatMessages.appendChild(welcomeDiv);
-                }
             }
         }
 
@@ -752,6 +744,7 @@
                 }
             }
         }
+        
 
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();

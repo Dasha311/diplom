@@ -14,7 +14,6 @@ from collections import OrderedDict
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
 OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
-MAX_HISTORY_MESSAGES = 4
 KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
 MAX_KNOWLEDGE_SNIPPETS = 1
 MAX_SNIPPET_CHARS = 300
@@ -173,43 +172,19 @@ def detect_language(message):
     return DEFAULT_LANGUAGE
 
 
-def normalize_history(raw_history):
-    if not isinstance(raw_history, list):
-        return []
-
-    normalized = []
-    for item in raw_history:
-        if isinstance(item, dict) and 'role' in item and 'content' in item:
-            role = item.get('role')
-            content = (item.get('content') or '').strip()
-            if role in {'user', 'assistant'} and content:
-                normalized.append({'role': role, 'content': content})
-        elif isinstance(item, dict) and 'user' in item and 'assistant' in item:
-            user_content = (item.get('user') or '').strip()
-            assistant_content = (item.get('assistant') or '').strip()
-            if user_content:
-                normalized.append({'role': 'user', 'content': user_content})
-            if assistant_content:
-                normalized.append({'role': 'assistant', 'content': assistant_content})
-    return normalized[-MAX_HISTORY_MESSAGES:]
-
-
 def build_prompt(knowledge_base, user_message, language_code):
+    if len(user_message) < 15:
+        knowledge_base = ""   # ВАЖНО
+
     return f"""
-Ты AI-помощник AlmaU.
+Ты помощник AlmaU.
+Кратко. Язык: {language_code}
 
-Правила:
-- Отвечай кратко
-- Только по фактам из информации ниже
-- Язык: {language_code}
-
-ИНФОРМАЦИЯ:
+Информация:
 {knowledge_base}
 
-ВОПРОС:
-{user_message}
-
-ОТВЕТ:
+Вопрос: {user_message}
+Ответ:
 """
 
 def simple_search_kb(kb, question):
@@ -317,11 +292,9 @@ def chat(request):
             return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
 
         language_code = detect_language(user_message)
-        history = normalize_history(request.session.get('chat_history', []))
         knowledge_base = load_knowledge_base()
-        rknowledge_base = load_knowledge_base()
         relevant_knowledge = simple_search_kb(knowledge_base, user_message)
-        prompt = build_prompt(relevant_knowledge, history, user_message, language_code)
+        prompt = build_prompt(relevant_knowledge, user_message, language_code)
 
         cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
         cached_answer = _cache_get(cache_key)
@@ -329,11 +302,6 @@ def chat(request):
         if cached_answer is None:
             _cache_set(cache_key, answer)
 
-        history.append({'role': 'user', 'content': user_message})
-        history.append({'role': 'assistant', 'content': answer})
-        request.session['chat_history'] = history[-MAX_HISTORY_MESSAGES:]
-        request.session['chat_language'] = language_code
-        request.session.modified = True
         return JsonResponse({'answer': answer})        
     except json.JSONDecodeError:
         return JsonResponse({'answer': 'Некорректный JSON в запросе.'}, status=400)
