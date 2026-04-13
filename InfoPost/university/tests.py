@@ -56,3 +56,17 @@ class UniversityRoutesTests(TestCase):
             'Простите, я не могу ответить на этот вопрос, но с радостью помогу вам с любой информацией о поступлении.',
             prompt,
         )
+
+    @patch('university.views.load_knowledge_base', side_effect=RuntimeError('broken knowledge base'))
+    def test_chat_api_returns_json_on_unexpected_error(self, _):
+        response = self.client.post(
+            reverse('university:chat_api'),
+            data='{"message":"привет"}',
+            content_type='application/json',
+        )
+
+        self.assertEqual(response.status_code, 500)
+        self.assertJSONEqual(
+            response.content,
+            {'answer': 'Произошла непредвиденная ошибка. Попробуйте снова.'},
+        )

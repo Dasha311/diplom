@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+import logging
 import requests
 import re
 from pathlib import Path
@@ -13,10 +14,10 @@ from collections import OrderedDict
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
 OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
-MAX_HISTORY_MESSAGES = 10
+MAX_HISTORY_MESSAGES = 4
 KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
-MAX_KNOWLEDGE_SNIPPETS = 3
-MAX_SNIPPET_CHARS = 2200
+MAX_KNOWLEDGE_SNIPPETS = 1
+MAX_SNIPPET_CHARS = 300
 ANSWER_CACHE_SIZE = 150
 KAZAKH_CHARS_RE = re.compile(r'[әіңғүұқөһ]', re.IGNORECASE)
 CYRILLIC_RE = re.compile(r'[а-яё]', re.IGNORECASE)
@@ -48,6 +49,7 @@ KNOWLEDGE_TRANSLATION_RULE = (
 _KNOWLEDGE_BASE_TEXT = None
 _KNOWLEDGE_SECTIONS = None
 ANSWER_CACHE = OrderedDict()
+logger = logging.getLogger(__name__)
 
 def _normalize_for_cache(text):
     return re.sub(r'\s+', ' ', (text or '').strip().lower())
@@ -120,17 +122,31 @@ def _cache_set(key, value):
         ANSWER_CACHE.popitem(last=False)
 
 def ask_ollama(prompt):
-    response = requests.post(
-        OLLAMA_URL,
-        json={
-            'model': 'phi3',
-            'prompt': prompt,
-            'stream': False,
-        },
-        timeout=30,
-    )
-    response.raise_for_status()
-    return response.json().get('response', '').strip()
+    import requests
+
+    print("=== PROMPT ===")
+    print(prompt[:500])
+
+    try:
+        response = requests.post(
+            OLLAMA_URL,
+            json={
+                'model': 'mistral:latest',
+                'prompt': prompt,
+                'stream': False,
+            },
+            timeout=60,
+        )
+
+        print("STATUS:", response.status_code)
+        print("TEXT:", response.text[:300])
+
+        response.raise_for_status()
+        return response.json().get('response', '').strip()
+
+    except Exception as e:
+        print("OLLAMA ERROR:", str(e))
+        raise
 
 
 def load_knowledge_base():
@@ -178,32 +194,36 @@ def normalize_history(raw_history):
     return normalized[-MAX_HISTORY_MESSAGES:]
 
 
-def build_prompt(knowledge_base, history, user_message, language_code):
-    fallback_message = FALLBACK_RESPONSES.get(language_code, FALLBACK_RESPONSES[DEFAULT_LANGUAGE])
-    small_talk_rule = SMALL_TALK_RULES.get(language_code, SMALL_TALK_RULES[DEFAULT_LANGUAGE])
+def build_prompt(knowledge_base, user_message, language_code):
+    return f"""
+Ты AI-помощник AlmaU.
 
-    lines = [
-        '[Информация из базы знаний]',
-        knowledge_base,
-        '',
-        KNOWLEDGE_TRANSLATION_RULE,
-        LANGUAGE_PROMPTS.get(language_code, LANGUAGE_PROMPTS[DEFAULT_LANGUAGE]),
-        small_talk_rule,
-        (
-            'Если точного ответа нет в базе знаний или вопрос не относится к поступлению, программам, '
-            f'контактам и учебному процессу, ответь только этой фразой: "{fallback_message}"'
-        ),
-        'Отвечай кратко, точно и по делу.',
-    ]
+Правила:
+- Отвечай кратко
+- Только по фактам из информации ниже
+- Язык: {language_code}
 
-    for message in history[-MAX_HISTORY_MESSAGES:]:
-        speaker = 'Пользователь' if message['role'] == 'user' else 'ИИ'
-        lines.append(f"{speaker}: {message['content']}")
+ИНФОРМАЦИЯ:
+{knowledge_base}
 
-    lines.append(f'Пользователь: {user_message}')
-    lines.append('ИИ:')
-    return '\n'.join(lines)
+ВОПРОС:
+{user_message}
 
+ОТВЕТ:
+"""
+
+def simple_search_kb(kb, question):
+    q_words = set(question.lower().split())
+    parts = kb.split("\n\n")
+
+    scored = []
+    for p in parts:
+        score = sum(1 for w in q_words if w in p.lower())
+        if score > 0:
+            scored.append((score, p))
+
+    scored.sort(reverse=True)
+    return "\n\n".join([p for _, p in scored[:1]])[:400]
 
 def get_current_language(request):
     lang = request.session.get('site_language', DEFAULT_LANGUAGE)
@@ -292,38 +312,35 @@ def chat(request):
         return JsonResponse({'answer': 'Метод не поддерживается.'}, status=405)
     try:
         data = json.loads(request.body)
+        user_message = data.get('message', '').strip()
+        if not user_message:
+            return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
+
+        language_code = detect_language(user_message)
+        history = normalize_history(request.session.get('chat_history', []))
+        knowledge_base = load_knowledge_base()
+        rknowledge_base = load_knowledge_base()
+        relevant_knowledge = simple_search_kb(knowledge_base, user_message)
+        prompt = build_prompt(relevant_knowledge, history, user_message, language_code)
+
+        cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
+        cached_answer = _cache_get(cache_key)
+        answer = cached_answer or ask_ollama(prompt)
+        if cached_answer is None:
+            _cache_set(cache_key, answer)
+
+        history.append({'role': 'user', 'content': user_message})
+        history.append({'role': 'assistant', 'content': answer})
+        request.session['chat_history'] = history[-MAX_HISTORY_MESSAGES:]
+        request.session['chat_language'] = language_code
+        request.session.modified = True
+        return JsonResponse({'answer': answer})        
     except json.JSONDecodeError:
         return JsonResponse({'answer': 'Некорректный JSON в запросе.'}, status=400)
-
-    user_message = data.get('message', '').strip()
-    if not user_message:
-        return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
-
-    language_code = detect_language(user_message)
-    history = normalize_history(request.session.get('chat_history', []))
-    knowledge_base = load_knowledge_base()
-    relevant_knowledge = _get_relevant_knowledge(knowledge_base, user_message, history)
-    prompt = build_prompt(relevant_knowledge, history, user_message, language_code)
-
-    cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
-    cached_answer = _cache_get(cache_key)
-
-    try:
-        answer = cached_answer or ask_ollama(prompt)
     except requests.exceptions.Timeout:
-        return JsonResponse({'answer': 'Ответ занял слишком много времени. Попробуйте еще раз чуть позже.'}, status=504)        
+        return JsonResponse({'answer': 'Ответ занял слишком много времени. Попробуйте еще раз чуть позже.'}, status=504)
     except requests.exceptions.RequestException:
         return JsonResponse({'answer': 'Сервис ответа временно недоступен. Попробуйте еще раз через минуту.'}, status=503)
     except Exception:
+        logger.exception('Unexpected error in chat endpoint')
         return JsonResponse({'answer': 'Произошла непредвиденная ошибка. Попробуйте снова.'}, status=500)
-    if cached_answer is None:
-        _cache_set(cache_key, answer)
-
-
-    history.append({'role': 'user', 'content': user_message})
-    history.append({'role': 'assistant', 'content': answer})
-    request.session['chat_history'] = history[-MAX_HISTORY_MESSAGES:]
-    request.session['chat_language'] = language_code
-    request.session.modified = True
-
-    return JsonResponse({'answer': answer})
