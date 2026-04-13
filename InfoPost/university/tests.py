@@ -51,17 +51,30 @@ class UniversityRoutesTests(TestCase):
 
         payload = mock_post.call_args.kwargs['json']
         prompt = payload['prompt']
-        self.assertIn('Если пользователь здоровается или спрашивает "как дела"', prompt)
-        self.assertIn(
-            'Простите, я не могу ответить на этот вопрос, но с радостью помогу вам с любой информацией о поступлении.',
-            prompt,
+        self.assertIn('Ты помощник AlmaU.', prompt)
+        self.assertEqual(payload['options']['num_predict'], 80)
+        self.assertEqual(payload['options']['temperature'], 0.2)
+
+    @patch('university.views.requests.post')
+    def test_chat_api_returns_fast_small_talk_response_without_model(self, mock_post):
+        response = self.client.post(
+            reverse('university:chat_api'),
+            data='{"message":"привет"}',
+            content_type='application/json',
         )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(
+            response.content,
+            {'answer': 'Привет! Я помогу тебе с поступлением в AlmaU.'},
+        )
+        mock_post.assert_not_called()        
 
     @patch('university.views.load_knowledge_base', side_effect=RuntimeError('broken knowledge base'))
     def test_chat_api_returns_json_on_unexpected_error(self, _):
         response = self.client.post(
             reverse('university:chat_api'),
-            data='{"message":"привет"}',
+            data='{"message":"Расскажите про гранты"}',
             content_type='application/json',
         )
 

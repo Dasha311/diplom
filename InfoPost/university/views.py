@@ -18,6 +18,8 @@ KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
 MAX_KNOWLEDGE_SNIPPETS = 1
 MAX_SNIPPET_CHARS = 300
 ANSWER_CACHE_SIZE = 150
+SMALL_TALKS = {'привет', 'здравствуйте', 'как дела', 'сәлем', 'hello'}
+SMALL_TALK_RESPONSE = 'Привет! Я помогу тебе с поступлением в AlmaU.'
 KAZAKH_CHARS_RE = re.compile(r'[әіңғүұқөһ]', re.IGNORECASE)
 CYRILLIC_RE = re.compile(r'[а-яё]', re.IGNORECASE)
 LATIN_RE = re.compile(r'[a-z]', re.IGNORECASE)
@@ -121,31 +123,23 @@ def _cache_set(key, value):
         ANSWER_CACHE.popitem(last=False)
 
 def ask_ollama(prompt):
-    import requests
-
-    print("=== PROMPT ===")
-    print(prompt[:500])
-
-    try:
-        response = requests.post(
-            OLLAMA_URL,
-            json={
-                'model': 'mistral:latest',
-                'prompt': prompt,
-                'stream': False,
+    response = requests.post(
+        OLLAMA_URL,
+        json={
+            'model': 'mistral:latest',
+            'prompt': prompt,
+            'stream': False,
+            'options': {
+                'num_predict': 80,
+                'temperature': 0.1,
+                'top_p':0.7
             },
-            timeout=60,
-        )
+        },
+        timeout=60,
+    )
 
-        print("STATUS:", response.status_code)
-        print("TEXT:", response.text[:300])
-
-        response.raise_for_status()
-        return response.json().get('response', '').strip()
-
-    except Exception as e:
-        print("OLLAMA ERROR:", str(e))
-        raise
+    response.raise_for_status()
+    return response.json().get('response', '').strip()
 
 
 def load_knowledge_base():
@@ -173,17 +167,20 @@ def detect_language(message):
 
 
 def build_prompt(knowledge_base, user_message, language_code):
-    if len(user_message) < 15:
-        knowledge_base = ""   # ВАЖНО
+    knowledge_base = knowledge_base[:200]  # 🔥 ЖЁСТКИЙ ЛИМИТ
 
     return f"""
-Ты помощник AlmaU.
-Кратко. Язык: {language_code}
+Ты AI-помощник AlmaU.
+Отвечай кратко.
 
-Информация:
+Язык: {language_code}
+
+Контекст:
 {knowledge_base}
 
-Вопрос: {user_message}
+Вопрос:
+{user_message}
+
 Ответ:
 """
 
@@ -191,14 +188,17 @@ def simple_search_kb(kb, question):
     q_words = set(question.lower().split())
     parts = kb.split("\n\n")
 
-    scored = []
+    best = ""
+    best_score = 0
+
     for p in parts:
         score = sum(1 for w in q_words if w in p.lower())
-        if score > 0:
-            scored.append((score, p))
 
-    scored.sort(reverse=True)
-    return "\n\n".join([p for _, p in scored[:1]])[:400]
+        if score > best_score:
+            best_score = score
+            best = p
+
+    return best[:300]   # 🔥 ТОЛЬКО ОДИН САМЫЙ ЛУЧШИЙ БЛОК
 
 def get_current_language(request):
     lang = request.session.get('site_language', DEFAULT_LANGUAGE)
@@ -290,6 +290,8 @@ def chat(request):
         user_message = data.get('message', '').strip()
         if not user_message:
             return JsonResponse({'answer': 'Введите сообщение.'}, status=400)
+        if user_message.lower() in SMALL_TALKS:
+            return JsonResponse({'answer': SMALL_TALK_RESPONSE})
 
         language_code = detect_language(user_message)
         knowledge_base = load_knowledge_base()
