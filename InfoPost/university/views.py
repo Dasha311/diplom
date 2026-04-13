@@ -7,6 +7,7 @@ import json
 import requests
 import re
 from pathlib import Path
+from collections import OrderedDict
 
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
@@ -14,6 +15,9 @@ DEFAULT_LANGUAGE = 'ru'
 OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
 MAX_HISTORY_MESSAGES = 10
 KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
+MAX_KNOWLEDGE_SNIPPETS = 3
+MAX_SNIPPET_CHARS = 2200
+ANSWER_CACHE_SIZE = 150
 KAZAKH_CHARS_RE = re.compile(r'[әіңғүұқөһ]', re.IGNORECASE)
 CYRILLIC_RE = re.compile(r'[а-яё]', re.IGNORECASE)
 LATIN_RE = re.compile(r'[a-z]', re.IGNORECASE)
@@ -40,7 +44,80 @@ KNOWLEDGE_TRANSLATION_RULE = (
     'База знаний приведена на русском. Если пользователь пишет на казахском или английском, '
     'переводи релевантные факты из базы знаний на язык пользователя без потери смысла.'
 )
+
 _KNOWLEDGE_BASE_TEXT = None
+_KNOWLEDGE_SECTIONS = None
+ANSWER_CACHE = OrderedDict()
+
+def _normalize_for_cache(text):
+    return re.sub(r'\s+', ' ', (text or '').strip().lower())
+
+
+def _extract_keywords(text):
+    return {
+        token
+        for token in re.findall(r"[\w-]+", (text or '').lower())
+        if len(token) >= 3
+    }
+
+
+def _split_knowledge_sections(knowledge_base_text):
+    sections = []
+    current = []
+    for line in knowledge_base_text.splitlines():
+        if line.strip().startswith('### ') and current:
+            section_text = '\n'.join(current).strip()
+            if section_text:
+                sections.append(section_text)
+            current = [line]
+        else:
+            current.append(line)
+
+    if current:
+        section_text = '\n'.join(current).strip()
+        if section_text:
+            sections.append(section_text)
+
+    return sections or [knowledge_base_text]
+
+
+def _get_relevant_knowledge(knowledge_base_text, user_message, history):
+    query_tokens = _extract_keywords(user_message)
+    if history:
+        recent_user_text = ' '.join(msg['content'] for msg in history if msg['role'] == 'user')
+        query_tokens |= _extract_keywords(recent_user_text)
+
+    if not query_tokens:
+        return knowledge_base_text[:MAX_SNIPPET_CHARS]
+
+    sections = _KNOWLEDGE_SECTIONS or [knowledge_base_text]
+    scored_sections = []
+    for section in sections:
+        section_tokens = _extract_keywords(section)
+        overlap = len(query_tokens & section_tokens)
+        if overlap:
+            scored_sections.append((overlap, section))
+
+    if not scored_sections:
+        return knowledge_base_text[:MAX_SNIPPET_CHARS]
+
+    scored_sections.sort(key=lambda item: item[0], reverse=True)
+    top_sections = [section for _, section in scored_sections[:MAX_KNOWLEDGE_SNIPPETS]]
+    return '\n\n'.join(top_sections)[:MAX_SNIPPET_CHARS]
+
+
+def _cache_get(key):
+    answer = ANSWER_CACHE.get(key)
+    if answer is not None:
+        ANSWER_CACHE.move_to_end(key)
+    return answer
+
+
+def _cache_set(key, value):
+    ANSWER_CACHE[key] = value
+    ANSWER_CACHE.move_to_end(key)
+    while len(ANSWER_CACHE) > ANSWER_CACHE_SIZE:
+        ANSWER_CACHE.popitem(last=False)
 
 def ask_ollama(prompt):
     response = requests.post(
@@ -57,9 +134,10 @@ def ask_ollama(prompt):
 
 
 def load_knowledge_base():
-    global _KNOWLEDGE_BASE_TEXT
+    global _KNOWLEDGE_BASE_TEXT, _KNOWLEDGE_SECTIONS
     if _KNOWLEDGE_BASE_TEXT is None:
         _KNOWLEDGE_BASE_TEXT = KNOWLEDGE_BASE_PATH.read_text(encoding='utf-8').strip()
+        _KNOWLEDGE_SECTIONS = _split_knowledge_sections(_KNOWLEDGE_BASE_TEXT)
     return _KNOWLEDGE_BASE_TEXT
 
 
@@ -224,16 +302,23 @@ def chat(request):
     language_code = detect_language(user_message)
     history = normalize_history(request.session.get('chat_history', []))
     knowledge_base = load_knowledge_base()
-    prompt = build_prompt(knowledge_base, history, user_message, language_code)
+    relevant_knowledge = _get_relevant_knowledge(knowledge_base, user_message, history)
+    prompt = build_prompt(relevant_knowledge, history, user_message, language_code)
+
+    cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
+    cached_answer = _cache_get(cache_key)
 
     try:
-        answer = ask_ollama(prompt)
+        answer = cached_answer or ask_ollama(prompt)
     except requests.exceptions.Timeout:
         return JsonResponse({'answer': 'Ответ занял слишком много времени. Попробуйте еще раз чуть позже.'}, status=504)        
     except requests.exceptions.RequestException:
         return JsonResponse({'answer': 'Сервис ответа временно недоступен. Попробуйте еще раз через минуту.'}, status=503)
     except Exception:
         return JsonResponse({'answer': 'Произошла непредвиденная ошибка. Попробуйте снова.'}, status=500)
+    if cached_answer is None:
+        _cache_set(cache_key, answer)
+
 
     history.append({'role': 'user', 'content': user_message})
     history.append({'role': 'assistant', 'content': answer})
