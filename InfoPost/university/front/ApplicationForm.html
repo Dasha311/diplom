@@ -4,143 +4,867 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="apply_page_title">AlmaU · Заявка на поступление</title>
+    <title data-i18n="page_title">AlmaU · Заявка на консультацию</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
+        /* === ОСНОВНЫЕ СТИЛИ === */
         :root {
             --white: #FFFFFF;
             --black: #1C1C1E;
+            --dark-gray: #4A4A4A;
+            --gray: #9B9B9B;
             --light-gray: #F5F5F7;
             --blue: #0A84FF;
-            --dark-gray: #4A4A4A;
+            --blue-dark: #0066CC;
+            --green: #34C759;
+            --red: #FF453A;
             --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --border-radius: 14px;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
         }
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: var(--font-family); color: var(--black); background: var(--white); }
-        .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
-        .apply-hero { padding: 3.5rem 0 1.5rem; }
-        .apply-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.8rem; }
-        .apply-sub { color: var(--dark-gray); margin: 0 0 1rem; }
-        .apply-form-wrap { padding: 1rem 0 4rem; }
-        .apply-form { background: var(--light-gray); border-radius: var(--border-radius); padding: 1.5rem; display: grid; gap: 1rem; }
-        .field { display: grid; gap: 0.5rem; }
-        .field label { font-weight: 600; }
-        .field input, .field select, .field textarea {
-            border: 1px solid #d9d9df; border-radius: 10px; padding: 0.75rem 0.9rem; font-size: 1rem; background: var(--white);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .field textarea { min-height: 120px; resize: vertical; }
-        .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-        .btn { border: 0; border-radius: 999px; padding: 0.75rem 1.2rem; font-weight: 600; cursor: pointer; }
-        .btn-primary { background: var(--blue); color: #fff; }
-        .btn-secondary { background: #e9eefc; color: #0d47a1; text-decoration: none; display: inline-flex; align-items: center; }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+        }
+
+        button, .btn {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* ===== HEADER (как на главной) ===== */
+        .main-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            background: var(--white);
+        }
+
+        .main-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo__img {
+            height: clamp(38px, 4vw, 56px);
+            max-width: min(180px, 22vw);
+            width: auto;
+            display: block;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav__item {
+            position: relative;
+        }
+
+        .nav__item a {
+            color: var(--black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav__item a:hover {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(10,132,255,0.3);
+            color: var(--white) !important;
+        }
+
+        /* Выпадающее меню */
+        .nav__item--dropdown {
+            position: relative;
+        }
+
+        .dropdown {
+            display: block;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            background: var(--white);
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 0.5rem 0;
+            min-width: 280px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            pointer-events: none;
+        }
+
+        .nav__item--dropdown:hover .dropdown,
+        .dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            transform: rotate(45deg);
+            border-left: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropdown li {
+            margin: 0;
+            list-style: none;
+        }
+
+        .dropdown a {
+            color: var(--dark-gray);
+            display: block;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--blue);
+            padding-left: 2rem;
+            text-decoration: none;
+        }
+
+        /* Переключатель языков */
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-current {
+            background: var(--light-gray);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .lang-current:hover {
+            background: #e8e8ed;
+        }
+
+        .lang-current::after {
+            content: '▼';
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 100px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .lang-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--dark-gray);
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .lang-dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        /* ===== HERO СТРАНИЦЫ КОНСУЛЬТАЦИИ ===== */
+        .hero {
+            background: linear-gradient(160deg, var(--blue) 0%, #0066cc 100%);
+            color: var(--white);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        /* ===== ФОРМА ===== */
+        .form-section {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+        }
+
+        .form-body {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .form-label .required {
+            color: var(--red);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(10,132,255,0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(10,132,255,0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* === ИНФО БЛОК === */
+        .info-section {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .info-card p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__logo {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer__desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__col-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer__list {
+            list-style: none;
+        }
+
+        .footer__list li {
+            margin: 0.5rem 0;
+        }
+
+        .footer__list a {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .footer__list a:hover {
+            color: var(--white);
+        }
+
+        .footer__address {
+            color: var(--gray);
+            font-style: normal;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer__social {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .footer__social:hover {
+            background: var(--blue);
+            transform: translateY(-3px);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-header__inner {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav__list {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.2s; }
+        .info-card:nth-child(3) { animation-delay: 0.3s; }
+
+        {% include 'partials/shared_chrome_styles.html' %}
     </style>
-    {% include 'partials/shared_chrome_styles.html' %}
 </head>
 <body>
+
+    <!-- Header -->
     {% include 'partials/site_header.html' %}
 
     <main>
-        <section class="apply-hero">
+        <!-- Hero -->
+        <section class="hero">
             <div class="container">
-                <h1 class="apply-title" data-i18n="apply_title">Оставить заявку на поступление</h1>
-                <p class="apply-sub" data-i18n="apply_subtitle">Заполните форму, и приёмная комиссия AlmaU свяжется с вами.</p>
+                <div class="hero-content">
+                    <h1 class="hero-title" data-i18n="hero_title">Заявка на консультацию</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Оставьте заявку, и наш специалист свяжется с вами для бесплатной консультации по вопросам поступления, программ обучения и стипендий.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section class="apply-form-wrap">
+        <!-- Форма -->
+        <section class="form-section">
             <div class="container">
-                <form class="apply-form" action="#" method="post">
-                    <div class="field">
-                        <label for="full_name" data-i18n="apply_name_label">ФИО</label>
-                        <input id="full_name" name="full_name" type="text" data-i18n-attr="placeholder" data-i18n-attr-key="apply_name_ph" placeholder="Ваше имя и фамилия">
+                <div class="form-wrapper">
+                    <div class="form-header">
+                        <h2 data-i18n="form_title">Заполните форму</h2>
+                        <p data-i18n="form_subtitle">Мы свяжемся с вами в ближайшее время</p>
                     </div>
-                    <div class="field">
-                        <label for="phone" data-i18n="apply_phone_label">Телефон</label>
-                        <input id="phone" name="phone" type="tel" data-i18n-attr="placeholder" data-i18n-attr-key="apply_phone_ph" placeholder="+7 (___) ___-__-__">
+                    <div class="form-body">
+                        <form id="consultationForm" class="consultation-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName" class="form-label" data-i18n="label_name">ФИО <span class="required">*</span></label>
+                                    <input type="text" id="fullName" name="fullName" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="form-label" data-i18n="label_phone">Телефон <span class="required">*</span></label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (777) 123 4567" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email" class="form-label" data-i18n="label_email">Email</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="example@mail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="program" class="form-label" data-i18n="label_program">Интересующая программа</label>
+                                    <select id="program" name="program" class="form-select">
+                                        <option value="" data-i18n="select_default">Выберите программу</option>
+                                        <option value="bachelor" data-i18n="select_bachelor">Бакалавриат</option>
+                                        <option value="master" data-i18n="select_master">Магистратура</option>
+                                        <option value="mba" data-i18n="select_mba">MBA / DBA</option>
+                                        <option value="phd" data-i18n="select_phd">Докторантура</option>
+                                        <option value="online" data-i18n="select_online">Онлайн-курсы</option>
+                                        <option value="double" data-i18n="select_double">Двойной диплом</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="school" class="form-label" data-i18n="label_school">Школа / Направление</label>
+                                <select id="school" name="school" class="form-select">
+                                    <option value="" data-i18n="select_school_default">Выберите школу</option>
+                                    <option value="digital" data-i18n="school_digital">School of Digital Technologies</option>
+                                    <option value="business" data-i18n="school_business">School of Business</option>
+                                    <option value="law" data-i18n="school_law">School of Law</option>
+                                    <option value="humanities" data-i18n="school_humanities">School of Arts & Humanities</option>
+                                    <option value="social" data-i18n="school_social">School of Social Sciences</option>
+                                    <option value="health" data-i18n="school_health">Sharmanov School of Health Sciences</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label" data-i18n="label_message">Ваш вопрос или комментарий</label>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Укажите, что вас интересует: поступление, программа, стипендия, вступительные экзамены и т.д."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMethod" class="form-label" data-i18n="label_contact_method">Предпочтительный способ связи</label>
+                                <select id="contactMethod" name="contactMethod" class="form-select">
+                                    <option value="phone" data-i18n="contact_phone">Телефон</option>
+                                    <option value="email" data-i18n="contact_email">Email</option>
+                                    <option value="whatsapp" data-i18n="contact_whatsapp">WhatsApp / Telegram</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" data-i18n="label_consent">Согласие на обработку данных</label>
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <input type="checkbox" id="consent" name="consent" required style="width: 18px; height: 18px;">
+                                    <label for="consent" style="font-size: 0.9rem; color: var(--dark-gray);" data-i18n="consent_text">
+                                        Я согласен(на) на обработку персональных данных
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-submit" data-i18n="submit_btn">Отправить заявку</button>
+                            <p class="form-note" data-i18n="form_note">* Консультация бесплатна. Мы не передаём ваши данные третьим лицам.</p>
+                        </form>
                     </div>
-                    <div class="field">
-                        <label for="email" data-i18n="apply_email_label">Email</label>
-                        <input id="email" name="email" type="email" data-i18n-attr="placeholder" data-i18n-attr-key="apply_email_ph" placeholder="example@mail.com">
+                </div>
+            </div>
+        </section>
+
+        <!-- Информационные карточки -->
+        <section class="info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <h3 data-i18n="info_1_title">Бесплатная консультация</h3>
+                        <p data-i18n="info_1_desc">Наши специалисты ответят на все вопросы о поступлении, программах и стипендиях.</p>
                     </div>
-                    <div class="field">
-                        <label for="program" data-i18n="apply_program_label">Интересующая программа</label>
-                        <select id="program" name="program">
-                            <option data-i18n="apply_program_opt_default">Выберите программу</option>
-                            <option>Business Management</option>
-                            <option>Data Science</option>
-                            <option>Tourism</option>
-                            <option>Media & Cinema</option>
-                        </select>
+                    <div class="info-card">
+                        <div class="info-icon">📋</div>
+                        <h3 data-i18n="info_2_title">Помощь в выборе программы</h3>
+                        <p data-i18n="info_2_desc">Поможем подобрать программу обучения в соответствии с вашими целями и интересами.</p>
                     </div>
-                    <div class="field">
-                        <label for="comment" data-i18n="apply_comment_label">Комментарий</label>
-                        <textarea id="comment" name="comment" data-i18n-attr="placeholder" data-i18n-attr-key="apply_comment_ph" placeholder="Напишите ваш вопрос"></textarea>
+                    <div class="info-card">
+                        <div class="info-icon">📄</div>
+                        <h3 data-i18n="info_3_title">Сопровождение документов</h3>
+                        <p data-i18n="info_3_desc">Поможем собрать и подготовить все необходимые документы для поступления.</p>
                     </div>
-                    <div class="actions">
-                        <button type="submit" class="btn btn-primary" data-i18n="apply_submit">Отправить заявку</button>
-                        <a class="btn btn-secondary" href="{% url 'university:main_menu' %}" data-i18n="apply_back">Вернуться на главную</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     {% include 'partials/site_footer.html' %}
 
     <script>
-        if (typeof translations !== 'undefined') {
-            Object.assign(translations.ru || {}, {
-                apply_page_title: 'AlmaU · Заявка на поступление',
-                apply_title: 'Оставить заявку на поступление',
-                apply_subtitle: 'Заполните форму, и приёмная комиссия AlmaU свяжется с вами.',
-                apply_name_label: 'ФИО',
-                apply_phone_label: 'Телефон',
-                apply_email_label: 'Email',
-                apply_program_label: 'Интересующая программа',
-                apply_program_opt_default: 'Выберите программу',
-                apply_comment_label: 'Комментарий',
-                apply_submit: 'Отправить заявку',
-                apply_back: 'Вернуться на главную',
-                apply_name_ph: 'Ваше имя и фамилия',
-                apply_phone_ph: '+7 (___) ___-__-__',
-                apply_email_ph: 'example@mail.com',
-                apply_comment_ph: 'Напишите ваш вопрос'
+        // Мультиязычный словарь для страницы
+        const pageTranslations = {
+            ru: {
+                page_title: "AlmaU · Заявка на консультацию",
+                hero_title: "Заявка на консультацию",
+                hero_desc: "Оставьте заявку, и наш специалист свяжется с вами для бесплатной консультации по вопросам поступления, программ обучения и стипендий.",
+                form_title: "Заполните форму",
+                form_subtitle: "Мы свяжемся с вами в ближайшее время",
+                label_name: "ФИО", label_phone: "Телефон", label_email: "Email", label_program: "Интересующая программа", label_school: "Школа / Направление", label_message: "Ваш вопрос или комментарий", label_contact_method: "Предпочтительный способ связи", label_consent: "Согласие на обработку данных",
+                select_default: "Выберите программу", select_bachelor: "Бакалавриат", select_master: "Магистратура", select_mba: "MBA / DBA", select_phd: "Докторантура", select_online: "Онлайн-курсы", select_double: "Двойной диплом",
+                select_school_default: "Выберите школу", school_digital: "School of Digital Technologies", school_business: "School of Business", school_law: "School of Law", school_humanities: "School of Arts & Humanities", school_social: "School of Social Sciences", school_health: "Sharmanov School of Health Sciences",
+                contact_phone: "Телефон", contact_email: "Email", contact_whatsapp: "WhatsApp / Telegram",
+                consent_text: "Я согласен(на) на обработку персональных данных",
+                submit_btn: "Отправить заявку", form_note: "* Консультация бесплатна. Мы не передаём ваши данные третьим лицам.",
+                info_1_title: "Бесплатная консультация", info_1_desc: "Наши специалисты ответят на все вопросы о поступлении, программах и стипендиях.",
+                info_2_title: "Помощь в выборе программы", info_2_desc: "Поможем подобрать программу обучения в соответствии с вашими целями и интересами.",
+                info_3_title: "Сопровождение документов", info_3_desc: "Поможем собрать и подготовить все необходимые документы для поступления.",
+                success_message: "Спасибо! Ваша заявка отправлена. Наш специалист свяжется с вами в ближайшее время.",
+                error_message: "Пожалуйста, заполните все обязательные поля."
+            },
+            kz: {
+                page_title: "AlmaU · Кеңес алуға өтінім",
+                hero_title: "Кеңес алуға өтінім",
+                hero_desc: "Өтінім қалдырыңыз, біздің маман сізге тегін кеңес беру үшін байланысады: түсу, оқу бағдарламалары және стипендиялар туралы сұрақтар бойынша.",
+                form_title: "Форманы толтырыңыз",
+                form_subtitle: "Біз сізбен жақын арада байланысамыз",
+                label_name: "Аты-жөні", label_phone: "Телефон", label_email: "Email", label_program: "Қызықтыратын бағдарлама", label_school: "Мектеп / Бағыт", label_message: "Сұрағыңыз немесе пікіріңіз", label_contact_method: "Байланыстың қолайлы тәсілі", label_consent: "Деректерді өңдеуге келісім",
+                select_default: "Бағдарламаны таңдаңыз", select_bachelor: "Бакалавриат", select_master: "Магистратура", select_mba: "MBA / DBA", select_phd: "Докторантура", select_online: "Онлайн-курстар", select_double: "Қос диплом",
+                select_school_default: "Мектепті таңдаңыз", school_digital: "School of Digital Technologies", school_business: "School of Business", school_law: "School of Law", school_humanities: "School of Arts & Humanities", school_social: "School of Social Sciences", school_health: "Sharmanov School of Health Sciences",
+                contact_phone: "Телефон", contact_email: "Email", contact_whatsapp: "WhatsApp / Telegram",
+                consent_text: "Мен жеке деректерді өңдеуге келісемін",
+                submit_btn: "Өтінім жіберу", form_note: "* Кеңес тегін. Біз сіздің деректеріңізді үшінші тұлғаларға бермейміз.",
+                info_1_title: "Тегін кеңес", info_1_desc: "Біздің мамандар түсу, бағдарламалар және стипендиялар туралы барлық сұрақтарға жауап береді.",
+                info_2_title: "Бағдарлама таңдауға көмек", info_2_desc: "Мақсаттарыңыз бен қызығушылықтарыңызға сәйкес оқу бағдарламасын таңдауға көмектесеміз.",
+                info_3_title: "Құжаттарды рәсімдеу", info_3_desc: "Түсу үшін барлық қажетті құжаттарды жинауға және дайындауға көмектесеміз.",
+                success_message: "Рахмет! Сіздің өтініміңіз жіберілді. Біздің маман жақын арада сізбен байланысады.",
+                error_message: "Барлық міндетті өрістерді толтырыңыз."
+            },
+            en: {
+                page_title: "AlmaU · Consultation Request",
+                hero_title: "Consultation Request",
+                hero_desc: "Leave a request and our specialist will contact you for a free consultation on admission, study programs and scholarships.",
+                form_title: "Fill out the form",
+                form_subtitle: "We will contact you shortly",
+                label_name: "Full Name", label_phone: "Phone", label_email: "Email", label_program: "Program of interest", label_school: "School / Direction", label_message: "Your question or comment", label_contact_method: "Preferred contact method", label_consent: "Consent to data processing",
+                select_default: "Select a program", select_bachelor: "Bachelor's", select_master: "Master's", select_mba: "MBA / DBA", select_phd: "Doctoral Studies", select_online: "Online Courses", select_double: "Double Degree",
+                select_school_default: "Select a school", school_digital: "School of Digital Technologies", school_business: "School of Business", school_law: "School of Law", school_humanities: "School of Arts & Humanities", school_social: "School of Social Sciences", school_health: "Sharmanov School of Health Sciences",
+                contact_phone: "Phone", contact_email: "Email", contact_whatsapp: "WhatsApp / Telegram",
+                consent_text: "I agree to the processing of personal data",
+                submit_btn: "Submit request", form_note: "* Consultation is free. We do not share your data with third parties.",
+                info_1_title: "Free consultation", info_1_desc: "Our specialists will answer all questions about admission, programs and scholarships.",
+                info_2_title: "Program selection assistance", info_2_desc: "We will help you choose a study program according to your goals and interests.",
+                info_3_title: "Document support", info_3_desc: "We will help you collect and prepare all the necessary documents for admission.",
+                success_message: "Thank you! Your request has been sent. Our specialist will contact you shortly.",
+                error_message: "Please fill in all required fields."
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function updatePageLanguage() {
+            const t = pageTranslations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    if (el.tagName === 'TITLE') {
+                        document.title = t[key];
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = t[key];
+                    } else {
+                        el.innerHTML = t[key];
+                    }
+                }
             });
-            Object.assign(translations.kz || {}, {
-                apply_page_title: 'AlmaU · Оқуға түсуге өтінім',
-                apply_title: 'Оқуға түсуге өтінім қалдыру',
-                apply_subtitle: 'Форманы толтырыңыз, AlmaU қабылдау комиссиясы сізбен хабарласады.',
-                apply_name_label: 'Аты-жөні',
-                apply_phone_label: 'Телефон',
-                apply_email_label: 'Email',
-                apply_program_label: 'Қызықтыратын бағдарлама',
-                apply_program_opt_default: 'Бағдарламаны таңдаңыз',
-                apply_comment_label: 'Пікір',
-                apply_submit: 'Өтінімді жіберу',
-                apply_back: 'Басты бетке оралу',
-                apply_name_ph: 'Аты-жөніңіз',
-                apply_phone_ph: '+7 (___) ___-__-__',
-                apply_email_ph: 'example@mail.com',
-                apply_comment_ph: 'Сұрағыңызды жазыңыз'
-            });
-            Object.assign(translations.en || {}, {
-                apply_page_title: 'AlmaU · Admission application',
-                apply_title: 'Submit an admission application',
-                apply_subtitle: 'Fill out the form and AlmaU admissions team will contact you.',
-                apply_name_label: 'Full name',
-                apply_phone_label: 'Phone',
-                apply_email_label: 'Email',
-                apply_program_label: 'Program of interest',
-                apply_program_opt_default: 'Select a program',
-                apply_comment_label: 'Comment',
-                apply_submit: 'Send application',
-                apply_back: 'Back to main page',
-                apply_name_ph: 'Your full name',
-                apply_phone_ph: '+7 (___) ___-__-__',
-                apply_email_ph: 'example@mail.com',
-                apply_comment_ph: 'Type your question'
-            });
+            // Обновляем плейсхолдеры
+            const messageField = document.getElementById('message');
+            if (messageField && pageTranslations[currentLang].message_placeholder) {
+                messageField.placeholder = pageTranslations[currentLang].message_placeholder;
+            }
         }
+
+        window.setLanguage = function(lang) {
+            if (pageTranslations[lang]) {
+                currentLang = lang;
+                updatePageLanguage();
+                localStorage.setItem('preferred_language', lang);
+            }
+        };
+
+        // Обработка формы
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const consent = document.getElementById('consent').checked;
+            
+            if (!name || !phone || !consent) {
+                alert(pageTranslations[currentLang].error_message);
+                return;
+            }
+            
+            // Имитация отправки (в реальном проекте здесь был бы AJAX запрос)
+            alert(pageTranslations[currentLang].success_message);
+            document.getElementById('consultationForm').reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language') || 'ru';
+            currentLang = savedLang;
+            updatePageLanguage();
+            
+            // Привязываем кнопки переключения языка
+            const observeLangButtons = () => {
+                const langLinks = document.querySelectorAll('.lang-dropdown a');
+                langLinks.forEach(link => {
+                    if (!link.hasAttribute('data-i18n-listener')) {
+                        link.setAttribute('data-i18n-listener', 'true');
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const langCode = link.getAttribute('data-lang-option');
+                            if (langCode && window.setLanguage) {
+                                window.setLanguage(langCode);
+                            }
+                        });
+                    }
+                });
+            };
+            observeLangButtons();
+            const observer = new MutationObserver(() => observeLangButtons());
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            const footerYear = document.getElementById('footerYear');
+            if (footerYear) footerYear.textContent = new Date().getFullYear();
+            
+            const form = document.getElementById('consultationForm');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmit);
+            }
+        });
     </script>
     {% include 'partials/shared_chrome_scripts.html' %}
 </body>

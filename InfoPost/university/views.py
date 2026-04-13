@@ -5,15 +5,22 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 import logging
+import os
 import requests
 import re
 from pathlib import Path
 from collections import OrderedDict
+from openai import OpenAI
+
+client = OpenAI(api_key="ТВОЙ_API_KEY")
 
 
 SUPPORTED_LANGUAGES = {'ru', 'kz', 'en'}
 DEFAULT_LANGUAGE = 'ru'
 OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'
+GPT_API_URL = os.getenv('GPT_API_URL', 'https://api.openai.com/v1/chat/completions')
+GPT_API_KEY = os.getenv('GPT_API_KEY', '')
+GPT_MODEL = os.getenv('GPT_MODEL', 'gpt-4o-mini')
 KNOWLEDGE_BASE_PATH = Path(__file__).resolve().parent / 'info.txt'
 MAX_KNOWLEDGE_SNIPPETS = 1
 MAX_SNIPPET_CHARS = 300
@@ -122,11 +129,22 @@ def _cache_set(key, value):
     while len(ANSWER_CACHE) > ANSWER_CACHE_SIZE:
         ANSWER_CACHE.popitem(last=False)
 
+def ask_gpt(prompt):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "Ты помощник по поступлению в AlmaU. Отвечай кратко и по делу."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=150
+    )
+    return response.choices[0].message.content
+
 def ask_ollama(prompt):
     response = requests.post(
         OLLAMA_URL,
         json={
-            'model': 'mistral:latest',
+            'model': 'phi3',
             'prompt': prompt,
             'stream': False,
             'options': {
@@ -140,6 +158,31 @@ def ask_ollama(prompt):
 
     response.raise_for_status()
     return response.json().get('response', '').strip()
+
+def ask_gpt(user_message):
+    if not GPT_API_KEY:
+        raise requests.exceptions.RequestException('GPT_API_KEY is not configured')
+
+    response = requests.post(
+        GPT_API_URL,
+        headers={
+            'Authorization': f'Bearer {GPT_API_KEY}',
+            'Content-Type': 'application/json',
+        },
+        json={
+            'model': GPT_MODEL,
+            'messages': [
+                {'role': 'system', 'content': 'Ты консультант AlmaU. Отвечай кратко и по фактам.'},
+                {'role': 'user', 'content': user_message},
+            ],
+            'temperature': 0.2,
+            'max_tokens': 220,
+        },
+        timeout=60,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    return payload['choices'][0]['message']['content'].strip()
 
 
 def load_knowledge_base():
@@ -269,6 +312,8 @@ def apply_page(request):
 def is_simple_question(text):
     return len(text.split()) <= 4
 
+def is_complex(text):
+    return len((text or '').split()) > 3
 
 def set_language(request, lang_code):
     lang = (lang_code or '').lower()
@@ -303,8 +348,18 @@ def chat(request):
 
         cache_key = f"{language_code}:{_normalize_for_cache(user_message)}"
         cached_answer = _cache_get(cache_key)
-        answer = cached_answer or ask_ollama(prompt)
-        if cached_answer is None:
+        if cached_answer:
+            answer = cached_answer
+        else:
+            try:
+                if is_complex(user_message):
+                    answer = ask_gpt(user_message)
+                else:
+                    answer = ask_ollama(prompt)
+            except Exception:
+                logger.exception('GPT request failed, switching to Ollama fallback')
+                answer = ask_ollama(prompt)
+
             _cache_set(cache_key, answer)
 
         return JsonResponse({'answer': answer})        
